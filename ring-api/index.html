@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ring API</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style
+</head>
+
+<body>
+    <div id="redoc-container"> </div>
+    <script src="../lib/redoc.standalone.js"> </script>
+    <script>
+        var configOptions = {
+            hideLoading: true,
+            theme: {
+                colors:{
+                    primary: {
+                        main: "#6A2E99"
+                    },
+                    text: {
+                        primary: "#000000"
+                    },
+                    success: {
+                        main: '#04633D'
+                    },
+                    warning: {
+                        main: '#AE3D04'
+                    },
+                    error: {
+                        main: '#C10C0D'
+                    },
+                },
+                typography: {
+                    fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                    headings: {
+                        fontFamily: 'Helvetica Neue, Arial, sans-serif'
+                    },
+                    code: {
+                        fontFamily: 'Helvetica Neue, Arial, sans-serif'
+                    }
+                },
+                sidebar: {
+                    backgroundColor: "#F2F4F5",
+                    textColor: "#3D5466"
+                },
+                logo: {
+                    gutter: "12.5px"
+                    }
+            }
+        };
+        Redoc.init("./openapi.json", configOptions, document.getElementById('redoc-container'))
+    </script>
+</body>
+
+</html>
