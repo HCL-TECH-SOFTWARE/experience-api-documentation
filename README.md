@@ -5,9 +5,9 @@ The Experience API describes a high-level API through which the following specif
 
 HCL Experience API
 
-* [**_HCL Ring API :_**](https://hcl-tech-software.github.io/experience-api-documentation/ring-api) Presents developer entry points to HCL DX 9.5 core platform capabilities which are divided into two main categories: Authorization APIs and Web Content APIs.
-* [**_HCL Digital Asset Management API :_**](https://hcl-tech-software.github.io/experience-api-documentation/dam-api) Presents developer entry points to the Digital Asset Management features of HCL DX 9.5.
-* [**_HCL Image Processor API_:**](https://hcl-tech-software.github.io/experience-api-documentation/image-processor-api) Presents developer entry points to the Digital Asset Management Image Processor functions of HCL DX 9.5.
+* [**_HCL Ring API :_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/ring-api) Presents developer entry points to HCL DX 9.5 core platform capabilities which are divided into two main categories: Authorization APIs and Web Content APIs.
+* [**_HCL Digital Asset Management API :_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/dam-api) Presents developer entry points to the Digital Asset Management features of HCL DX 9.5.
+* [**_HCL Image Processor API_:**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/image-processor-api) Presents developer entry points to the Digital Asset Management Image Processor functions of HCL DX 9.5.
 
 > **Note :** Future HCL DX 9.5 feature functionality will also be exposed through the HCL Experience API.
 
@@ -19,6 +19,6 @@ The HCL Experience API is a component of the HCL Digital Experience offerings. H
 
 Documentation | URL Specification
 --------------|------------------
-HCL Ring API | https://hcl-tech-software.github.io/experience-api-documentation/ring-api
-HCL Digital Asset Management API | https://hcl-tech-software.github.io/experience-api-documentation/dam-api
-HCL Image Processor API | https://hcl-tech-software.github.io/experience-api-documentation/image-processor-api
+HCL Ring API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/ring-api
+HCL Digital Asset Management API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/dam-api
+HCL Image Processor API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/image-processor-api
