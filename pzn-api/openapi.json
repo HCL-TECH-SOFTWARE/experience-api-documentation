@@ -1,0 +1,2476 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "DX Personalization REST APIs",
+        "version": "1.0.0",
+        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This gives you access to personalization features through REST services.\n\nCurrently APIs are developed for Visibility Rule and Profiler rule types. APIs are in beta stage at this time - changes are possible until finalized.",
+        "contact": {
+            "name": "HCL"
+        }
+    },
+    "paths": {
+        "/pzn-rest/folders": {
+            "get": {
+                "tags": [
+                    "Folders"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cookie",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    },
+                    {
+                        "examples": {
+                            "limit": {
+                                "value": "30"
+                            }
+                        },
+                        "name": "limit",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - limit is the number of results which will be returned. (e.g. 10). Default is 30.",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "offset": {
+                                "value": "0"
+                            }
+                        },
+                        "name": "offset",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - limit is the number of results which will be returned. (e.g. 10). Default is 30.",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "depth": {
+                                "value": "Descendants"
+                            }
+                        },
+                        "name": "depth",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provide the keyword to perform search based on depth. (e.g. Children). [ Allowed Depth: Children, Descendants ]. \n \n **NOTE:** Null depth value will result in same response as depth: descendants.",
+                        "schema": {
+                            "enum": [
+                                "Children",
+                                "Descendants"
+                            ],
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "parent": {
+                                "value": "ffbbddd7-95c6-4062-8971-134f780002f1"
+                            }
+                        },
+                        "name": "parent",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provide folder for which the sub-folders to be queried. \n \n **NOTE:** If the parent value is left empty it will fetch workspace and all the descendant/child folders present based on depth selected.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IListOfFolders"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of folders."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the bad request error if the input parameters are missing/invalid."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Ltpa token invalid or expired."
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access restricted to user."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Url not accessible."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Internal server error."
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": [
+                        ]
+                    }
+                ],
+                "summary": "To get list of all folder details for the given parent Id."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IFolderPostBody"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Folders"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cookie",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IFolderDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder details."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "LtpaToken is invalid/expired."
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access restricted for user."
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Duplicate folder found."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Internal server error."
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": [
+                        ]
+                    }
+                ],
+                "summary": "To create a new folder."
+            }
+        },
+        "/pzn-rest/folders/{folder-id}": {
+            "get": {
+                "tags": [
+                    "Folders"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cookie",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IFolderDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder details."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "LtpaToken is invalid/expired."
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access restricted for user."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Url not accessible."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Internal server error."
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": [
+                        ]
+                    }
+                ],
+                "summary": "To get the individual folder details."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IFolderPutBody"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Folders"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cookie",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IFolderDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder details."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "LtpaToken is invalid/expired."
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access restricted for user."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Url not accessible."
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Duplicate folder found."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Internal server error."
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": [
+                        ]
+                    }
+                ],
+                "summary": "To update the folder."
+            },
+            "delete": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": false
+                },
+                "tags": [
+                    "Folders"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cookie",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IFolderDeleteResponse"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder deleted successfully."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "LtpaToken is invalid/expired."
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access restricted for user."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Url not accessible."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Internal server error."
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": [
+                        ]
+                    }
+                ],
+                "summary": "To delete a folder."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "folder": {
+                            "value": "b7bbddd7-95c6-4062-8971-134f780002f1"
+                        }
+                    },
+                    "name": "folder-id",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder uuid.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/pzn-rest/rules": {
+            "get": {
+                "tags": [
+                    "Rules"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cookie",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    },
+                    {
+                        "examples": {
+                            "limit": {
+                                "value": "30"
+                            }
+                        },
+                        "name": "limit",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - limit is the number of results which will be returned. (e.g. 10). Default is 30.",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "offset": {
+                                "value": "0"
+                            }
+                        },
+                        "name": "offset",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - offset is the starting point from which results will be returned. (e.g. 20). Default is 0.",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "ruleType": {
+                                "value": "Visibility Rule"
+                            }
+                        },
+                        "name": "ruleType",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provide the keyword to perform search based on rule type. (e.g. Visibility Rule). [ Allowed Rule Types: Visibilty Rule, Profiler ].",
+                        "schema": {
+                            "enum": [
+                                "Visibility Rule",
+                                "Profiler"
+                            ],
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IListOfRules"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of rules."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the bad request error if the input parameters are missing/invalid."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Ltpa token invalid or expired."
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access restricted to user."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Internal server error."
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": [
+                        ]
+                    }
+                ],
+                "summary": "Get the list of rules."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IRulePostBody"
+                            },
+                            "examples": {
+                                "Visibility Rule": {
+                                    "value": {
+                                        "title": "Visibility Rule Example",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Visibility Rule Description",
+                                        "ruleType": "Visibility Rule",
+                                        "contents": {
+                                            "visibility": "show",
+                                            "otherwise": "hide",
+                                            "conditions": {
+                                                "and": [
+                                                    {
+                                                        "attributeType": "BrowserCapability",
+                                                        "attributeName": "Agent",
+                                                        "operator": "is",
+                                                        "value": [
+                                                            "Mozilla"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "attributeType": "Date",
+                                                        "attributeName": "year",
+                                                        "operator": "is not",
+                                                        "value": [
+                                                            2021
+                                                        ]
+                                                    },
+                                                    {
+                                                        "attributeType": "Device",
+                                                        "attributeName": "City",
+                                                        "operator": "is",
+                                                        "value": [
+                                                            "Bengaluru"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "operator": "is",
+                                                        "attributeName": "timestampprop",
+                                                        "attributeType": "RenderParameter",
+                                                        "value": [
+                                                            "2022-02-21 17:28:00"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "operator": "is",
+                                                        "attributeName": "attr1",
+                                                        "attributeType": "ActionCount",
+                                                        "value": [
+                                                            "value1"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "operator": "is",
+                                                        "attributeName": "attr2",
+                                                        "attributeType": "CategoryCount",
+                                                        "value": [
+                                                            "value2"
+                                                        ]
+                                                    },
+                                                    {
+                                                        "or": [
+                                                            {
+                                                                "attributeType": "Referrer",
+                                                                "attributeName": "ReferralUrl",
+                                                                "operator": "is not",
+                                                                "value": [
+                                                                    "hcl.com"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "attributeType": "ActionBean",
+                                                                "attributeName": "actionNames",
+                                                                "operator": "includes any of",
+                                                                "value": [
+                                                                    "Action Bean value"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "attributeType": "CategoryBean",
+                                                                "attributeName": "categoryNames",
+                                                                "operator": "is not any of",
+                                                                "value": [
+                                                                    "Category Bean value"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "operator": "is",
+                                                                "attributeName": "textprop",
+                                                                "attributeType": "Session",
+                                                                "value": [
+                                                                    "test"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "operator": "includes",
+                                                                "attributeName": "textprop",
+                                                                "attributeType": "SharedData",
+                                                                "value": [
+                                                                    "test"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "operator": "is",
+                                                                "attributeName": "textprop",
+                                                                "attributeType": "PortletAttr",
+                                                                "value": [
+                                                                    "test"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "operator": "includes",
+                                                                "attributeName": "textprop",
+                                                                "attributeType": "Request",
+                                                                "value": [
+                                                                    "test"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "operator": "is",
+                                                                "matchingItems":{
+                                                                    "operator": "includes",
+                                                                    "attributeType": "ActionBean",
+                                                                    "attributeName": "actionNames",
+                                                                    "value": [
+                                                                        "test"
+                                                                    ]
+                                                                },
+                                                                "value":[
+                                                                    1
+                                                                ]
+                                                            },
+                                                            {
+                                                                "profile": {
+                                                                    "id": "5b569fd7-564e-4b48-a2ee-5f1ce3a42352",
+                                                                    "profilerName": "/Profiler5",
+                                                                    "profiles": [
+                                                                        "editor",
+                                                                        "man92",
+                                                                        "ps003"
+                                                                    ]
+                                                                },
+                                                                "operator": "is"
+                                                            },
+                                                            {
+                                                                "operator": "is",
+                                                                 "arithmetic": {
+                                                                     "attributeNames": [
+                                                                         "a",
+                                                                         "b"
+                                                                     ],
+                                                                     "arithmeticOperator": "+"
+                                                                 },
+                                                                 "value": [
+                                                                     1
+                                                                 ]
+                                                             }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            "caseInsensitive": false
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "Rules"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cookie",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IRuleDetails"
+                                },
+                                "examples": {
+                                    "Visibility Rule": {
+                                        "value": {
+                                            "id": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
+                                            "title": "Visibility Rule Example",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Visibility Rule Description",
+                                            "ruleType": "Visibility Rule",
+                                            "contents": {
+                                                "visibility": "show",
+                                                "otherwise": "hide",
+                                                "conditions": {
+                                                    "and": [
+                                                        {
+                                                            "attributeType": "BrowserCapability",
+                                                            "attributeName": "Agent",
+                                                            "operator": "is",
+                                                            "value": [
+                                                                "Mozilla"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "attributeType": "Date",
+                                                            "attributeName": "year",
+                                                            "operator": "is not",
+                                                            "value": [
+                                                                2021
+                                                            ]
+                                                        },
+                                                        {
+                                                            "attributeType": "Device",
+                                                            "attributeName": "City",
+                                                            "operator": "is",
+                                                            "value": [
+                                                                "Bengaluru"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "attributeType": "wpsUser",
+                                                            "attributeName": "givenName",
+                                                            "operator": "is",
+                                                            "value": [
+                                                                "David"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "or": [
+                                                                {
+                                                                    "attributeType": "Referrer",
+                                                                    "attributeName": "ReferralUrl",
+                                                                    "operator": "is not",
+                                                                    "value": [
+                                                                        "hcl.com"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "attributeType": "ActionBean",
+                                                                    "attributeName": "actionNames",
+                                                                    "operator": "includes any of",
+                                                                    "value": [
+                                                                        "Action Bean value"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "attributeType": "CategoryBean",
+                                                                    "attributeName": "categoryNames",
+                                                                    "operator": "is not any of",
+                                                                    "value": [
+                                                                        "Category Bean value"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "operator": "is",
+                                                                    "attributeName": "textprop",
+                                                                    "attributeType": "Session",
+                                                                    "value": [
+                                                                        "test"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "operator": "includes",
+                                                                    "attributeName": "textprop",
+                                                                    "attributeType": "SharedData",
+                                                                    "value": [
+                                                                        "test"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "operator": "is",
+                                                                    "attributeName": "textprop",
+                                                                    "attributeType": "PortletAttr",
+                                                                    "value": [
+                                                                        "test"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "operator": "includes",
+                                                                    "attributeName": "textprop",
+                                                                    "attributeType": "Request",
+                                                                    "value": [
+                                                                        "test"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "operator": "is",
+                                                                    "matchingItems":{
+                                                                        "operator": "includes",
+                                                                        "attributeType": "ActionBean",
+                                                                        "attributeName": "actionNames",
+                                                                        "value": [
+                                                                            "test"
+                                                                        ]
+                                                                    },
+                                                                    "value":[
+                                                                        1
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "profile": {
+                                                                        "id": "5b569fd7-564e-4b48-a2ee-5f1ce3a42352",
+                                                                        "profilerName": "/Profiler5",
+                                                                        "profiles": [
+                                                                            "editor",
+                                                                            "man92",
+                                                                            "ps003"
+                                                                        ]
+                                                                    },
+                                                                    "operator": "is"
+                                                                },
+                                                                {
+                                                                    "operator": "is",
+                                                                     "arithmetic": {
+                                                                         "attributeNames": [
+                                                                             "a",
+                                                                             "b"
+                                                                         ],
+                                                                         "arithmeticOperator": "+"
+                                                                     },
+                                                                     "value": [
+                                                                         1
+                                                                     ]
+                                                                 }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                "caseInsensitive": false
+                                            },
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule details."
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "LtpaToken is invalid/expired."
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access restricted for user."
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Duplicate rule found."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Internal server error."
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": [
+                        ]
+                    }
+                ],
+                "summary": "To create a new rule.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API will create visibility rules.<br><b>Note</b>: Allowed attribute types: BrowserCapability, Date, Device, Referrer, ActionBean, CategoryBean, Action Count, Category Count, User, Shared Render Parameters, Session, Shared Data, Portlet Attributes, Request, Profiler, Arithmetic and  MatchingItems."
+            }
+        },
+        "/pzn-rest/rules/{rule-id}": {
+            "get": {
+                "tags": [
+                    "Rules"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cookie",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IRuleDetails"
+                                },
+                                "examples": {
+                                    "Visibility Rule": {
+                                        "value": {
+                                            "id": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Visibility Rule",
+                                            "title": "Visibility Rule 1",
+                                            "ruleType": "Visibility Rule",
+                                            "contents": {
+                                                "visibility": "show",
+                                                "conditions": {
+                                                    "and": [
+                                                        {
+                                                            "attributeType": "Date",
+                                                            "attributeName": "day",
+                                                            "operator": "is",
+                                                            "value": [
+                                                                "2"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "attributeType": "wpsUser",
+                                                            "attributeName": "givenName",
+                                                            "operator": "is",
+                                                            "value": [
+                                                                "David"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "attributeType": "Device",
+                                                            "attributeName": "Device Class",
+                                                            "operator": "is",
+                                                            "value": [
+                                                                {
+                                                                    "attributeType": "Device",
+                                                                    "attributeName": "Longitude"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "arithmetic": {
+                                                                "attributeNames": [
+                                                                    "attr1",
+                                                                    "attr2"
+                                                                ],
+                                                                "arithmeticOperator": "+"
+                                                            },
+                                                            "operator": "is between",
+                                                            "value": [
+                                                                "3",
+                                                                "5"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "operator": "is",
+                                                            "attributeName": "timestampprop",
+                                                            "attributeType": "RenderParameter",
+                                                            "value": [
+                                                                "2022-02-21 17:28:00"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "operator": "is",
+                                                            "attributeName": "attr1",
+                                                            "attributeType": "ActionCount",
+                                                            "value": [
+                                                                "value1"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "operator": "is",
+                                                            "attributeName": "attr2",
+                                                            "attributeType": "CategoryCount",
+                                                            "value": [
+                                                                "value2"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "matchingItems": {
+                                                                "attributeType": "Action Bean",
+                                                                "attributeName": "Action Class",
+                                                                "operator": "is",
+                                                                "value": [
+                                                                    "value1"
+                                                                ]
+                                                            },
+                                                            "operator": "is",
+                                                            "value": [
+                                                                "3"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "matchingItems": {
+                                                                "attributeType": "Action Bean",
+                                                                "attributeName": "Action Class",
+                                                                "operator": "is between",
+                                                                "value": [
+                                                                    "1",
+                                                                    "4"
+                                                                ]
+                                                            },
+                                                            "operator": "is",
+                                                            "value": [
+                                                                "3"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "matchingItems": {
+                                                                "attributeType": "Device",
+                                                                "attributeName": "Device Class",
+                                                                "operator": "is",
+                                                                "value": [
+                                                                    {
+                                                                        "attributeType": "Device",
+                                                                        "attributeName": "Longitude"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "operator": "is",
+                                                            "value": [
+                                                                "3"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "profile": {
+                                                                "id": "b7bbddd7-95c6-4062-8971-134f780002f1",
+                                                                "profiles": [
+                                                                    "profile1",
+                                                                    "profile1"
+                                                                ]
+                                                            },
+                                                            "operator": "is"
+                                                        },
+                                                        {
+                                                            "or": [
+                                                                {
+                                                                    "attributeType": "Date",
+                                                                    "attributeName": "day",
+                                                                    "operator": "is empty"
+                                                                },
+                                                                {
+                                                                    "arithmetic": {
+                                                                        "attributeNames": [
+                                                                            "attr3",
+                                                                            "attr4"
+                                                                        ],
+                                                                        "arithmeticOperator": "-"
+                                                                    },
+                                                                    "operator": "is",
+                                                                    "value": [
+                                                                        "4"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                "caseInsensitive": true,
+                                                "otherwise": "hide"
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2021-09-30T11:25:57.090Z",
+                                            "publishedOnDate": "2021-09-30T11:25:57.090Z",
+                                            "lastModified": "2021-09-30T11:25:57.090Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "HR123_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    },
+                                    "Profiler": {
+                                        "value": {
+                                            "id": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Profiler",
+                                            "title": "Profiler 1",
+                                            "ruleType": "Profiler",
+                                            "contents": {
+                                                "profiles": [
+                                                    {
+                                                        "profileName": "Profile1",
+                                                        "conditions": {
+                                                            "and": [
+                                                                {
+                                                                    "attributeType": "Date",
+                                                                    "attributeName": "day",
+                                                                    "operator": "is",
+                                                                    "value": [
+                                                                        "2"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "attributeType": "Device",
+                                                                    "attributeName": "Device Class",
+                                                                    "operator": "is",
+                                                                    "value": [
+                                                                        {
+                                                                            "attributeType": "Device",
+                                                                            "attributeName": "Longitude"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "arithmetic": {
+                                                                        "attributeNames": [
+                                                                            "attr1",
+                                                                            "attr2"
+                                                                        ],
+                                                                        "arithmeticOperator": "+"
+                                                                    },
+                                                                    "operator": "is between",
+                                                                    "value": [
+                                                                        "3",
+                                                                        "5"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "matchingItems": {
+                                                                        "attributeType": "Action Bean",
+                                                                        "attributeName": "Action Class",
+                                                                        "operator": "is",
+                                                                        "value": [
+                                                                            "value1"
+                                                                        ]
+                                                                    },
+                                                                    "operator": "is",
+                                                                    "value": [
+                                                                        "3"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "matchingItems": {
+                                                                        "attributeType": "Action Bean",
+                                                                        "attributeName": "Action Class",
+                                                                        "operator": "is between",
+                                                                        "value": [
+                                                                            "1",
+                                                                            "4"
+                                                                        ]
+                                                                    },
+                                                                    "operator": "is",
+                                                                    "value": [
+                                                                        "3"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "matchingItems": {
+                                                                        "attributeType": "Device",
+                                                                        "attributeName": "Device Class",
+                                                                        "operator": "is",
+                                                                        "value": [
+                                                                            {
+                                                                                "attributeType": "Device",
+                                                                                "attributeName": "Longitude"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "operator": "is",
+                                                                    "value": [
+                                                                        "3"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "profile": {
+                                                                        "id": "b7bbddd7-95c6-4062-8971-134f780002f1",
+                                                                        "profiles": [
+                                                                            "profile1",
+                                                                            "profile1"
+                                                                        ]
+                                                                    },
+                                                                    "operator": "is"
+                                                                },
+                                                                {
+                                                                    "or": [
+                                                                        {
+                                                                            "attributeType": "Date",
+                                                                            "attributeName": "day",
+                                                                            "operator": "is empty"
+                                                                        },
+                                                                        {
+                                                                            "arithmetic": {
+                                                                                "attributeNames": [
+                                                                                    "attr3",
+                                                                                    "attr4"
+                                                                                ],
+                                                                                "arithmeticOperator": "-"
+                                                                            },
+                                                                            "operator": "is",
+                                                                            "value": [
+                                                                                "4"
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "profileName": "Profile2",
+                                                        "conditions": {
+                                                            "and": [
+                                                                {
+                                                                    "attributeType": "Date",
+                                                                    "attributeName": "day",
+                                                                    "operator": "is",
+                                                                    "value": [
+                                                                        "20"
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ],
+                                                "otherwiseProfile": "Profile3",
+                                                "caseInsensitive": true,
+                                                "stopFirstProfile": true
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2021-09-30T11:25:57.090Z",
+                                            "publishedOnDate": "2021-09-30T11:25:57.090Z",
+                                            "lastModified": "2021-09-30T11:25:57.090Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "HR123_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule details."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "LtpaToken is invalid/expired."
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access restricted for user."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Url not accessible."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Internal server error."
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": [
+                        ]
+                    }
+                ],
+                "summary": "To get the individual rule details."
+            },
+            "delete": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": false
+                },
+                "tags": [
+                    "Rules"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cookie",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IRuleDeleteResponse"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule deleted successfully."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "LtpaToken is invalid/expired."
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access restricted for user."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Url not accessible."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Internal server error."
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": [
+                        ]
+                    }
+                ],
+                "summary": "To delete a Rule."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "rule": {
+                            "value": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf"
+                        }
+                    },
+                    "name": "rule-id",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule uuid.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/pzn-rest/rules/{rule-id}/invoke": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": false
+                },
+                "tags": [
+                    "Rules"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cookie",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains the access or authentication token. Leave this field empty if you are already authenticated, unless you intend to put a token value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IRuleExecuteResult"
+                                },
+                                "examples": {
+                                    "Visibility Rule": {
+                                        "value": {
+                                            "ruleId": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
+                                            "title": "Visibility Rule 1",
+                                            "ruleType": "Visibility Rule",
+                                            "result": "show"
+                                        }
+                                    },
+                                    "Profiler": {
+                                        "value": {
+                                            "ruleId": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
+                                            "title": "Profiler 1",
+                                            "ruleType": "Profiler",
+                                            "result": [
+                                                "Profile1",
+                                                "Profile2"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule result."
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "LtpaToken is invalid/expired."
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access restricted for user."
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Url not accessible."
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IErrorDetails"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Internal server error."
+                    }
+                },
+                "security": [
+                    {
+                        "cookieAuth": [
+                        ]
+                    }
+                ],
+                "summary": "To invoke the rule."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "rule": {
+                            "value": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf"
+                        }
+                    },
+                    "name": "rule-id",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule uuid.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "IErrorDetails": {
+                "title": "Root Type for IErrorDetails",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Error details for an API.",
+                "required": [
+                    "error"
+                ],
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "properties": {
+                            "statusCode": {
+                                "type": "string"
+                            },
+                            "message": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "details": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "error": {
+                        "statusCode": "4XX/5XX",
+                        "message": "Error",
+                        "name": "Error",
+                        "details": "Error occurred."
+                    }
+                }
+            },
+            "IRuleDetails": {
+                "title": "Root Type for IRuleDetails",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule details.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule uuid.",
+                        "type": "string",
+                        "example": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf"
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule description.",
+                        "type": "string",
+                        "example": "Visibility Rule"
+                    },
+                    "title": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule title.",
+                        "type": "string",
+                        "example": "Visibility Rule 1"
+                    },
+                    "ruleType": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Type of rules.",
+                        "type": "string",
+                        "example": "Visibility Rule"
+                    },
+                    "authors": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authors",
+                        "type": "string",
+                        "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                    },
+                    "creator": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Creator",
+                        "type": "string",
+                        "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                    },
+                    "created": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Created date.",
+                        "type": "string",
+                        "example": "2021-10-01T07:17:59.725Z"
+                    },
+                    "publishedOnDate": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Published date.",
+                        "type": "string",
+                        "example": "2021-09-30T11:25:57.090Z"
+                    },
+                    "lastModified": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Last modified date.",
+                        "type": "string",
+                        "example": "2021-09-30T11:25:57.090Z"
+                    },
+                    "lastModifier": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Last modifier.",
+                        "type": "string",
+                        "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                    },
+                    "parentId": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Parent uuid.",
+                        "type": "string"
+                    },
+                    "contents": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule contents.",
+                        "type": "object"
+                    },
+                    "caseInsensitive": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Indication that the string comparisons in the rule are case insensitive.",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "stopFirstProfile": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Indication that the rule returns the first matching profile for the current user.",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "example": {
+                    "id": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Visibility Rule",
+                    "title": "Visibility Rule 1",
+                    "ruleType": "Visibility Rule",
+                    "contents": {
+                        "visibility": "show",
+                        "conditions": {
+                            "and": [
+                                {
+                                    "attributeType": "Date",
+                                    "attributeName": "day",
+                                    "operator": "is",
+                                    "value": [
+                                        2
+                                    ]
+                                },
+                                {
+                                    "arithmetic": {
+                                        "attributeNames": [
+                                            "attr1",
+                                            "attr2"
+                                        ],
+                                        "arithmeticOperator": "+"
+                                    },
+                                    "operator": "is between",
+                                    "value": [
+                                        "3",
+                                        "5"
+                                    ]
+                                },
+                                {
+                                    "matchingItems": {
+                                        "attributeName": "attr1",
+                                        "operator": "is",
+                                        "value": "value1"
+                                    },
+                                    "operator": "is",
+                                    "value": [
+                                        "3"
+                                    ]
+                                },
+                                {
+                                    "profile": {
+                                        "id": "b7bbddd7-95c6-4062-8971-134f780002f1",
+                                        "profiles": [
+                                            "profile1",
+                                            "profile1"
+                                        ]
+                                    },
+                                    "operator": "is"
+                                },
+                                {
+                                    "or": [
+                                        {
+                                            "attributeType": "Date",
+                                            "attributeName": "day",
+                                            "operator": "is empty"
+                                        },
+                                        {
+                                            "arithmetic": {
+                                                "attributeNames": [
+                                                    "attr3",
+                                                    "attr4"
+                                                ],
+                                                "arithmeticOperator": "-"
+                                            },
+                                            "operator": "is",
+                                            "value": [
+                                                "4"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "caseInsensitive": true,
+                        "otherwise": "hide"
+                    },
+                    "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                    "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                    "created": "2021-09-30T11:25:57.090Z",
+                    "publishedOnDate": "2021-09-30T11:25:57.090Z",
+                    "lastModified": "2021-09-30T11:25:57.090Z",
+                    "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                    "parentId": "HR123_6QR_0048AAQUGF0A1T2A_18L"
+                }
+            },
+            "IRuleExecuteResult": {
+                "title": "Root Type for IRuleExecuteResult",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule execute/invoke result.",
+                "required": [
+                    "ruleId",
+                    "ruleType",
+                    "title",
+                    "result"
+                ],
+                "type": "object",
+                "properties": {
+                    "ruleId": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule uuid.",
+                        "type": "string",
+                        "example": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf"
+                    },
+                    "ruleType": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule type.",
+                        "type": "string",
+                        "example": "Visibility Rule"
+                    },
+                    "title": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule title.",
+                        "type": "string",
+                        "example": "Visibility Rule 1"
+                    },
+                    "result": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Result."
+                    }
+                },
+                "example": {
+                    "ruleId": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
+                    "title": "Visibility Rule 1",
+                    "ruleType": "Visibility Rule",
+                    "result": "hide"
+                }
+            },
+            "IListOfRules": {
+                "title": "Root Type for IListOfRules",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of Rules.",
+                "required": [
+                    "contents"
+                ],
+                "type": "object",
+                "properties": {
+                    "offset": {
+                        "format": "int32",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Pagination offset.",
+                        "type": "integer",
+                        "example": "0"
+                    },
+                    "limit": {
+                        "format": "int32",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Paginaton limit.",
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "total": {
+                        "format": "int32",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Pagination total count.",
+                        "type": "integer",
+                        "example": "100"
+                    },
+                    "items": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Array of rule details.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/IRuleDetails"
+                        }
+                    }
+                },
+                "example": {
+                    "offset": 0,
+                    "limit": 30,
+                    "total": 1,
+                    "items": [
+                        {
+                            "id": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
+                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Visibility Rule",
+                            "title": "Visibility Rule 1",
+                            "ruleType": "Visibility Rule",
+                            "contents": {
+                                "visibility": "show",
+                                "conditions": {
+                                    "and": [
+                                        {
+                                            "attributeType": "Date",
+                                            "attributeName": "day",
+                                            "operator": "is",
+                                            "value": [
+                                                "2"
+                                            ]
+                                        },
+                                        {
+                                            "arithmetic": {
+                                                "attributeNames": [
+                                                    "attr1",
+                                                    "attr2"
+                                                ],
+                                                "arithmeticOperator": "+"
+                                            },
+                                            "operator": "is between",
+                                            "value": [
+                                                "3",
+                                                "5"
+                                            ]
+                                        },
+                                        {
+                                            "matchingItems": {
+                                                "attributeName": "attr1",
+                                                "operator": "is",
+                                                "value": "value1"
+                                            },
+                                            "operator": "is",
+                                            "value": [
+                                                "3"
+                                            ]
+                                        },
+                                        {
+                                            "profile": {
+                                                "id": "b7bbddd7-95c6-4062-8971-134f780002f1",
+                                                "profiles": [
+                                                    "profile1",
+                                                    "profile1"
+                                                ]
+                                            },
+                                            "operator": "is"
+                                        },
+                                        {
+                                            "or": [
+                                                {
+                                                    "attributeType": "Date",
+                                                    "attributeName": "day",
+                                                    "operator": "is empty"
+                                                },
+                                                {
+                                                    "arithmetic": {
+                                                        "attributeNames": [
+                                                            "attr3",
+                                                            "attr4"
+                                                        ],
+                                                        "arithmeticOperator": "-"
+                                                    },
+                                                    "operator": "is",
+                                                    "value": [
+                                                        "4"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "caseInsensitive": true,
+                                "otherwise": "hide"
+                            },
+                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                            "created": "2021-09-30T11:25:57.090Z",
+                            "publishedOnDate": "2021-09-30T11:25:57.090Z",
+                            "lastModified": "2021-09-30T11:25:57.090Z",
+                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                            "parentId": "HR123_6QR_0048AAQUGF0A1T2A_18L"
+                        },
+                        {
+                            "id": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
+                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Profiler",
+                            "title": "Profiler 1",
+                            "ruleType": "Profiler",
+                            "contents": {
+                                "profiles": [
+                                    {
+                                        "profileName": "Profile1",
+                                        "conditions": {
+                                            "and": [
+                                                {
+                                                    "attributeType": "Date",
+                                                    "attributeName": "day",
+                                                    "operator": "is",
+                                                    "value": [
+                                                        "2"
+                                                    ]
+                                                },
+                                                {
+                                                    "attributeType": "Device",
+                                                    "attributeName": "Device Class",
+                                                    "operator": "is",
+                                                    "value": [
+                                                        {
+                                                            "attributeType": "Device",
+                                                            "attributeName": "Longitude"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "arithmetic": {
+                                                        "attributeNames": [
+                                                            "attr1",
+                                                            "attr2"
+                                                        ],
+                                                        "arithmeticOperator": "+"
+                                                    },
+                                                    "operator": "is between",
+                                                    "value": [
+                                                        "3",
+                                                        "5"
+                                                    ]
+                                                },
+                                                {
+                                                    "matchingItems": {
+                                                        "attributeType": "Action Bean",
+                                                        "attributeName": "Action Class",
+                                                        "operator": "is",
+                                                        "value": [
+                                                            "value1"
+                                                        ]
+                                                    },
+                                                    "operator": "is",
+                                                    "value": [
+                                                        "3"
+                                                    ]
+                                                },
+                                                {
+                                                    "matchingItems": {
+                                                        "attributeType": "Action Bean",
+                                                        "attributeName": "Action Class",
+                                                        "operator": "is between",
+                                                        "value": [
+                                                            "1",
+                                                            "4"
+                                                        ]
+                                                    },
+                                                    "operator": "is",
+                                                    "value": [
+                                                        "3"
+                                                    ]
+                                                },
+                                                {
+                                                    "matchingItems": {
+                                                        "attributeType": "Device",
+                                                        "attributeName": "Device Class",
+                                                        "operator": "is",
+                                                        "value": [
+                                                            {
+                                                                "attributeType": "Device",
+                                                                "attributeName": "Longitude"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "operator": "is",
+                                                    "value": [
+                                                        "3"
+                                                    ]
+                                                },
+                                                {
+                                                    "profile": {
+                                                        "id": "b7bbddd7-95c6-4062-8971-134f780002f1",
+                                                        "profiles": [
+                                                            "profile1",
+                                                            "profile1"
+                                                        ]
+                                                    },
+                                                    "operator": "is"
+                                                },
+                                                {
+                                                    "or": [
+                                                        {
+                                                            "attributeType": "Date",
+                                                            "attributeName": "day",
+                                                            "operator": "is empty"
+                                                        },
+                                                        {
+                                                            "arithmetic": {
+                                                                "attributeNames": [
+                                                                    "attr3",
+                                                                    "attr4"
+                                                                ],
+                                                                "arithmeticOperator": "-"
+                                                            },
+                                                            "operator": "is",
+                                                            "value": [
+                                                                "4"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "profileName": "Profile2",
+                                        "conditions": {
+                                            "and": [
+                                                {
+                                                    "attributeType": "Date",
+                                                    "attributeName": "day",
+                                                    "operator": "is",
+                                                    "value": [
+                                                        "20"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "otherwiseProfile": "Profile3",
+                                "caseInsensitive": true,
+                                "stopFirstProfile": true
+                            },
+                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                            "created": "2021-09-30T11:25:57.090Z",
+                            "publishedOnDate": "2021-09-30T11:25:57.090Z",
+                            "lastModified": "2021-09-30T11:25:57.090Z",
+                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                            "parentId": "HR123_6QR_0048AAQUGF0A1T2A_18L"
+                        }
+                    ]
+                }
+            },
+            "IRuleDeleteResponse": {
+                "title": "Root Type for IRuleDeleteResponse",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule delete response.",
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule delete message.",
+                        "type": "string",
+                        "example": "Rule with id: b7bbddd7-95c6-4062-8971-134f780002f1 deleted successfully"
+                    }
+                },
+                "example": {
+                    "message": "Rule with id: b7bbddd7-95c6-4062-8971-134f780002f1 deleted successfully"
+                }
+            },
+            "IListOfFolders": {
+                "title": "Root Type for IListOfFolders",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of Folders.",
+                "required": [
+                    "contents"
+                ],
+                "type": "object",
+                "properties": {
+                    "offset": {
+                        "format": "int32",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Pagination offset.",
+                        "type": "integer",
+                        "example": "0"
+                    },
+                    "limit": {
+                        "format": "int32",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Paginaton limit.",
+                        "type": "integer",
+                        "example": "10"
+                    },
+                    "total": {
+                        "format": "int32",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Pagination total count.",
+                        "type": "integer",
+                        "example": "100"
+                    },
+                    "items": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Array of folder details.",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/IFolderDetails"
+                        }
+                    }
+                },
+                "example": {
+                    "offset": 0,
+                    "limit": 30,
+                    "total": 2,
+                    "items": [
+                        {
+                            "id": "_6QR_0048AAQUGF0A1T2A_18L",
+                            "folderType": "Root Folder",
+                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                            "title": "",
+                            "parentId": "",
+                            "authors": "",
+                            "creator": "",
+                            "created": "2021-09-30T11:25:57.090Z",
+                            "lastModified": "2021-09-30T11:25:57.090Z",
+                            "lastModifier": ""
+                        },
+                        {
+                            "id": "ffbbddd7-95c6-4062-8971-134f780002f1",
+                            "folderType": "Folder",
+                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Demo folder",
+                            "title": "DemoFolder",
+                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L",
+                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                            "creator": "wpsadmin",
+                            "created": "2021-09-30T11:25:57.090Z",
+                            "lastModified": "2021-09-30T11:25:57.090Z",
+                            "lastModifier": "wpsadmin"
+                        }
+                    ]
+                }
+            },
+            "IFolderDeleteResponse": {
+                "title": "Root Type for IFolderDeleteResponse",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder delete response.",
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder delete message.",
+                        "type": "string",
+                        "example": "Folder with id: b7bbddd7-95c6-4062-8971-134f780002f1 deleted successfully"
+                    }
+                },
+                "example": {
+                    "message": "Folder with id: b7bbddd7-95c6-4062-8971-134f780002f1 deleted successfully"
+                }
+            },
+            "IFolderDetails": {
+                "title": "Root Type for IFolderDetails",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder details.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder uuid.",
+                        "type": "string",
+                        "example": "b7bbddd7-95c6-4062-8971-134f780002f1"
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder description.",
+                        "type": "string",
+                        "example": "Demo Folder."
+                    },
+                    "title": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder title.",
+                        "type": "string",
+                        "example": "DemoFolder"
+                    },
+                    "authors": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authors",
+                        "type": "string",
+                        "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                    },
+                    "creator": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Creator",
+                        "type": "string",
+                        "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                    },
+                    "created": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Created date.",
+                        "type": "string",
+                        "example": "2021-09-30T11:25:57.090Z"
+                    },
+                    "lastModified": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Last modified date.",
+                        "type": "string",
+                        "example": "2021-09-30T11:25:57.090Z"
+                    },
+                    "lastModifier": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Last modifier.",
+                        "type": "string",
+                        "example": "uid=wpsadmin,o=defaultWIMFileBasedRealm"
+                    },
+                    "parentId": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Parent folder uuid if any.",
+                        "type": "string",
+                        "example": "ffbbddd7-95c6-4062-8971-134f780002f1"
+                    }
+                },
+                "example": {
+                    "id": "b7bbddd7-95c6-4062-8971-134f780002f1",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Demo folder",
+                    "title": "DemoFolder",
+                    "parentId": "ffbbddd7-95c6-4062-8971-134f780002f1",
+                    "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                    "creator": "wpsadmin",
+                    "created": "2021-09-30T11:25:57.090Z",
+                    "lastModified": "2021-09-30T11:25:57.090Z",
+                    "lastModifier": "wpsadmin"
+                }
+            },
+            "IFolderPostBody": {
+                "title": "Root Type for IFolderPostBody",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "To create a new folder.",
+                "required": [
+                    "title"
+                ],
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder title.",
+                        "type": "string",
+                        "example": "DemoFolder"
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder description (Optional).",
+                        "type": "string",
+                        "example": "Demo Folder"
+                    },
+                    "parentId": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Parent folder uuid (Optional).",
+                        "type": "string",
+                        "example": "b7bbddd7-95c6-4062-8971-134f780002f1"
+                    }
+                },
+                "example": {
+                    "title": "demo",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "demo folder",
+                    "parentId": "b7bbddd7-95c6-4062-8971-134f780002f1"
+                }
+            },
+            "IFolderPutBody": {
+                "title": "Root Type for IFolderPutBody",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "To update the folder.",
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder title.",
+                        "type": "string",
+                        "example": "DemoFolder"
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder description.",
+                        "type": "string",
+                        "example": "Demo Folder."
+                    },
+                    "parent": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Parent folder uuid.",
+                        "type": "string",
+                        "example": "b7bbddd7-95c6-4062-8971-134f780002f1"
+                    }
+                },
+                "example": {
+                    "title": "demo",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "demo folder",
+                    "parent": "b7bbddd7-95c6-4062-8971-134f780002f1"
+                }
+            },
+            "IRulePostBody": {
+                "title": "Root Type for IRuleDetails",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule details.",
+                "type": "object",
+                "properties": {
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule description.",
+                        "type": "string",
+                        "example": "Visibility Rule"
+                    },
+                    "title": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule title.",
+                        "type": "string",
+                        "example": "Visibility Rule 1"
+                    },
+                    "ruleType": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Type of rules.",
+                        "type": "string",
+                        "example": "Visibility Rule"
+                    },
+                    "parentId": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Parent uuid.",
+                        "type": "string"
+                    },
+                    "contents": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule contents.",
+                        "type": "object"
+                    },
+                    "caseInsensitive": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Indication that the string comparisons in the rule are case insensitive.",
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "example": {
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Visibility Rule",
+                    "title": "Visibility Rule 1",
+                    "ruleType": "Visibility Rule",
+                    "contents": {
+                        "visibility": "show",
+                        "conditions": {
+                            "and": [
+                                {
+                                    "attributeType": "Date",
+                                    "attributeName": "day",
+                                    "operator": "is",
+                                    "value": [
+                                        "2"
+                                    ]
+                                }
+                            ]
+                        },
+                        "caseInsensitive": true,
+                        "otherwise": "hide"
+                    },
+                    "parentId": "HR123_6QR_0048AAQUGF0A1T2A_18L"
+                }
+            }
+        }
+    }
+}
