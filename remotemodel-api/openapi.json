@@ -1,0 +1,122 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Remote Model SPI REST Service",
+        "version": "1.0.0",
+        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The Remote Model SPI gives you access to portal models through REST services. It allows you to obtain and modify portal resources that are exposed by some of the models of the model SPI remotely. \n\nIn case virtual Portals are used the virtual Portal can be specified by adding the query parameter ?virtualPortal to the URL of the API explorer with the value of the virtual Portal URL context - for example http://localhost:10039/dx/api/remotemodel/v1/explorer/?virtualPortal=myVirtualPortalContext  - all API calls will then have the virtual Portal context included in the URL. If you are using host based virtual Portals access the API explorer with the virtual Portal host.",
+        "contact": {
+            "name": "HCL DX Documentation",
+            "url": "https://help.hcltechsw.com/digital-experience/8.5/dev/rest.html"
+        }
+    },
+    "paths": {
+        "/cm/oid:{oid}": {
+            "summary": "This allows you to obtain and modify the content topology and the properties of content nodes such as pages, labels, and content URLs.",
+            "get": {
+                "tags": [
+                    "ContentModel"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    }
+                },
+                "summary": "Obtain the properties of a page, label or content URL."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "ObjectID": {
+                            "value": "ibm.portal.Home"
+                        }
+                    },
+                    "name": "oid",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OID or uniquename of parent page",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/lm/oid:{oid}": {
+            "summary": "This allows you to obtain and modify the layout of a page, that is the topology of layout elements of a page, and the properties of layout elements, such as layout containers and layout controls.",
+            "get": {
+                "tags": [
+                    "LayoutModel"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    }
+                },
+                "summary": "Obtain the layout and properties of a page."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "objectiD": {
+                            "value": "Z6_00000000000000A0BR2B300GS0"
+                        }
+                    },
+                    "name": "oid",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID of a page.",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/nm/oid:{oid}": {
+            "summary": "This allows you to obtain the navigation topology only, as the navigation model is implied by the structure of the content model.",
+            "get": {
+                "tags": [
+                    "NavigationModel"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    }
+                },
+                "summary": "Obtain the navigation topology."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "uniqueName": {
+                            "value": "ibm.portal.Home"
+                        }
+                    },
+                    "name": "oid",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID or uniqueName of a page.",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/pm/oid:{oid}": {
+            "summary": "This allows you to obtain, create, update, and delete portlets.",
+            "get": {
+                "tags": [
+                    "PortletModel"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    }
+                },
+                "summary": "Obtain properties of a portlet."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "objectID": {
+                            "value": "wps.p.Welcome"
+                        }
+                    },
+                    "name": "oid",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID of a portlet.",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    }
+}

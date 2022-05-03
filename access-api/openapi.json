@@ -1,0 +1,535 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Portal Access Control REST API",
+        "version": "1.0.0",
+        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Remotely access and modify access control information for resources through the HTTP protocol with the Portal Access Control REST API. \n\nIn case virtual Portals are used the virtual Portal can be specified by adding the query parameter ?virtualPortal to the URL of the API explorer with the value of the virtual Portal URL context - for example http://localhost:10039/dx/api/access/v1/explorer/?virtualPortal=myVirtualPortalContext  - all API calls will then have the virtual Portal context included in the URL. If you are using host based virtual Portals access the API explorer with the virtual Portal host.",
+        "contact": {
+            "name": "HCL DX Documentation",
+            "url": "https://help.hcltechsw.com/digital-experience/9.5/dev/pacrestapi.html"
+        }
+    },
+    "paths": {
+        "/ac/access:oid:{resourceID}": {
+            "summary": "Allowed Access Feed",
+            "get": {
+                "tags": [
+                    "AllowedAccessFeed"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/allowedAccessFeedResponse"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "resourceID cannot be resolved."
+                    }
+                },
+                "summary": "Returns all access levels that the current user was granted or inherited.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides runtime information on the resource for the current user as follows - All access levels that the current user has on the resource.\nEquivalent Portal Access Control Java API - There is no 1:1 mapping to the Java API. However, the following API is called for all applicable roleTypes:\naccessControlHome.getAccessControlRuntimeModel(resourceID).hasPermission(roleType)"
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "ObjectID": {
+                            "value": "ibm.portal.Home"
+                        },
+                        "uniqueName": {
+                            "value": "8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE"
+                        }
+                    },
+                    "name": "resourceID",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID or uniqueName of a resource, for example, ibm.portal.Home or 8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE.",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/ac/role:oid:{resourceID}": {
+            "summary": "Role Collection Feed",
+            "get": {
+                "tags": [
+                    "RoleCollectionFeed"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "filter": {
+                                "value": "User"
+                            }
+                        },
+                        "name": "filter",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specify one of the following values:\ntype=<roleTypeName> to return the specified role, if available.\ninUse to return available roles. This value is the default value.\nall to return all applicable role types.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "start-index": {
+                                "value": "1"
+                            }
+                        },
+                        "name": "start-index",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifies that the n-th member of the role is the first one in the result list.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "max-results": {
+                                "value": "50"
+                            }
+                        },
+                        "name": "max-results",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifies that at most m members are included.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/roleCollectionFeedResponse"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The specified roleTypeName is not applicable."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "resourceID cannot be resolved."
+                    }
+                },
+                "summary": "Returns all roles of a resource.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides information about all roles available for a resource.\nA role is only available if at least one principal is mapped to it.\nEquivalent Portal Access Control Java API\naccessControlHome.getRoleData(resourceID).getRoles()"
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "uniqueName": {
+                            "value": "8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE"
+                        },
+                        "ObjectID": {
+                            "value": "ibm.portal.Home"
+                        }
+                    },
+                    "name": "resourceID",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID or uniqueName of a resource, for example, ibm.portal.Home or 8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE.",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/ac/role:{roleTypeName}@oid:{resourceID}": {
+            "summary": "Role Feed",
+            "get": {
+                "tags": [
+                    "RoleFeed"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "false": {
+                                "value": "false"
+                            },
+                            "true": {
+                                "value": "true"
+                            }
+                        },
+                        "name": "resolve-membership",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specify true or false. If true, then members are included. The default is false.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/roleFeedResponse"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "roleTypeName is not applicable."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Either the resourceID cannot be resolved or the role for specified roleTypeName is not available."
+                    }
+                },
+                "summary": "Returns a role.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns information about a single role available for given resource. Role is only available if at least one principal is mapped to it, otherwise returns 404.   Equivalent Portal Access Control Java API - accessControlHome.getRoleData(resourceID).getRole(RoleType)."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "User": {
+                            "value": "User"
+                        },
+                        "Manager": {
+                            "value": "Manager"
+                        },
+                        "Editor": {
+                            "value": "Editor"
+                        }
+                    },
+                    "name": "roleTypeName",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Case-insensitive name of a defined role type, for example, Manager, Editor, User.",
+                    "in": "path",
+                    "required": true
+                },
+                {
+                    "examples": {
+                        "ObjectID": {
+                            "value": "ibm.portal.Home"
+                        },
+                        "uniqueName": {
+                            "value": "8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE"
+                        }
+                    },
+                    "name": "resourceID",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID or uniqueName of a resource, for example, ibm.portal.Home or 8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE.",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/ac/resourceconfig:oid:{resourceID}": {
+            "summary": "Resource Config Feed",
+            "get": {
+                "tags": [
+                    "ResourceConfigFeed"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/resourceConfigFeedResponse"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "resourceID cannot be resolved."
+                    }
+                },
+                "summary": "Returns a resource configuration.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides configuration information on the following resources:\nOwner\nRole blocks\nIsPrivate\nEquivalent Portal Access Control Java API accessControlHome.getManagedProtectedResource(resourceID)"
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/resourceConfigFeedPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "ResourceConfigFeed"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "merge": {
+                                "value": "merge"
+                            },
+                            "update": {
+                                "value": "update"
+                            }
+                        },
+                        "name": "mode",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specify one of the following values:\nmerge to add role blocks to existing ones. The owner is changed if you specify this value.\nupdate to replace existing role blocks and owners. The role blocks and owners are removed if you do not specify them. This value is the default value.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The current user does not have sufficient access rights."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "resourceID cannot be resolved."
+                    }
+                },
+                "summary": "Modifies the resource configuration.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Updates the following resource configurations:\nOwner\nRole blocks\nEquivalent Portal Access Control Java API: accessControlHome.getManagedProtectedResource(resourceID)"
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "ObjectID": {
+                            "value": "ibm.portal.Home"
+                        },
+                        "uniqueName": {
+                            "value": "8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE"
+                        }
+                    },
+                    "name": "resourceID",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID or uniqueName of a resource, for example, ibm.portal.Home or 8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE.",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/ac/member:oid:{principalID}@role:{roleTypeName}@oid:{resourceID}": {
+            "summary": "Member Feed",
+            "delete": {
+                "tags": [
+                    "MemberFeed"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Member was successfully removed from role."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Please check the following:  \nroleTypeName is not applicable.\nThe role does not exist.\nprincipalID cannot be resolved.\nThe current user does not have sufficient access rights."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "resourceID cannot be resolved."
+                    }
+                },
+                "summary": "Deletes the principal from the RoleType on given resource.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Deletes the principal from the RoleType on given resource."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "ObjectID": {
+                            "value": "ibm.portal.Home"
+                        }
+                    },
+                    "name": "principalID",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID of a Principal (user or group), for example, 8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE.",
+                    "in": "path",
+                    "required": true
+                },
+                {
+                    "examples": {
+                        "Manager": {
+                            "value": "Manager"
+                        },
+                        "Editor": {
+                            "value": "Editor"
+                        },
+                        "User": {
+                            "value": "User"
+                        }
+                    },
+                    "name": "roleTypeName",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Case-insensitive name of a defined role type, for example, Manager, Editor, User.",
+                    "in": "path",
+                    "required": true
+                },
+                {
+                    "examples": {
+                        "uniqueName": {
+                            "value": "8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE"
+                        },
+                        "ObjectID": {
+                            "value": "ibm.portal.Home"
+                        }
+                    },
+                    "name": "resourceID",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID or uniqueName of a resource, for example, ibm.portal.Home or 8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE.",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/ac/member:{roleTypeName}@oid:{resourceID}": {
+            "summary": "Member Collection Feed",
+            "get": {
+                "tags": [
+                    "MemberCollectionFeed"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "start-index": {
+                                "value": "0"
+                            }
+                        },
+                        "name": "start-index",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "start-index=n.  Specifies the n-th member of the role is the first one in the result list.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "examples": {
+                            "max-results": {
+                                "value": "10"
+                            }
+                        },
+                        "name": "max-results",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifies that at most m members are included.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/memberCollectionFeedResponse"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns all members of a role."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "roleTypeName is not applicable."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "resourceID cannot be resolved."
+                    }
+                },
+                "summary": "Returns all members of a role.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides all members mapped to a single role for a resource.  Equivalent Portal Access Control Java API - accessControlHome.getRoleData(resourceID).getMappedPrincipals(roleType)"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/memberCollectionFeedPayload"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "MemberCollectionFeed"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Pricipal was added to the specified role."
+                    }
+                },
+                "summary": "Adds a principal to the specified role.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Adds a principal to the specified role.  The payload needs to include at least the XML contained in the example.  As an alternative to ac:id, which is used to identify a Principal by using the ObjectID, you can use the following alternative identifiers:\nac:DN=\"uid=wpsadmin,o=defaultWIMFileBasedRealm\"\nSpecifies the principal by using the distinguished name. The type can be user, group, or virtual (for virtual principals), where user is the default. Valid Virtual Principals are the ones defined in the following Javadoc: com.ibm.portal.um.PumaEnvironment.VirtualPrincipalNames and are currently all authenticated portal users, all portal user groups, and anonymous portal user.\nac:email=\"wpsadmin@de.ibm.com\"\nSpecifies users by their email addresses."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "User": {
+                            "value": "User"
+                        },
+                        "Manager": {
+                            "value": "Manager"
+                        },
+                        "Editor": {
+                            "value": "Editor"
+                        }
+                    },
+                    "name": "roleTypeName",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Case-insensitive name of a defined role type, for example, Manager, Editor, User.",
+                    "in": "path",
+                    "required": true
+                },
+                {
+                    "examples": {
+                        "ObjectID": {
+                            "value": "ibm.portal.Home"
+                        },
+                        "uniqueName": {
+                            "value": "8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE"
+                        }
+                    },
+                    "name": "resourceID",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID or uniqueName of a resource, for example, ibm.portal.Home or 8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE.",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "responseElements": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The following XML framework is returned for GET requests on each of the feeds. It contains the link to itself, the title of the feed, the ID of the feed, the feed URI, and the time stamp when the feed was created. For collection feeds, the top-level element is an atom:feed and opensearch elements are included. For the other feeds, the top-level element is an atom:entry.",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<atom:feed xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n  xmlns:xhtml=\"http://www.w3.org/1999/xhtml\" \n  xmlns:atom=\"http://www.w3.org/2005/Atom\"\n  xmlns:model=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model-elements\"\n  xmlns:ac=\"http://www.ibm.com/xmlns/prod/lotus/access-control/v1.0\" \n  xmlns:portal=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model\"\n  xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\" \n  xmlns:base=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-base\"\n  xml:base=\"http://localhost:10039/wps/mycontenthandler/!ut/p/digest!F4eOOrdKv7QXA2o0iUT9A/T9A\n                 /ac/member:User@oid:ibm.portal.Home\">\n  <atom:author>\n    <atom:name>HCL Digital Experience/6.1.0.3</atom:name>\n  </atom:author>\n  <atom:title>MemberCollection</atom:title>\n  <atom:id>ac:member:User@oid:ibm.portal.Home</atom:id>\n  <atom:link href=\"/wps/mycontenthandler/!ut/p/digest!F4eOOrdKv7QXA2o0iUT9A/ac/member:User@oid:ibm.portal.Home\" \n             rel=\"self\"\n             type=\"application/atom+xml\"/>\n  <opensearch:startIndex>0</opensearch:startIndex>\n  <opensearch:itemsPerPage>2147483647</opensearch:itemsPerPage>\n  <opensearch:totalResults>0</opensearch:totalResults>\n  <atom:updated>2009-10-01T06:03:51.850Z</atom:updated>\n</atom:feed>"
+            },
+            "responseElementsForCollectionFeeds": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For collection feeds, the feed contains a list of atom:entry elements. Each entry includes the following additional information: the ID of the entry, the entry's URI, additional links, and a content element that contains the actual information.",
+                "type": "object",
+                "example": "<atom:entry>\n  <atom:id>ac:member:oid:8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE@role:User@oid:\n           6_CGAH47L00GN960I4GOF1G510I3</atom:id>\n  <atom:title>MemberCollection</atom:title>\n  <atom:updated>2009-10-01T05:56:58.341Z</atom:updated>\n  <atom:link href=\"/wps/mycontenthandler/!ut/p/digest!F4eOOrdKv7QXA2o0iU-T9A\n                   /ac/member:oid:8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE@role\n   :User@oid:6_CGAH47L00GN960I4GOF1G510I3\" rel=\"edit\" type=\"application/atom+xml\"/>\n  <atom:content type=\"application/xml\">\n    <ac:member ac:id=\"8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE\" \n               ac:DN=\"all authenticated portal users\" ac:type=\"virtual\"/>\n  </atom:content>\n</atom:entry>"
+            },
+            "memberCollectionFeedResponse": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The following code is the result of the GET method. Each entry element in the member collection contains a single member element that specifies the member identity. The edit link can be used to remove the member from the role (DELETE on member feed).",
+                "type": "object",
+                "example": "<atom:entry ...>\n...\n<atom:title>MemberCollection</atom:title>\n<atom:entry>\n <atom:id>ac:member:oid:8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE@role:User@oid:\n          6_CGAH47L00GN960I4GOF1G510I3</atom:id>\n <atom:title>MemberCollection</atom:title>\n <atom:updated>2009-10-01T05:56:58.341Z</atom:updated>\n <atom:link href=\"/wps/mycontenthandler/!ut/p/digest!F4eOOrdKv7QXA2o0iUT9A\n                  /ac/member:oid:8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE@role:\n    Privileged%25252520User@oid:6_CGAH47L00GN960I4GOF1G510I3\" \n    rel=\"edit\" type=\"application/atom+xml\"/>\n <atom:content type=\"application/xml\">\n  <ac:member ac:id=\"8eAe13RO6G4CL3TGMIPDKBQ6MGHE53P02OTDI3T26M14LRSA6PDE\"\n             ac:DN=\"all authenticated portal users\" ac:type=\"virtual\"/>\n </atom:content>\n</atom:entry>"
+            },
+            "memberCollectionFeedPayload": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The payload needs to include at least the following",
+                "type": "object",
+                "example": "<atom:entry xmlns:atom=\"http://www.w3.org/2005/Atom\">\n  <atom:content type=\"application/xml\">\n    <ac:member xmlns:ac=\"http://www.ibm.com/xmlns/prod/lotus/access-control/v1.0\" \n                    ac:id=\"9eAe6BD86PGCHPD6JMCCG1D8MMG63JD0JM4C3BDAJMK66BC46O\"/>\n  </atom:content>\n</atom:entry>"
+            },
+            "roleFeedResponse": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                "type": "object",
+                "example": "<atom:entry ...>\n  ...\n  <atom:title>Role</atom:title>\n  <atom:id>ac:role:User@oid:myPage</atom:id>\n  <atom:link href=\"/wps/mypoc/!ut/p/digest!TSVlGy5DI0S5vyp5i;yTw\n                   /ac/role:User@oid:myPage?mode=download&amp;resolve-membership=true\"\n    rel=\"self\" type=\"application/atom+xml\"/>\n  <atom:updated>2009-10-01T12:35:05.442Z</atom:updated>\n  <atom:link ac:rel=\"members\" href=\"/wps/mycontenthandler/!ut/p/digest!TSVlGy5DI0S5vyp5i;yTw\n            /ac/member:User@oid:6_M8768B1A00FT20I480O8A53000?\n   resolve-membership=true\" rel=\"related\" type=\"application/atom+xml\"/>\n <atom:content type=\"application/xml\">\n  <ac:role ac:type=\"User\">\n   <ac:member\n     ac:id=\"8eAeI9EE3J5C63C8JM064RD2JMG613C2MM4C6BP4MM072JD6MI17P9E03R86H1\"ac:display-name=\"wpsadmins\"\n     ac:DN=\"cn=wpsadmins,o=defaultWIMFileBasedRealm\" ac:type=\"group\"/>\n  </ac:role>\n </atom:content>\n</atom:entry>"
+            },
+            "roleCollectionFeedResponse": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                "type": "object",
+                "example": "<atom:feed ...>\n  ...\n  <atom:title>RoleCollection</atom:title>\n  <atom:id>ac:role:oid:myPage</atom:id>\n  <atom:link href=\"/wps/mypoc/!ut/p/digest!TSVlGy5DI0S5vyp5i;yTw/ac/role:oid:myPage?mode=download\" \n        rel=\"self\" type=\"application/atom+xml\"/>\n  <opensearch:startIndex>0</opensearch:startIndex>\n  <opensearch:itemsPerPage>2147483647</opensearch:itemsPerPage>\n  <opensearch:totalResults>1</opensearch:totalResults>\n  <atom:updated>2009-10-01T12:46:16.509Z</atom:updated>\n  <atom:entry>\n  <atom:id>ac:role:User@oid:6_M8768B1A00FT20I480O8A53000</atom:id>\n  <atom:title>RoleCollection</atom:title>\n  <atom:updated>2009-10-01T12:46:16.509Z</atom:updated>\n  <atom:link ac:rel=\"members\" href=\"/wps/mycontenthandler/!ut/p/digest!TSVlGy5DI0S5vyp5i;yTw\n            /ac/member:User@oid:6_M8768B1A00FT20I480O8A53000\"\n    rel=\"related\" type=\"application/atom+xml\"/>\n  <atom:link href=\"/wps/mypoc/!ut/p/digest!TSVlGy5DI0S5vyp5i;yTw\n                  /ac/role:User@oid:6_M8768B1A00FT20I480O8A53000?mode=download\"\n    rel=\"self\" type=\"application/atom+xml\"/>\n  <atom:content type=\"application/xml\">\n   <ac:role ac:type=\"User\"/>\n  </atom:content>\n </atom:entry>\n</atom:feed>"
+            },
+            "resourceConfigFeedResponse": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                "type": "object",
+                "example": "<atom:entry ...>\n ...\n <atom:title>ResourceConfig</atom:title>\n <atom:id>ac:resourceconfig:oid:myPage</atom:id>\n <atom:link href=\"/wps/mycontenthandler/!ut/p/digest!TSVlGy5DI0S5vyp5i;yTw\n                  /ac/resourceconfig:oid:myPage\" rel=\"self\" type=\"application/atom+xml\"/>\n <atom:updated>2009-10-01T12:15:59.683Z</atom:updated>\n <atom:content type=\"application/xml\">\n  <ac:resource-config>\n   <ac:ownerac:id=\"9eAePPC2JP8C2ROIJMG6M1D8JMG6PPD0JM0723P8JM06KPOC6IH66BOCMQC6N1\" \n      ac:display-name=\"wpsadmin\"\n      ac:DN=\"uid=wpsadmin,o=defaultWIMFileBasedRealm\" ac:type=\"user\"/>\n   <ac:role-block ac:block-type=\"inheritance\" ac:type=\"Privileged User\"/>\n   <ac:role-block ac:block-type=\"propagation\" ac:type=\"Delegator\"/>\n  </ac:resource-config>\n </atom:content>\n</atom:entry>"
+            },
+            "resourceConfigFeedPayload": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request body must be formatted like the example.\nThe owner and role-block elements are optional.\n\nAs an alternative to ac:id, which is used to identify the owner by using the ObjectID, use the following alternative identifiers:\nac:DN=\"uid=wpsadmin,o=defaultWIMFileBasedRealm\" ac:type=user\nSpecifies the principal by using the distinguished name. The type can be user, group, or virtual (for virtual principals), where user is the default.\nac:email=\"wpsadmin@de.ibm.com\"\nSpecifies users by their email addresses.",
+                "type": "object",
+                "example": "<atom:entry xmlns:atom=\"http://www.w3.org/2005/Atom\" \n      xmlns:ac=\"http://www.ibm.com/xmlns/prod/lotus/access-control/v1.0\" >\n  <atom:content type=\"application/xml\">\n    <ac:resource-config>\n      <ac:owner ac:id=\"9eAe6BD86PGCHPD6JMCCG1D8MMG63JD0JM4C3BDAJMK6\"/>\n      <ac:role-block ac:block-type=\"inheritance\" ac:type=\"Manager\"/>\n      <ac:role-block ac:block-type=\"propagation\" ac:type=\"Editor\"/>\n      <ac:role-block ac:block-type=\"propagation\" ac:type=\"User\"/>\n    </ac:resource-config>\n  </atom:content>\n</atom:entry>"
+            },
+            "allowedAccessFeedResponse": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                "type": "object",
+                "example": "<atom:entry...>\n ...\n <atom:title>allowed-access</atom:title>\n <atom:id>ac:access:oid:ibm.portal.Home</atom:id>\n <atom:link href=\"/wps/mycontenthandler/!ut/p/digest!TSVlGy5DI0S5vyp5i;yTw\n                  /ac/access:oid:ibm.portal.Home\" rel=\"self\" type=\"application/atom+xml\"/>\n <atom:updated>2009-10-01T12:55:16.620Z</atom:updated>\n <atom:content type=\"application/xml\">\n  <ac:allowed-access xmlns:ac=\"http://www.ibm.com/xmlns/prod/lotus/access-control/v1.0\" \n                     ac:user-owned=\"false\">\n   <ac:access-level ac:type=\"Administrator\"/>\n   <ac:access-level ac:type=\"Security Administrator\"/>\n   <ac:access-level ac:type=\"Delegator\"/>\n   <ac:access-level ac:type=\"Manager\"/>\n   <ac:access-level ac:type=\"Editor\"/>\n   <ac:access-level ac:type=\"Contributor\"/>\n   <ac:access-level ac:type=\"Privileged User\"/>\n   <ac:access-level ac:type=\"User\"/>\n  </ac:allowed-access>\n </atom:content>\n</atom:entry>"
+            }
+        }
+    }
+}

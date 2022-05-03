@@ -1,0 +1,998 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "DX User and Group Management REST API",
+        "version": "1.0.0",
+        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The remote PUMA SPI gives you access to user profiles through REST services. It provides a remote interface for user and group management for the configured Portal user repository. It is based on the REST (REpresentational State Transfer) architecture model.\n\nThe remote REST service for PUMA allows you to remotely perform the following tasks related to user and group data based on the HTTP protocol:\nAccess, retrieve, and modify information about available user or group attributes and their metadata\nSearch for users or groups based on attributes or group membership\nCreate, update, or delete user or group profiles and group membership relations. \n\nIn case virtual Portals are used the virtual Portal can be specified by adding the query parameter ?virtualPortal to the URL of the API explorer with the value of the virtual Portal URL context - for example http://localhost:10039/dx/api/users/v1/explorer/?virtualPortal=myVirtualPortalContext  - all API calls will then have the virtual Portal context included in the URL. If you are using host based virtual Portals access the API explorer with the virtual Portal host.",
+        "contact": {
+            "name": "HCL DX documentation",
+            "url": "https://help.hcltechsw.com/digital-experience/9.5/dev/uprof_rest.html"
+        }
+    },
+    "paths": {
+        "/um/currentuser/profile": {
+            "summary": "This URI path operation returns or allows updating the profile of the current user.",
+            "get": {
+                "tags": [
+                    "CurrentUser"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "examples": {
+                                    "Sample GET": {
+                                        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><atom:entry xmlns:um=\"http://www.ibm.com/xmlns/prod/websphere/um.xsd\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema-datatypes\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\"><atom:title>uid=wpsadmin,o=defaultWIMFileBasedRealm</atom:title><atom:link href=\"/wps/um/users/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"self\"/><atom:link href=\"/wps/um/groupmembership/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"related\"/><atom:id>um:users/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1</atom:id><atom:updated>2021-10-06T17:47:34.606Z</atom:updated><atom:content type=\"application/xml\"><um:profile type=\"user\" identifier=\"uid=wpsadmin,o=defaultWIMFileBasedRealm\"><um:attribute name=\"roomNumber\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"telephoneNumber\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"city\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"ibm-jobTitle\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"displayName\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"postalCode\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"description\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"title\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"carLicense\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"seeAlso\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"createTimestamp\" type=\"xs:dateTime\" multiValued=\"false\"><um:attributeValue>Fri Aug 20 09:18:45 GMT 2021</um:attributeValue></um:attribute><um:attribute name=\"modifyTimestamp\" type=\"xs:dateTime\" multiValued=\"false\"><um:attributeValue>Fri Aug 20 09:20:06 GMT 2021</um:attributeValue></um:attribute><um:attribute name=\"uid\" type=\"xs:string\" multiValued=\"false\"><um:attributeValue>wpsadmin</um:attributeValue></um:attribute><um:attribute name=\"localityName\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"viewIdentifiers\" type=\"ViewIdentifierType\" multiValued=\"true\"/><um:attribute name=\"secretary\" type=\"xs:anyURI\" multiValued=\"true\"/><um:attribute name=\"pager\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"children\" type=\"Entity\" multiValued=\"true\"/><um:attribute name=\"street\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"sn\" type=\"xs:string\" multiValued=\"false\"><um:attributeValue>wpsadmin</um:attributeValue></um:attribute><um:attribute name=\"businessAddress\" type=\"AddressType\" multiValued=\"true\"/><um:attribute name=\"homeAddress\" type=\"AddressType\" multiValued=\"true\"/><um:attribute name=\"jpegPhoto\" type=\"xs:hexBinary\" multiValued=\"true\"/><um:attribute name=\"st\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"c\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"manager\" type=\"xs:anyURI\" multiValued=\"true\"/><um:attribute name=\"initials\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"givenName\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"mobile\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"groups\" type=\"Group\" multiValued=\"true\"/><um:attribute name=\"facsimileTelephoneNumber\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"cn\" type=\"xs:string\" multiValued=\"false\"><um:attributeValue>wpsadmin</um:attributeValue></um:attribute><um:attribute name=\"l\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"partyRoles\" type=\"PartyRole\" multiValued=\"true\"/><um:attribute name=\"homePostalAddress\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"stateOrProvinceName\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"postalAddress\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"departmentNumber\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"businessCategory\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"countryName\" type=\"xs:string\" multiValued=\"true\"/></um:profile></atom:content></atom:entry>"
+                                    }
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Current user response."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a user ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "deprecated": false,
+                "summary": "This URI path operation returns the profile of the current user.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If this operation is performed without authentication, the profile of the anonymous user is returned. This URI path operation has no query parameter."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserProfile"
+                            },
+                            "examples": {
+                                "Input": {
+                                    "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><atom:entry xmlns:um=\"http://www.ibm.com/xmlns/prod/websphere/um.xsd\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema-datatypes\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\"><atom:title>uid=wpsadmin,o=defaultWIMFileBasedRealm</atom:title><atom:link href=\"/wps/um/users/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"self\"/><atom:link href=\"/wps/um/groupmembership/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"related\"/><atom:id>um:users/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1</atom:id><atom:updated>2021-10-06T18:47:34.606Z</atom:updated><atom:content type=\"application/xml\"><um:profile type=\"user\" identifier=\"uid=wpsadmin,o=defaultWIMFileBasedRealm\"><um:attribute name=\"roomNumber\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"telephoneNumber\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"city\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"ibm-jobTitle\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"displayName\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"postalCode\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"description\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"title\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"carLicense\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"seeAlso\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"uid\" type=\"xs:string\" multiValued=\"false\"><um:attributeValue>wpsadmin</um:attributeValue></um:attribute><um:attribute name=\"localityName\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"viewIdentifiers\" type=\"ViewIdentifierType\" multiValued=\"true\"/><um:attribute name=\"secretary\" type=\"xs:anyURI\" multiValued=\"true\"/><um:attribute name=\"pager\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"children\" type=\"Entity\" multiValued=\"true\"/><um:attribute name=\"street\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"sn\" type=\"xs:string\" multiValued=\"false\"><um:attributeValue>wpsadmin</um:attributeValue></um:attribute><um:attribute name=\"businessAddress\" type=\"AddressType\" multiValued=\"true\"/><um:attribute name=\"homeAddress\" type=\"AddressType\" multiValued=\"true\"/><um:attribute name=\"jpegPhoto\" type=\"xs:hexBinary\" multiValued=\"true\"/><um:attribute name=\"st\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"c\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"manager\" type=\"xs:anyURI\" multiValued=\"true\"/><um:attribute name=\"initials\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"givenName\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"mobile\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"groups\" type=\"Group\" multiValued=\"true\"/><um:attribute name=\"facsimileTelephoneNumber\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"cn\" type=\"xs:string\" multiValued=\"false\"><um:attributeValue>wpsadmin</um:attributeValue></um:attribute><um:attribute name=\"l\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"partyRoles\" type=\"PartyRole\" multiValued=\"true\"/><um:attribute name=\"homePostalAddress\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"stateOrProvinceName\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"postalAddress\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"departmentNumber\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"businessCategory\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"countryName\" type=\"xs:string\" multiValued=\"true\"/></um:profile></atom:content></atom:entry>"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "CurrentUser"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "examples": {
+                                    "Update": {
+                                        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n  <atom:entry xmlns:um=\"http://www.ibm.com/xmlns/prod/websphere/um.xsd\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema-datatypes\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">\n    <atom:title>uid=wpsadmin,o=defaultWIMFileBasedRealm</atom:title>\n    <atom:link href=\"/wps/um/users/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"self\"/>\n    <atom:link href=\"/wps/um/groupmembership/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"related\"/>\n    <atom:id>um:users/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1</atom:id>\n    <atom:updated>2021-10-06T17:59:17.123Z</atom:updated>\n    <atom:content type=\"application/xml\">\n      <um:profile type=\"user\" identifier=\"uid=wpsadmin,o=defaultWIMFileBasedRealm\">\n        <um:attribute name=\"roomNumber\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"telephoneNumber\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"city\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"ibm-jobTitle\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"displayName\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"postalCode\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"description\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"title\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"carLicense\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"seeAlso\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"createTimestamp\" type=\"xs:dateTime\" multiValued=\"false\">\n          <um:attributeValue>Fri Aug 20 09:18:45 GMT 2021</um:attributeValue>\n        </um:attribute>\n        <um:attribute name=\"modifyTimestamp\" type=\"xs:dateTime\" multiValued=\"false\">\n          <um:attributeValue>Fri Aug 20 09:20:06 GMT 2021</um:attributeValue>\n        </um:attribute>\n        <um:attribute name=\"uid\" type=\"xs:string\" multiValued=\"false\">\n          <um:attributeValue>wpsadmin</um:attributeValue>\n        </um:attribute>\n        <um:attribute name=\"localityName\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"viewIdentifiers\" type=\"ViewIdentifierType\" multiValued=\"true\"/>\n        <um:attribute name=\"secretary\" type=\"xs:anyURI\" multiValued=\"true\"/>\n        <um:attribute name=\"pager\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"children\" type=\"Entity\" multiValued=\"true\"/>\n        <um:attribute name=\"street\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"sn\" type=\"xs:string\" multiValued=\"false\">\n          <um:attributeValue>wpsadmin</um:attributeValue>\n        </um:attribute>\n        <um:attribute name=\"businessAddress\" type=\"AddressType\" multiValued=\"true\"/>\n        <um:attribute name=\"homeAddress\" type=\"AddressType\" multiValued=\"true\"/>\n        <um:attribute name=\"jpegPhoto\" type=\"xs:hexBinary\" multiValued=\"true\"/>\n        <um:attribute name=\"st\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"c\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"manager\" type=\"xs:anyURI\" multiValued=\"true\"/>\n        <um:attribute name=\"initials\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"givenName\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"mobile\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"groups\" type=\"Group\" multiValued=\"true\"/>\n        <um:attribute name=\"facsimileTelephoneNumber\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"cn\" type=\"xs:string\" multiValued=\"false\">\n          <um:attributeValue>wpsadmin</um:attributeValue>\n        </um:attribute>\n        <um:attribute name=\"l\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"partyRoles\" type=\"PartyRole\" multiValued=\"true\"/>\n        <um:attribute name=\"homePostalAddress\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"stateOrProvinceName\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"postalAddress\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"departmentNumber\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"businessCategory\" type=\"xs:string\" multiValued=\"true\"/>\n        <um:attribute name=\"countryName\" type=\"xs:string\" multiValued=\"true\"/>\n      </um:profile>\n    </atom:content>\n  </atom:entry>"
+                                    }
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Successful update."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a user ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "deprecated": false,
+                "summary": "This URI path operation updates the profile of the current user."
+            }
+        },
+        "/um/users/profiles": {
+            "summary": "Returns the list of users based on query parameters for GET and creation of users.",
+            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation returns the list of references to all user profiles that correspond to the search criteria and other parameters. If there are no limiting parameters, all available users are returned. The list that is returned is access control filtered for the current user. \nIt also allows the creation of new users.",
+            "get": {
+                "tags": [
+                    "UserProfiles"
+                ],
+                "parameters": [
+                    {
+                        "name": "includeAttributes",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The attributes contained in the profiles are limited to those specified in the comma-separated list provided by this attribute. By default, if you omit this parameter, the basic set of attributes is returned for users, or the minimum set of attributes is returned for groups.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "memberOf",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The response contains only profiles of users or groups that a are member of the specified group.\nThe parameters memberOf, searchAttributes, and identifier are mutually exclusive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "showNested",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If you set the memberOf parameter, this parameter specifies whether nested groups are considered or not. If you set the parameter to false, only direct membership is evaluated. The default value is false.",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "searchAttributes",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Use this query parameter to define a search string that specifies various combinations of attribute values as search criteria. All implementations have to support at least values such as attribute name and attribute value, where the attribute value can contain an asterisk ( * ) as a wildcard character.\nThe parameters memberOf, searchAttributes, and identifier are mutually exclusive. ",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "identifier",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The returned list will contain only the one user with the specified unique identifier. The implementation decides what is to be used as the unique identifier. For example, this can be the distinguished name.\nThe parameters memberOf, searchAttributes, and identifier are mutually exclusive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "resultsPerPage",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The returned list will contain only the given number of results. Additionally, links to additional result pages (first, last, next, previous) will be included in the response, if available.\nPaged search (resultsPerPage) only works for searchAttributes.",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortByAttributes",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Comma-separated list that specifies the sort order for the results. This is only supported for a paged search.\n",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "descending",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Determines if the sorting according to sortByAttributes will be descending.",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "expandrefs",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If you set this to true, the complete profiles are embedded in the references. The default is false.",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "xml": {
+                                        "name": "userProfiles",
+                                        "wrapped": true,
+                                        "x-items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ListOfUsers": {
+                                        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><atom:feed xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\" xmlns:um=\"http://www.ibm.com/xmlns/prod/websphere/um.xsd\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema-datatypes\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\"><atom:title>User profiles</atom:title><atom:author><atom:name>HCL Digital Experience</atom:name></atom:author><atom:link href=\"/wps/um/users/profiles\" rel=\"self\"/><atom:id>um:users/profiles</atom:id><atom:updated>2021-10-08T15:38:04.596Z</atom:updated><atom:entry><atom:title>uid=wpsadmin,o=defaultWIMFileBasedRealm</atom:title><atom:link href=\"/wps/um/users/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"self\"/><atom:link href=\"/wps/um/groupmembership/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"related\"/><atom:id>um:users/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1</atom:id><atom:updated>2021-10-08T15:38:04.596Z</atom:updated></atom:entry><atom:entry><atom:title>uid=demoUser,o=defaultWIMFileBasedRealm</atom:title><atom:link href=\"/wps/um/users/profiles/Z9eAeK1CCJO47JHD4JMOC6RCIJMG6M9D2JM8CMHDEJM86OHP26JD63RO4MIP613\" rel=\"self\"/><atom:link href=\"/wps/um/groupmembership/Z9eAeK1CCJO47JHD4JMOC6RCIJMG6M9D2JM8CMHDEJM86OHP26JD63RO4MIP613\" rel=\"related\"/><atom:id>um:users/profiles/Z9eAeK1CCJO47JHD4JMOC6RCIJMG6M9D2JM8CMHDEJM86OHP26JD63RO4MIP613</atom:id><atom:updated>2021-10-08T15:38:04.596Z</atom:updated></atom:entry></atom:feed>"
+                                    }
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of users."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a user ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Returns the list of users based on query parameters.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation returns the list of references to all user profiles that correspond to the search criteria and other parameters. If there are no limiting parameters, all available users are returned. The list that is returned is access control filtered for the current user. "
+            },
+            "post": {
+                "requestBody": {
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Create User Profile",
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserProfile"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "UserProfiles"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserProfile"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a user ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Creates a new user.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Creates a user via DX in the backend system."
+            }
+        },
+        "/um/groups/profiles": {
+            "summary": "Returns the list of groups based on query parameters for GET and creation of groups.",
+            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation returns the list of references to all group profiles that correspond to the search criteria and other parameters. If there are no limiting parameters, all available groups are returned. The list that is returned is access control filtered for the current group. \nIt also allows the creation of new groups.",
+            "get": {
+                "tags": [
+                    "GroupProfiles"
+                ],
+                "parameters": [
+                    {
+                        "name": "includeAttributes",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The attributes contained in the profiles are limited to those specified in the comma-separated list provided by this attribute. By default, if you omit this parameter, the minimum set of attributes is returned for groups.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "memberOf",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The response contains only profiles of groups that a are member of the specified group.\nThe parameters memberOf, searchAttributes, and identifier are mutually exclusive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "showNested",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If you set the memberOf parameter, this parameter specifies whether nested groups are considered or not. If you set the parameter to false, only direct membership is evaluated. The default value is false.",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "searchAttributes",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Use this query parameter to define a search string that specifies various combinations of attribute values as search criteria. All implementations have to support at least values such as attribute name and attribute value, where the attribute value can contain an asterisk ( * ) as a wildcard character.\nThe parameters memberOf, searchAttributes, and identifier are mutually exclusive. ",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "identifier",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The returned list will contain only the one group with the specified unique identifier. The implementation decides what is to be used as the unique identifier. For example, this can be the distinguished name.\nThe parameters memberOf, searchAttributes, and identifier are mutually exclusive.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "resultsPerPage",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The returned list will contain only the given number of results. Additionally, links to additional result pages (first, last, next, previous) will be included in the response, if available.\nPaged search (resultsPerPage) only works for searchAttributes.",
+                        "schema": {
+                            "type": "number"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortByAttributes",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Comma-separated list that specifies the sort order for the results. This is only supported for a paged search.\n",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "descending",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Determines if the sorting according to sortByAttributes will be descending.",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "expandrefs",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If you set this to true, the complete profiles are embedded in the references. The default is false.",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/GroupProfile"
+                                    },
+                                    "xml": {
+                                        "name": "groupProfiles",
+                                        "wrapped": true,
+                                        "x-items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ListOfGroups": {
+                                        "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><atom:feed xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\" xmlns:um=\"http://www.ibm.com/xmlns/prod/websphere/um.xsd\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema-datatypes\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\"><atom:title>Group profiles</atom:title><atom:author><atom:name>HCL Digital Experience</atom:name></atom:author><atom:link href=\"/wps/um/groups/profiles\" rel=\"self\"/><atom:id>um:groups/profiles</atom:id><atom:updated>2021-10-08T15:38:04.596Z</atom:updated><atom:entry><atom:title>uid=wpsadmin,o=defaultWIMFileBasedRealm</atom:title><atom:link href=\"/wps/um/groups/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"self\"/><atom:link href=\"/wps/um/groupmembership/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"related\"/><atom:id>um:groups/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1</atom:id><atom:updated>2021-10-08T15:38:04.596Z</atom:updated></atom:entry><atom:entry><atom:title>uid=demoGroup,o=defaultWIMFileBasedRealm</atom:title><atom:link href=\"/wps/um/groups/profiles/Z9eAeK1CCJO47JHD4JMOC6RCIJMG6M9D2JM8CMHDEJM86OHP26JD63RO4MIP613\" rel=\"self\"/><atom:link href=\"/wps/um/groupmembership/Z9eAeK1CCJO47JHD4JMOC6RCIJMG6M9D2JM8CMHDEJM86OHP26JD63RO4MIP613\" rel=\"related\"/><atom:id>um:groups/profiles/Z9eAeK1CCJO47JHD4JMOC6RCIJMG6M9D2JM8CMHDEJM86OHP26JD63RO4MIP613</atom:id><atom:updated>2021-10-08T15:38:04.596Z</atom:updated></atom:entry></atom:feed>"
+                                    }
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of groups."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a group ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Returns the list of groups based on query parameters.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation returns the list of references to all group profiles that correspond to the search criteria and other parameters. If there are no limiting parameters, all available groups are returned. The list that is returned is access control filtered for the current group. "
+            },
+            "post": {
+                "requestBody": {
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Create Group Profile",
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GroupProfile"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "GroupProfiles"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GroupProfile"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a group ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Creates a new group.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Creates a group via DX in the backend system."
+            }
+        },
+        "/um/users/profiles/{userID}": {
+            "summary": "Management of user profile.",
+            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation returns or updates or deletes a representation of the user profile. ",
+            "get": {
+                "tags": [
+                    "UserProfile"
+                ],
+                "parameters": [
+                    {
+                        "name": "includeAttributes",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The attributes contained in the profiles are limited to those specified in the comma-separated list provided by this attribute. By default, if you omit this parameter, all attributes that hold values are returned.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "User ID": {
+                                "value": "Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1"
+                            }
+                        },
+                        "name": "userID",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user id.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserProfile"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a user ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Get a user profile.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation returns a representation of the user profile. For details refer to the topic about the payload description."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserProfile"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "UserProfile"
+                ],
+                "parameters": [
+                    {
+                        "name": "update",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This defines how the update is performed. Valid values are as follows:\nreplace\nAll attribute values provided in the update replace the existing ones. This is the default.\nmerge\nThe new attribute values are merged with existing ones. This is only relevant for multi-value attributes.\ndelete\nThe values of all attributes provided in the update are removed from the profile. Consequently, the actual attribute values given in the update are ignored.",
+                        "schema": {
+                            "enum": [
+                                "replace",
+                                "merge",
+                                "delete"
+                            ],
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserProfile"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Successful update."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a user ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Update user profile.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation updates the user profile with the profile representation contained in the request body. Only the attributes provided in this representation are considered, therefore post only the attributes that you want to change."
+            },
+            "delete": {
+                "tags": [
+                    "UserProfile"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Successful delete."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a user ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Delete the user profile.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation deletes the user."
+            },
+            "parameters": [
+                {
+                    "name": "userID",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user id.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/um/groups/profiles/{groupID}": {
+            "summary": "Management of group profile.",
+            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation returns or updates or deletes a representation of the group profile. ",
+            "get": {
+                "tags": [
+                    "GroupProfile"
+                ],
+                "parameters": [
+                    {
+                        "name": "includeAttributes",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The attributes contained in the profiles are limited to those specified in the comma-separated list provided by this attribute. By default, if you omit this parameter, all attributes that hold values are returned.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "Group ID": {
+                                "value": "Z8eAeJHP4MGHCOHP6JMKC3RD0JMG6G9P2JM07G1CCMMS6G9CI3PO6O9E43I9653"
+                            }
+                        },
+                        "name": "groupID",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The group id.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GroupProfile"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a user ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Get a group profile.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation returns a representation of the group profile. For details refer to the topic about the payload description."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GroupProfile"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "GroupProfile"
+                ],
+                "parameters": [
+                    {
+                        "name": "update",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This defines how the update is performed. Valid values are as follows:\nreplace\nAll attribute values provided in the update replace the existing ones. This is the default.\nmerge\nThe new attribute values are merged with existing ones. This is only relevant for multi-value attributes.\ndelete\nThe values of all attributes provided in the update are removed from the profile. Consequently, the actual attribute values given in the update are ignored.",
+                        "schema": {
+                            "enum": [
+                                "replace",
+                                "merge",
+                                "delete"
+                            ],
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GroupProfile"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Successful update."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a user ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Update group profile.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation updates the group profile with the profile representation contained in the request body. Only the attributes provided in this representation are considered, therefore post only the attributes that you want to change."
+            },
+            "delete": {
+                "tags": [
+                    "GroupProfile"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Successful delete."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a user ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Delete the group profile.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation deletes the group."
+            },
+            "parameters": [
+                {
+                    "name": "groupID",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The group id.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/um/groupmembership/{userOrGroupID}": {
+            "summary": "Manage group membership.",
+            "get": {
+                "tags": [
+                    "GroupMembership"
+                ],
+                "parameters": [
+                    {
+                        "name": "expandRefs",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If you set this to true, the complete profiles are embedded in the references. The default is false.",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "includeAttributes",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The attributes contained in the profiles are limited to those specified in the comma-separated list provided by this attribute. By default, if you omit this parameter, the basic set of attributes is returned for users, or the minimum set of attributes is returned for groups.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "showNested",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This parameter specifies whether nested groups are considered or not. If you set the parameter to false, only direct membership is evaluated. The default value is false.",
+                        "schema": {
+                            "type": "boolean"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GroupMembershipInfo"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Successful retrieved information."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a group ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Retrieve group membership.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation returns the list of references to all group profiles of the groups of which the user or the group is a member."
+            },
+            "put": {
+                "requestBody": {
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Updated membership.",
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GroupMembershipInfo"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "GroupMembership"
+                ],
+                "parameters": [
+                    {
+                        "name": "update",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This defines how the update is performed. Possible values are as follows:\nreplace\nThe complete membership list will be replaced by the one posted. This is the default.\nmerge\nThe user or group are added to the groups contained in the posted membership list in addition to the existing group membership relations of the user or group.\ndelete\nThe user or group will be removed from all the groups contained in the posted list only.",
+                        "schema": {
+                            "enum": [
+                                "replace",
+                                "merge",
+                                "delete"
+                            ],
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GroupMembershipInfo"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Successful update."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a group ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Update group membership.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation updates the existing membership list for the user or group by the one that is posted."
+            },
+            "delete": {
+                "tags": [
+                    "GroupMembership"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Successful delete."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The input provided in the request body does not comply to the expected format. For example, this can be invalid XML in a posted profile."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Access control check during request processing failed."
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The operation that the client tries to perform is not possible. For example, this can be creating a group ID that already exists, setting attribute values for attributes that are not defined, or using mutually exclusive request parameters."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The URI does not match any of the defined URI paths or a variable part of a defined URI path does not denote a resource that exists."
+                    },
+                    "405": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The request addresses a defined URI, but uses an HTTP method that is not defined for this URI."
+                    },
+                    "415": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The format specified in the mime-type URI parameter or accept headers is not supported."
+                    }
+                },
+                "summary": "Delete group membership.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This URI path operation deletes the membership list for the user or group; this means that it removes the user or group from all groups."
+            },
+            "parameters": [
+                {
+                    "name": "userOrGroupID",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ID of the user or group.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "UserProfile": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Profile of a user.",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<atom:entry xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:um=\"http://www.ibm.com/xmlns/prod/websphere/um.xsd\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema-datatypes\">\n   <atom:title>uid=wpsadmin,o=defaultWIMFileBasedRealm</atom:title>\n   <atom:link href=\"/wps/um/users/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"self\" />\n   <atom:link href=\"/wps/um/groupmembership/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"related\" />\n   <atom:id>um:users/profiles/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1</atom:id>\n   <atom:updated>2021-10-06T17:47:34.606Z</atom:updated>\n   <atom:content type=\"application/xml\">\n      <um:profile type=\"user\" identifier=\"uid=wpsadmin,o=defaultWIMFileBasedRealm\">\n         <um:attribute name=\"roomNumber\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"telephoneNumber\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"city\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"ibm-jobTitle\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"displayName\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"postalCode\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"description\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"title\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"carLicense\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"seeAlso\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"uid\" type=\"xs:string\" multiValued=\"false\">\n            <um:attributeValue>wpsadmin</um:attributeValue>\n         </um:attribute>\n         <um:attribute name=\"localityName\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"viewIdentifiers\" type=\"ViewIdentifierType\" multiValued=\"true\" />\n         <um:attribute name=\"secretary\" type=\"xs:anyURI\" multiValued=\"true\" />\n         <um:attribute name=\"pager\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"children\" type=\"Entity\" multiValued=\"true\" />\n         <um:attribute name=\"street\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"sn\" type=\"xs:string\" multiValued=\"false\">\n            <um:attributeValue>wpsadmin</um:attributeValue>\n         </um:attribute>\n         <um:attribute name=\"businessAddress\" type=\"AddressType\" multiValued=\"true\" />\n         <um:attribute name=\"homeAddress\" type=\"AddressType\" multiValued=\"true\" />\n         <um:attribute name=\"jpegPhoto\" type=\"xs:hexBinary\" multiValued=\"true\" />\n         <um:attribute name=\"st\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"c\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"manager\" type=\"xs:anyURI\" multiValued=\"true\" />\n         <um:attribute name=\"initials\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"givenName\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"mobile\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"groups\" type=\"Group\" multiValued=\"true\" />\n         <um:attribute name=\"facsimileTelephoneNumber\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"cn\" type=\"xs:string\" multiValued=\"false\">\n            <um:attributeValue>wpsadmin</um:attributeValue>\n         </um:attribute>\n         <um:attribute name=\"l\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"partyRoles\" type=\"PartyRole\" multiValued=\"true\" />\n         <um:attribute name=\"homePostalAddress\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"stateOrProvinceName\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"postalAddress\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"departmentNumber\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"businessCategory\" type=\"xs:string\" multiValued=\"true\" />\n         <um:attribute name=\"countryName\" type=\"xs:string\" multiValued=\"true\" />\n      </um:profile>\n   </atom:content>\n</atom:entry>"
+            },
+            "GroupProfile": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Group Profile",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><atom:entry xmlns:um=\"http://www.ibm.com/xmlns/prod/websphere/um.xsd\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema-datatypes\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\"><atom:title>cn=wpsadmins,o=defaultWIMFileBasedRealm</atom:title><atom:link href=\"/wps/um/groups/profiles/Z8eAeJHP4MGHCOHP6JMKC3RD0JMG6G9P2JM07G1CCMMS6G9CI3PO6O9E43I9653\" rel=\"self\"/><atom:link href=\"/wps/um/groupmembership/Z8eAeJHP4MGHCOHP6JMKC3RD0JMG6G9P2JM07G1CCMMS6G9CI3PO6O9E43I9653\" rel=\"related\"/><atom:id>um:groups/profiles/Z8eAeJHP4MGHCOHP6JMKC3RD0JMG6G9P2JM07G1CCMMS6G9CI3PO6O9E43I9653</atom:id><atom:updated>2021-10-08T17:24:59.144Z</atom:updated><atom:content type=\"application/xml\"><um:profile type=\"group\" identifier=\"cn=wpsadmins,o=defaultWIMFileBasedRealm\"><um:attribute name=\"identifier\" type=\"xs:anyURI\" multiValued=\"false\"><um:attributeValue>/wps/um/groups/profiles/Z8eAeJHP4MGHCOHP6JMKC3RD0JMG6G9P2JM07G1CCMMS6G9CI3PO6O9E43I9653</um:attributeValue></um:attribute><um:attribute name=\"viewIdentifiers\" type=\"ViewIdentifierType\" multiValued=\"true\"/><um:attribute name=\"children\" type=\"Entity\" multiValued=\"true\"/><um:attribute name=\"displayName\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"members\" type=\"Entity\" multiValued=\"true\"/><um:attribute name=\"businessCategory\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"groups\" type=\"Group\" multiValued=\"true\"/><um:attribute name=\"description\" type=\"xs:string\" multiValued=\"true\"/><um:attribute name=\"cn\" type=\"xs:string\" multiValued=\"false\"><um:attributeValue>wpsadmins</um:attributeValue></um:attribute><um:attribute name=\"partyRoles\" type=\"PartyRole\" multiValued=\"true\"/><um:attribute name=\"seeAlso\" type=\"xs:string\" multiValued=\"true\"/></um:profile></atom:content></atom:entry>"
+            },
+            "GroupMembershipInfo": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><atom:entry xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\" xmlns:um=\"http://www.ibm.com/xmlns/prod/websphere/um.xsd\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema-datatypes\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\"><atom:title>Group membership list</atom:title><atom:link href=\"/wps/um/groupmembership/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1\" rel=\"self\"/><atom:id>um:groupmembership/Z9eAeJ1CGJP07I1D8JMS66BD6MMG6PPO4MM4C53C4JM4663CAMI163JCE3H9CH1</atom:id><atom:updated>2021-10-12T01:53:13.443Z</atom:updated><atom:content type=\"application/xml\"><um:groupMembershipList><um:profileRef uri=\"/wps/um/groups/profiles/Z8eAeJHP4MGHCOHP6JMKC3RD0JMG6G9P2JM07G1CCMMS6G9CI3PO6O9E43I9653\"/></um:groupMembershipList></atom:content></atom:entry>"
+            }
+        }
+    }
+}

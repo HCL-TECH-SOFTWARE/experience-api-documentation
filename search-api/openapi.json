@@ -1,0 +1,313 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "DX Search REST API",
+        "version": "1.0.0",
+        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Digital Experience Search REST API.  The following document describes the API call to search HCL Digital Experience. You can search HCL Digital Experience to find content that contains a specific text string in its title or content, or is tagged with a specific tag.  For additional information, see the documentation link below. \n\nIn case virtual Portals are used the virtual Portal can be specified by adding the query parameter ?virtualPortal to the URL of the API explorer with the value of the virtual Portal URL context - for example http://localhost:10039/dx/api/search/v1/explorer/?virtualPortal=myVirtualPortalContext  - all API calls will then have the virtual Portal context included in the URL. If you are using host based virtual Portals access the API explorer with the virtual Portal host.",
+        "contact": {
+            "name": "HCL DX Documentation",
+            "url": "https://help.hcltechsw.com/digital-experience/9.5/search-rest-api/search.html"
+        }
+    },
+    "paths": {
+        "/{access}/searchfeed/indexes": {
+            "summary": "Search indexes API",
+            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The Indexes API returns the set of supported values that can be passed to the index parameter of the HCL Digital Experience Search API. Response is Atom formatted list of possible values that can be passed to the Search API by using the index parameter of the Search API.",
+            "get": {
+                "tags": [
+                    "SearchIndexes"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SearchIndexes"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Retrieved Indexes"
+                    }
+                },
+                "summary": "Retrieves a list of search indexes",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The Indexes API returns the set of supported values that can be passed to the index parameter of the HCL Digital Experience Search API."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "Authenticated Search": {
+                            "value": "mycontenthandler"
+                        },
+                        "Anonymous Search": {
+                            "value": "contenthandler"
+                        }
+                    },
+                    "name": "access",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "WCM Content Handler (cannot be anonymous if using POST)",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/{access}/searchfeed/scopes": {
+            "summary": "Search feed scopes API",
+            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The Scopes API returns the set of supported values that can be passed to the scope parameter of the HCL Digital Experience Search API.",
+            "get": {
+                "tags": [
+                    "SearchScopes"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SearchScopes"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Retrieved Scopes"
+                    }
+                },
+                "summary": "Retrieves a list of search scopes",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The Scopes API returns the set of supported values that can be passed to the scope parameter of the HCL Digital Experience Search API."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "Authenticated Search": {
+                            "value": "mycontenthandler"
+                        },
+                        "Anonymous Search": {
+                            "value": "contenthandler"
+                        }
+                    },
+                    "name": "access",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "WCM Content Handler (cannot be anonymous if using POST)",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/{access}/searchfeed/search": {
+            "summary": "DX Search REST API documentation can be found here:  https://help.hcltechsw.com/digital-experience/9.5/search-rest-api/search.html",
+            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "DX Search API",
+            "get": {
+                "tags": [
+                    "Search"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SearchResponse"
+                                }
+                            }
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Search Results"
+                    }
+                },
+                "summary": "Search HCL Digital Experience",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "You can use this API to search for and retrieve internal documents. Depending on what your administrator has set, you might also be able to search documents from intranet sources of your organization or from additional sources.  You can search based on a wide variety of parameters.  The order that the ATOM-formatted results appear in when returned is controlled by additional parameters in the search query."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "locale": {
+                            "value": "en_US"
+                        }
+                    },
+                    "name": "locale",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Locale of request client",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "query": {
+                            "value": "HCL"
+                        },
+                        "AND or &&": {
+                            "value": "Searches for items that contain both words. For example: query=red%20AND%20test returns items that contain both the word red and test. AND is the default operator."
+                        },
+                        "NOT or !": {
+                            "value": "Excludes the word that follows the operator from the search. For example: query=test%20NOT%20red returns items that contain the word test, but not the word red."
+                        },
+                        "OR": {
+                            "value": "Searches for items that contain either of the words. For example: query=test%20OR%20red.\nTo search for a phrase, enclose the phrase in quotation marks (\" \")."
+                        },
+                        "+": {
+                            "value": "The plus sign indicates that the word must be present in the result. For example: query=+test%20red returns only items that contain the word test and many that also contain red, but none that contain only the word red."
+                        },
+                        "?": {
+                            "value": "Use a question mark to match individual characters. For example: query=te%3Ft returns items that contain the words test, text, tent, and others that begin with te."
+                        },
+                        "-:": {
+                            "value": "The dash prohibits the return of a word. This operator is similar to NOT. For example: query=test%20-red returns items that contain the word test, but not the wordred."
+                        },
+                        "*": {
+                            "value": "Wildcard searches are permitted, but wildcard only searches (*) are not."
+                        }
+                    },
+                    "name": "query",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Text to search; returns a list of results with the specified text in the title, description, or content.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": true
+                },
+                {
+                    "examples": {
+                        "queryLang": {
+                            "value": "en"
+                        }
+                    },
+                    "name": "queryLang",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Language of the query string",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "start": {
+                            "value": "0"
+                        }
+                    },
+                    "name": "start",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Offset to first result to return in results",
+                    "schema": {
+                        "type": "number"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "page": {
+                            "value": "1"
+                        }
+                    },
+                    "name": "page",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Page number",
+                    "schema": {
+                        "type": "number"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "pageSize": {
+                            "value": "10"
+                        }
+                    },
+                    "name": "pageSize",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Number of results that are wanted for a single request",
+                    "schema": {
+                        "type": "number"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "scope": {
+                            "value": "com.ibm.lotus.search.ALL_SOURCES"
+                        }
+                    },
+                    "name": "scope",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Identifier of which scope to search; the list of valid scopes is available in the Scopes API.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "sortKey": {
+                            "value": "date"
+                        }
+                    },
+                    "name": "sortKey",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The key, which controls the sorting order of the search results.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "sortOrder": {
+                            "value": "asc"
+                        }
+                    },
+                    "name": "sortOrder",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Determines the order by which the results are sorted: ascending or descending.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "constraint",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Allows constraining the search results according to the provided criteria.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "facet",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifies which facets are returned for the query, in addition to search results.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "index",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifies which index (collection) to use for the search",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "Authenticated Search": {
+                            "value": "mycontenthandler"
+                        },
+                        "Anonymous Search": {
+                            "value": "contenthandler"
+                        }
+                    },
+                    "name": "access",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "WCM Content Handler (cannot be anonymous if using POST)",
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "SearchIndexes": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success ",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n  <atom:feed xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">\n    <atom:title>Available Indexes</atom:title>\n    <atom:author>\n      <atom:name>Enterprise Search API Web Service.</atom:name>\n    </atom:author>\n    <atom:id>[searchfeed:indexes]</atom:id>\n    <atom:updated>2021-11-04T20:19:21.784Z</atom:updated>\n    <atom:entry>\n      <atom:title>Default Search Collection</atom:title>\n      <atom:id>Default+Search+Service%3A%3A%2Fopt%2FHCL%2Fwp_profile%2FPortalServer%2Fcollections%2FDefaultSearchCollection.c4203f8a</atom:id>\n    </atom:entry>\n    <atom:entry>\n      <atom:title>JCRCollection1</atom:title>\n      <atom:id>Default+Search+Service%3A%3A%2Fopt%2FHCL%2Fwp_profile%2FPortalServer%2Fjcr%2FsearchIndexes%2FJCRCollection1</atom:id>\n    </atom:entry>\n  </atom:feed>"
+            },
+            "SearchScopes": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n  <atom:feed xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\">\n    <atom:title>Available Scopes</atom:title>\n    <atom:link href=\"searchfeed:scopes\" rel=\"self\" type=\"application/atom+xml\"/>\n    <atom:author>\n      <atom:name>Enterprise Search API Web Service.</atom:name>\n    </atom:author>\n    <atom:id>[searchfeed:scopes]</atom:id>\n    <atom:updated>2021-11-04T20:20:17.964Z</atom:updated>\n    <atom:entry>\n      <atom:title>All Sources</atom:title>\n      <atom:summary>All Sources accessible by the user</atom:summary>\n      <atom:id>com.ibm.lotus.search.ALL_SOURCES</atom:id>\n      <opensearch:image>/wps/images/icons/scope_search_all.gif</opensearch:image>\n    </atom:entry>\n    <atom:entry>\n      <atom:title>Managed Web Content</atom:title>\n      <atom:summary>Search in WCM</atom:summary>\n      <atom:id>com.ibm.lotus.search.MANAGEDWEB</atom:id>\n      <opensearch:image>/wps/images/icons/scope_search_wcm.gif</opensearch:image>\n    </atom:entry>\n  </atom:feed>"
+            },
+            "SearchResponse": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n       <atom:feed xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\"\n           xmlns:xhtml=\"http://www.w3.org/1999/xhtml\"\n           xmlns:wplc=\"http://www.ibm.com/wplc/atom/1.0\"\n           xmlns:atom=\"http://www.w3.org/2005/Atom\">\n           <atom:title>Search results for query \"development\" on scope \"com.ibm.lotus.search.ALL_SOURCES\"</atom:title>\n           <atom:link href=\"searchfeed:search\" rel=\"self\" type=\"application/atom+xml\"/>\n           <atom:author>\n               <atom:name>Enterprise Search API Web Service.</atom:name>\n           </atom:author>\n           <atom:id>searchfeed:search</atom:id>\n           <atom:category term=\"com.ibm.lotus.search.ALL_SOURCES\" label=\"com.ibm.lotus.search.ALL_SOURCES\"/>\n           <atom:updated>2013-01-14T08:35:27.482Z</atom:updated>\n           <opensearch:totalResults exact=\"true\">412</opensearch:totalResults>\n           <opensearch:Query role=\"request\" searchTerms=\"development\"/>\n           <opensearch:startIndex>0</opensearch:startIndex>\n           <opensearch:itemsPerPage>10</opensearch:itemsPerPage>\n\n           <atom:entry>\n              <atom:id>ResourceinjectionusingRationalApplicationDeveloperv7.5</atom:id>\n              <atom:title type=\"text/html\">Resource injection using Rational Application Developer v7.5</atom:title>\n              <atom:author>\n                 <atom:uri>Dan_Haim</atom:uri>\n                 <atom:name>Dan Haim</atom:name>\n              </atom:author>\n              <atom:author>\n                 <atom:uri>James_Chung</atom:uri>\n                 <atom:name>James Chung</atom:name>\n              </atom:author>\n              <atom:link href=\"http://www.ibm.com/developerworks/rational/library/10/resourceinjectionwithrad7-5/index.html\"/>\n              <atom:category term=\"ContentSourceType/default\" scheme=\"com.ibm.wplc.taxonomy://feature_taxonomy\" label=\"Document\"/>\n              <opensearch:relevance>100.0</opensearch:relevance>\n              <atom:updated>2010-06-07T06:49:09.000Z</atom:updated>\n              <atom:summary type=\"html\"><![CDATA[<Strong>Summary:</Strong> Java&#8482; platf....]]></atom:summary>\n              <atom:link href=\"/wps/images/icons/Document.gif\" rel=\"icon\"/>\n              <wplc:field id=\"name\">95c189804d4268bf8d49ede9170f1e3d</wplc:field>\n\t        <wplc:field id=\"contentSourceType\">Seedlist</wplc:field>\n\t       <wplc:field id=\"defaultcontext\">/poc</wplc:field>\n              <wplc:field id=\"effectivedate\">1236246335000</wplc:field>\n\t         <wplc:field id=\"modifier\">Replicator</wplc:field>\n\t         <wplc:field id=\"securecontext\">/mypoc</wplc:field>\n\t         <wplc:field id=\"search_controllable_uuid\">2c1e7b59-b465-49da-bc99-5aee3c00932b</wplc:field>\n\t         <wplc:field id=\"locale\">en</wplc:field>\n\t         <wplc:field id=\"RatingAverage\">4</wplc:field>\n\t         <wplc:field id=\"author_info\">Dan_Haim<![CDATA[<Dan Haim<]]></wplc:field>\n\t         <wplc:field id=\"author_info\">James_Chung<![CDATA[<James Chung<]]></wplc:field>\n\t         <wplc:field id=\"acls\">public</wplc:field>\n\t         <wplc:field id=\"authoringtemplate\">Blog Home</wplc:field>\n\t         <wplc:field id=\"popularity\">7811</wplc:field>\n\t         <wplc:field id=\"security_ids\">Z6QReDeIPO2JIT62BDIJM8CKHDAJMG6P1P2MM8C3BEIJMK61BPAMPCCG1CIJP8623</wplc:field>\n\t         <wplc:field id=\"difficulty\">Advanced</wplc:field>\n\t         <wplc:field id=\"contentPath\">/Blog Solo Template v70/Blog/Home/95c189804d4268bf8d49ede9170f1e3d</wplc:field>\n\t         <wplc:field id=\"category\">Rational</wplc:field>\n\t     </atom:entry>\n\t      ...\n\t</atom:feed>"
+            }
+        }
+    }
+}
