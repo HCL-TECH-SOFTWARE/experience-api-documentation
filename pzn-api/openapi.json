@@ -30,7 +30,7 @@
                             }
                         },
                         "name": "limit",
-                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - limit is the number of results which will be returned. (e.g. 10). Default is 30.",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results -\n \n  limit is the number of results which will be returned. (e.g. 10). Default is 30.",
                         "schema": {
                             "type": "number"
                         },
@@ -43,7 +43,7 @@
                             }
                         },
                         "name": "offset",
-                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - offset is the starting point from which results will be returned. (e.g. 20). Default is 0.",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset is the starting point from which results will be returned. (e.g. 20). Default is 0.",
                         "schema": {
                             "type": "number"
                         },
@@ -86,10 +86,249 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/IListOfFolders"
+                                },
+                                "examples": {
+                                  "Example 1: Get all Descendant Folders with empty parent id":{
+                                    "value":{
+                                        "offset": 0,
+                                        "limit": 30,
+                                        "total": 8,
+                                        "items": [
+                                          {
+                                            "id": "_6QR_0048AAQUGF0A1T2A_18L",
+                                            "folderType": "Root Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "",
+                                            "authors": "",
+                                            "creator": "",
+                                            "created": "2021-08-20T09:27:01.030Z",
+                                            "lastModified": "2021-08-20T09:27:01.030Z",
+                                            "parentId": ""
+                                          },
+                                          {
+                                            "id": "bfde2158-9b2b-4c19-9bdb-015ce3d88e6b",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 1",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:08:45.795Z",
+                                            "lastModified": "2022-02-07T07:08:45.795Z",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                          },
+                                          {
+                                            "id": "7ef220f1-00e0-4d25-ad4d-827511d59c0f",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 2",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:09:01.886Z",
+                                            "lastModified": "2022-02-07T07:09:01.886Z",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                          },
+                                          {
+                                            "id": "05285fae-8b9d-4040-9aba-60727b53ca6d",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 21",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:09:11.888Z",
+                                            "lastModified": "2022-02-07T07:09:33.446Z",
+                                            "parentId": "7ef220f1-00e0-4d25-ad4d-827511d59c0f"
+                                          },
+                                          {
+                                            "id": "7cfcdb79-6a44-406a-a26c-c31279ce9c72",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 3",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:09:49.191Z",
+                                            "lastModified": "2022-02-07T07:09:49.191Z",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                          },
+                                          {
+                                            "id": "0d913248-2b06-459d-9c64-5e82d107545c",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 22",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:10:12.704Z",
+                                            "lastModified": "2022-02-07T07:10:12.704Z",
+                                            "parentId": "7ef220f1-00e0-4d25-ad4d-827511d59c0f"
+                                          },
+                                          {
+                                            "id": "6d5cab10-84d7-48ba-81db-160d06947e54",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 221",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:10:36.912Z",
+                                            "lastModified": "2022-02-07T07:10:36.912Z",
+                                            "parentId": "0d913248-2b06-459d-9c64-5e82d107545c"
+                                          },
+                                          {
+                                            "id": "bd623dc8-108b-4ea7-ac0f-47086639ff91",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 31",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:57:56.457Z",
+                                            "lastModified": "2022-02-07T07:57:56.457Z",
+                                            "parentId": "7cfcdb79-6a44-406a-a26c-c31279ce9c72"
+                                          }
+                                        ]
+                                    }
+                                  },
+                                  "Example 2: Get all Children Folders with empty parent id":{
+                                    "value":{
+                                        "offset": 0,
+                                        "limit": 30,
+                                        "total": 4,
+                                        "items": [
+                                          {
+                                            "id": "_6QR_0048AAQUGF0A1T2A_18L",
+                                            "folderType": "Root Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "",
+                                            "authors": "",
+                                            "creator": "",
+                                            "created": "2021-08-20T09:27:01.030Z",
+                                            "lastModified": "2021-08-20T09:27:01.030Z",
+                                            "parentId": ""
+                                          },
+                                          {
+                                            "id": "bfde2158-9b2b-4c19-9bdb-015ce3d88e6b",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 1",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:08:45.795Z",
+                                            "lastModified": "2022-02-07T07:08:45.795Z",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                          },
+                                          {
+                                            "id": "7ef220f1-00e0-4d25-ad4d-827511d59c0f",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 2",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:09:01.886Z",
+                                            "lastModified": "2022-02-07T07:09:01.886Z",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                          },
+                                          {
+                                            "id": "7cfcdb79-6a44-406a-a26c-c31279ce9c72",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 3",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:09:49.191Z",
+                                            "lastModified": "2022-02-07T07:09:49.191Z",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                          },
+                                        ]
+                                    }
+                                  },
+                                  "Example 3: Get all Descendant Folders of a folder":{
+                                    "value":{
+                                        "offset": 0,
+                                        "limit": 30,
+                                        "total": 3,
+                                        "items": [
+                                          {
+                                            "id": "05285fae-8b9d-4040-9aba-60727b53ca6d",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 21",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:09:11.888Z",
+                                            "lastModified": "2022-02-07T07:09:33.446Z",
+                                            "parentId": "7ef220f1-00e0-4d25-ad4d-827511d59c0f"
+                                          },
+                                          {
+                                            "id": "0d913248-2b06-459d-9c64-5e82d107545c",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 22",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:10:12.704Z",
+                                            "lastModified": "2022-02-07T07:10:12.704Z",
+                                            "parentId": "7ef220f1-00e0-4d25-ad4d-827511d59c0f"
+                                          },
+                                          {
+                                            "id": "6d5cab10-84d7-48ba-81db-160d06947e54",
+                                            "folderType": "Folder",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "New Folder 221",
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-02-07T07:10:36.912Z",
+                                            "lastModified": "2022-02-07T07:10:36.912Z",
+                                            "parentId": "0d913248-2b06-459d-9c64-5e82d107545c"
+                                          }
+                                        ]
+                                    }
+                                  },
+                                  "Example 4: Get all Children Folders of a folder":{
+                                    "value":{
+                                      "offset": 0,
+                                      "limit": 30,
+                                      "total": 2,
+                                      "items": [
+                                        {
+                                          "id": "05285fae-8b9d-4040-9aba-60727b53ca6d",
+                                          "folderType": "Folder",
+                                          "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                          "title": "New Folder 21",
+                                          "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                          "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                          "created": "2022-02-07T07:09:11.888Z",
+                                          "lastModified": "2022-02-07T07:09:33.446Z",
+                                          "parentId": "7ef220f1-00e0-4d25-ad4d-827511d59c0f"
+                                        },
+                                        {
+                                          "id": "0d913248-2b06-459d-9c64-5e82d107545c",
+                                          "folderType": "Folder",
+                                          "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                          "title": "New Folder 22",
+                                          "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                          "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                          "created": "2022-02-07T07:10:12.704Z",
+                                          "lastModified": "2022-02-07T07:10:12.704Z",
+                                          "parentId": "7ef220f1-00e0-4d25-ad4d-827511d59c0f"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "Explanation": {
+                                    "value":{
+                                      "id": "Field to indicate folder uuid.",
+                                      "folderType": "Field to indicate folder type root folder (Workspace) or custom Folder",
+                                      "description" : "Field to indicate description of the folder.",
+                                      "title": "Field to indicate that title of the folder.",
+                                      "authors":"Field to indicate that owner of the folder.",
+                                      "creator": "Field to indicate that creator of the folder.",
+                                      "created": "Field to indicate that creation date and time of the folder.",
+                                      "lastModified": "Filed to indicate that last modified date and time of the folder.",
+                                      "lastModifier": "Filed to indicate that details of the user who is last modified the folder.",
+                                      "parentId" : "Field to indicate to find the difference between the location of the folder."
+                                    }
+                                  }
                                 }
                             }
                         },
-                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of folders."
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For success case, API returns list of folders from specified inputs.."
                     },
                     "400": {
                         "content": {
@@ -148,7 +387,8 @@
                         ]
                     }
                 ],
-                "summary": "To get list of all folder details for the given parent Id."
+                "summary": "This endpoint returns the list of all folders.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": ""
             },
             "post": {
                 "requestBody": {
@@ -180,10 +420,39 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/IFolderDetails"
+                                },
+                                "examples":{
+                                  "Response":{
+                                    "value":{
+                                      "id": "b7bbddd7-95c6-4062-8971-134f780002f1",
+                                      "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Demo folder",
+                                      "title": "DemoFolder",
+                                      "parentId": "ffbbddd7-95c6-4062-8971-134f780002f1",
+                                      "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                      "creator": "wpsadmin",
+                                      "created": "2021-09-30T11:25:57.090Z",
+                                      "lastModified": "2021-09-30T11:25:57.090Z",
+                                      "lastModifier": "wpsadmin"
+                                    }
+                                  },
+                                  "Explanation":{
+                                    "value": {
+                                      "id": "Field to indicate folder uuid.",
+                                      "folderType": "Field to indicate folder type root folder (Workspace) or custom Folder",
+                                      "description" : "Field to indicate description of the folder.",
+                                      "title": "Field to indicate that title of the folder.",
+                                      "authors":"Field to indicate that owner of the folder.",
+                                      "creator": "Field to indicate that creator of the folder.",
+                                      "created": "Field to indicate that creation date and time of the folder.",
+                                      "lastModified": "Filed to indicate that last modified date and time of the folder.",
+                                      "lastModifier": "Filed to indicate that details of the user who is last modified the folder.",
+                                      "parentId" : "Field to indicate to find the difference between the location of the folder."
+                                    }
+                                  }
                                 }
                             }
                         },
-                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder details."
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For success case, API returns details of created folder."
                     },
                     "400": {
                         "content": {
@@ -242,7 +511,8 @@
                         ]
                     }
                 ],
-                "summary": "To create a new folder."
+                "summary": "This endpoint creates a new folder.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "To create a folder, title is mandatory field, description and parentId are optional. <br>The default value of description and parentId (if not passed) is empty string and root folder/workspace id respectively."
             }
         },
         "/pzn-rest/folders/{folder-id}": {
@@ -266,10 +536,39 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/IFolderDetails"
+                                },
+                                "examples":{
+                                  "Response":{
+                                    "value":{
+                                      "id": "b7bbddd7-95c6-4062-8971-134f780002f1",
+                                      "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Demo folder",
+                                      "title": "DemoFolder",
+                                      "parentId": "ffbbddd7-95c6-4062-8971-134f780002f1",
+                                      "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                      "creator": "wpsadmin",
+                                      "created": "2021-09-30T11:25:57.090Z",
+                                      "lastModified": "2021-09-30T11:25:57.090Z",
+                                      "lastModifier": "wpsadmin"
+                                    }
+                                  },
+                                  "Explanation":{
+                                    "value": {
+                                      "id": "Field to indicate folder uuid.",
+                                      "folderType": "Field to indicate folder type root folder (Workspace) or custom Folder",
+                                      "description" : "Field to indicate description of the folder.",
+                                      "title": "Field to indicate that title of the folder.",
+                                      "authors":"Field to indicate that owner of the folder.",
+                                      "creator": "Field to indicate that creator of the folder.",
+                                      "created": "Field to indicate that creation date and time of the folder.",
+                                      "lastModified": "Filed to indicate that last modified date and time of the folder.",
+                                      "lastModifier": "Filed to indicate that details of the user who is last modified the folder.",
+                                      "parentId" : "Field to indicate to find the difference between the location of the folder."
+                                    }
+                                  }
                                 }
                             }
                         },
-                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder details."
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns folder details for the given folder uuid."
                     },
                     "401": {
                         "content": {
@@ -318,7 +617,7 @@
                         ]
                     }
                 ],
-                "summary": "To get the individual folder details."
+                "summary": "This endpoint returns the individual folder details using the folder-id, folder-id is the UUID of the folder."
             },
             "put": {
                 "requestBody": {
@@ -350,10 +649,39 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/IFolderDetails"
+                                },
+                                "examples":{
+                                  "Response":{
+                                    "value":{
+                                      "id": "b7bbddd7-95c6-4062-8971-134f780002f1",
+                                      "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Demo folder",
+                                      "title": "DemoFolder",
+                                      "parentId": "ffbbddd7-95c6-4062-8971-134f780002f1",
+                                      "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                      "creator": "wpsadmin",
+                                      "created": "2021-09-30T11:25:57.090Z",
+                                      "lastModified": "2021-09-30T11:25:57.090Z",
+                                      "lastModifier": "wpsadmin"
+                                    }
+                                  },
+                                  "Explanation":{
+                                    "value": {
+                                      "id": "Field to indicate folder uuid.",
+                                      "folderType": "Field to indicate folder type root folder (Workspace) or custom Folder",
+                                      "description" : "Field to indicate description of the folder.",
+                                      "title": "Field to indicate that title of the folder.",
+                                      "authors":"Field to indicate that owner of the folder.",
+                                      "creator": "Field to indicate that creator of the folder.",
+                                      "created": "Field to indicate that creation date and time of the folder.",
+                                      "lastModified": "Filed to indicate that last modified date and time of the folder.",
+                                      "lastModifier": "Filed to indicate that details of the user who is last modified the folder.",
+                                      "parentId" : "Field to indicate to find the difference between the location of the folder."
+                                    }
+                                  }
                                 }
                             }
                         },
-                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder details."
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns updated folder details for the given folder uuid."
                     },
                     "400": {
                         "content": {
@@ -422,7 +750,8 @@
                         ]
                     }
                 ],
-                "summary": "To update the folder."
+                "summary": "This endpoint updates the folder using folder-id.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Pass only those key value pairs which you want to update.<br> Keys which can be updated individually from the request body - \"title\", \"description\" and \"parentId\"<br><b>Note 1:</b> Updating a root folder/workspace is restricted. The API returns a 403 error code for this scenario.<br><b>Note 2:</b> The parentId input is to be passed if the selected Personalization folder has to be moved to a different location."
             },
             "delete": {
                 "requestBody": {
@@ -506,7 +835,8 @@
                         ]
                     }
                 ],
-                "summary": "To delete a folder."
+                "summary": "This endpoint deletes a folder using folder-id.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "<b>Note 1:</b> When deleting a folder, it would delete all the rules and sub-folders created within it.<br><b>Note 2:</b> Deleting a root folder/workspace is restricted."
             },
             "parameters": [
                 {
@@ -516,7 +846,7 @@
                         }
                     },
                     "name": "folder-id",
-                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Folder uuid.",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "UUID of Folder.",
                     "schema": {
                         "type": "string"
                     },
@@ -900,6 +1230,25 @@
                                         ]
                                       }
                                     },
+                                    "Visibility Rule Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "visibility": "Field to add 'show' or 'hide' if the 'conditions' are met.",
+                                        "otherwise": "Field to add 'show' or 'hide' if the 'conditions' are not met.",
+                                        "caseInsensitive": "Boolean indication that the string comparisons in the rule should be case insensitive.",
+                                        "conditions": "List of conditions to meet the visibility rule criteria.",
+                                      }
+                                    },
                                     "Profiler":{
                                         "value":{
                                             "offset": 0,
@@ -1251,6 +1600,27 @@
                                         }
 
                                     },
+                                    "Profiler Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "profiles" :"List of profiles created. Array of objects.",
+                                        "profileName": "Profile name to be selected if the 'conditions' are met.",
+                                        "conditions" :"List of conditions to meet the Profiler rule criteria.",
+                                        "otherwiseProfile" :"Fall back profile name if none of the conditions for other profiles are not met.",
+                                        "caseInsensitive" :"Boolean indication that the string comparisons in the rule are case insensitive.",
+                                        "stopFirstProfile" :"Boolean indication that the rule returns the first matching profile for the current user."
+                                      }
+                                    },
                                     "Select Action":{
                                         "value":{
                                             "offset": 0,
@@ -1363,9 +1733,27 @@
                                             ]
                                             
                                         }
+                                    },
+                                    "Select Action Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "folderType": "Field to indicate folder type root folder (Workspace) or custom Folder",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "conditions": "List of conditions to meet the select action rule criteria.",
+                                        "select": "Field to indicate type of select action rule.",
                                     }
+                                  }
                                 }
-                            }
+                            },
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For success case, API returns list of rules from specified inputs."
                     },
@@ -1416,7 +1804,7 @@
                         ]
                     }
                 ],
-                "summary": "This end point provides the list of rules. For this endpoint it is possible to apply a filter for the type of rules to get specific type of rule lists."
+                "summary": "This endpoint returns the list of rules. For this endpoint it is possible to apply a filter for the type of rules to get specific type of rule lists."
             },
             "post": {
                 "requestBody": {
@@ -1657,6 +2045,40 @@
                                         },
                                         "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
                                     }
+                                },
+                                "Select Action":{
+                                    "value":{
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This is Select Action Rule",
+                                        "title": "SelectActionWebContent",
+                                        "ruleType": "Select Action",
+                                        "contents": {
+                                          "select": "Web Content",
+                                          "conditions": {
+                                            "and": [
+                                              {
+                                                "propertyType": "fixed",
+                                                "propertyName": "Location",
+                                                "value": [
+                                                  {
+                                                    "attributeName": "AcceptLanguage",
+                                                    "attributeType": "BrowserCapability"
+                                                  }
+                                                ],
+                                                "operator": "is"
+                                              },
+                                              {
+                                                "propertyType": "dynamic",
+                                                "propertyName": "Full Text",
+                                                "value": [
+                                                  "English"
+                                                ],
+                                                "operator": "includes"
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
                                 }
                             }
                         }
@@ -1833,6 +2255,25 @@
                                             "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
                                         }
                                     },
+                                    "Visibility Rule Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "visibility": "Field to add 'show' or 'hide' if the 'conditions' are met.",
+                                        "otherwise": "Field to add 'show' or 'hide' if the 'conditions' are not met.",
+                                        "caseInsensitive": "Boolean indication that the string comparisons in the rule should be case insensitive.",
+                                        "conditions": "List of conditions to meet the visibility rule criteria.",
+                                      }
+                                    },
                                     "Profiler": {
                                         "value": {
                                             "id": "a6cf4aa5-cbd5-4a99-a3c1-daff112fb1b9",
@@ -1884,11 +2325,91 @@
                                             "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
                                             "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
                                         }
+                                    },
+                                    "Profiler Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "profiles" :"List of profiles created. Array of objects.",
+                                        "profileName": "Profile name to be selected if the 'conditions' are met.",
+                                        "conditions" :"List of conditions to meet the Profiler rule criteria.",
+                                        "otherwiseProfile" :"Fall back profile name if none of the conditions for other profiles are not met.",
+                                        "caseInsensitive" :"Boolean indication that the string comparisons in the rule are case insensitive.",
+                                        "stopFirstProfile" :"Boolean indication that the rule returns the first matching profile for the current user."
+                                      }
+                                    },
+                                    "Select Action":{
+                                        "value":{
+                                            "id": "846ced49-cced-473d-b579-8d24f21805bc",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This is Select Action Rule",
+                                            "title": "SelectActionWebContent",
+                                            "ruleType": "Select Action",
+                                            "contents": {
+                                              "select": "Web Content",
+                                              "conditions": {
+                                                "and": [
+                                                  {
+                                                    "propertyType": "fixed",
+                                                    "propertyName": "Location",
+                                                    "value": [
+                                                      {
+                                                        "attributeName": "AcceptLanguage",
+                                                        "attributeType": "BrowserCapability"
+                                                      }
+                                                    ],
+                                                    "operator": "is"
+                                                  },
+                                                  {
+                                                    "propertyType": "dynamic",
+                                                    "propertyName": "Full Text",
+                                                    "value": [
+                                                      "English"
+                                                    ],
+                                                    "operator": "includes"
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-04-08T06:26:34.745Z",
+                                            "publishedOnDate": "2022-04-08T06:34:30.924Z",
+                                            "lastModified": "2022-04-08T07:09:13.265Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    }, 
+                                    "Select Action Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "folderType": "Field to indicate folder type root folder (Workspace) or custom Folder",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "conditions": "List of conditions to meet the select action rule criteria.",
+                                        "select": "Field to indicate type of select action rule.",
+                                      }
                                     }
                                 }
-                            }
+                            },
                         },
-                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule details."
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For success case, API returns details of created rule."
                     },
                     "400": {
                         "content": {
@@ -1947,8 +2468,8 @@
                         ]
                     }
                 ],
-                "summary": "To create a new rule.",
-                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API will create visibility rules.<br><b>Note</b>: Allowed attribute types: BrowserCapability, Date, Device, Referrer, ActionBean, CategoryBean, Action Count, Category Count, User, Shared Render Parameters, Session, Shared Data, Portlet Attributes, Request, Profiler, Arithmetic and  MatchingItems. For arithmetic rules a combination of multiple operations (i.e. 7+9*2) is not supported at this time."
+                "summary": "This endpoint creates a new rule.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API will create Visibilty, Profiler and Select Action Rule.<br><b>Note</b>: Allowed attribute types: BrowserCapability, Date, Device, Referrer, ActionBean, CategoryBean, Action Count, Category Count, User, Shared Render Parameters, Session, Shared Data, Portlet Attributes, Request, Profiler, Arithmetic and  MatchingItems. For arithmetic rules a combination of multiple operations (i.e. 7+9*2) is not supported at this time."
             }
         },
         "/pzn-rest/rules/{rule-id}": {
@@ -2141,6 +2662,25 @@
                                             "parentId": "HR123_6QR_0048AAQUGF0A1T2A_18L"
                                         }
                                     },
+                                    "Visibility Rule Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "visibility": "Field to add 'show' or 'hide' if the 'conditions' are met.",
+                                        "otherwise": "Field to add 'show' or 'hide' if the 'conditions' are not met.",
+                                        "caseInsensitive": "Boolean indication that the string comparisons in the rule should be case insensitive.",
+                                        "conditions": "List of conditions to meet the visibility rule criteria.",
+                                      }
+                                    },
                                     "Profiler": {
                                         "value": {
                                             "id": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
@@ -2296,6 +2836,27 @@
                                             "parentId": "HR123_6QR_0048AAQUGF0A1T2A_18L"
                                         }
                                     },
+                                    "Profiler Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "profiles" :"List of profiles created. Array of objects.",
+                                        "profileName": "Profile name to be selected if the 'conditions' are met.",
+                                        "conditions" :"List of conditions to meet the Profiler rule criteria.",
+                                        "otherwiseProfile" :"Fall back profile name if none of the conditions for other profiles are not met.",
+                                        "caseInsensitive" :"Boolean indication that the string comparisons in the rule are case insensitive.",
+                                        "stopFirstProfile" :"Boolean indication that the rule returns the first matching profile for the current user."
+                                      }
+                                    },
                                     "Select Action":{
                                         "value":{
                                             "id": "846ced49-cced-473d-b579-8d24f21805bc",
@@ -2336,9 +2897,116 @@
                                             "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
                                             "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
                                         }
-                                    }
+                                    }, 
+                                    "Select Action Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "folderType": "Field to indicate folder type root folder (Workspace) or custom Folder",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "conditions": "List of conditions to meet the select action rule criteria.",
+                                        "select": "Field to indicate type of select action rule.",
+                                      }
+                                    },
+                                     "Binding":{
+                                        "value":{
+                                            "id": "b727e0ac-d433-4bd8-bd62-b5d7d722a280",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding rule fetching",
+                                            "title": "Binding1",
+                                            "ruleType": "BindingRule",
+                                            "contents": {
+                                                "profiler": {
+                                                    "profileName": "/Profiler1",
+                                                    "conditions": [
+                                                        {
+                                                            "profiles": [
+                                                                "ps003",
+                                                                "editor"
+                                                            ],
+                                                            "operator": "or",
+                                                            "actions": [
+                                                                {
+                                                                    "name": "/SelectActionWebContent",
+                                                                    "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "profiles": [
+                                                                "ps003",
+                                                                "editor"
+                                                            ],
+                                                            "operator": "or",
+                                                            "actions": [
+                                                                {
+                                                                    "name": "/SelectActionWebcontent2",
+                                                                    "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "excludeActions": [
+                                                        {
+                                                            "name": "/SelectActionWebContent",
+                                                            "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                        }
+                                                    ],
+                                                    "otherwiseActions": [
+                                                        {
+                                                            "name": "/SelectActionWebContent",
+                                                            "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                        }
+                                                    ],
+                                                    "alwaysActions": [
+                                                        {
+                                                            "name": "/SelectActionWebcontent2",
+                                                            "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                        }
+                                                    ],
+                                                    "order": {
+                                                        "orderType": "random"
+                                                    },
+                                                    "limit": 100
+                                                },
+                                                "stopFirstMatch": true
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-04-29T08:06:50.479Z",
+                                            "publishedOnDate": "1970-01-01T00:00:00.000Z",
+                                            "lastModified": "2022-05-17T07:54:56.055Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                      }
+                                    }, 
+                                     "Binding Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "folderType": "Field to indicate folder type root folder (Workspace) or custom Folder",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule or Binding).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "conditions": "List of conditions to meet the binding rule criteria.",
+                                        "select": "Field to indicate type of select action rule.",
+                                      }
+                                    },
                                 }
-                            }
+                            },
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns rule details for the given rule uuid."
                     },
@@ -2388,7 +3056,7 @@
                         "cookieAuth": []
                     }
                 ],
-                "summary": "This end returns the individual rule details using the rule-id, rule-id is the uuid of rule."
+                "summary": "This endpoint returns the individual rule details using the rule-id, rule-id is the uuid of rule."
             },
             "put": {
                 "requestBody": {
@@ -2450,6 +3118,40 @@
                                         },
                                         "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
                                     }
+                                },
+                                "Select Action":{
+                                    "value":{
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This is Select Action Rule",
+                                        "title": "SelectActionWebContent",
+                                        "ruleType": "Select Action",
+                                        "contents": {
+                                          "select": "Web Content",
+                                          "conditions": {
+                                            "and": [
+                                              {
+                                                "propertyType": "fixed",
+                                                "propertyName": "Location",
+                                                "value": [
+                                                  {
+                                                    "attributeName": "AcceptLanguage",
+                                                    "attributeType": "BrowserCapability"
+                                                  }
+                                                ],
+                                                "operator": "is"
+                                              },
+                                              {
+                                                "propertyType": "dynamic",
+                                                "propertyName": "Full Text",
+                                                "value": [
+                                                  "English"
+                                                ],
+                                                "operator": "includes"
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
                                 }
                             }
                         }
@@ -2460,7 +3162,7 @@
                 "tags": [
                     "Rules"
                 ],
-                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description":"Pass only those key value pairs which you want to update.<br> Keys which can be updated individually from the request body - \"description\", \"title\", \"ruleType\", \"contents\", \"parentId\" <br>& keys which can be updated individually inside contents for specific ruleType: <ul> <li><b>Visibility Rule : </b> \"visibility\", \"conditions\", \"caseInsensitive\",</li> <li> <b>Profiler : </b>\"profiles\", \"otherwiseProfile\",\"caseInsensitive\", \"stopFirstProfile\"</li> </ul> <h4>Note: Updating a ruleType is restricted.</h4>",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description":"Pass only those key value pairs which you want to update.<br> Keys which can be updated individually from the request body - \"description\", \"title\", \"ruleType\", \"contents\", \"parentId\" <br>& keys which can be updated individually inside contents for specific ruleType: <ul> <li><b>Visibility Rule : </b> \"visibility\", \"conditions\", \"caseInsensitive\",</li> <li> <b>Profiler : </b>\"profiles\", \"otherwiseProfile\",\"caseInsensitive\", \"stopFirstProfile\"</li> <li> <b>Select Action : </b>Not Applicable</li> </ul> <h4>Note: Updating a ruleType is restricted.</h4>",
 
                 "parameters": [
                     {
@@ -2481,6 +3183,7 @@
                                 },
                                 "examples": {
                                     "Visibility Rule": {
+                                      "value":{
                                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Visibility Rule",
                                         "title": "Visibility Rule Update",
                                         "ruleType": "Visibility Rule",
@@ -2502,6 +3205,26 @@
                                             "otherwise": "hide"
                                         },
                                         "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                      }
+                                    },
+                                    "Visibility Rule Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "visibility": "Field to add 'show' or 'hide' if the 'conditions' are met.",
+                                        "otherwise": "Field to add 'show' or 'hide' if the 'conditions' are not met.",
+                                        "caseInsensitive": "Boolean indication that the string comparisons in the rule should be case insensitive.",
+                                        "conditions": "List of conditions to meet the visibility rule criteria.",
+                                      }
                                     },
                                     "Profiler": {
                                         "value": {
@@ -2539,9 +3262,89 @@
                                             "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
                                             "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
                                         }
+                                    },
+                                    "Profiler Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "profiles" :"List of profiles created. Array of objects.",
+                                        "profileName": "Profile name to be selected if the 'conditions' are met.",
+                                        "conditions" :"List of conditions to meet the Profiler rule criteria.",
+                                        "otherwiseProfile" :"Fall back profile name if none of the conditions for other profiles are not met.",
+                                        "caseInsensitive" :"Boolean indication that the string comparisons in the rule are case insensitive.",
+                                        "stopFirstProfile" :"Boolean indication that the rule returns the first matching profile for the current user."
+                                      }
+                                    },
+                                    "Select Action":{
+                                        "value":{
+                                            "id": "846ced49-cced-473d-b579-8d24f21805bc",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This is Select Action Rule",
+                                            "title": "SelectActionWebContent",
+                                            "ruleType": "Select Action",
+                                            "contents": {
+                                              "select": "Web Content",
+                                              "conditions": {
+                                                "and": [
+                                                  {
+                                                    "propertyType": "fixed",
+                                                    "propertyName": "Location",
+                                                    "value": [
+                                                      {
+                                                        "attributeName": "AcceptLanguage",
+                                                        "attributeType": "BrowserCapability"
+                                                      }
+                                                    ],
+                                                    "operator": "is"
+                                                  },
+                                                  {
+                                                    "propertyType": "dynamic",
+                                                    "propertyName": "Full Text",
+                                                    "value": [
+                                                      "English"
+                                                    ],
+                                                    "operator": "includes"
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-04-08T06:26:34.745Z",
+                                            "publishedOnDate": "2022-04-08T06:34:30.924Z",
+                                            "lastModified": "2022-04-08T07:09:13.265Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    }, 
+                                    "Select Action Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "folderType": "Field to indicate folder type root folder (Workspace) or custom Folder",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "conditions": "List of conditions to meet the select action rule criteria.",
+                                        "select": "Field to indicate type of select action rule.",
+                                      }
                                     }
                                 }
-                            }
+                            },
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns updated rule details for the given rule uuid."
                     },
@@ -2612,7 +3415,7 @@
                         ]
                     }
                 ],
-                "summary": "This end point updates the rule using rule-id, rule-id being the uuid of the rule."
+                "summary": "This endpoint updates the rule using rule-id."
             },
             "delete": {
                 "requestBody": {
@@ -2696,7 +3499,7 @@
                         ]
                     }
                 ],
-                "summary": "To delete a Rule."
+                "summary": "This endpoint deletes a Rule using rule-id."
             },
             "parameters": [
                 {
@@ -2706,7 +3509,7 @@
                         }
                     },
                     "name": "rule-id",
-                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "UUID of rule that needs to be modified.",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "UUID of rule.",
                     "schema": {
                         "type": "string"
                     },
@@ -2756,6 +3559,14 @@
                                             "result": "show"
                                         }
                                     },
+                                    "Visibility Rule Explanation": {
+                                      "value": {
+                                        "ruleId": "Field to indicate rule-id of rule.",
+                                        "title": "Field to indicate title of rule.",
+                                        "ruleType": "Field to indicate type of rule.",
+                                        "result": "Field to indicate result as show/hide after invoking Visibility rule.",
+                                      }
+                                    },
                                     "Profiler": {
                                         "value": {
                                             "ruleId": "d3548bd9-fcf5-49c4-a926-09b6c03d1fbf",
@@ -2766,11 +3577,45 @@
                                                 "Profile2"
                                             ]
                                         }
-                                    }
+                                    },
+                                    "Profiler Explanation":{
+                                      "value":{
+                                        "ruleId": "Field to indicate rule-id of rule.",
+                                        "title": "Field to indicate title of rule.",
+                                        "ruleType": "Field to indicate type of rule.",
+                                        "result": "Field to indicate list of profiles selected as result after invoking profiler rule."
+                                      }
+                                    },
+                                    "Select Action": {
+                                         "value": {
+                                            "ruleId": "0dee1829-beee-4662-aaa1-af0e6c199949",
+                                            "title": "SelectActionWebcontent 2",
+                                            "ruleType": "Select Action",
+                                            "result": [
+                                                {
+                                                    "name": "Sample Article",
+                                                    "type": "Content",
+                                                    "id": "5fd35a20-0436-48fc-9e52-b7c949259e7f"
+                                                }
+                                            ]
+                                        }
+                                     },
+                                     "Select Action Explanation":{
+                                         "value":{
+                                            "ruleId": "Field to indicate rule-id of rule.",
+                                            "title": "Field to indicate title of rule.",
+                                            "ruleType": "Field to indicate type of rule.",
+                                            "result": "Field to indicate list of resources after invoking select action rule.",
+                                            "name": "Field to indicate resource name",
+                                            "type":"Field to indicate type of resource",
+                                            "id":"Field indicate id of the resource"
+                                         }
+
+                                     }
                                 }
-                            }
+                            },
                         },
-                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule result."
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns rule invoke details for the given rule uuid."
                     },
                     "401": {
                         "content": {
@@ -2819,7 +3664,7 @@
                         ]
                     }
                 ],
-                "summary": "To invoke the rule."
+                "summary": "This endpoint invokes the rule using rule-id, rule-id being the uuid of the rule."
             },
             "parameters": [
                 {
@@ -2829,7 +3674,7 @@
                         }
                     },
                     "name": "rule-id",
-                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rule uuid.",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "UUID of rule that needs to be invoked.",
                     "schema": {
                         "type": "string"
                     },
@@ -2859,10 +3704,48 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/IDynamicProperties"
+                                },
+                                "examples": {
+                                  "Response": {
+                                      "Request": {
+                                          "custom Prop1": {
+                                              "displayName": "dateProp",
+                                              "propertyType": "Date"
+                                          }
+                                      },
+                                      "Render Parameter": {
+                                          "custom Prop1": {
+                                              "displayName": "listProp",
+                                              "propertyType": "List"
+                                          },
+                                          "custom Prop2": {
+                                              "displayName": "textProp",
+                                              "propertyType": "Text"
+                                          }
+                                      }
+                                  },
+                                  "Response Structure":{
+                                    "value":{
+                                      "attributeType": {
+                                        "Name": {
+                                          "displayName": "Display Name",
+                                          "propertyType": "attributeName"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "Explanation":{
+                                    "value":{
+                                    "attributeType" : "Field Contains list of dynamic-properties. And indicate under which attribute type it created.",
+                                    "Name": "Field to indicate name of the dynamic-properties.",
+                                    "displayName": "Field to indicate display name of the dynamic-properties",
+                                    "propertyType": "Field to indicate attributeName of the attributeType."
+                                  }
                                 }
-                            }
+                              }
+                            },
                         },
-                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of dynamic properties."
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns List of dynamic properties."
                     },
                     "401": {
                         "content": {
@@ -2901,7 +3784,7 @@
                         ]
                     }
                 ],
-                "summary": "Get the list of dynamic properties."
+                "summary": "This endpoint returns the list of dynamic properties."
             },
             "put": {
                 "requestBody": {
@@ -2909,7 +3792,45 @@
                         "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/IDynamicProperties"
-                            }
+                            },
+                            "examples": {
+                                  "Response": {
+                                      "Request": {
+                                          "custom Prop1": {
+                                              "displayName": "dateProp",
+                                              "propertyType": "Date"
+                                          }
+                                      },
+                                      "Render Parameter": {
+                                          "custom Prop1": {
+                                              "displayName": "listProp",
+                                              "propertyType": "List"
+                                          },
+                                          "custom Prop2": {
+                                              "displayName": "textProp",
+                                              "propertyType": "Text"
+                                          }
+                                      }
+                                  },
+                                  "Response Structure":{
+                                    "value":{
+                                      "attributeType": {
+                                        "Name": {
+                                          "displayName": "Display Name",
+                                          "propertyType": "attributeName"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "Explanation":{
+                                    "value":{
+                                    "attributeType" : "Field Contains list of dynamic-properties. And indicate under which attribute type it created.",
+                                    "Name": "Field to indicate name of the dynamic-properties.",
+                                    "displayName": "Field to indicate display name of the dynamic-properties",
+                                    "propertyType": "Field to indicate attributeName of the attributeType."
+                                  }
+                                }
+                              }
                         }
                     },
                     "required": true
@@ -2933,10 +3854,48 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/IDynamicProperties"
+                                },
+                                "examples": {
+                                  "Response": {
+                                      "Request": {
+                                          "custom Prop1": {
+                                              "displayName": "dateProp",
+                                              "propertyType": "Date"
+                                          }
+                                      },
+                                      "Render Parameter": {
+                                          "custom Prop1": {
+                                              "displayName": "listProp",
+                                              "propertyType": "List"
+                                          },
+                                          "custom Prop2": {
+                                              "displayName": "textProp",
+                                              "propertyType": "Text"
+                                          }
+                                      }
+                                  },
+                                  "Response Structure":{
+                                    "value":{
+                                      "attributeType": {
+                                        "Name": {
+                                          "displayName": "Display Name",
+                                          "propertyType": "attributeName"
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "Explanation":{
+                                    "value":{
+                                    "attributeType" : "Field Contains list of dynamic-properties. And indicate under which attribute type it created.",
+                                    "Name": "Field to indicate name of the dynamic-properties.",
+                                    "displayName": "Field to indicate display name of the dynamic-properties",
+                                    "propertyType": "Field to indicate attributeName of the attributeType."
+                                  }
                                 }
+                              }
                             }
                         },
-                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Dynamic properties."
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns updated dynamic properties."
                     },
                     "400": {
                         "content": {
@@ -2995,7 +3954,7 @@
                         ]
                     }
                 ],
-                "summary": "To update the dynamic properties."
+                "summary": "This endpoint updates the dynamic properties."
             }
         }
     },

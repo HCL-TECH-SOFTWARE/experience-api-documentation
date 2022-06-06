@@ -726,6 +726,14 @@
 							"type": "integer"
 						},
 						"in": "query"
+					},
+					{
+						"name": "templateID",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifying one or more authoring template ids will limit the results to the specified template.  Defaults to all templates.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
 					}
 				],
 				"responses": {
@@ -5863,6 +5871,40 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "libraryID",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifying one or more library ids will limit the results to the specified library.  Defaults to all libraries.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					},
+					{
+						"name": "parentID",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifying one or more parent ids will limit the results to the specified parent(s). Samples of parent IDs are pages or sites. Defaults to all parents.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					},
+					{
+						"name": "offset",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - offset is the starting point from which results will be listed.",
+						"schema": {
+							"type": "integer"
+						},
+						"in": "query"
+					},
+					{
+						"name": "limit",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - limit is the number of results which will be returned.",
+						"schema": {
+							"type": "integer"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -5972,146 +6014,41 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Navigator"
+								"$ref": "#/components/schemas/NavigatorPost"
 							},
 							"examples": {
 								"post-navigator": {
 									"value": {
-										"type": "SiteTemplate",
-										"name": "Camille Marshal",
-										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-											"lang": "some text",
-											"value": "some text"
-										},
 										"title": {
-											"lang": "some text",
-											"value": "some text"
+											"lang": "en",
+											"value": "DX Navigator Name"
 										},
-										"owners": [
-											{
-												"distinguishedName": "Camille Marshal",
-												"uri": "some text",
-												"name": "Camille Marshal",
-												"type": "some text"
-											},
-											{
-												"distinguishedName": "Camille Marshal",
-												"uri": "some text",
-												"name": "Camille Marshal",
-												"type": "some text"
-											}
-										],
-										"authors": [
-											{
-												"distinguishedName": "Camille Marshal",
-												"uri": "some text",
-												"name": "Camille Marshal",
-												"type": "some text"
-											},
-											{
-												"distinguishedName": "Camille Marshal",
-												"uri": "some text",
-												"name": "Camille Marshal",
-												"type": "some text"
-											}
-										],
-										"libraryID": "some text",
-										"parentID": "some text",
-										"projectID": "some text",
-										"siteID": "some text",
+										"name": "DXNavigatorNAME",
+										"type": "LibraryNavigatorComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 										"data": {
-											"footerLayout": "some text",
-											"headerLayout": "some text",
-											"noResultsLayout": "some text",
-											"separatorLayout": "some text",
-											"startType": "CURRENT_CONTENT",
-											"selectedStartArea": "some text",
-											"includeStart": true,
-											"queryStringOverride": true,
-											"queryString": "some text",
-											"ancestorLevel": 76,
-											"descendantLevel": 13,
-											"precedingSiblingsLevel": 36,
-											"postSiblingsLevel": 59,
-											"showSite": true,
-											"showContent": true,
-											"expandCurrent": true,
-											"expandToCurrent": true,
-											"resultsPerPage": 27,
-											"startPage": 18,
-											"maxPages": 30,
-											"readAheadPages": 0
-										},
-										"version": {
-											"originalIdentityReference": "some text",
-											"originalName": "some text",
-											"versionName": "some text",
-											"versionDate": "2018-02-10T09:30Z"
-										},
-										"history": {
-											"entries": [
-												{
-													"date": "Thu, 24 Nov 2011 10:26:26.070Z",
-													"name": "wpsadmin",
-													"message": "some text on what was updated"
-												},
-												{
-													"date": "Thu, 24 Nov 2011 11:44:26.070Z",
-													"name": "wpsadmin",
-													"message": "some text on what was updated"
-												}
-											]
-										},
-										"versions": [
-											{
-												"originalIdentityReference": "some text",
-												"originalName": "some text",
-												"versionName": "some text",
-												"versionDate": "2018-02-10T09:30Z"
-											},
-											{
-												"originalIdentityReference": "some text",
-												"originalName": "some text",
-												"versionName": "some text",
-												"versionDate": "2018-02-10T09:30Z"
-											}
-										],
-										"status": "DRAFT_STATE",
-										"workflow": {
-											"currentStageRef": "some text",
-											"workflowRef": "some text",
-											"publishedRef": "some text",
-											"status": "PUBLISHED_STATE",
-											"approvalRequired": [
-												{
-													"distinguishedName": "Camille Marshal",
-													"uri": "some text",
-													"name": "Camille Marshal",
-													"type": "some text"
-												},
-												{
-													"distinguishedName": "Camille Marshal",
-													"uri": "some text",
-													"name": "Camille Marshal",
-													"type": "some text"
-												}
-											],
-											"approvalReceived": [
-												{
-													"distinguishedName": "Camille Marshal",
-													"uri": "some text",
-													"name": "Camille Marshal",
-													"type": "some text"
-												},
-												{
-													"distinguishedName": "Camille Marshal",
-													"uri": "some text",
-													"name": "Camille Marshal",
-													"type": "some text"
-												}
-											],
-											"projectOverrideEnabled": true,
-											"previousStatus": "NONE_STATE"
+											"footerLayout": "",
+											"headerLayout": "",
+											"noResultsLayout": "",
+											"resultsLayout": "[Placeholder tag=\"namelink\"][Placeholder tag=\"titlelink\"]",
+											"separatorLayout": "",
+											"startType": "SELECTED",
+											"selectedStartArea": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+											"includeStart": "true",
+											"queryStringOverride": "false",
+											"queryString": "",
+											"ancestorLevel": "0",
+											"descendentLevel": "1",
+											"precedingSiblingsLevel": "0",
+											"postSiblingsLevel": "0",
+											"showSite": "false",
+											"showContent": "false",
+											"expandCurrent": "false",
+											"expandToCurrent": "false",
+											"resultsPerPage": "10",
+											"startPage": "1",
+											"maxPages": "10",
+											"readAheadPages": "10"
 										}
 									}
 								}
@@ -6123,12 +6060,27 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "useModel",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If true, the model will be used and the markup ignored. If false, the markup will be used and the model ignored.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"201": {
 						"content": {
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/Navigator"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/NavigatorExample"
+									}
 								}
 							}
 						},
@@ -6225,17 +6177,7 @@
 				},
 				"summary": "Create a new navigator component",
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation provides the ability to create a navigator component.  The id is not expected, passing the id will result in an error bad request.  The id will be generated upon creation."
-			},
-			"parameters": [
-				{
-					"name": "libraryID",
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifying one or more library ids will limit the results to the specified library.  Defaults to all libraries.",
-					"schema": {
-						"type": "string"
-					},
-					"in": "query"
-				}
-			]
+			}
 		},
 		"/component/navigators/{navigator_id}": {
 			"summary": "Manage navigator components.",
@@ -6246,8 +6188,8 @@
 				],
 				"parameters": [
 					{
-						"name": "version",
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The id for the version of the item to return.",
+						"name": "useModel",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If true, the model will be used and the markup ignored. If false, the markup will be used and the model ignored.",
 						"schema": {
 							"type": "string"
 						},
@@ -6260,6 +6202,11 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/Navigator"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/NavigatorExample"
+									}
 								}
 							}
 						},
@@ -6363,7 +6310,45 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Navigator"
+								"$ref": "#/components/schemas/NavigatorPut"
+							},
+							"examples": {
+								"put-navigator": {
+									"value": {
+										"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"title": {
+											"lang": "en",
+											"value": "DX Navigator Name"
+										},
+										"name": "DXNavigatorNAME",
+										"type": "LibraryNavigatorComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"data": {
+											"footerLayout": "",
+											"headerLayout": "",
+											"noResultsLayout": "",
+											"resultsLayout": "[Placeholder tag=\"namelink\"][Placeholder tag=\"titlelink\"]",
+											"separatorLayout": "",
+											"startType": "SELECTED",
+											"selectedStartArea": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+											"includeStart": "true",
+											"queryStringOverride": "false",
+											"queryString": "",
+											"ancestorLevel": "0",
+											"descendentLevel": "1",
+											"precedingSiblingsLevel": "0",
+											"postSiblingsLevel": "0",
+											"showSite": "false",
+											"showContent": "false",
+											"expandCurrent": "false",
+											"expandToCurrent": "false",
+											"resultsPerPage": "10",
+											"startPage": "1",
+											"maxPages": "10",
+											"readAheadPages": "10"
+										}
+									}
+								}
 							}
 						}
 					},
@@ -6372,12 +6357,27 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "useModel",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If true, the model will be used and the markup ignored. If false, the markup will be used and the model ignored.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/Navigator"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/NavigatorExample"
+									}
 								}
 							}
 						},
@@ -6479,16 +6479,6 @@
 				"tags": [
 					"Component"
 				],
-				"parameters": [
-					{
-						"name": "version",
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The ID for the version of the item to delete.",
-						"schema": {
-							"type": "string"
-						},
-						"in": "query"
-					}
-				],
 				"responses": {
 					"204": {
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "navigator component successfully deleted"
@@ -6589,6 +6579,793 @@
 				{
 					"name": "navigator_id",
 					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "navigator component ID",
+					"schema": {
+						"type": "string"
+					},
+					"in": "path",
+					"required": true
+				}
+			]
+		},
+		"/render-info/component/navigators/{navigator_id}": {
+			"summary": "Retrieves a navigator component for rendering.",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Retrieves a navigator component for rendering, using version as a query string to retrieve a specific version.  ",
+			"get": {
+				"tags": [
+					"Render-info"
+				],
+				"parameters": [
+					{
+						"name": "navigator_id",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "navigator component ID",
+						"schema": {
+							"type": "string"
+						},
+						"in": "path",
+						"required": true
+					},
+					{
+						"name": "contextContentPath",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The context path of the site area, content or page being used for rendering - for example: surfcity-surfshop/Surf+Shop/Products The site, content or page could point to either a legacy artifact (site or content) or to a dxContentPage artifact in the case of Design Studio. In Design Studio, both the Site and the Page are represented by a dxContentPage.\n",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query",
+						"required": true
+					}
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Render-navigator"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the navigator component."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Retrieves the navigator component specified by the path parameter.",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Retrieves the navigator component specified by the path parameter.  If the Object is not found or is not a navigator component an error is returned."
+			},
+			"parameters": [
+				{
+					"name": "navigator_id",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "navigator component ID",
+					"schema": {
+						"type": "string"
+					},
+					"in": "path",
+					"required": true
+				},
+				{
+					"examples": {
+						"Surf City Products": {
+							"value": "surfcity-surfshop/Surf+Shop/Products"
+						}
+					},
+					"name": "contextContentPath",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The context path of the site area, content or page being used for rendering - for example: surfcity-surfshop/Surf+Shop/Products The site, content or page could point to either a legacy artifact (site or content) or to a dxContentPage artifact in the case of Design Studio. In Design Studio, both the Site and the Page are represented by a dxContentPage.\n",
+					"schema": {
+						"type": "string"
+					},
+					"in": "query",
+					"required": true
+				}
+			]
+		},
+		"/component/content-spots": {
+			"summary": "Manage content spot components.",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The get method returns a collection of content spot components.  The results can be scoped to specific libraries using the libraryID query string, the default is all libraries.  The post method provides the ability to create a content spot component.",
+			"get": {
+				"tags": [
+					"Component"
+				],
+				"parameters": [
+					{
+						"name": "libraryID",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifying one or more library ids will limit the results to the specified library.  Defaults to all libraries.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					},
+					{
+						"name": "parentID",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifying one or more parent ids will limit the results to the specified parent(s). Samples of parent IDs are pages or sites. Defaults to all parents.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					},
+					{
+						"name": "offset",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - offset is the starting point from which results will be listed.",
+						"schema": {
+							"type": "integer"
+						},
+						"in": "query"
+					},
+					{
+						"name": "limit",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - limit is the number of results which will be returned.",
+						"schema": {
+							"type": "integer"
+						},
+						"in": "query"
+					}
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-content-spot-collection"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns a collection of content spot components."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"409": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"409-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "DUPLICATE_ITEM_FOUND_0",
+														"lang": "en",
+														"text": "Save failed. An item with this name at this path already exists. Change the name or path of this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Duplicate item"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Gets all the content-spot components for the library",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation allows the caller to retrieve the content spot components.  The libraryID parameter limits the results scope to one or more libraries.  "
+			},
+			"post": {
+				"requestBody": {
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The content spot component to be created.  Id should not be passed it is generated, passing ID is a bad request.",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Content-spot"
+							},
+							"examples": {
+								"post-content-spot": {
+									"value": {
+										"type": "LibraryPersonalizationComponent",
+										"name": "some component name",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+											"lang": "some text",
+											"value": "some text"
+										},
+										"title": {
+											"lang": "some text",
+											"value": "some text"
+										},
+										"parentID": "some text",
+										"data": {
+											"footerLayout": "some text",
+											"headerLayout": "some text",
+											"noResultsLayout": "some text",
+											"resultsLayout": "some text",
+											"separatorLayout": "some text",
+											"resultsPerPage": 80,
+											"startPage": 0,
+											"maxPages": 77,
+											"embeddedRuleID": "some text"
+										}
+									}
+								}
+							}
+						}
+					},
+					"required": true
+				},
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"201": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Content-spot"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the newly created content spot component."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"409": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"409-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "DUPLICATE_ITEM_FOUND_0",
+														"lang": "en",
+														"text": "Save failed. An item with this name at this path already exists. Change the name or path of this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Duplicate item"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Create a new content-spot component",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation provides the ability to create a content spot component.  The id is not expected, passing the id will result in an error bad request.  The id will be generated upon creation."
+			}
+		},
+		"/component/content-spots/{content_spot_id}": {
+			"summary": "Manage content spot components.",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Methods include get to retrieve a content spot component.  Put to update a content spot component, delete to delete a content spot component.",
+			"get": {
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Content-spot"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the content spot component."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Retrieves the content spot component specified by the path parameter.",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Retrieves the content spot component specified by the path parameter. If the Object is not found or is not a content spot component an error is returned."
+			},
+			"put": {
+				"requestBody": {
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The updated content spot component.",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Content-spot"
+							}
+						}
+					},
+					"required": true
+				},
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Content-spot"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The resulting, persisted content spot component."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Update the Content-spot component",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Updates the content spot component specified by the path parameter.  If the Object is not found or is not a content spot component an error is returned."
+			},
+			"delete": {
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"204": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content-spot component successfully deleted"
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Delete Content-spot component",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Deletes the content spot component specified by the path parameter. If the Object is not found or is not a content spot component an error is returned"
+			},
+			"parameters": [
+				{
+					"name": "content_spot_id",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "content-spot component ID",
 					"schema": {
 						"type": "string"
 					},
@@ -14549,50 +15326,108 @@
 				],
 				"example": {
 					"id": "some text",
-					"type": "SiteTemplate",
-					"name": "Camille Marshal",
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-						"lang": "some text",
-						"value": "some text"
-					},
 					"title": {
-						"lang": "some text",
+						"lang": "en",
 						"value": "some text"
 					},
-					"owners": [
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						},
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						}
-					],
-					"authors": [
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						},
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						}
-					],
+					"displayTitle": {
+						"lang": "en",
+						"value": "some text"
+					},
+					"titleTextProviderName": "some text",
+					"titleTextProviderKey": "some text",
+					"name": "some text",
+					"type": "LibraryMenuComponent",
+					"created": "some text",
+					"lastModifier": {
+						"distinguishedName": "Camille Marshal",
+						"uri": "some text",
+						"name": "some text",
+						"type": "some text"
+					},
+					"creator": {
+						"distinguishedName": "Camille Marshal",
+						"uri": "some text",
+						"name": "some text",
+						"type": "some text"
+					},
+					"lastModified": "some text",
 					"libraryID": "some text",
 					"parentID": "some text",
-					"projectID": "some text",
-					"siteID": "some text",
+					"links": [
+						{
+							"rel": "self",
+							"href": "some text",
+							"lang": "en",
+							"label": "Read"
+						},
+						{
+							"rel": "edit",
+							"href": "some text",
+							"lang": "en",
+							"label": "Edit"
+						},
+						{
+							"rel": "delete",
+							"href": "some text",
+							"lang": "en",
+							"label": "Delete"
+						}
+					],
 					"data": {
-						"results": "some text"
+						"total": "1",
+						"results": [
+							{
+								"id": "some text",
+								"title": {
+									"lang": "en",
+									"value": "some text"
+								},
+								"displayTitle": {
+									"lang": "en",
+									"value": "some text"
+								},
+								"name": "some text",
+								"type": "some text",
+								"lastModifier": {
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "some text",
+									"type": "some text"
+								},
+								"links": [
+									{
+										"rel": "edit",
+										"href": "some text",
+										"lang": "en",
+										"label": "Edit"
+									},
+									{
+										"rel": "alternate",
+										"href": "some text",
+										"lang": "en",
+										"label": "Read"
+									},
+									{
+										"rel": "library",
+										"href": "some text",
+										"lang": "en",
+										"label": "Library"
+									},
+									{
+										"rel": "preview",
+										"href": "some text",
+										"lang": "en",
+										"label": "Preview"
+									}
+								]
+							}
+						],
+						"footerLayout": "some text",
+						"headerLayout": "some text",
+						"noResultsLayout": "some text",
+						"resultsLayout": "some text",
+						"separatorLayout": "some text"
 					}
 				}
 			},
@@ -14792,6 +15627,11 @@
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
 				"type": "object",
 				"properties": {
+					"total": {
+						"format": "int32",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The total number of items that could be returned from this menu",
+						"type": "integer"
+					},
 					"results": {
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Results from executing the menu",
 						"type": "string"
@@ -14805,11 +15645,11 @@
 				"allOf": [
 					{
 						"required": [
-							"entries"
+							"navigator-entries"
 						],
 						"type": "object",
 						"properties": {
-							"entries": {
+							"navigator-entries": {
 								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The collection of navigator components.",
 								"type": "array",
 								"items": {
@@ -14829,148 +15669,81 @@
 					"links": [
 						{
 							"rel": "next",
-							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/libraries?offset=10",
+							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/component/navigators?offset=10",
 							"lang": "en"
 						}
 					],
-					"entries": [
+					"navigator-entries": [
 						{
-							"id": "some text",
-							"type": "SiteTemplate",
-							"name": "Camille Marshal",
-							"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-								"lang": "some text",
-								"value": "some text"
-							},
+							"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"type": "LibraryNavigatorComponent",
+							"created": "Mon, 05 Aug 2019 15:46:42.647Z",
+							"name": "NAVIGATOR-Component",
 							"title": {
-								"lang": "some text",
-								"value": "some text"
+								"lang": "en",
+								"value": "NAVIGATOR-Component"
 							},
 							"owners": [
 								{
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
-								},
-								{
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
+									"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+									"uri": "/wps/mycontenthandler/!ut/p/digest!wMNL9boqEZYpfBFjwHWSBg/um/users/profiles/Z9eAeG9ECJS47K1D8JMK6KHD4MMG6N1D4JM07IPOEJMK6GHD2MRGCNHDCMRS6M1",
+									"name": "wpsadmin",
+									"type": "USER"
 								}
 							],
 							"authors": [
 								{
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
-								},
-								{
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
+									"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+									"uri": "/wps/mycontenthandler/!ut/p/digest!wMNL9boqEZYpfBFjwHWSBg/um/users/profiles/Z9eAeG9ECJS47K1D8JMK6KHD4MMG6N1D4JM07IPOEJMK6GHD2MRGCNHDCMRS6M1",
+									"name": "wpsadmin",
+									"type": "USER"
 								}
 							],
-							"libraryID": "some text",
-							"parentID": "some text",
-							"projectID": "some text",
-							"siteID": "some text",
-							"data": {
-								"footerLayout": "some text",
-								"headerLayout": "some text",
-								"noResultsLayout": "some text",
-								"separatorLayout": "some text",
-								"startType": "CURRENT_CONTENT",
-								"selectedStartArea": "some text",
-								"includeStart": true,
-								"queryStringOverride": true,
-								"queryString": "some text",
-								"ancestorLevel": 76,
-								"descendantLevel": 13,
-								"precedingSiblingsLevel": 36,
-								"postSiblingsLevel": 59,
-								"showSite": true,
-								"showContent": true,
-								"expandCurrent": true,
-								"expandToCurrent": true,
-								"resultsPerPage": 27,
-								"startPage": 18,
-								"maxPages": 30,
-								"readAheadPages": 0
-							},
-							"version": {
-								"originalIdentityReference": "some text",
-								"originalName": "some text",
-								"versionName": "some text",
-								"versionDate": "2018-02-10T09:30Z"
-							},
+							"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 							"history": {
 								"entries": [
 									{
-										"date": "Thu, 24 Nov 2011 10:26:26.070Z",
+										"date": "Thu, 24 Nov 2019 10:26:26.070Z",
 										"name": "wpsadmin",
 										"message": "some text on what was updated"
 									},
 									{
-										"date": "Thu, 24 Nov 2011 11:44:26.070Z",
+										"date": "Thu, 24 Nov 2019 11:44:26.070Z",
 										"name": "wpsadmin",
 										"message": "some text on what was updated"
 									}
 								]
 							},
-							"versions": [
-								{
-									"originalIdentityReference": "some text",
-									"originalName": "some text",
-									"versionName": "some text",
-									"versionDate": "2018-02-10T09:30Z"
-								},
-								{
-									"originalIdentityReference": "some text",
-									"originalName": "some text",
-									"versionName": "some text",
-									"versionDate": "2018-02-10T09:30Z"
-								}
-							],
-							"status": "DRAFT_STATE",
-							"workflow": {
-								"currentStageRef": "some text",
-								"workflowRef": "some text",
-								"publishedRef": "some text",
-								"status": "PUBLISHED_STATE",
-								"approvalRequired": [
-									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									},
-									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									}
-								],
-								"approvalReceived": [
-									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									},
-									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									}
-								],
-								"projectOverrideEnabled": true,
-								"previousStatus": "NONE_STATE"
+							"profile": {},
+							"status": "PUBLISHED",
+							"lastModified": "Mon, 05 Aug 2019 16:43:13.111Z",
+							"lock": {
+								"isLocked": "false"
+							},
+							"data": {
+								"footerLayout": "",
+								"headerLayout": "",
+								"noResultsLayout": "<span>No results</span>",
+								"resultsLayout": "[Placeholder tag=\"namelink\"]",
+								"separatorLayout": "",
+								"startType": "SELECTED",
+								"selectedStartArea": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+								"includeStart": true,
+								"queryStringOverride": false,
+								"queryString": "",
+								"ancestorLevel": 0,
+								"descendantLevel": 7,
+								"precedingSiblingsLevel": 0,
+								"postSiblingsLevel": 0,
+								"showSite": true,
+								"showContent": false,
+								"expandCurrent": true,
+								"expandToCurrent": true,
+								"resultsPerPage": 25,
+								"startPage": 1,
+								"maxPages": 30,
+								"readAheadPages": 10
 							}
 						}
 					]
@@ -15229,7 +16002,780 @@
 				}
 			},
 			"-navigator-data": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The properties found in the data section for a Navigator component.",
+				"type": "object",
+				"properties": {
+					"footerLayout": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The markup used to display a footer. If Design Studio is enabled, markup or model information can be used.",
+						"type": "string"
+					},
+					"headerLayout": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The markup used to display a header. If Design Studio is enabled, markup or model information can be used.",
+						"type": "string"
+					},
+					"noResultsLayout": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The markup used when there are no results to display. If Design Studio is enabled, markup or model information can be used.",
+						"type": "string"
+					},
+					"resultsLayout": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The markup used to display results.If Design Studio is enabled, markup or model information can be used.",
+						"type": "string"
+					},
+					"separatorLayout": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The markup used to display a separator between results. If Design Studio is enabled, markup or model information can be used.",
+						"type": "string"
+					},
+					"startType": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The start type defines which site area is used as the initial reference point for this navigator to calculate the output rendering. Ancestors, descendants, and siblings are determined from this point in the site framework. If Design Studio is enabled, SELECTED, CURRENT_TOP_LEVEL_SITE_AREA, and CURRENT_SITE_AREA can be used when working with content-sites and content-pages (ignore the legacy naming convention that refers to site areas). SELECTED mode can be used to specify the ID of a content-site or content-page as the start point. CURRENT_TOP_LEVEL_SITE_AREA mode is an absolute setting that automatically uses the top content-site as the initial reference point. CURRENT_SITE_AREA mode is a relative setting that calculates the navigator output based on the currently rendered content-page as the initial reference point.",
+						"enum": [
+							"CURRENT_TOP_LEVEL_SITE_AREA",
+							"CURRENT_CONTENT",
+							"CURRENT_SITE_AREA",
+							"SELECTED",
+							"PORTAL_CONTEXT",
+							"PORTAL_MAPPING",
+							"QUERY"
+						],
+						"type": "string"
+					},
+					"selectedStartArea": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The selected start area is used in conjunction with a SELECTED start type. It defines which site area is used as the intial reference point for this navigator. It is used to specify the id of a site-area. If Design Studio is enabled, SELECTED mode can be used to specify the ID of a content-site or content-page as the start point.",
+						"type": "string"
+					},
+					"includeStart": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifies if the initial reference point should be included in the results.",
+						"type": "boolean"
+					},
+					"queryStringOverride": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+						"type": "boolean"
+					},
+					"queryString": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+						"type": "string"
+					},
+					"ancestorLevel": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifies depth level of ancestors. Maps to level of parents. A value of -1 indicates to use all ancestors.",
+						"type": "integer"
+					},
+					"descendantLevel": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifies depth level of descendants. Maps to level of children. A value of -1 indicates to use all descendants.",
+						"type": "integer"
+					},
+					"precedingSiblingsLevel": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifies depth level of siblings preceding the initial reference point. A value of -1 indicates to use all the preceding siblings. A value of -2 indicates to use the first preceding sibling.",
+						"type": "integer"
+					},
+					"postSiblingsLevel": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifies depth level of siblings following the initial reference point. A value of -1 indicates to use all the next siblings. A value of -2 indicates to use the last post sibling.",
+						"type": "integer"
+					},
+					"showSite": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Show Top Level Site Area",
+						"type": "boolean"
+					},
+					"showContent": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Show content. If Design Studio is enabled with a SELECTED start type and a content-site/content-page id specified for selectedStartArea, this value will always be false.",
+						"type": "boolean"
+					},
+					"expandCurrent": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Expand current navigator branch one level",
+						"type": "boolean"
+					},
+					"expandToCurrent": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Expand navigator to display current site area",
+						"type": "boolean"
+					},
+					"resultsPerPage": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This determines the maximum number of results displayed at one time.",
+						"type": "integer"
+					},
+					"startPage": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The page result that you want to display first. For example, you can display the second page result first if you type 2 in this field.",
+						"type": "integer"
+					},
+					"maxPages": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Maximum number of result pages",
+						"type": "integer"
+					},
+					"readAheadPages": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Pages to read ahead. If you type 3, the page navigation component calculates results up to three pages ahead of the current page. Increasing this number improves the accuracy of the page navigation component. Lowering this number improves the performance of the page navigation component when rendered.",
+						"type": "integer"
+					}
+				},
+				"example": {
+					"footerLayout": "[DxContainer id=\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"]",
+					"headerLayout": "[DxContainer id=\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"]",
+					"noResultsLayout": "<span>This is the noresults!</span>",
+					"resultsLayout": "[DxContainer id=\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"]",
+					"separatorLayout": "<span>This is the separator!</span>",
+					"startType": "SELECTED",
+					"selectedStartArea": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"includeStart": true,
+					"queryStringOverride": false,
+					"queryString": "",
+					"ancestorLevel": 2,
+					"descendantLevel": 13,
+					"precedingSiblingsLevel": 3,
+					"postSiblingsLevel": 5,
+					"showSite": true,
+					"showContent": false,
+					"expandCurrent": true,
+					"expandToCurrent": true,
+					"resultsPerPage": 27,
+					"startPage": 18,
+					"maxPages": 30,
+					"readAheadPages": 5
+				}
+			},
+			"NavigatorPost": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Navigator component creation",
+				"type": "object",
+				"allOf": [
+					{
+						"type": "object"
+					},
+					{
+						"$ref": "#/components/schemas/-NavigatorPost"
+					}
+				]
+			},
+			"-NavigatorPost": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A navigator component POST body",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"name",
+							"type",
+							"libraryID",
+							"data"
+						],
+						"type": "object",
+						"properties": {
+							"title": {
+								"$ref": "#/components/schemas/-title"
+							},
+							"name": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The name of the requested item",
+								"type": "string"
+							},
+							"type": {
+								"$ref": "#/components/schemas/-type"
+							},
+							"libraryID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The id of the library containing the item.",
+								"type": "string"
+							},
+							"data": {
+								"$ref": "#/components/schemas/-navigator-data"
+							}
+						}
+					}
+				]
+			},
+			"NavigatorPut": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Navigator component update",
+				"type": "object",
+				"allOf": [
+					{
+						"type": "object"
+					},
+					{
+						"$ref": "#/components/schemas/-NavigatorPut"
+					}
+				]
+			},
+			"-NavigatorPut": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A navigator component PUT body",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"id",
+							"name",
+							"type",
+							"libraryID",
+							"data"
+						],
+						"type": "object",
+						"properties": {
+							"id": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The id of the item.",
+								"type": "string"
+							},
+							"title": {
+								"$ref": "#/components/schemas/-title"
+							},
+							"name": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The name of the requested item",
+								"type": "string"
+							},
+							"type": {
+								"$ref": "#/components/schemas/-type"
+							},
+							"libraryID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The id of the library containing the item.",
+								"type": "string"
+							},
+							"data": {
+								"$ref": "#/components/schemas/-navigator-data"
+							}
+						}
+					}
+				]
+			},
+			"Render-navigator": {
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"data"
+						],
+						"type": "object",
+						"properties": {
+							"data": {
+								"$ref": "#/components/schemas/-navigator-render-data",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "navigator results"
+							}
+						}
+					},
+					{
+						"$ref": "#/components/schemas/_Identity_Info"
+					}
+				],
+				"example": {
+					"id": "some text",
+					"title": {
+						"lang": "some text",
+						"value": "some text"
+					},
+					"name": "some text",
+					"type": "LibraryNavigatorComponent",
+					"created": "some text",
+					"lastModifier": {
+						"distinguishedName": "Camille Marshal",
+						"uri": "some text",
+						"type": "USER"
+					},
+					"creator": {
+						"distinguishedName": "Camille Marshal",
+						"uri": "some text",
+						"name": "some text",
+						"type": "USER"
+					},
+					"lastModified": "some text",
+					"libraryID": "some text",
+					"parentID": "some text",
+					"links": [
+						{
+							"rel": "self",
+							"href": "some text",
+							"lang": "en",
+							"label": "Read"
+						},
+						{
+							"rel": "edit",
+							"href": "some text",
+							"lang": "en",
+							"label": "Edit"
+						},
+						{
+							"rel": "delete",
+							"href": "some text",
+							"lang": "en",
+							"label": "Delete"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "some text",
+							"type": "some text"
+						}
+					],
+					"owners": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "some text",
+							"type": "some text"
+						}
+					],
+					"data": {
+						"total": "1",
+						"results": [
+							{
+								"id": "some text",
+								"title": {
+									"lang": "en",
+									"value": "some text"
+								},
+								"displayTitle": {
+									"lang": "en",
+									"value": "some text"
+								},
+								"name": "some text",
+								"type": "some text",
+								"lastModifier": {
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "some text",
+									"type": "USER"
+								},
+								"links": [
+									{
+										"rel": "edit",
+										"href": "some text",
+										"lang": "en",
+										"label": "Edit"
+									},
+									{
+										"rel": "alternate",
+										"href": "some text",
+										"lang": "en",
+										"label": "Read"
+									},
+									{
+										"rel": "library",
+										"href": "some text",
+										"lang": "en",
+										"label": "Library"
+									},
+									{
+										"rel": "preview",
+										"href": "some text",
+										"label": "Preview"
+									}
+								]
+							}
+						],
+						"footerLayout": "some text",
+						"headerLayout": "some text",
+						"noResultsLayout": "some text",
+						"resultsLayout": "some text",
+						"separatorLayout": "some text"
+					}
+				}
+			},
+			"-navigator-render-data": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"properties": {
+					"total": {
+						"format": "int32",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The total number of items that could be returned from this navigator",
+						"type": "integer"
+					},
+					"results": {
+						"$ref": "#/components/schemas/_Identity_Info",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+						"type": "array"
+					}
+				}
+			},
+			"-content-spot-collection": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"entries"
+						],
+						"type": "object",
+						"properties": {
+							"entries": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The collection of content-spots",
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/Content-spot"
+								}
+							}
+						}
+					},
+					{
+						"$ref": "#/components/schemas/_Collection_Base"
+					}
+				],
+				"example": {
+					"offset": 20,
+					"limit": 20,
+					"total": 99,
+					"links": [
+						{
+							"rel": "next",
+							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/libraries?offset=10",
+							"lang": "en"
+						}
+					],
+					"entries": [
+						{
+							"id": "some text",
+							"type": "SiteTemplate",
+							"name": "Camille Marshal",
+							"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+								"lang": "some text",
+								"value": "some text"
+							},
+							"title": {
+								"lang": "some text",
+								"value": "some text"
+							},
+							"owners": [
+								{
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
+								},
+								{
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
+								}
+							],
+							"authors": [
+								{
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
+								},
+								{
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
+								}
+							],
+							"libraryID": "some text",
+							"parentID": "some text",
+							"projectID": "some text",
+							"siteID": "some text",
+							"data": {
+								"footerLayout": "some text",
+								"headerLayout": "some text",
+								"noResultsLayout": "some text",
+								"resultsLayout": "some text",
+								"embeddedRuleID": "some text",
+								"separatorLayout": "some text",
+								"resultsPerPage": 80,
+								"startPage": 7,
+								"maxPages": 77
+							},
+							"listPresentation": "some text",
+							"version": {
+								"originalIdentityReference": "some text",
+								"originalName": "some text",
+								"versionName": "some text",
+								"versionDate": "2018-02-10T09:30Z",
+								"history": {
+									"created": "2018-01-17",
+									"lastModified": "Jan 01, 2021 12:00 PM",
+									"creator": {
+										"distinguishedName": "Camille Marshal",
+										"uri": "some text",
+										"name": "Camille Marshal",
+										"type": "some text"
+									},
+									"lastModifier": {
+										"distinguishedName": "Camille Marshal",
+										"uri": "some text",
+										"name": "Camille Marshal",
+										"type": "some text"
+									},
+									"entries": [
+										{
+											"date": "Thu, 24 Nov 2011 10:26:26.070Z",
+											"name": "wpsadmin",
+											"message": "some text on what was updated"
+										},
+										{
+											"date": "Thu, 24 Nov 2011 11:44:26.070Z",
+											"name": "wpsadmin",
+											"message": "some text on what was updated"
+										}
+									]
+								}
+							},
+							"versions": [
+								{
+									"originalIdentityReference": "some text",
+									"originalName": "some text",
+									"versionName": "some text",
+									"versionDate": "2018-02-10T09:30Z"
+								},
+								{
+									"originalIdentityReference": "some text",
+									"originalName": "some text",
+									"versionName": "some text",
+									"versionDate": "2018-02-10T09:30Z"
+								}
+							],
+							"status": "DRAFT_STATE",
+							"workflow": {
+								"currentStageRef": "some text",
+								"workflowRef": "some text",
+								"publishedRef": "some text",
+								"status": "PUBLISHED_STATE",
+								"approvalRequired": [
+									{
+										"distinguishedName": "Camille Marshal",
+										"uri": "some text",
+										"name": "Camille Marshal",
+										"type": "some text"
+									},
+									{
+										"distinguishedName": "Camille Marshal",
+										"uri": "some text",
+										"name": "Camille Marshal",
+										"type": "some text"
+									}
+								],
+								"approvalReceived": [
+									{
+										"distinguishedName": "Camille Marshal",
+										"uri": "some text",
+										"name": "Camille Marshal",
+										"type": "some text"
+									},
+									{
+										"distinguishedName": "Camille Marshal",
+										"uri": "some text",
+										"name": "Camille Marshal",
+										"type": "some text"
+									}
+								],
+								"projectOverrideEnabled": true,
+								"previousStatus": "NONE_STATE"
+							}
+						}
+					]
+				}
+			},
+			"Content-spot": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ContentSpot",
+				"type": "object",
+				"allOf": [
+					{
+						"type": "object"
+					},
+					{
+						"$ref": "#/components/schemas/_WCM_Object"
+					},
+					{
+						"$ref": "#/components/schemas/-Content-spot"
+					}
+				],
+				"example": {
+					"id": "some text",
+					"type": "SiteTemplate",
+					"name": "Camille Marshal",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"lang": "some text",
+						"value": "some text"
+					},
+					"title": {
+						"lang": "some text",
+						"value": "some text"
+					},
+					"owners": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						},
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						},
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						}
+					],
+					"libraryID": "some text",
+					"parentID": "some text",
+					"projectID": "some text",
+					"siteID": "some text",
+					"version": {
+						"originalIdentityReference": "some text",
+						"originalName": "some text",
+						"versionName": "some text",
+						"versionDate": "2018-02-10T09:30Z"
+					},
+					"history": {
+						"entries": [
+							{
+								"date": "Thu, 24 Nov 2011 10:26:26.070Z",
+								"name": "wpsadmin",
+								"message": "some text on what was updated"
+							},
+							{
+								"date": "Thu, 24 Nov 2011 11:44:26.070Z",
+								"name": "wpsadmin",
+								"message": "some text on what was updated"
+							}
+						]
+					},
+					"versions": [
+						{
+							"originalIdentityReference": "some text",
+							"originalName": "some text",
+							"versionName": "some text",
+							"versionDate": "2018-02-10T09:30Z"
+						},
+						{
+							"originalIdentityReference": "some text",
+							"originalName": "some text",
+							"versionName": "some text",
+							"versionDate": "2018-02-10T09:30Z"
+						}
+					],
+					"status": "DRAFT_STATE",
+					"lock": {
+						"isLocked": "true",
+						"owner": {
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!W4anYoPl9HYff99krM15wA/um/users/profiles/Z9eAeN9OGJS07K1CIJMG6JHCAJMG6K1DEJM8CO1DCJMG643EAMS86O1PCJHLCO1",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					},
+					"workflow": {
+						"currentStageRef": "some text",
+						"workflowRef": "some text",
+						"publishedRef": "some text",
+						"status": "PUBLISHED_STATE",
+						"approvalRequired": [
+							{
+								"distinguishedName": "Camille Marshal",
+								"uri": "some text",
+								"name": "Camille Marshal",
+								"type": "some text"
+							},
+							{
+								"distinguishedName": "Camille Marshal",
+								"uri": "some text",
+								"name": "Camille Marshal",
+								"type": "some text"
+							}
+						],
+						"approvalReceived": [
+							{
+								"distinguishedName": "Camille Marshal",
+								"uri": "some text",
+								"name": "Camille Marshal",
+								"type": "some text"
+							},
+							{
+								"distinguishedName": "Camille Marshal",
+								"uri": "some text",
+								"name": "Camille Marshal",
+								"type": "some text"
+							}
+						],
+						"projectOverrideEnabled": true,
+						"previousStatus": "NONE_STATE"
+					}
+				}
+			},
+			"-Content-spot": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"data"
+						],
+						"type": "object",
+						"properties": {
+							"data": {
+								"$ref": "#/components/schemas/-content-spot-data",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The data associated to and defining the content spot."
+							}
+						}
+					},
+					{
+						"$ref": "#/components/schemas/_Identity_Info"
+					}
+				],
+				"example": {
+					"id": "some text",
+					"type": "SiteTemplate",
+					"name": "Camille Marshal",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"lang": "some text",
+						"value": "some text"
+					},
+					"title": {
+						"lang": "some text",
+						"value": "some text"
+					},
+					"owners": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						},
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						},
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						}
+					],
+					"libraryID": "some text",
+					"parentID": "some text",
+					"projectID": "some text",
+					"siteID": "some text",
+					"data": {
+						"footerLayout": "some text",
+						"headerLayout": "some text",
+						"noResultsLayout": "some text",
+						"resultsLayout": "some text",
+						"separatorLayout": "some text",
+						"resultsPerPage": 80,
+						"startPage": 7,
+						"maxPages": 77,
+						"embeddedRuleID": "some text",
+						"listPresentation": "some text"
+					}
+				}
+			},
+			"-content-spot-data": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Data associated to a content spot.",
 				"type": "object",
 				"properties": {
 					"footerLayout": {
@@ -15244,67 +16790,13 @@
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
 						"type": "string"
 					},
+					"resultsLayout": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+						"type": "string"
+					},
 					"separatorLayout": {
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
 						"type": "string"
-					},
-					"startType": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
-						"enum": [
-							"CURRENT_TOP_LEVEL_SITE_AREA",
-							"CURRENT_CONTENT",
-							"CURRENT_SITE_AREA",
-							"SELECTED",
-							"PORTAL_CONTEXT",
-							"PORTAL_MAPPING",
-							"QUERY",
-							""
-						],
-						"type": "string"
-					},
-					"includeStart": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
-						"type": "boolean"
-					},
-					"queryStringOverride": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
-						"type": "boolean"
-					},
-					"queryString": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
-						"type": "string"
-					},
-					"ancestorLevel": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
-						"type": "integer"
-					},
-					"descendantLevel": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "maps to childLevel",
-						"type": "integer"
-					},
-					"precedingSiblingsLevel": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
-						"type": "integer"
-					},
-					"postSiblingsLevel": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
-						"type": "integer"
-					},
-					"showSite": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Show Top Level Site Area",
-						"type": "boolean"
-					},
-					"showContent": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Show Content",
-						"type": "boolean"
-					},
-					"expandCurrent": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Expand current navigator branch one level",
-						"type": "boolean"
-					},
-					"expandToCurrent": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Expand navigator to display current site area",
-						"type": "boolean"
 					},
 					"resultsPerPage": {
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
@@ -15315,15 +16807,15 @@
 						"type": "integer"
 					},
 					"maxPages": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Maximum number of result pages",
-						"type": "integer"
-					},
-					"readAheadPages": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Pages to read ahead.  ",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
 						"type": "integer"
 					},
 					"listPresentation": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List presentation id ",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+						"type": "string"
+					},
+					"embeddedRuleID": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
 						"type": "string"
 					}
 				},
@@ -15331,24 +16823,13 @@
 					"footerLayout": "some text",
 					"headerLayout": "some text",
 					"noResultsLayout": "some text",
+					"resultsLayout": "some text",
+					"embeddedRuleID": "some text",
 					"separatorLayout": "some text",
-					"startType": "CURRENT_CONTENT",
-					"selectedStartArea": "some text",
-					"includeStart": true,
-					"queryStringOverride": true,
-					"queryString": "some text",
-					"ancestorLevel": 76,
-					"descendantLevel": 13,
-					"precedingSiblingsLevel": 36,
-					"postSiblingsLevel": 59,
-					"showSite": true,
-					"showContent": true,
-					"expandCurrent": true,
-					"expandToCurrent": true,
-					"resultsPerPage": 27,
-					"startPage": 18,
-					"maxPages": 30,
-					"readAheadPages": 0
+					"resultsPerPage": 80,
+					"startPage": 7,
+					"maxPages": 77,
+					"listPresentation": "some text"
 				}
 			},
 			"-search-collection": {
@@ -20160,6 +21641,107 @@
 						"startPage": "3",
 						"maxPages": "50",
 						"readAheadPages": "20"
+					}
+				}
+			},
+			"NavigatorExample": {
+				"summary": "Example Component Navigator",
+				"value": {
+					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"title": {
+						"lang": "en",
+						"value": "NAVIGATOR-Component"
+					},
+					"name": "NAVIGATOR-Component",
+					"type": "LibraryNavigatorComponent",
+					"created": "Tue, 15 April 2022 17:58:28.325Z",
+					"lastModifier": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!ct4_b6zkUOMsxGOb-7-udQ/um/users/profiles/Z9eAeG1CCMI9CP9OCJMO643PAJMG623PEJM4C6BE6JMK63JO83JPCIHDC6Q0713",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"creator": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!ct4_b6zkUOMsxGOb-7-udQ/um/users/profiles/Z9eAeG1CCMI9CP9OCJMO643PAJMG623PEJM4C6BE6JMK63JO83JPCIHDC6Q0713",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"status": "PUBLISHED",
+					"lastModified": "Tue, 25 May 2022 17:58:28.325Z",
+					"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"lock": {
+						"isLocked": "false"
+					},
+					"history": {
+						"entries": [
+							{
+								"date": "Tue, 25 May 2021 17:58:28.325Z",
+								"name": "wpsadmin",
+								"message": "Document created by wpsadmin"
+							}
+						]
+					},
+					"links": [
+						{
+							"rel": "self",
+							"href": "/wps/mycontenthandler/!ut/p/digest!ct4_b6zkUOMsxGOb-7-udQ/wcmrest-v2/component/menus/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Read"
+						},
+						{
+							"rel": "edit",
+							"href": "/wps/mycontenthandler/!ut/p/digest!ct4_b6zkUOMsxGOb-7-udQ/wcmrest-v2/component/menus/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Edit"
+						},
+						{
+							"rel": "delete",
+							"href": "/wps/mycontenthandler/!ut/p/digest!ct4_b6zkUOMsxGOb-7-udQ/wcmrest-v2/component/menus/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Delete"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!ct4_b6zkUOMsxGOb-7-udQ/um/users/profiles/Z9eAeG1CCMI9CP9OCJMO643PAJMG623PEJM4C6BE6JMK63JO83JPCIHDC6Q0713",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					],
+					"owners": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!ct4_b6zkUOMsxGOb-7-udQ/um/users/profiles/Z9eAeG1CCMI9CP9OCJMO643PAJMG623PEJM4C6BE6JMK63JO83JPCIHDC6Q0713",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					],
+					"data": {
+						"footerLayout": "[DxContainer id=\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"]",
+						"headerLayout": "[DxContainer id=\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"]",
+						"noResultsLayout": "<span>This is the noresults!</span>",
+						"resultsLayout": "[DxContainer id=\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"]",
+						"separatorLayout": "<span>This is the separator!</span>",
+						"startType": "SELECTED",
+						"selectedStartArea": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+						"includeStart": true,
+						"queryStringOverride": false,
+						"queryString": "",
+						"ancestorLevel": 2,
+						"descendantLevel": 13,
+						"precedingSiblingsLevel": 3,
+						"postSiblingsLevel": 5,
+						"showSite": true,
+						"showContent": false,
+						"expandCurrent": true,
+						"expandToCurrent": true,
+						"resultsPerPage": 27,
+						"startPage": 18,
+						"maxPages": 30,
+						"readAheadPages": 5
 					}
 				}
 			},
