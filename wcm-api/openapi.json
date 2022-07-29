@@ -1516,6 +1516,143 @@
 				}
 			]
 		},
+		"/contentsRest/{content_id}": {
+			"summary": "Manage content objects with API configuration including endpoint and HTTP method.",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Methods include get to access dynamic data by retrieving API configuration and sending HTTP request thru Design Studio gateway server",
+			"get": {
+				"tags": [
+					"Content"
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Content"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/APIContentExample"
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the API-configured content with the data response from the HTTP request."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "DATA_CONTAINER_INVALID_API_CONFIG",
+														"lang": "en",
+														"text": "The action failed. Please check API configuration."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					},
+					"503": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"503-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "DATA_CONTAINER_FEATURE_FLAG_NOT_ENABLED",
+														"lang": "en",
+														"text": "The action failed. Data container is currently not supported."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Service unavailable error"
+					}
+				},
+				"summary": "Retrieves the API-configured content specified by the path parameter.",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Retrieves the API-configured content specified by the path parameter. If the object is not found or improperly configured, or the data source is inaccessible, an error is returned."
+			},
+			"parameters": [
+				{
+					"name": "content_id",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "content ID",
+					"schema": {
+						"type": "string"
+					},
+					"in": "path",
+					"required": true
+				}
+			]
+		},
 		"/content-pages": {
 			"summary": "Manage content-page.",
 			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The get method returns a collection of content-page.  The results can be scoped to specific libraries using the libraryID query string, default is all libraries.  The post method provides the ability to create a content page .",
@@ -6896,7 +7033,7 @@
 								"$ref": "#/components/schemas/Content-spot"
 							},
 							"examples": {
-								"post-content-spot": {
+								"Content-spot with default design fields formatting": {
 									"value": {
 										"type": "LibraryPersonalizationComponent",
 										"name": "some component name",
@@ -6921,6 +7058,25 @@
 											"embeddedRuleID": "some text"
 										}
 									}
+								},
+								"Content-spot with list presentation formatting": {
+									"value": {
+										"type": "LibraryPersonalizationComponent",
+										"name": "some component name",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+											"lang": "some text",
+											"value": "some text"
+										},
+										"title": {
+											"lang": "some text",
+											"value": "some text"
+										},
+										"parentID": "some text",
+										"data": {
+											"listPresentation": "some text",
+											"embeddedRuleID": "some text"
+										}
+									}
 								}
 							}
 						}
@@ -6936,6 +7092,213 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/Content-spot"
+								},
+								"examples": {
+									"Content-spot with default design fields formatting": {
+										"value": {
+											"id": "some text",
+											"type": "LibraryPersonalizationComponent",
+											"name": "some text",
+											"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"title": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"owners": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"authors": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"profile": {},
+											"link": [
+												{
+													"rel": "self",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Read"
+												},
+												{
+													"rel": "edit",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Edit"
+												},
+												{
+													"rel": "delete",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Delete"
+												}
+											],
+											"status": "DRAFT",
+											"lastModified": "Fri, 01 Jul 2022 07:33:18.821Z",
+											"libraryID": "some text",
+											"parentID": "some text",
+											"lock": {
+												"isLocked": "false"
+											},
+											"history": {
+												"entries": [
+													{
+														"date": "Fri, 01 Jul 2022 07:33:18.821Z",
+														"name": "some text",
+														"message": "some text"
+													}
+												]
+											},
+											"data": {
+												"footerLayout": "some text",
+												"headerLayout": "some text",
+												"noResultsLayout": "some text",
+												"resultsLayout": "some text",
+												"separatorLayout": "some text",
+												"resultsPerPage": 80,
+												"startPage": 97,
+												"maxPages": 77,
+												"embeddedRuleID": "some text"
+											}
+										}
+									},
+									"Content-spot with list presentation formatting": {
+										"value": {
+											"id": "some tennxt",
+											"type": "LibraryPersonalizationComponent",
+											"name": "some text",
+											"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"title": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"owners": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"authors": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"profile": {},
+											"link": [
+												{
+													"rel": "self",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Read"
+												},
+												{
+													"rel": "edit",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Edit"
+												},
+												{
+													"rel": "delete",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Delete"
+												}
+											],
+											"status": "DRAFT",
+											"lastModified": "Fri, 01 Jul 2022 07:33:18.821Z",
+											"libraryID": "some text",
+											"parentID": "some text",
+											"lock": {
+												"isLocked": "false"
+											},
+											"history": {
+												"entries": [
+													{
+														"date": "Fri, 01 Jul 2022 07:33:18.821Z",
+														"name": "some text",
+														"message": "some text"
+													}
+												]
+											},
+											"data": {
+												"listPresentation": "some text",
+												"embeddedRuleID": "some text"
+											}
+										}
+									},
+									"Content-spot explanation": {
+										"value": {
+											"id": "Uuid of the content-spot.",
+											"type": "Represents the type of the component.",
+											"name": "Name of the component. It should be unique.",
+											"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Field to indicate that description of the component.",
+											"title": "Component's title.",
+											"owners": "Owner/s of the component.",
+											"authors": "Author/s of the component.",
+											"link": "Field to indicate related links.",
+											"status": "It indicates the current stage of the component(E.g. - Draft, Published, Expired).",
+											"lastModified": "It indicates the last date and time component is modified.",
+											"libraryID": "Uuid of the document library containing the component.",
+											"parentID": "Uuid of the parent web folder of the component.",
+											"lock": "Provides the lock information for the component",
+											"history": "It Contains the history associated to the current item..",
+											"data": {
+												"footerLayout": "It contains HTML script to define how footer of list results are presented to your site visitors.",
+												"headerLayout": "It contais HTML script to define how header of list results are presented to your site visitors.",
+												"noResultsLayout": "It contains HTML script to define how list results are presented to your site visitors if it returns no results.",
+												"resultsLayout": "It contains HTML script to define how list results are presented to your site visitors.",
+												"separatorLayout": "It contains HTML script to define how seperation of header, result & footer is presented to your site visitors.",
+												"resultsPerPage": "A paging option which indicates the maximum number of results displayed per page.",
+												"startPage": "A paging option which indicates the page result that we want to display first.",
+												"maxPages": "A paging option which indicates the maximum number of result pages.",
+												"embeddedRuleID": "Uuid of the personalization element specifically select action rule.",
+												"listPresentation": "Uuid of the list presentation which frames the result display."
+											}
+										}
+									}
 								}
 							}
 						},
@@ -7031,7 +7394,7 @@
 					}
 				},
 				"summary": "Create a new content-spot component",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation provides the ability to create a content spot component.  The id is not expected, passing the id will result in an error bad request.  The id will be generated upon creation."
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation provides the ability to create a content spot component. The id is not expected, passing the id will result in an error bad request.  The id will be generated upon creation. <br><br> While creating a content-spot if embeddedRuleId is not passed a default Embedded Select Action rule gets created."
 			}
 		},
 		"/component/content-spots/{content_spot_id}": {
@@ -7047,6 +7410,213 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/Content-spot"
+								},
+								"examples": {
+									"Content-spot with default design fields formatting": {
+										"value": {
+											"id": "some text",
+											"type": "LibraryPersonalizationComponent",
+											"name": "some text",
+											"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"title": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"owners": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"authors": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"profile": {},
+											"link": [
+												{
+													"rel": "self",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Read"
+												},
+												{
+													"rel": "edit",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Edit"
+												},
+												{
+													"rel": "delete",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Delete"
+												}
+											],
+											"status": "DRAFT",
+											"lastModified": "Fri, 01 Jul 2022 07:33:18.821Z",
+											"libraryID": "some text",
+											"parentID": "some text",
+											"lock": {
+												"isLocked": "false"
+											},
+											"history": {
+												"entries": [
+													{
+														"date": "Fri, 01 Jul 2022 07:33:18.821Z",
+														"name": "some text",
+														"message": "some text"
+													}
+												]
+											},
+											"data": {
+												"footerLayout": "some text",
+												"headerLayout": "some text",
+												"noResultsLayout": "some text",
+												"resultsLayout": "some text",
+												"separatorLayout": "some text",
+												"resultsPerPage": 80,
+												"startPage": 97,
+												"maxPages": 77,
+												"embeddedRuleID": "some text"
+											}
+										}
+									},
+									"Content-spot with list presentation formatting": {
+										"value": {
+											"id": "some tennxt",
+											"type": "LibraryPersonalizationComponent",
+											"name": "some text",
+											"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"title": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"owners": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"authors": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"profile": {},
+											"link": [
+												{
+													"rel": "self",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Read"
+												},
+												{
+													"rel": "edit",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Edit"
+												},
+												{
+													"rel": "delete",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Delete"
+												}
+											],
+											"status": "DRAFT",
+											"lastModified": "Fri, 01 Jul 2022 07:33:18.821Z",
+											"libraryID": "some text",
+											"parentID": "some text",
+											"lock": {
+												"isLocked": "false"
+											},
+											"history": {
+												"entries": [
+													{
+														"date": "Fri, 01 Jul 2022 07:33:18.821Z",
+														"name": "some text",
+														"message": "some text"
+													}
+												]
+											},
+											"data": {
+												"listPresentation": "some text",
+												"embeddedRuleID": "some text"
+											}
+										}
+									},
+									"Content-spot explanation": {
+										"value": {
+											"id": "Uuid of the content-spot.",
+											"type": "Represents the type of the component.",
+											"name": "Name of the component. It should be unique.",
+											"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Field to indicate description of the component.",
+											"title": "Component's title.",
+											"owners": "Owner/s of the component.",
+											"authors": "Author/s of the component.",
+											"link": "Field to indicate related links.",
+											"status": "It indicates the current stage of the component(E.g. - Draft, Published, Expired).",
+											"lastModified": "It indicates the last date and time component is modified.",
+											"libraryID": "Uuid of the document library containing the component.",
+											"parentID": "Uuid of the parent web folder of the component.",
+											"lock": "Provides the lock information for the component",
+											"history": "It Contains the history associated to the current item..",
+											"data": {
+												"footerLayout": "It contains HTML script to define how footer of list results are presented to your site visitors.",
+												"headerLayout": "It contais HTML script to define how header of list results are presented to your site visitors.",
+												"noResultsLayout": "It contains HTML script to define how list results are presented to your site visitors if it returns no results.",
+												"resultsLayout": "It contains HTML script to define how list results are presented to your site visitors.",
+												"separatorLayout": "It contains HTML script to define how seperation of header, result & footer is presented to your site visitors.",
+												"resultsPerPage": "A paging option which indicates the maximum number of results displayed per page.",
+												"startPage": "A paging option which indicates the page result that we want to display first.",
+												"maxPages": "A paging option which indicates the maximum number of result pages.",
+												"embeddedRuleID": "Uuid of the personalization element specifically select action rule.",
+												"listPresentation": "Uuid of the list presentation which frames the result display."
+											}
+										}
+									}
 								}
 							}
 						},
@@ -7151,6 +7721,53 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Content-spot"
+							},
+							"examples": {
+								"Content-spot with default design fields formatting": {
+									"value": {
+										"type": "LibraryPersonalizationComponent",
+										"name": "some component name",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+											"lang": "some text",
+											"value": "some text"
+										},
+										"title": {
+											"lang": "some text",
+											"value": "some text"
+										},
+										"parentID": "some text",
+										"data": {
+											"footerLayout": "some text",
+											"headerLayout": "some text",
+											"noResultsLayout": "some text",
+											"resultsLayout": "some text",
+											"separatorLayout": "some text",
+											"resultsPerPage": 80,
+											"startPage": 0,
+											"maxPages": 77,
+											"embeddedRuleID": "some text"
+										}
+									}
+								},
+								"Content-spot with list presentation formatting": {
+									"value": {
+										"type": "LibraryPersonalizationComponent",
+										"name": "some component name",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+											"lang": "some text",
+											"value": "some text"
+										},
+										"title": {
+											"lang": "some text",
+											"value": "some text"
+										},
+										"parentID": "some text",
+										"data": {
+											"listPresentation": "some text",
+											"embeddedRuleID": "some text"
+										}
+									}
+								}
 							}
 						}
 					},
@@ -7165,6 +7782,213 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/Content-spot"
+								},
+								"examples": {
+									"Content-spot with default design fields formatting": {
+										"value": {
+											"id": "some text",
+											"type": "LibraryPersonalizationComponent",
+											"name": "some text",
+											"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"title": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"owners": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"authors": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"profile": {},
+											"link": [
+												{
+													"rel": "self",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Read"
+												},
+												{
+													"rel": "edit",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Edit"
+												},
+												{
+													"rel": "delete",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Delete"
+												}
+											],
+											"status": "DRAFT",
+											"lastModified": "Fri, 01 Jul 2022 07:33:18.821Z",
+											"libraryID": "some text",
+											"parentID": "some text",
+											"lock": {
+												"isLocked": "false"
+											},
+											"history": {
+												"entries": [
+													{
+														"date": "Fri, 01 Jul 2022 07:33:18.821Z",
+														"name": "some text",
+														"message": "some text"
+													}
+												]
+											},
+											"data": {
+												"footerLayout": "some text",
+												"headerLayout": "some text",
+												"noResultsLayout": "some text",
+												"resultsLayout": "some text",
+												"separatorLayout": "some text",
+												"resultsPerPage": 80,
+												"startPage": 97,
+												"maxPages": 77,
+												"embeddedRuleID": "some text"
+											}
+										}
+									},
+									"Content-spot with list presentation formatting": {
+										"value": {
+											"id": "some tennxt",
+											"type": "LibraryPersonalizationComponent",
+											"name": "some text",
+											"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"title": {
+												"lang": "some text",
+												"value": "some text"
+											},
+											"owners": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"authors": [
+												{
+													"distinguishedName": "Camille Marshal",
+													"uri": "some text",
+													"name": "Camille Marshal",
+													"type": "some text"
+												},
+												{
+													"distinguishedName": "John Parsons",
+													"uri": "some text",
+													"name": "John Parsons",
+													"type": "some text"
+												}
+											],
+											"profile": {},
+											"link": [
+												{
+													"rel": "self",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Read"
+												},
+												{
+													"rel": "edit",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Edit"
+												},
+												{
+													"rel": "delete",
+													"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+													"lang": "en",
+													"label": "Delete"
+												}
+											],
+											"status": "DRAFT",
+											"lastModified": "Fri, 01 Jul 2022 07:33:18.821Z",
+											"libraryID": "some text",
+											"parentID": "some text",
+											"lock": {
+												"isLocked": "false"
+											},
+											"history": {
+												"entries": [
+													{
+														"date": "Fri, 01 Jul 2022 07:33:18.821Z",
+														"name": "some text",
+														"message": "some text"
+													}
+												]
+											},
+											"data": {
+												"listPresentation": "some text",
+												"embeddedRuleID": "some text"
+											}
+										}
+									},
+									"Content-spot explanation": {
+										"value": {
+											"id": "Uuid of the content-spot.",
+											"type": "Represents the type of the component.",
+											"name": "Name of the component. It should be unique.",
+											"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Field to indicate that description of the component.",
+											"title": "Component's title.",
+											"owners": "Owner/s of the component.",
+											"authors": "Author/s of the component.",
+											"link": "Field to indicate related links.",
+											"status": "It indicates the current stage of the component(E.g. - Draft, Published, Expired).",
+											"lastModified": "It indicates the last date and time component is modified.",
+											"libraryID": "Uuid of the document library containing the component.",
+											"parentID": "Uuid of the parent web folder of the component.",
+											"lock": "Provides the lock information for the component",
+											"history": "It Contains the history associated to the current item..",
+											"data": {
+												"footerLayout": "It contains HTML script to define how footer of list results are presented to your site visitors.",
+												"headerLayout": "It contais HTML script to define how header of list results are presented to your site visitors.",
+												"noResultsLayout": "It contains HTML script to define how list results are presented to your site visitors if it returns no results.",
+												"resultsLayout": "It contains HTML script to define how list results are presented to your site visitors.",
+												"separatorLayout": "It contains HTML script to define how seperation of header, result & footer is presented to your site visitors.",
+												"resultsPerPage": "A paging option which indicates the maximum number of results displayed per page.",
+												"startPage": "A paging option which indicates the page result that we want to display first.",
+												"maxPages": "A paging option which indicates the maximum number of result pages.",
+												"embeddedRuleID": "Uuid of the personalization element specifically select action rule.",
+												"listPresentation": "Uuid of the list presentation which frames the result display."
+											}
+										}
+									}
 								}
 							}
 						},
@@ -7260,7 +8084,7 @@
 					}
 				},
 				"summary": "Update the Content-spot component",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Updates the content spot component specified by the path parameter.  If the Object is not found or is not a content spot component an error is returned."
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Updates the content spot component specified by the path parameter.  If the Object is not found or is not a content spot component an error is returned. <br><br> Name must be passed in the request body & it should be unique."
 			},
 			"delete": {
 				"tags": [
@@ -7482,6 +8306,14 @@
 					{
 						"name": "authoringTemplateID",
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This parameter is used to query items with a specific authoring template ID.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					},
+					{
+						"name": "authoringTemplateName",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This parameter is used to query items with a specific authoring template name. This takes precedence over authoringTemplateID in query.",
 						"schema": {
 							"type": "string"
 						},
@@ -16325,6 +17157,7 @@
 									"name": "some text",
 									"type": "USER"
 								},
+								"parentID": "some text",
 								"links": [
 									{
 										"rel": "edit",
@@ -16394,27 +17227,17 @@
 								}
 							}
 						}
-					},
-					{
-						"$ref": "#/components/schemas/_Collection_Base"
 					}
 				],
 				"example": {
 					"offset": 20,
-					"limit": 20,
+					"limit": 2,
 					"total": 99,
-					"links": [
-						{
-							"rel": "next",
-							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/libraries?offset=10",
-							"lang": "en"
-						}
-					],
-					"entries": [
+					"content-spot-entries": [
 						{
 							"id": "some text",
-							"type": "SiteTemplate",
-							"name": "Camille Marshal",
+							"type": "LibraryPersonalizationComponent",
+							"name": "some text",
 							"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
 								"lang": "some text",
 								"value": "some text"
@@ -16431,9 +17254,9 @@
 									"type": "some text"
 								},
 								{
-									"distinguishedName": "Camille Marshal",
+									"distinguishedName": "John Parsons",
 									"uri": "some text",
-									"name": "Camille Marshal",
+									"name": "John Parsons",
 									"type": "some text"
 								}
 							],
@@ -16445,112 +17268,141 @@
 									"type": "some text"
 								},
 								{
-									"distinguishedName": "Camille Marshal",
+									"distinguishedName": "John Parsons",
 									"uri": "some text",
-									"name": "Camille Marshal",
+									"name": "John Parsons",
 									"type": "some text"
 								}
 							],
+							"profile": {},
+							"link": [
+								{
+									"rel": "self",
+									"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+									"lang": "en",
+									"label": "Read"
+								},
+								{
+									"rel": "edit",
+									"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+									"lang": "en",
+									"label": "Edit"
+								},
+								{
+									"rel": "delete",
+									"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+									"lang": "en",
+									"label": "Delete"
+								}
+							],
+							"status": "DRAFT",
+							"lastModified": "Fri, 01 Jul 2022 07:33:18.821Z",
 							"libraryID": "some text",
 							"parentID": "some text",
-							"projectID": "some text",
-							"siteID": "some text",
+							"lock": {
+								"isLocked": "false"
+							},
+							"history": {
+								"entries": [
+									{
+										"date": "Fri, 01 Jul 2022 07:33:18.821Z",
+										"name": "some text",
+										"message": "some text"
+									}
+								]
+							},
 							"data": {
 								"footerLayout": "some text",
 								"headerLayout": "some text",
 								"noResultsLayout": "some text",
 								"resultsLayout": "some text",
-								"embeddedRuleID": "some text",
 								"separatorLayout": "some text",
 								"resultsPerPage": 80,
-								"startPage": 7,
-								"maxPages": 77
+								"startPage": 97,
+								"maxPages": 77,
+								"embeddedRuleID": "some text"
+							}
+						},
+						{
+							"id": "some tennxt",
+							"type": "LibraryPersonalizationComponent",
+							"name": "some text",
+							"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+								"lang": "some text",
+								"value": "some text"
 							},
-							"listPresentation": "some text",
-							"version": {
-								"originalIdentityReference": "some text",
-								"originalName": "some text",
-								"versionName": "some text",
-								"versionDate": "2018-02-10T09:30Z",
-								"history": {
-									"created": "2018-01-17",
-									"lastModified": "Jan 01, 2021 12:00 PM",
-									"creator": {
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									},
-									"lastModifier": {
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									},
-									"entries": [
-										{
-											"date": "Thu, 24 Nov 2011 10:26:26.070Z",
-											"name": "wpsadmin",
-											"message": "some text on what was updated"
-										},
-										{
-											"date": "Thu, 24 Nov 2011 11:44:26.070Z",
-											"name": "wpsadmin",
-											"message": "some text on what was updated"
-										}
-									]
-								}
+							"title": {
+								"lang": "some text",
+								"value": "some text"
 							},
-							"versions": [
+							"owners": [
 								{
-									"originalIdentityReference": "some text",
-									"originalName": "some text",
-									"versionName": "some text",
-									"versionDate": "2018-02-10T09:30Z"
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
 								},
 								{
-									"originalIdentityReference": "some text",
-									"originalName": "some text",
-									"versionName": "some text",
-									"versionDate": "2018-02-10T09:30Z"
+									"distinguishedName": "John Parsons",
+									"uri": "some text",
+									"name": "John Parsons",
+									"type": "some text"
 								}
 							],
-							"status": "DRAFT_STATE",
-							"workflow": {
-								"currentStageRef": "some text",
-								"workflowRef": "some text",
-								"publishedRef": "some text",
-								"status": "PUBLISHED_STATE",
-								"approvalRequired": [
+							"authors": [
+								{
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
+								},
+								{
+									"distinguishedName": "John Parsons",
+									"uri": "some text",
+									"name": "John Parsons",
+									"type": "some text"
+								}
+							],
+							"profile": {},
+							"link": [
+								{
+									"rel": "self",
+									"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+									"lang": "en",
+									"label": "Read"
+								},
+								{
+									"rel": "edit",
+									"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+									"lang": "en",
+									"label": "Edit"
+								},
+								{
+									"rel": "delete",
+									"href": "/wps/mycontenthandler/!ut/p/digest!GMoW-v0cPqESCbhMRcjDdA/wcmrest-v2/component/content-spots/ff6546a6-a9f8-447c-9e9f-54031e0d66ce",
+									"lang": "en",
+									"label": "Delete"
+								}
+							],
+							"status": "DRAFT",
+							"lastModified": "Fri, 01 Jul 2022 07:33:18.821Z",
+							"libraryID": "some text",
+							"parentID": "some text",
+							"lock": {
+								"isLocked": "false"
+							},
+							"history": {
+								"entries": [
 									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									},
-									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
+										"date": "Fri, 01 Jul 2022 07:33:18.821Z",
+										"name": "some text",
+										"message": "some text"
 									}
-								],
-								"approvalReceived": [
-									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									},
-									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									}
-								],
-								"projectOverrideEnabled": true,
-								"previousStatus": "NONE_STATE"
+								]
+							},
+							"data": {
+								"listPresentation": "some text",
+								"embeddedRuleID": "some text"
 							}
 						}
 					]
@@ -21233,6 +22085,125 @@
 								{
 									"key": "MAX_SELECTION",
 									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			},
+			"APIContentExample": {
+				"summary": "Example API Content",
+				"value": {
+					"id": "7ef85733-b06c-45f6-88a1-82fdeb76cf0e",
+					"title": {
+						"lang": "en",
+						"value": "CoinPaprika"
+					},
+					"name": "CoinPaprika",
+					"type": "Content",
+					"created": "Mon, 25 Apr 2022 08:20:57.188Z",
+					"lastModifier": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!wMuozY9F1BJQGhIJHml-Fw/um/users/profiles/Z9eAeNHOAMR8CP9ECMMG6K1P6JMG65RO4MM4CH9EAJM473JOE3R4CMPCCMQ47O1",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"creator": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!wMuozY9F1BJQGhIJHml-Fw/um/users/profiles/Z9eAeNHOAMR8CP9ECMMG6K1P6JMG65RO4MM4CH9EAJM473JOE3R4CMPCCMQ47O1",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"profile": {},
+					"status": "PUBLISHED",
+					"lastModified": "Thu, 16 Jun 2022 10:33:57.752Z",
+					"libraryID": "ded26275-c13e-42a8-a20c-8a0dca96a57a",
+					"parentID": "0d73bf4f-39fc-4fc9-833d-196ce919e7ca",
+					"templateID": "1cbaf114-df9d-48c2-891f-c79d03f1c4ed",
+					"lock": {
+						"isLocked": "false"
+					},
+					"history": {
+						"entries": [
+							{
+								"date": "Mon, 25 Apr 2022 08:20:57.199Z",
+								"name": "wpsadmin",
+								"message": "Document created by wpsadmin"
+							},
+							{
+								"date": "Mon, 25 Apr 2022 08:24:56.124Z",
+								"name": "wpsadmin",
+								"message": "Document updated by wpsadmin"
+							}
+						]
+					},
+					"links": [
+						{
+							"rel": "self",
+							"href": "/wps/mycontenthandler/!ut/p/digest!wMuozY9F1BJQGhIJHml-Fw/wcmrest-v2/contents/7ef85733-b06c-45f6-88a1-82fdeb76cf0e",
+							"lang": "en",
+							"label": "Read"
+						},
+						{
+							"rel": "edit",
+							"href": "/wps/mycontenthandler/!ut/p/digest!wMuozY9F1BJQGhIJHml-Fw/wcmrest-v2/contents/7ef85733-b06c-45f6-88a1-82fdeb76cf0e",
+							"lang": "en",
+							"label": "Edit"
+						},
+						{
+							"rel": "delete",
+							"href": "/wps/mycontenthandler/!ut/p/digest!wMuozY9F1BJQGhIJHml-Fw/wcmrest-v2/contents/7ef85733-b06c-45f6-88a1-82fdeb76cf0e",
+							"lang": "en",
+							"label": "Delete"
+						},
+						{
+							"rel": "library",
+							"href": "/wps/mycontenthandler/!ut/p/digest!wMuozY9F1BJQGhIJHml-Fw/wcmrest-v2/libraries/ded26275-c13e-42a8-a20c-8a0dca96a57a",
+							"lang": "en",
+							"label": "Library"
+						},
+						{
+							"rel": "parent",
+							"href": "/wps/mycontenthandler/!ut/p/digest!wMuozY9F1BJQGhIJHml-Fw/wcmrest-v2/site-areas/0d73bf4f-39fc-4fc9-833d-196ce919e7ca",
+							"lang": "en",
+							"label": "Parent"
+						},
+						{
+							"rel": "edit-media",
+							"href": "/wps/mycontenthandler/!ut/p/digest!wMuozY9F1BJQGhIJHml-Fw/wcmrest-v2/contents/7ef85733-b06c-45f6-88a1-82fdeb76cf0e",
+							"type": "application/vnd.ibm.wcm+xml",
+							"lang": "en",
+							"label": "Edit Media"
+						},
+						{
+							"rel": "content-template",
+							"href": "/wps/mycontenthandler/!ut/p/digest!wMuozY9F1BJQGhIJHml-Fw/wcmrest-v2/content-templates/1cbaf114-df9d-48c2-891f-c79d03f1c4ed",
+							"lang": "en",
+							"label": "Content Template"
+						}
+					],
+					"data": {
+						"bitcoinDominance": {
+							"name": "bitcoinDominance",
+							"title": "bitcoinDominance",
+							"displayTitle": "bitcoinDominance",
+							"type": "TextComponent",
+							"data": {
+								"type": "text/plain",
+								"value": "42.83"
+							},
+							"properties": [
+								{
+									"key": "WIDTH",
+									"value": "85"
+								},
+								{
+									"key": "HEIGHT",
+									"value": "15"
+								},
+								{
+									"key": "AUTO_FILL_FIELD",
+									"value": "NAME"
 								}
 							]
 						}

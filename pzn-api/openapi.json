@@ -3,7 +3,7 @@
     "info": {
         "title": "DX Personalization REST APIs",
         "version": "1.0.0",
-        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This gives you access to personalization features through REST services.\n\nCurrently APIs are developed for Visibility Rule, Profiler and Select Action rule types. APIs are in beta stage at this time - changes are possible until finalized.",
+        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This gives you access to personalization features through REST services.\n\nCurrently APIs are developed for Visibility Rule, Profiler, Select Action, and Binding rule types. APIs are in beta stage at this time - changes are possible until finalized.",
         "contact": {
             "name": "HCL"
         }
@@ -907,7 +907,8 @@
                             "enum": [
                                 "Visibility Rule",
                                 "Profiler",
-                                "Select Action"
+                                "Select Action",
+                                "Binding"
                             ],
                             "type": "string"
                         },
@@ -1750,8 +1751,341 @@
                                         "parentId" : "Field to indicate to find the difference between the location of the rule.",
                                         "conditions": "List of conditions to meet the select action rule criteria.",
                                         "select": "Field to indicate type of select action rule.",
+                                      },
+                                    },
+                                      "Binding Example 1: Simple":{
+                                        "value":{
+                                            "offset": 0,
+                                            "limit": 30,
+                                            "total": 3,
+                                            "items": [
+                                                {
+                                                    "id": "b727e0ac-d433-4bd8-bd62-b5d7d722a280",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                                    "title": "Binding1",
+                                                    "ruleType": "Binding",
+                                                    "contents": {
+                                                        "profiler": {
+                                                            "profileName": "/Profiler1",
+                                                            "conditions": [
+                                                                {
+                                                                    "profiles": [
+                                                                        "ps003",
+                                                                        "editor"
+                                                                    ],
+                                                                    "operator": "or",
+                                                                    "actions": [
+                                                                        {
+                                                                            "name": "/SelectActionWebContent",
+                                                                            "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "profiles": [
+                                                                        "ps003",
+                                                                        "editor"
+                                                                    ],
+                                                                    "operator": "or",
+                                                                    "actions": [
+                                                                        {
+                                                                            "name": "/SelectActionWebcontent2",
+                                                                            "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            "excludeActions": [
+                                                                {
+                                                                    "name": "/SelectActionWebContent",
+                                                                    "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                }
+                                                            ],
+                                                            "otherwiseActions": [
+                                                                {
+                                                                    "name": "/SelectActionWebContent",
+                                                                    "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                }
+                                                            ],
+                                                            "alwaysActions": [
+                                                                {
+                                                                    "name": "/SelectActionWebcontent2",
+                                                                    "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                                }
+                                                            ],
+                                                            "order": {
+                                                                "orderType": "random"
+                                                            },
+                                                            "limit": 100
+                                                        },
+                                                        "stopFirstMatch": true
+                                                    },
+                                                    "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "created": "2022-04-29T08:06:50.479Z",
+                                                    "publishedOnDate": "1970-01-01T00:00:00.000Z",
+                                                    "lastModified": "2022-05-17T07:54:56.055Z",
+                                                    "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                                },
+                                                {
+                                                    "id": "c91b2ba0-2706-4d1f-a672-213d53bd90a6",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                                    "title": "Binding2",
+                                                    "ruleType": "Binding",
+                                                    "contents": {
+                                                        "profiler": {
+                                                            "profileName": "/Profiler1",
+                                                            "conditions": [
+                                                                {
+                                                                    "profiles": [
+                                                                        "ps003",
+                                                                        "editor"
+                                                                    ],
+                                                                    "operator": "or"
+                                                                }
+                                                            ],
+                                                            "excludeActions": [
+                                                                {
+                                                                    "name": "/SelectActionWebContent",
+                                                                    "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                }
+                                                            ],
+                                                            "otherwiseActions": [
+                                                                {
+                                                                    "name": "/SelectActionWebContent",
+                                                                    "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                }
+                                                            ],
+                                                            "alwaysActions": [
+                                                                {
+                                                                    "name": "/SelectActionWebcontent2",
+                                                                    "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                                }
+                                                            ],
+                                                            "order": {
+                                                                "orderType": "random"
+                                                            }
+                                                        },
+                                                        "stopFirstMatch": false
+                                                    },
+                                                    "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "created": "2022-04-29T08:27:49.436Z",
+                                                    "publishedOnDate": "1970-01-01T00:00:00.000Z",
+                                                    "lastModified": "2022-04-29T08:27:49.436Z",
+                                                    "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                                },
+                                                {
+                                                    "id": "67952797-f3fe-4709-b637-7d8deac3cd21",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                                    "title": "Binding3",
+                                                    "ruleType": "Binding",
+                                                    "contents": {
+                                                        "quickProfiler": {
+                                                            "attributeName": "day",
+                                                            "attributeType": "Date",
+                                                            "conditions": [
+                                                                {
+                                                                    "operator": "is",
+                                                                    "value": [
+                                                                        "test"
+                                                                    ],
+                                                                    "actions": [
+                                                                        {
+                                                                            "name": "/SelectActionWebContent",
+                                                                            "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ],
+                                                            "excludeActions": [
+                                                                {
+                                                                    "name": "/SelectAction2",
+                                                                    "id": "31e33c84-cd34-4827-a172-6c869ffc9cfa"
+                                                                }
+                                                            ],
+                                                            "otherwiseActions": [
+                                                                {
+                                                                    "name": "/SelectAction1",
+                                                                    "id": "6b2ff553-ef56-45fa-bc54-7b1b5e2bc3b6"
+                                                                }
+                                                            ],
+                                                            "alwaysActions": [
+                                                                {
+                                                                    "name": "/SelectAction5",
+                                                                    "id": "067898a9-2397-49b0-9232-9e36d33b9301"
+                                                                }
+                                                            ],
+                                                            "order": {
+                                                                "orderType": "sort",
+                                                                "items": [
+                                                                    {
+                                                                        "propertyName": "icm:effectiveDate",
+                                                                        "sortOrder": "ascending"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "limit": 100
+                                                        },
+                                                        "stopFirstMatch": false
+                                                    },
+                                                    "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "created": "2022-04-29T08:46:38.399Z",
+                                                    "publishedOnDate": "1970-01-01T00:00:00.000Z",
+                                                    "lastModified": "2022-05-17T08:06:33.131Z",
+                                                    "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "Binding Example 2: Nested ":{
+                                        "value":{
+                                            "offset": 0,
+                                            "limit": 30,
+                                            "total": 1,
+                                            "items": [
+                                              {
+                                                "id": "5635aba0-3c57-447d-8725-27feb4aa1fa1",
+                                                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding Rule Nested Example",
+                                                "title": "Binding Rule 2",
+                                                "ruleType": "Binding",
+                                                "contents": {
+                                                  "profiler": {
+                                                    "profilerName": "/Profile User Rule 1",
+                                                    "conditions": [
+                                                      {
+                                                        "profiles": [
+                                                          "Profile1"
+                                                        ],
+                                                        "operator": "or",
+                                                        "profiler": {
+                                                          "profilerName": "/Profile User Rule 2",
+                                                          "conditions": [
+                                                            {
+                                                              "profiles": [
+                                                                "TestProfile2",
+                                                                "TestProfile1"
+                                                              ],
+                                                              "operator": "or",
+                                                              "actions": [
+                                                                {
+                                                                  "name": "/Binding Rule 1",
+                                                                  "id": "2e260223-680d-4650-a2a1-1d65f0e3e498"
+                                                                }
+                                                              ]
+                                                            }
+                                                          ],
+                                                          "otherwiseActions": [
+                                                            {
+                                                              "name": "/Select Content Rule 2",
+                                                              "id": "2cde40d5-d9b3-456e-906e-a2018d2c4316"
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    ]
+                                                  },
+                                                  "stopFirstMatch": false
+                                                },
+                                                "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                "created": "2022-06-20T10:13:50.383Z",
+                                                "publishedOnDate": "1970-01-01T00:00:00.001Z",
+                                                "lastModified": "2022-06-20T10:13:50.383Z",
+                                                "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                              }
+                                            ]
+                                        }
+
+                                    },
+                                    "Binding Example 3: Nested with QuickProfiler":{
+                                        "value":{
+                                            "offset": 0,
+                                            "limit": 30,
+                                            "total": 1,
+                                            "items": [
+                                                {
+                                                    "id": "718a8f9f-ab62-4198-be43-2c96bcf9f928",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding Rule Nested with QuickProfiler Example",
+                                                    "title": "Binding Rule 3",
+                                                    "ruleType": "Binding",
+                                                    "contents": {
+                                                      "quickProfiler": {
+                                                        "attributeName": "AcceptMimeTypes",
+                                                        "attributeType": "BrowserCapability",
+                                                        "conditions": [
+                                                          {
+                                                            "operator": "includes",
+                                                            "value": [
+                                                              "jpg"
+                                                            ],
+                                                            "quickProfiler": {
+                                                              "attributeName": "day",
+                                                              "attributeType": "Date",
+                                                              "conditions": [
+                                                                {
+                                                                  "operator": "is",
+                                                                  "value": [
+                                                                    4
+                                                                  ],
+                                                                  "actions": [
+                                                                    {
+                                                                      "name": "/Binding Rule 1",
+                                                                      "id": "2e260223-680d-4650-a2a1-1d65f0e3e498"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ],
+                                                              "otherwiseActions": [
+                                                                {
+                                                                  "name": "/Select Content Rule 1",
+                                                                  "id": "ec92fe95-3e76-4c8d-ab57-1ed6e34000c7"
+                                                                }
+                                                              ]
+                                                            }
+                                                          }
+                                                        ]
+                                                      },
+                                                      "stopFirstMatch": false
+                                                    },
+                                                    "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "created": "2022-06-20T10:15:38.302Z",
+                                                    "publishedOnDate": "1970-01-01T00:00:00.001Z",
+                                                    "lastModified": "2022-06-20T10:15:38.302Z",
+                                                    "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                                    "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                     "Binding Explanation":{
+                                      "value": {
+                                        "id": "Field to indicate folder uuid.",
+                                        "description" : "Field to indicate description of the rule.",
+                                        "title": "Field to indicate that title of the rule.",
+                                        "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule or Binding).",
+                                        "contents": "Contents decides the rule behavior.",
+                                        "authors":"Field to indicate that owner of the rule.",
+                                        "creator": "Field to indicate that creator of the rule.",
+                                        "created": "Field to indicate that creation date and time of the rule.",
+                                        "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                        "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                        "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                        "conditions": "List of conditions to meet the binding rule criteria.",
+                                        "profiler": "Contains the condition for profiles & which action should be performed",
+                                        "actions": "Field to indicate the details of the select action / binding rule which can perform an Action based on it.",
+                                        "otherwiseActions": "Fall back action if none of the conditions are met.",
+                                        "stopFirstMatch": "Boolean indication if the rule matching has to stop after the first match.",
+                                        "profilerName": "Field to indicate the path of the profiler rule",
+                                        "quickProfiler": "Field to indicate direct conditions for the profiler rule"
+                                      }
                                     }
-                                  }
                                 }
                             },
                         },
@@ -2079,6 +2413,220 @@
                                         },
                                         "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
                                     }
+                                },
+                                "Binding Simple - Sample 1": {
+                                    "value": {
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                        "title": "Binding1",
+                                        "ruleType": "Binding",
+                                        "contents": {
+                                            "profiler": {
+                                                "profileName": "/Profiler1",
+                                                "conditions": [
+                                                    {
+                                                        "profiles": [
+                                                            "ps003",
+                                                            "editor"
+                                                        ],
+                                                        "operator": "or",
+                                                        "actions": [
+                                                            {
+                                                                "name": "/SelectActionWebContent",
+                                                                "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "profiles": [
+                                                            "ps003",
+                                                            "editor"
+                                                        ],
+                                                        "operator": "or",
+                                                        "actions": [
+                                                            {
+                                                                "name": "/SelectActionWebcontent2",
+                                                                "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "excludeActions": [
+                                                    {
+                                                        "name": "/SelectActionWebContent",
+                                                        "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                    }
+                                                ],
+                                                "otherwiseActions": [
+                                                    {
+                                                        "name": "/SelectActionWebContent",
+                                                        "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                    }
+                                                ],
+                                                "alwaysActions": [
+                                                    {
+                                                        "name": "/SelectActionWebcontent2",
+                                                        "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                    }
+                                                ],
+                                                "order": {
+                                                    "orderType": "random"
+                                                },
+                                                "limit": 100
+                                            },
+                                            "stopFirstMatch": true
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
+                                },
+                                "Binding Simple with Quick Profiler - Sample 2": {
+                                    "value": {
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                        "title": "Binding Rule Quick Profiler",
+                                        "ruleType": "Binding",
+                                        "contents": {
+                                            "quickProfiler": {
+                                                "attributeName": "day",
+                                                "attributeType": "Date",
+                                                "conditions": [
+                                                    {
+                                                        "operator": "is",
+                                                        "value": [
+                                                            "test"
+                                                        ],
+                                                        "actions": [
+                                                            {
+                                                                "name": "/SelectActionWebContent",
+                                                                "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "excludeActions": [
+                                                    {
+                                                        "name": "/SelectAction2",
+                                                        "id": "31e33c84-cd34-4827-a172-6c869ffc9cfa"
+                                                    }
+                                                ],
+                                                "otherwiseActions": [
+                                                    {
+                                                        "name": "/SelectAction1",
+                                                        "id": "6b2ff553-ef56-45fa-bc54-7b1b5e2bc3b6"
+                                                    }
+                                                ],
+                                                "alwaysActions": [
+                                                    {
+                                                        "name": "/SelectAction5",
+                                                        "id": "067898a9-2397-49b0-9232-9e36d33b9301"
+                                                    }
+                                                ],
+                                                "order": {
+                                                    "orderType": "sort",
+                                                    "items": [
+                                                        {
+                                                            "propertyName": "icm:effectiveDate",
+                                                            "sortOrder": "ascending"
+                                                        }
+                                                    ]
+                                                },
+                                                "limit": 100
+                                            },
+                                            "stopFirstMatch": false
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
+                                },
+                                "Binding Nested - Sample 3":{
+                                    "value":{
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding Rule Nested Example",
+                                        "title": "Binding Rule 3",
+                                        "ruleType": "Binding",
+                                        "contents": {
+                                            "profiler": {
+                                            "profilerName": "/Profile User Rule 1",
+                                            "conditions": [
+                                                {
+                                                "profiles": [
+                                                    "Profile1"
+                                                ],
+                                                "operator": "or",
+                                                "profiler": {
+                                                    "profilerName": "/Profile User Rule 2",
+                                                    "conditions": [
+                                                    {
+                                                        "profiles": [
+                                                        "TestProfile2",
+                                                        "TestProfile1"
+                                                        ],
+                                                        "operator": "or",
+                                                        "actions": [
+                                                        {
+                                                            "name": "/Binding Rule 1",
+                                                            "id": "2e260223-680d-4650-a2a1-1d65f0e3e498"
+                                                        }
+                                                        ]
+                                                    }
+                                                    ],
+                                                    "otherwiseActions": [
+                                                    {
+                                                        "name": "/Select Content Rule 2",
+                                                        "id": "2cde40d5-d9b3-456e-906e-a2018d2c4316"
+                                                    }
+                                                    ]
+                                                }
+                                                }
+                                            ]
+                                            },
+                                            "stopFirstMatch": false
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
+                                },
+                                "Binding Nested with Quick Profiler - Sample 4": {
+                                    "value":{
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding Rule Nested with QuickProfiler Example",
+                                        "title": "Binding Rule 3",
+                                        "ruleType": "Binding",
+                                        "contents": {
+                                          "quickProfiler": {
+                                            "attributeName": "AcceptMimeTypes",
+                                            "attributeType": "BrowserCapability",
+                                            "conditions": [
+                                              {
+                                                "operator": "includes",
+                                                "value": [
+                                                  "jpg"
+                                                ],
+                                                "quickProfiler": {
+                                                  "attributeName": "day",
+                                                  "attributeType": "Date",
+                                                  "conditions": [
+                                                    {
+                                                      "operator": "is",
+                                                      "value": [
+                                                        4
+                                                      ],
+                                                      "actions": [
+                                                        {
+                                                          "name": "/Binding Rule 1",
+                                                          "id": "2e260223-680d-4650-a2a1-1d65f0e3e498"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "otherwiseActions": [
+                                                    {
+                                                      "name": "/Select Content Rule 1",
+                                                      "id": "ec92fe95-3e76-4c8d-ab57-1ed6e34000c7"
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "stopFirstMatch": false
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
                                 }
                             }
                         }
@@ -2391,7 +2939,6 @@
                                     "Select Action Explanation":{
                                       "value": {
                                         "id": "Field to indicate folder uuid.",
-                                        "folderType": "Field to indicate folder type root folder (Workspace) or custom Folder",
                                         "description" : "Field to indicate description of the rule.",
                                         "title": "Field to indicate that title of the rule.",
                                         "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
@@ -2405,9 +2952,273 @@
                                         "conditions": "List of conditions to meet the select action rule criteria.",
                                         "select": "Field to indicate type of select action rule.",
                                       }
+                                    },
+                                    "Binding Simple - Sample 1": {
+                                        "value": {
+                                            "id": "b727e0ac-d433-4bd8-bd62-b5d7d722a280",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "Binding1",
+                                            "ruleType": "Binding",
+                                            "contents": {
+                                                "profiler": {
+                                                    "profileName": "/Profiler1",
+                                                    "conditions": [
+                                                        {
+                                                            "profiles": [
+                                                                "ps003",
+                                                                "editor"
+                                                            ],
+                                                            "operator": "or",
+                                                            "actions": [
+                                                                {
+                                                                    "name": "/SelectActionWebContent",
+                                                                    "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "profiles": [
+                                                                "ps003",
+                                                                "editor"
+                                                            ],
+                                                            "operator": "or",
+                                                            "actions": [
+                                                                {
+                                                                    "name": "/SelectActionWebcontent2",
+                                                                    "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "excludeActions": [
+                                                        {
+                                                            "name": "/SelectActionWebContent",
+                                                            "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                        }
+                                                    ],
+                                                    "otherwiseActions": [
+                                                        {
+                                                            "name": "/SelectActionWebContent",
+                                                            "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                        }
+                                                    ],
+                                                    "alwaysActions": [
+                                                        {
+                                                            "name": "/SelectActionWebcontent2",
+                                                            "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                        }
+                                                    ],
+                                                    "order": {
+                                                        "orderType": "random"
+                                                    },
+                                                    "limit": 100
+                                                },
+                                                "stopFirstMatch": true
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-04-29T08:06:50.479Z",
+                                            "publishedOnDate": "1970-01-01T00:00:00.000Z",
+                                            "lastModified": "2022-05-17T07:54:56.055Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    },
+                                    "Binding Simple with Quick Profiler - Sample 2": {
+                                        "value": {
+                                            "id": "67952797-f3fe-4709-b637-7d8deac3cd21",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "Binding Rule Quick Profiler",
+                                            "ruleType": "Binding",
+                                            "contents": {
+                                                "quickProfiler": {
+                                                    "attributeName": "day",
+                                                    "attributeType": "Date",
+                                                    "conditions": [
+                                                        {
+                                                            "operator": "is",
+                                                            "value": [
+                                                                4
+                                                            ],
+                                                            "actions": [
+                                                                {
+                                                                    "name": "/SelectActionWebContent",
+                                                                    "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "excludeActions": [
+                                                        {
+                                                            "name": "/SelectAction2",
+                                                            "id": "31e33c84-cd34-4827-a172-6c869ffc9cfa"
+                                                        }
+                                                    ],
+                                                    "otherwiseActions": [
+                                                        {
+                                                            "name": "/SelectAction1",
+                                                            "id": "6b2ff553-ef56-45fa-bc54-7b1b5e2bc3b6"
+                                                        }
+                                                    ],
+                                                    "alwaysActions": [
+                                                        {
+                                                            "name": "/SelectAction5",
+                                                            "id": "067898a9-2397-49b0-9232-9e36d33b9301"
+                                                        }
+                                                    ],
+                                                    "order": {
+                                                        "orderType": "sort",
+                                                        "items": [
+                                                            {
+                                                                "propertyName": "icm:effectiveDate",
+                                                                "sortOrder": "ascending"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "limit": 100
+                                                },
+                                                "stopFirstMatch": false
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-04-29T08:46:38.399Z",
+                                            "publishedOnDate": "1970-01-01T00:00:00.000Z",
+                                            "lastModified": "2022-05-17T08:06:33.131Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    },
+                                    "Binding Nested - Sample 3":{
+                                        "value":{
+                                            "id": "5635aba0-3c57-447d-8725-27feb4aa1fa1",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding Rule Nested Example",
+                                            "title": "Binding Rule 3",
+                                            "ruleType": "Binding",
+                                            "contents": {
+                                              "profiler": {
+                                                "profilerName": "/Profile User Rule 1",
+                                                "conditions": [
+                                                  {
+                                                    "profiles": [
+                                                      "Profile1"
+                                                    ],
+                                                    "operator": "or",
+                                                    "profiler": {
+                                                      "profilerName": "/Profile User Rule 2",
+                                                      "conditions": [
+                                                        {
+                                                          "profiles": [
+                                                            "TestProfile2",
+                                                            "TestProfile1"
+                                                          ],
+                                                          "operator": "or",
+                                                          "actions": [
+                                                            {
+                                                              "name": "/Binding Rule 1",
+                                                              "id": "2e260223-680d-4650-a2a1-1d65f0e3e498"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "otherwiseActions": [
+                                                        {
+                                                          "name": "/Select Content Rule 2",
+                                                          "id": "2cde40d5-d9b3-456e-906e-a2018d2c4316"
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              },
+                                              "stopFirstMatch": false
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-06-20T10:13:50.383Z",
+                                            "publishedOnDate": "1970-01-01T00:00:00.001Z",
+                                            "lastModified": "2022-06-20T10:13:50.383Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    },
+                                    "Binding Nested with Quick Profiler - Sample 4":{
+                                        "value":{
+                                            "id": "718a8f9f-ab62-4198-be43-2c96bcf9f928",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding Rule Nested with QuickProfiler Example",
+                                            "title": "Binding Rule 3",
+                                            "ruleType": "Binding",
+                                            "contents": {
+                                              "quickProfiler": {
+                                                "attributeName": "AcceptMimeTypes",
+                                                "attributeType": "BrowserCapability",
+                                                "conditions": [
+                                                  {
+                                                    "operator": "includes",
+                                                    "value": [
+                                                      "jpg"
+                                                    ],
+                                                    "quickProfiler": {
+                                                      "attributeName": "day",
+                                                      "attributeType": "Date",
+                                                      "conditions": [
+                                                        {
+                                                          "operator": "is",
+                                                          "value": [
+                                                            4
+                                                          ],
+                                                          "actions": [
+                                                            {
+                                                              "name": "/Binding Rule 1",
+                                                              "id": "2e260223-680d-4650-a2a1-1d65f0e3e498"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "otherwiseActions": [
+                                                        {
+                                                          "name": "/Select Content Rule 1",
+                                                          "id": "ec92fe95-3e76-4c8d-ab57-1ed6e34000c7"
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              },
+                                              "stopFirstMatch": false
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-06-20T10:15:38.302Z",
+                                            "publishedOnDate": "1970-01-01T00:00:00.001Z",
+                                            "lastModified": "2022-06-20T10:15:38.302Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    },
+                                    "Binding Explanation": {
+                                        "value":{
+                                            "id": "Field to indicate folder uuid.",
+                                            "description" : "Field to indicate description of the rule.",
+                                            "title": "Field to indicate that title of the rule.",
+                                            "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                            "contents": "Contents decides the rule behavior.",
+                                            "authors":"Field to indicate that owner of the rule.",
+                                            "creator": "Field to indicate that creator of the rule.",
+                                            "created": "Field to indicate that creation date and time of the rule.",
+                                            "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                            "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                            "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                            "conditions": "List of conditions to meet the binding rule criteria.",
+                                            "profiler": "Contains the condition for profiles & which action should be performed",
+                                            "actions": "Field to indicate the details of the select action / binding rule which can perform an Action based on it.",
+                                            "otherwiseActions": "Fall back action if none of the conditions are met.",
+                                            "stopFirstMatch": "Boolean indication if the rule matching has to stop after the first match.",
+                                            "profilerName": "Field to indicate the path of the profiler rule",
+                                            "quickProfiler": "Field to indicate direct conditions for the profiler rule"
+                                        }
                                     }
                                 }
-                            },
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For success case, API returns details of created rule."
                     },
@@ -2469,7 +3280,7 @@
                     }
                 ],
                 "summary": "This endpoint creates a new rule.",
-                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API will create Visibilty, Profiler and Select Action Rule.<br><b>Note</b>: Allowed attribute types: BrowserCapability, Date, Device, Referrer, ActionBean, CategoryBean, Action Count, Category Count, User, Shared Render Parameters, Session, Shared Data, Portlet Attributes, Request, Profiler, Arithmetic and  MatchingItems. For arithmetic rules a combination of multiple operations (i.e. 7+9*2) is not supported at this time."
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API will create Visibilty, Profiler, Binding and Select Action Rule.<br><b>Note</b>: Allowed attribute types: BrowserCapability, Date, Device, Referrer, ActionBean, CategoryBean, Action Count, Category Count, User, Shared Render Parameters, Session, Shared Data, Portlet Attributes, Request, Profiler, Arithmetic and  MatchingItems. For arithmetic rules a combination of multiple operations (i.e. 7+9*2) is not supported at this time."
             }
         },
         "/pzn-rest/rules/{rule-id}": {
@@ -2921,7 +3732,7 @@
                                             "id": "b727e0ac-d433-4bd8-bd62-b5d7d722a280",
                                             "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding rule fetching",
                                             "title": "Binding1",
-                                            "ruleType": "BindingRule",
+                                            "ruleType": "Binding",
                                             "contents": {
                                                 "profiler": {
                                                     "profileName": "/Profiler1",
@@ -3002,11 +3813,16 @@
                                         "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
                                         "parentId" : "Field to indicate to find the difference between the location of the rule.",
                                         "conditions": "List of conditions to meet the binding rule criteria.",
-                                        "select": "Field to indicate type of select action rule.",
+                                        "profiler": "Contains the condition for profiles & which action should be performed",
+                                        "actions": "Field to indicate the details of the select action / binding rule which can perform an Action based on it.",
+                                        "otherwiseActions": "Fall back action if none of the conditions are met.",
+                                        "stopFirstMatch": "Boolean indication if the rule matching has to stop after the first match.",
+                                        "profilerName": "Field to indicate the path of the profiler rule",
+                                        "quickProfiler": "Field to indicate direct conditions for the profiler rule"
                                       }
-                                    },
+                                    }
                                 }
-                            },
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns rule details for the given rule uuid."
                     },
@@ -3152,17 +3968,231 @@
                                         },
                                         "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
                                     }
+                                },
+                                "Binding Simple - Sample 1": {
+                                    "value": {
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                        "title": "Binding1",
+                                        "ruleType": "Binding",
+                                        "contents": {
+                                            "profiler": {
+                                                "profileName": "/Profiler1",
+                                                "conditions": [
+                                                    {
+                                                        "profiles": [
+                                                            "ps003",
+                                                            "editor"
+                                                        ],
+                                                        "operator": "or",
+                                                        "actions": [
+                                                            {
+                                                                "name": "/SelectActionWebContent",
+                                                                "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "profiles": [
+                                                            "ps003",
+                                                            "editor"
+                                                        ],
+                                                        "operator": "or",
+                                                        "actions": [
+                                                            {
+                                                                "name": "/SelectActionWebcontent2",
+                                                                "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "excludeActions": [
+                                                    {
+                                                        "name": "/SelectActionWebContent",
+                                                        "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                    }
+                                                ],
+                                                "otherwiseActions": [
+                                                    {
+                                                        "name": "/SelectActionWebContent",
+                                                        "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                    }
+                                                ],
+                                                "alwaysActions": [
+                                                    {
+                                                        "name": "/SelectActionWebcontent2",
+                                                        "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                    }
+                                                ],
+                                                "order": {
+                                                    "orderType": "random"
+                                                },
+                                                "limit": 100
+                                            },
+                                            "stopFirstMatch": true
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
+                                },
+                                "Binding Simple with Quick Profiler - Sample 2": {
+                                    "value": {
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                        "title": "Binding Rule Quick Profiler",
+                                        "ruleType": "Binding",
+                                        "contents": {
+                                            "quickProfiler": {
+                                                "attributeName": "day",
+                                                "attributeType": "Date",
+                                                "conditions": [
+                                                    {
+                                                        "operator": "is",
+                                                        "value": [
+                                                            4
+                                                        ],
+                                                        "actions": [
+                                                            {
+                                                                "name": "/SelectActionWebContent",
+                                                                "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "excludeActions": [
+                                                    {
+                                                        "name": "/SelectAction2",
+                                                        "id": "31e33c84-cd34-4827-a172-6c869ffc9cfa"
+                                                    }
+                                                ],
+                                                "otherwiseActions": [
+                                                    {
+                                                        "name": "/SelectAction1",
+                                                        "id": "6b2ff553-ef56-45fa-bc54-7b1b5e2bc3b6"
+                                                    }
+                                                ],
+                                                "alwaysActions": [
+                                                    {
+                                                        "name": "/SelectAction5",
+                                                        "id": "067898a9-2397-49b0-9232-9e36d33b9301"
+                                                    }
+                                                ],
+                                                "order": {
+                                                    "orderType": "sort",
+                                                    "items": [
+                                                        {
+                                                            "propertyName": "icm:effectiveDate",
+                                                            "sortOrder": "ascending"
+                                                        }
+                                                    ]
+                                                },
+                                                "limit": 100
+                                            },
+                                            "stopFirstMatch": false
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
+                                },
+                                "Binding Nested - Sample 3":{
+                                    "value":{
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding Rule Nested Example",
+                                        "title": "Binding Rule 3",
+                                        "ruleType": "Binding",
+                                        "contents": {
+                                            "profiler": {
+                                            "profilerName": "/Profile User Rule 1",
+                                            "conditions": [
+                                                {
+                                                "profiles": [
+                                                    "Profile1"
+                                                ],
+                                                "operator": "or",
+                                                "profiler": {
+                                                    "profilerName": "/Profile User Rule 2",
+                                                    "conditions": [
+                                                    {
+                                                        "profiles": [
+                                                        "TestProfile2",
+                                                        "TestProfile1"
+                                                        ],
+                                                        "operator": "or",
+                                                        "actions": [
+                                                        {
+                                                            "name": "/Binding Rule 1",
+                                                            "id": "2e260223-680d-4650-a2a1-1d65f0e3e498"
+                                                        }
+                                                        ]
+                                                    }
+                                                    ],
+                                                    "otherwiseActions": [
+                                                    {
+                                                        "name": "/Select Content Rule 2",
+                                                        "id": "2cde40d5-d9b3-456e-906e-a2018d2c4316"
+                                                    }
+                                                    ]
+                                                }
+                                                }
+                                            ]
+                                            },
+                                            "stopFirstMatch": false
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
+                                },
+                                "Binding Nested with Quick Profiler - Sample 4": {
+                                    "value":{
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding Rule Nested with QuickProfiler Example",
+                                        "title": "Binding Rule 3",
+                                        "ruleType": "Binding",
+                                        "contents": {
+                                          "quickProfiler": {
+                                            "attributeName": "AcceptMimeTypes",
+                                            "attributeType": "BrowserCapability",
+                                            "conditions": [
+                                              {
+                                                "operator": "includes",
+                                                "value": [
+                                                  "jpg"
+                                                ],
+                                                "quickProfiler": {
+                                                  "attributeName": "day",
+                                                  "attributeType": "Date",
+                                                  "conditions": [
+                                                    {
+                                                      "operator": "is",
+                                                      "value": [
+                                                        4
+                                                      ],
+                                                      "actions": [
+                                                        {
+                                                          "name": "/Binding Rule 1",
+                                                          "id": "2e260223-680d-4650-a2a1-1d65f0e3e498"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ],
+                                                  "otherwiseActions": [
+                                                    {
+                                                      "name": "/Select Content Rule 1",
+                                                      "id": "ec92fe95-3e76-4c8d-ab57-1ed6e34000c7"
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          "stopFirstMatch": false
+                                        },
+                                        "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                    }
                                 }
                             }
                         }
                     },
                     "required": true,
-                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Allowed ruleTypes : Visibility Rule, Profiler."
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Allowed ruleTypes : Visibility Rule, Profiler, Select Action & Binding."
                 },
                 "tags": [
                     "Rules"
                 ],
-                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description":"Pass only those key value pairs which you want to update.<br> Keys which can be updated individually from the request body - \"description\", \"title\", \"ruleType\", \"contents\", \"parentId\" <br>& keys which can be updated individually inside contents for specific ruleType: <ul> <li><b>Visibility Rule : </b> \"visibility\", \"conditions\", \"caseInsensitive\",</li> <li> <b>Profiler : </b>\"profiles\", \"otherwiseProfile\",\"caseInsensitive\", \"stopFirstProfile\"</li> <li> <b>Select Action : </b>Not Applicable</li> </ul> <h4>Note: Updating a ruleType is restricted.</h4>",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description":"Pass only those key value pairs which you want to update.<br> Keys which can be updated individually from the request body - \"description\", \"title\", \"ruleType\", \"contents\", \"parentId\" <br>& keys which can be updated individually inside contents for specific ruleType: <ul> <li><b>Visibility Rule : </b> \"visibility\", \"conditions\", \"caseInsensitive\",</li> <li> <b>Profiler : </b>\"profiles\", \"otherwiseProfile\",\"caseInsensitive\", \"stopFirstProfile\"</li> <li> <b>Select Action : </b>Not Applicable</li> <li> <b>Binding : </b>Not Applicable</li> </ul> <h4>Note: Updating a ruleType is restricted.</h4>",
 
                 "parameters": [
                     {
@@ -3342,9 +4372,273 @@
                                         "conditions": "List of conditions to meet the select action rule criteria.",
                                         "select": "Field to indicate type of select action rule.",
                                       }
+                                    },
+                                    "Binding Simple - Sample 1": {
+                                        "value": {
+                                            "id": "b727e0ac-d433-4bd8-bd62-b5d7d722a280",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "Binding1",
+                                            "ruleType": "Binding",
+                                            "contents": {
+                                                "profiler": {
+                                                    "profileName": "/Profiler1",
+                                                    "conditions": [
+                                                        {
+                                                            "profiles": [
+                                                                "ps003",
+                                                                "editor"
+                                                            ],
+                                                            "operator": "or",
+                                                            "actions": [
+                                                                {
+                                                                    "name": "/SelectActionWebContent",
+                                                                    "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "profiles": [
+                                                                "ps003",
+                                                                "editor"
+                                                            ],
+                                                            "operator": "or",
+                                                            "actions": [
+                                                                {
+                                                                    "name": "/SelectActionWebcontent2",
+                                                                    "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "excludeActions": [
+                                                        {
+                                                            "name": "/SelectActionWebContent",
+                                                            "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                        }
+                                                    ],
+                                                    "otherwiseActions": [
+                                                        {
+                                                            "name": "/SelectActionWebContent",
+                                                            "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                        }
+                                                    ],
+                                                    "alwaysActions": [
+                                                        {
+                                                            "name": "/SelectActionWebcontent2",
+                                                            "id": "bb35a385-1d95-41ce-9381-812c3b31f7ad"
+                                                        }
+                                                    ],
+                                                    "order": {
+                                                        "orderType": "random"
+                                                    },
+                                                    "limit": 100
+                                                },
+                                                "stopFirstMatch": true
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-04-29T08:06:50.479Z",
+                                            "publishedOnDate": "1970-01-01T00:00:00.000Z",
+                                            "lastModified": "2022-05-17T07:54:56.055Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    },
+                                    "Binding Simple with Quick Profiler - Sample 2": {
+                                        "value": {
+                                            "id": "67952797-f3fe-4709-b637-7d8deac3cd21",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                                            "title": "Binding Rule Quick Profiler",
+                                            "ruleType": "Binding",
+                                            "contents": {
+                                                "quickProfiler": {
+                                                    "attributeName": "day",
+                                                    "attributeType": "Date",
+                                                    "conditions": [
+                                                        {
+                                                            "operator": "is",
+                                                            "value": [
+                                                                "test"
+                                                            ],
+                                                            "actions": [
+                                                                {
+                                                                    "name": "/SelectActionWebContent",
+                                                                    "id": "846ced49-cced-473d-b579-8d24f21805bc"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "excludeActions": [
+                                                        {
+                                                            "name": "/SelectAction2",
+                                                            "id": "31e33c84-cd34-4827-a172-6c869ffc9cfa"
+                                                        }
+                                                    ],
+                                                    "otherwiseActions": [
+                                                        {
+                                                            "name": "/SelectAction1",
+                                                            "id": "6b2ff553-ef56-45fa-bc54-7b1b5e2bc3b6"
+                                                        }
+                                                    ],
+                                                    "alwaysActions": [
+                                                        {
+                                                            "name": "/SelectAction5",
+                                                            "id": "067898a9-2397-49b0-9232-9e36d33b9301"
+                                                        }
+                                                    ],
+                                                    "order": {
+                                                        "orderType": "sort",
+                                                        "items": [
+                                                            {
+                                                                "propertyName": "icm:effectiveDate",
+                                                                "sortOrder": "ascending"
+                                                            }
+                                                        ]
+                                                    },
+                                                    "limit": 100
+                                                },
+                                                "stopFirstMatch": false
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-04-29T08:46:38.399Z",
+                                            "publishedOnDate": "1970-01-01T00:00:00.000Z",
+                                            "lastModified": "2022-05-17T08:06:33.131Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    },
+                                    "Binding Nested - Sample 3":{
+                                        "value":{
+                                            "id": "5635aba0-3c57-447d-8725-27feb4aa1fa1",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding Rule Nested Example",
+                                            "title": "Binding Rule 3",
+                                            "ruleType": "Binding",
+                                            "contents": {
+                                              "profiler": {
+                                                "profilerName": "/Profile User Rule 1",
+                                                "conditions": [
+                                                  {
+                                                    "profiles": [
+                                                      "Profile1"
+                                                    ],
+                                                    "operator": "or",
+                                                    "profiler": {
+                                                      "profilerName": "/Profile User Rule 2",
+                                                      "conditions": [
+                                                        {
+                                                          "profiles": [
+                                                            "TestProfile2",
+                                                            "TestProfile1"
+                                                          ],
+                                                          "operator": "or",
+                                                          "actions": [
+                                                            {
+                                                              "name": "/Binding Rule 1",
+                                                              "id": "2e260223-680d-4650-a2a1-1d65f0e3e498"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "otherwiseActions": [
+                                                        {
+                                                          "name": "/Select Content Rule 2",
+                                                          "id": "2cde40d5-d9b3-456e-906e-a2018d2c4316"
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              },
+                                              "stopFirstMatch": false
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-06-20T10:13:50.383Z",
+                                            "publishedOnDate": "1970-01-01T00:00:00.001Z",
+                                            "lastModified": "2022-06-20T10:13:50.383Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    },
+                                    "Binding Nested with Quick Profiler - Sample 4":{
+                                        "value":{
+                                            "id": "718a8f9f-ab62-4198-be43-2c96bcf9f928",
+                                            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Binding Rule Nested with QuickProfiler Example",
+                                            "title": "Binding Rule 3",
+                                            "ruleType": "Binding",
+                                            "contents": {
+                                              "quickProfiler": {
+                                                "attributeName": "AcceptMimeTypes",
+                                                "attributeType": "BrowserCapability",
+                                                "conditions": [
+                                                  {
+                                                    "operator": "includes",
+                                                    "value": [
+                                                      "jpg"
+                                                    ],
+                                                    "quickProfiler": {
+                                                      "attributeName": "day",
+                                                      "attributeType": "Date",
+                                                      "conditions": [
+                                                        {
+                                                          "operator": "is",
+                                                          "value": [
+                                                            4
+                                                          ],
+                                                          "actions": [
+                                                            {
+                                                              "name": "/Binding Rule 1",
+                                                              "id": "2e260223-680d-4650-a2a1-1d65f0e3e498"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ],
+                                                      "otherwiseActions": [
+                                                        {
+                                                          "name": "/Select Content Rule 1",
+                                                          "id": "ec92fe95-3e76-4c8d-ab57-1ed6e34000c7"
+                                                        }
+                                                      ]
+                                                    }
+                                                  }
+                                                ]
+                                              },
+                                              "stopFirstMatch": false
+                                            },
+                                            "authors": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "creator": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "created": "2022-06-20T10:15:38.302Z",
+                                            "publishedOnDate": "1970-01-01T00:00:00.001Z",
+                                            "lastModified": "2022-06-20T10:15:38.302Z",
+                                            "lastModifier": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+                                            "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
+                                        }
+                                    },
+                                    "Binding Explanation": {
+                                        "value":{
+                                            "id": "Field to indicate folder uuid.",
+                                            "description" : "Field to indicate description of the rule.",
+                                            "title": "Field to indicate that title of the rule.",
+                                            "ruleType": "Field to indicate rule type(Eg - Visibility Rule or Profiler Rule).",
+                                            "contents": "Contents decides the rule behavior.",
+                                            "authors":"Field to indicate that owner of the rule.",
+                                            "creator": "Field to indicate that creator of the rule.",
+                                            "created": "Field to indicate that creation date and time of the rule.",
+                                            "lastModified": "Filed to indicate that last modified date and time of the rule.",
+                                            "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
+                                            "parentId" : "Field to indicate to find the difference between the location of the rule.",
+                                            "conditions": "List of conditions to meet the binding rule criteria.",
+                                            "profiler": "Contains the condition for profiles & which action should be performed",
+                                            "actions": "Field to indicate the details of the select action / binding rule which can perform an Action based on it.",
+                                            "otherwiseActions": "Fall back action if none of the conditions are met.",
+                                            "stopFirstMatch": "Boolean indication if the rule matching has to stop after the first match.",
+                                            "profilerName": "Field to indicate the path of the profiler rule",
+                                            "quickProfiler": "Field to indicate direct conditions for the profiler rule"
+                                        }
                                     }
                                 }
-                            },
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns updated rule details for the given rule uuid."
                     },
@@ -3611,9 +4905,39 @@
                                             "id":"Field indicate id of the resource"
                                          }
 
+                                     },
+                                     "Binding":{
+                                         "value":{
+                                            "ruleId": "d9af9938-9501-4407-86aa-08db82c3c8b0",
+                                            "title": "BindingRule1",
+                                            "ruleType": "Binding",
+                                            "result": [
+                                              {
+                                                "name": "Sample Article",
+                                                "type": "Content",
+                                                "id": "2e1156de-042e-43ce-baaf-060ede4b6a02"
+                                              },
+                                              {
+                                                "name": "Sample Article 2",
+                                                "type": "Content",
+                                                "id": "336fddcf-33f5-45cb-a648-ba6fa19f4b91"
+                                              }
+                                            ]
+                                         }
+                                     },
+                                     "Binding Explanation":{
+                                         "value":{
+                                            "ruleId": "Field to indicate rule-id of rule.",
+                                            "title": "Field to indicate title of rule.",
+                                            "ruleType": "Field to indicate type of rule.",
+                                            "result": "Field to indicate list of resources after invoking select action rule.",
+                                            "name": "Field to indicate resource name",
+                                            "type":"Field to indicate type of resource",
+                                            "id":"Field indicate id of the resource"
+                                        }
                                      }
                                 }
-                            },
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns rule invoke details for the given rule uuid."
                     },
