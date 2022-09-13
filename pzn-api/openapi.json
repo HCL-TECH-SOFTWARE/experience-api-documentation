@@ -3,7 +3,7 @@
     "info": {
         "title": "DX Personalization REST APIs",
         "version": "1.0.0",
-        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This gives you access to personalization features through REST services.\n\nCurrently APIs are developed for Visibility Rule, Profiler, Select Action, and Binding rule types. APIs are in beta stage at this time - changes are possible until finalized.",
+        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This gives you access to personalization features through REST services.\n\nCurrently APIs are developed for Visibility Rule, Profiler, Select Action, and Binding rule types.",
         "contact": {
             "name": "HCL"
         }

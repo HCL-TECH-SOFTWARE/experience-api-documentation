@@ -3822,12 +3822,644 @@
 				}
 			]
 		},
+		"/component/rich-texts": {
+			"summary": "Manage rich text components.",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The get method returns a collection of rich text components.  The results can be scoped to specific libraries using the libraryID query string, default is all libraries.  The post method provides the ability to create a rich text component.",
+			"get": {
+				"tags": [
+					"Component"
+				],
+				"parameters": [
+					{
+						"name": "libraryID",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifying one or more library ids will limit the results to the specified library.  Defaults to all libraries.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					}
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-rich-text-collection"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns a collection of rich text components."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"409": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"409-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "DUPLICATE_ITEM_FOUND_0",
+														"lang": "en",
+														"text": "Save failed. An item with this name at this path already exists. Change the name or path of this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Duplicate item"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Gets all the rich text components for the library",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation allows the caller to retrieve the rich text components from the system.  The libraryID  parameter limits the queries scope to one or more libraries.  "
+			},
+			"post": {
+				"requestBody": {
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The rich text component to be created.  Id is not passed it is generated.  Passing ID is a bad request.",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Rich-text"
+							},
+							"examples": {
+								"Rich Text component request": {
+									"value": {
+										"title": "RestV2 Rich Text Component",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A rich text component created with V2 API",
+										"name": "restv2richtextcomponent",
+										"type": "LibraryRichTextComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"data": {
+											"text": "<h1 dir=\"ltr\">This is heading 1</h1>\n\n<p dir=\"ltr\">this is normal text</p>\n\n<h2 dir=\"ltr\">This is heading 2</h2>\n\n<p dir=\"ltr\">more normal text</p>\n\n<h3 dir=\"ltr\">This is heading 3</h3>\n\n<p dir=\"ltr\">more normal text</p>\n"
+										}
+									}
+								}
+							}
+						}
+					},
+					"required": true
+				},
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"201": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Rich-text"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/RichTextComponentExample"
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the newly created rich text component."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"409": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"409-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "DUPLICATE_ITEM_FOUND_0",
+														"lang": "en",
+														"text": "Save failed. An item with this name at this path already exists. Change the name or path of this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Duplicate item"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Create a new rich text component",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation provides the ability to create a rich text component.  The id is not expected, passing the id will result in an error bad request.  The id will be generated upon creation."
+			}
+		},
+		"/component/rich-texts/{rich_text_id}": {
+			"summary": "Manage rich text components.",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Methods include get to retrieve a rich text component, put to update a rich text component, and delete to delete a rich text component.",
+			"get": {
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Rich-text"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/RichTextComponentExample"
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the rich text component."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Retrieves the rich text component specified by the path parameter.",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Retrieves the rich text component specified by the path parameter.  If the Object is not found or is not a rich text component an error is returned."
+			},
+			"put": {
+				"requestBody": {
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The updated rich text component.",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Rich-text"
+							},
+							"examples": {
+								"Rich Text component request": {
+									"value": {
+										"title": "RestV2 Rich Text Component Update",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A rich text component created with V2 API",
+										"name": "restv2richtextcomponentupdate",
+										"type": "LibraryRichTextComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"data": {
+											"text": "<h1 dir=\"ltr\">This is heading 1</h1>\n\n<p dir=\"ltr\">this is normal text</p>\n"
+										}
+									}
+								}
+							}
+						}
+					},
+					"required": true
+				},
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Rich-text"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/RichTextComponentExample"
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The resulting, persisted rich text component."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Update the rich text component",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Updates the rich text component specified by the path parameter.  If the Object is not found or is not a rich text component an error is returned."
+			},
+			"delete": {
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"204": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "rich text component successfully deleted"
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Delete rich text component",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Deletes the rich text component specified by the path parameter.  If the Object is not found or is not a rich text component an error is returned"
+			},
+			"parameters": [
+				{
+					"name": "rich_text_id",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "rich text component ID",
+					"schema": {
+						"type": "string"
+					},
+					"in": "path",
+					"required": true
+				}
+			]
+		},
 		"/component/short-texts": {
 			"summary": "Manage short-text components.",
 			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The get method returns a collection of short-text components.  The results can be scoped to specific libraries using the libraryID query string, default is all libraries.  The post method provides the ability to create a short text component.",
 			"get": {
 				"tags": [
 					"Component"
+				],
+				"parameters": [
+					{
+						"name": "libraryID",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifying one or more library ids will limit the results to the specified library.  Defaults to all libraries.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					}
 				],
 				"responses": {
 					"200": {
@@ -3941,123 +4573,15 @@
 								"$ref": "#/components/schemas/Short-text"
 							},
 							"examples": {
-								"post-st": {
+								"Short Text component request": {
 									"value": {
-										"type": "SiteTemplate",
-										"name": "Camille Marshal",
-										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-											"lang": "some text",
-											"value": "some text"
-										},
-										"title": {
-											"lang": "some text",
-											"value": "some text"
-										},
-										"owners": [
-											{
-												"distinguishedName": "Camille Marshal",
-												"uri": "some text",
-												"name": "Camille Marshal",
-												"type": "some text"
-											},
-											{
-												"distinguishedName": "Camille Marshal",
-												"uri": "some text",
-												"name": "Camille Marshal",
-												"type": "some text"
-											}
-										],
-										"authors": [
-											{
-												"distinguishedName": "Camille Marshal",
-												"uri": "some text",
-												"name": "Camille Marshal",
-												"type": "some text"
-											},
-											{
-												"distinguishedName": "Camille Marshal",
-												"uri": "some text",
-												"name": "Camille Marshal",
-												"type": "some text"
-											}
-										],
-										"libraryID": "some text",
-										"parentID": "some text",
-										"projectID": "some text",
-										"siteID": "some text",
+										"title": "RestV2 Short Text Component",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A short text component created with V2 API",
+										"name": "restv2shorttextcomponent",
+										"type": "LibraryShortTextComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 										"data": {
-											"text": "some text"
-										},
-										"version": {
-											"originalIdentityReference": "some text",
-											"originalName": "some text",
-											"versionName": "some text",
-											"versionDate": "2018-02-10T09:30Z"
-										},
-										"history": {
-											"entries": [
-												{
-													"date": "Thu, 24 Nov 2011 10:26:26.070Z",
-													"name": "wpsadmin",
-													"message": "some text on what was updated"
-												},
-												{
-													"date": "Thu, 24 Nov 2011 11:44:26.070Z",
-													"name": "wpsadmin",
-													"message": "some text on what was updated"
-												}
-											]
-										},
-										"versions": [
-											{
-												"originalIdentityReference": "some text",
-												"originalName": "some text",
-												"versionName": "some text",
-												"versionDate": "2018-02-10T09:30Z"
-											},
-											{
-												"originalIdentityReference": "some text",
-												"originalName": "some text",
-												"versionName": "some text",
-												"versionDate": "2018-02-10T09:30Z"
-											}
-										],
-										"status": "DRAFT_STATE",
-										"workflow": {
-											"currentStageRef": "some text",
-											"workflowRef": "some text",
-											"publishedRef": "some text",
-											"status": "PUBLISHED_STATE",
-											"approvalRequired": [
-												{
-													"distinguishedName": "Camille Marshal",
-													"uri": "some text",
-													"name": "Camille Marshal",
-													"type": "some text"
-												},
-												{
-													"distinguishedName": "Camille Marshal",
-													"uri": "some text",
-													"name": "Camille Marshal",
-													"type": "some text"
-												}
-											],
-											"approvalReceived": [
-												{
-													"distinguishedName": "Camille Marshal",
-													"uri": "some text",
-													"name": "Camille Marshal",
-													"type": "some text"
-												},
-												{
-													"distinguishedName": "Camille Marshal",
-													"uri": "some text",
-													"name": "Camille Marshal",
-													"type": "some text"
-												}
-											],
-											"projectOverrideEnabled": true,
-											"previousStatus": "NONE_STATE"
+											"text": "body text"
 										}
 									}
 								}
@@ -4075,6 +4599,11 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/Short-text"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/ShortTextComponentExample"
+									}
 								}
 							}
 						},
@@ -4171,17 +4700,7 @@
 				},
 				"summary": "Create a new short-text component",
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation provides the ability to create a short-text component.  The id is not expected, passing the id will result in an error bad request.  The id will be generated upon creation."
-			},
-			"parameters": [
-				{
-					"name": "libraryID",
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifying one or more library ids will limit the results to the specified library.  Defaults to all libraries.",
-					"schema": {
-						"type": "string"
-					},
-					"in": "query"
-				}
-			]
+			}
 		},
 		"/component/short-texts/{short_text_id}": {
 			"summary": "Manage short-text components.",
@@ -4190,22 +4709,17 @@
 				"tags": [
 					"Component"
 				],
-				"parameters": [
-					{
-						"name": "version",
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The id for the version of the item to return.",
-						"schema": {
-							"type": "string"
-						},
-						"in": "query"
-					}
-				],
 				"responses": {
 					"200": {
 						"content": {
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/Short-text"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/ShortTextComponentExample"
+									}
 								}
 							}
 						},
@@ -4310,6 +4824,20 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Short-text"
+							},
+							"examples": {
+								"Short Text component request": {
+									"value": {
+										"title": "RestV2 Short Text Component Update",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A short text component created with V2 API",
+										"name": "restv2shorttextcomponentupdate",
+										"type": "LibraryShortTextComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"data": {
+											"text": "body text update"
+										}
+									}
+								}
 							}
 						}
 					},
@@ -4324,6 +4852,11 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/Short-text"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/ShortTextComponentExample"
+									}
 								}
 							}
 						},
@@ -4424,16 +4957,6 @@
 			"delete": {
 				"tags": [
 					"Component"
-				],
-				"parameters": [
-					{
-						"name": "version",
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The ID for the version of the item to delete.",
-						"schema": {
-							"type": "string"
-						},
-						"in": "query"
-					}
 				],
 				"responses": {
 					"204": {
@@ -6876,6 +7399,763 @@
 						"type": "string"
 					},
 					"in": "query",
+					"required": true
+				}
+			]
+		},
+		"/component/images": {
+			"summary": "Manage image resource components.",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The get method returns a collection of image resource components.  The results can be scoped to specific libraries using the libraryID query string, default is all libraries.  The post method provides the ability to create an image resource component.",
+			"get": {
+				"tags": [
+					"Component"
+				],
+				"parameters": [
+					{
+						"name": "libraryID",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Specifying one or more library ids will limit the results to the specified library.  Defaults to all libraries.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					},
+					{
+						"name": "limit",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - limit is the number of results which will be returned.",
+						"schema": {
+							"type": "integer"
+						},
+						"in": "query"
+					},
+					{
+						"name": "offset",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - offset is the starting point from which results will be listed.",
+						"schema": {
+							"type": "integer"
+						},
+						"in": "query"
+					}
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-image-collection"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns a collection of image resource components."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"409": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"409-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "DUPLICATE_ITEM_FOUND_0",
+														"lang": "en",
+														"text": "Save failed. An item with this name at this path already exists. Change the name or path of this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Duplicate item"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Gets all the Image components for the library",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation allows the caller to retrieve the image resource components from the system.  The libraryID  parameter limits the queries scope to one or more libraries.  "
+			},
+			"post": {
+				"requestBody": {
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The image resource component to be created.  Id is not passed it is generated.  Passing ID is a bad request.",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ImagePostPut"
+							},
+							"examples": {
+								"Image component request with BASE64 encoding": {
+									"value": {
+										"title": "RestV2 Image Component",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "An image component created with V2 API",
+										"name": "restv2imagecomponent",
+										"type": "LibraryImageComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"data": {
+											"fileName": "Very-Basic-Checkmark-icon48.png",
+											"imageBorder": "5",
+											"imageHeight": "",
+											"imageWidth": "",
+											"alternateText": "basic checkmark",
+											"htmlTagName": "img",
+											"resourceBinary": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAC5klEQVR42u2YT4hNURzHfyMkiykyC6YZf7KwQSRpaqYZmZRQlMUQFpSN2KApYzHNinobzWyGFJNeVliILIgoGX8iScp/NrOZGiUMw/fXuafOXOfe+7t/5p3z9H71ac59c955v889v3vOea+OqjzqXCdQE3CdQE3AdQL/m8BScBY0g0FQAuPVIjATPAQrjLyGwR7wqhoEesEJy+vfg9dLPgusBffADPDHyMts7wUXfBSYBZ6CZZakzTbPwBEfBU6Co4J+HeCObwJt4BaYRva7rtu8Ih2wDeBSYDZ4RmrpjCobbr8Bq8FX3wROg4MJfVhgPVlKx7VAJ7gZStQ2Ayx5OG4gFwL14DlYmCDAm9cqUvuAVwJnwL7QZ4cFfoNW8CBpsEoLbAFXBf1OgW7JgJUUmANegAU0+Y5T6JpXJt6Zf/omcBHstCRsXvPJcx14Ih20UgI7wCVBv94AcUgFpoNG8AlMpEy+gVTpNJB9qdTXj0AL+FW0wGJSazbvmC/BZvAuxWfwQ7uVotd6jh9gTSCaKpIEloDboMl4jWeBD1ZvBePvBucF/fgwVxL0SyXAyfNBq5n+ne6PpLb4OIn5pO7oXON9thm4T+pQl7Y0YwXmgcdB8lErBku0k72c+P83SB0Z4k6Z30jttq+zJB8nsAsMCd4fVU77SR2Bk+IQ6M+afJwAb+N3LXfOvNZ/P9DkclpEajOqp/hjMj9bG4J24QIcfaBHIMChy+k9qeemPSJp3R4DK4P+uSJpFWKJ48KxuJzK4JigL5fYubzJSwS0RI9xbZuBNO3rYFMRyUsFwhJ5BEZJlc7nSgtoCWk5RQWvbuWikk8rYEpkmYErYFuRyWcRMCXSxAip3zxHfBAwJaQzsB1cLjr5PAJaIvxg29r8PaBrKpLPK2BKRAl8ActJrT5eCmiJqGeCv8Rfm6rkixLg0L/tm6vTACX/8uaNAMdGUkcE/upZDgQynfFdCTiJmoDrqAm4jqoX+AsqWLYx6iVVcgAAAABJRU5ErkJggg==",
+											"renditionList": {
+												"imageRendition": [
+													{
+														"fileName": "Very-Basic-Checkmark-icon16.png",
+														"name": "smartphone",
+														"resourceBinary": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA3klEQVR42r3TvwsBYRzH8Tt2EWUx2clqMcmgZFIGjFaTye4PsBqcIjIpi81mVkwWDGaDweTH+6nv1XXudJe6b73q+1zXp+f5Pne69mfpQQeUMEIPht+AKPZIyTqNk5+AMVrST9D0s4MqltJfkcHNa0ACByTxRhlrpyGGUcEKT8vzBWrSD9G2ppsBIUxRxxwNCVHrmbxzRhZ3pwA14QsislYhXewQxwtFbOznsx4hL2czQ9SQYtIP0HEakH2I9hBVR+Tw8BJgD1FzKGDrdkVu16hC1IdjoK/9qMB/pq/6AH4rJhFvyfL4AAAAAElFTkSuQmCC"
+													}
+												]
+											}
+										}
+									}
+								},
+								"Image component request with external DAM image": {
+									"value": {
+										"title": "RestV2 Image Component",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "An image component created with V2 API",
+										"name": "restv2imagecomponent",
+										"type": "LibraryImageComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"data": {
+											"fileName": "dojo.png",
+											"imageBorder": "",
+											"imageHeight": "",
+											"imageWidth": "",
+											"alternateText": "dojo is the best",
+											"htmlTagName": "img",
+											"resourceUri": {
+												"value": "https://toblerone-latest.team-q-dev.com/dx/api/dam/v1/collections/f7e5da28-80ec-4ed0-b09f-7e74008d82b1/items/dd239c34-db37-40dd-b067-718fd4f6c318/renditions/65d00cee-8c99-46b0-a67d-8927afa31024?binary=true",
+												"type": "image/png"
+											},
+											"renditionList": {
+												"imageRendition": [
+													{
+														"fileName": "https://toblerone-latest.team-q-dev.com:443/dx/api/dam/v1/collections/f7e5da28-80ec-4ed0-b09f-7e74008d82b1/items/dd239c34-db37-40dd-b067-718fd4f6c318/renditions/61d98da3-adbc-4c94-bf39-4a77eb7d7dec?binary=true",
+														"name": "smartphone",
+														"height": "0",
+														"width": "0",
+														"resourceUri": "https://toblerone-latest.team-q-dev.com:443/dx/api/dam/v1/collections/f7e5da28-80ec-4ed0-b09f-7e74008d82b1/items/dd239c34-db37-40dd-b067-718fd4f6c318/renditions/61d98da3-adbc-4c94-bf39-4a77eb7d7dec?binary=true"
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"required": true
+				},
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"201": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Image"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/ImageComponentExample"
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the newly created image resource component."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"409": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"409-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "DUPLICATE_ITEM_FOUND_0",
+														"lang": "en",
+														"text": "Save failed. An item with this name at this path already exists. Change the name or path of this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Duplicate item"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Create a new Image component",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation provides the ability to create a image resource component.  The id is not expected, passing the id will result in an error bad request.  The id will be generated upon creation."
+			}
+		},
+		"/component/images/{image_id}": {
+			"summary": "Manage image resource components.",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Methods include GET to retrieve an image resource component, PUT to update an image resource component, and DELETE to remove an image resource component.",
+			"get": {
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Image"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/ImageComponentExample"
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the image resource component."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Retrieves the image resource component specified by the path parameter.",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Retrieves the image resource component specified by the path parameter.  If the Object is not found or is not an image resource component an error is returned."
+			},
+			"put": {
+				"requestBody": {
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The uppdated image resource component.",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ImagePostPut"
+							},
+							"examples": {
+								"Image component request with BASE64 encoding": {
+									"value": {
+										"title": "RestV2 Image Component Update",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "An image component updated with V2 API",
+										"name": "restv2imagecomponentupdate",
+										"type": "LibraryImageComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"data": {
+											"fileName": "Very-Basic-Checkmark-icon48.png",
+											"imageBorder": "",
+											"imageHeight": "48",
+											"imageWidth": "48",
+											"alternateText": "basic checkmark",
+											"htmlTagName": "img",
+											"resourceBinary": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAC5klEQVR42u2YT4hNURzHfyMkiykyC6YZf7KwQSRpaqYZmZRQlMUQFpSN2KApYzHNinobzWyGFJNeVliILIgoGX8iScp/NrOZGiUMw/fXuafOXOfe+7t/5p3z9H71ac59c955v889v3vOea+OqjzqXCdQE3CdQE3AdQL/m8BScBY0g0FQAuPVIjATPAQrjLyGwR7wqhoEesEJy+vfg9dLPgusBffADPDHyMts7wUXfBSYBZ6CZZakzTbPwBEfBU6Co4J+HeCObwJt4BaYRva7rtu8Ih2wDeBSYDZ4RmrpjCobbr8Bq8FX3wROg4MJfVhgPVlKx7VAJ7gZStQ2Ayx5OG4gFwL14DlYmCDAm9cqUvuAVwJnwL7QZ4cFfoNW8CBpsEoLbAFXBf1OgW7JgJUUmANegAU0+Y5T6JpXJt6Zf/omcBHstCRsXvPJcx14Ih20UgI7wCVBv94AcUgFpoNG8AlMpEy+gVTpNJB9qdTXj0AL+FW0wGJSazbvmC/BZvAuxWfwQ7uVotd6jh9gTSCaKpIEloDboMl4jWeBD1ZvBePvBucF/fgwVxL0SyXAyfNBq5n+ne6PpLb4OIn5pO7oXON9thm4T+pQl7Y0YwXmgcdB8lErBku0k72c+P83SB0Z4k6Z30jttq+zJB8nsAsMCd4fVU77SR2Bk+IQ6M+afJwAb+N3LXfOvNZ/P9DkclpEajOqp/hjMj9bG4J24QIcfaBHIMChy+k9qeemPSJp3R4DK4P+uSJpFWKJ48KxuJzK4JigL5fYubzJSwS0RI9xbZuBNO3rYFMRyUsFwhJ5BEZJlc7nSgtoCWk5RQWvbuWikk8rYEpkmYErYFuRyWcRMCXSxAip3zxHfBAwJaQzsB1cLjr5PAJaIvxg29r8PaBrKpLPK2BKRAl8ActJrT5eCmiJqGeCv8Rfm6rkixLg0L/tm6vTACX/8uaNAMdGUkcE/upZDgQynfFdCTiJmoDrqAm4jqoX+AsqWLYx6iVVcgAAAABJRU5ErkJggg==",
+											"renditionList": {
+												"imageRendition": [
+													{
+														"fileName": "Very-Basic-Checkmark-icon16.png",
+														"name": "tablet",
+														"resourceBinary": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA3klEQVR42r3TvwsBYRzH8Tt2EWUx2clqMcmgZFIGjFaTye4PsBqcIjIpi81mVkwWDGaDweTH+6nv1XXudJe6b73q+1zXp+f5Pne69mfpQQeUMEIPht+AKPZIyTqNk5+AMVrST9D0s4MqltJfkcHNa0ACByTxRhlrpyGGUcEKT8vzBWrSD9G2ppsBIUxRxxwNCVHrmbxzRhZ3pwA14QsislYhXewQxwtFbOznsx4hL2czQ9SQYtIP0HEakH2I9hBVR+Tw8BJgD1FzKGDrdkVu16hC1IdjoK/9qMB/pq/6AH4rJhFvyfL4AAAAAElFTkSuQmCC"
+													}
+												]
+											}
+										}
+									}
+								},
+								"Image component request with external DAM image": {
+									"value": {
+										"title": "RestV2 Image Component Update",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "An image component updated with V2 API",
+										"name": "restv2imagecomponentupdate",
+										"type": "LibraryImageComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"data": {
+											"fileName": "dojo.png",
+											"imageBorder": "",
+											"imageHeight": "",
+											"imageWidth": "",
+											"alternateText": "dojo is the best",
+											"htmlTagName": "img",
+											"resourceUri": {
+												"value": "https://toblerone-latest.team-q-dev.com/dx/api/dam/v1/collections/f7e5da28-80ec-4ed0-b09f-7e74008d82b1/items/dd239c34-db37-40dd-b067-718fd4f6c318/renditions/65d00cee-8c99-46b0-a67d-8927afa31024?binary=true",
+												"type": "image/png"
+											},
+											"renditionList": {
+												"imageRendition": [
+													{
+														"fileName": "https://toblerone-latest.team-q-dev.com:443/dx/api/dam/v1/collections/f7e5da28-80ec-4ed0-b09f-7e74008d82b1/items/dd239c34-db37-40dd-b067-718fd4f6c318/renditions/61d98da3-adbc-4c94-bf39-4a77eb7d7dec?binary=true",
+														"name": "smartphone",
+														"height": "0",
+														"width": "0",
+														"resourceUri": "https://toblerone-latest.team-q-dev.com:443/dx/api/dam/v1/collections/f7e5da28-80ec-4ed0-b09f-7e74008d82b1/items/dd239c34-db37-40dd-b067-718fd4f6c318/renditions/61d98da3-adbc-4c94-bf39-4a77eb7d7dec?binary=true"
+													}
+												]
+											}
+										}
+									}
+								},
+								"Image component update to remove the tablet rendition": {
+									"value": {
+										"title": "RestV2 Image Component Update",
+										"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "An image component updated with V2 API",
+										"name": "restv2imagecomponentupdate",
+										"type": "LibraryImageComponent",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"data": {
+											"fileName": "batGuitar.webp",
+											"imageBorder": "",
+											"imageHeight": "",
+											"imageWidth": "",
+											"alternateText": "coolest Batman ever",
+											"htmlTagName": "img",
+											"resourceUri": "/wps/wcm/myconnect/32c2cf84-5e51-4ea0-a1c9-d5f2956f5fdc/batGuitar.webp?MOD=AJPERES&CVID=o8WFfd7",
+											"renditionList": {
+												"imageRendition": [
+													{
+														"name": "tablet"
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"required": true
+				},
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Image"
+								},
+								"examples": {
+									"success": {
+										"$ref": "#/components/examples/ImageComponentExample"
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The resulting, persisted image resource component."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Updates the image resource component",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Updates the image resource component specified by the path parameter.  If the Object is not found or is not a image resource component an error is returned."
+			},
+			"delete": {
+				"tags": [
+					"Component"
+				],
+				"responses": {
+					"204": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "image resource component successfully deleted"
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Delete image resource component",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Deletes the image resource component specified by the path parameter.  If the Object is not found or is not an image resource component an error is returned"
+			},
+			"parameters": [
+				{
+					"name": "image_id",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "image resource component ID",
+					"schema": {
+						"type": "string"
+					},
+					"in": "path",
 					"required": true
 				}
 			]
@@ -14883,21 +16163,21 @@
 					}
 				]
 			},
-			"-short-text-collection": {
+			"-rich-text-collection": {
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
 				"type": "object",
 				"allOf": [
 					{
 						"required": [
-							"entries"
+							"richtextcomponent-entries"
 						],
 						"type": "object",
 						"properties": {
 							"entries": {
-								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The collection of short text components.",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The collection of rich text components.",
 								"type": "array",
 								"items": {
-									"$ref": "#/components/schemas/Short-text"
+									"$ref": "#/components/schemas/Rich-text"
 								}
 							}
 						}
@@ -14907,36 +16187,30 @@
 					}
 				],
 				"example": {
-					"offset": 20,
-					"limit": 20,
+					"offset": 0,
+					"limit": 250,
 					"total": 99,
 					"links": [
 						{
 							"rel": "next",
-							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/libraries?offset=10",
+							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/rich-texts?offset=10",
 							"lang": "en"
 						}
 					],
-					"entries": [
+					"richtextcomponent-entries": [
 						{
-							"id": "some text",
-							"type": "SiteTemplate",
-							"name": "Camille Marshal",
+							"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"type": "LibraryRichTextComponent",
+							"name": "My rich text component",
 							"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-								"lang": "some text",
+								"lang": "en",
 								"value": "some text"
 							},
 							"title": {
-								"lang": "some text",
-								"value": "some text"
+								"lang": "en",
+								"value": "The rich text component"
 							},
 							"owners": [
-								{
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
-								},
 								{
 									"distinguishedName": "Camille Marshal",
 									"uri": "some text",
@@ -14950,26 +16224,12 @@
 									"uri": "some text",
 									"name": "Camille Marshal",
 									"type": "some text"
-								},
-								{
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
 								}
 							],
-							"libraryID": "some text",
-							"parentID": "some text",
-							"projectID": "some text",
-							"siteID": "some text",
+							"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 							"data": {
-								"text": "some text"
-							},
-							"version": {
-								"originalIdentityReference": "some text",
-								"originalName": "some text",
-								"versionName": "some text",
-								"versionDate": "2018-02-10T09:30Z"
+								"text": "<h1 dir=\"ltr\">This is heading 1</h1>\n\n<p dir=\"ltr\">this is normal text</p>\n\n<h2 dir=\"ltr\">This is heading 2</h2>\n\n<p dir=\"ltr\">more normal text</p>\n\n<h3 dir=\"ltr\">This is heading 3</h3>\n\n<p dir=\"ltr\">more normal text</p>\n"
 							},
 							"history": {
 								"entries": [
@@ -14985,57 +16245,143 @@
 									}
 								]
 							},
-							"versions": [
+							"status": "PUBLISHED"
+						}
+					]
+				}
+			},
+			"Rich-text": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rich Text Component",
+				"type": "object",
+				"allOf": [
+					{
+						"type": "object"
+					},
+					{
+						"$ref": "#/components/schemas/_WCM_Object"
+					},
+					{
+						"$ref": "#/components/schemas/-Rich-text"
+					}
+				]
+			},
+			"-Rich-text": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"data"
+						],
+						"type": "object",
+						"properties": {
+							"data": {
+								"$ref": "#/components/schemas/-rich-text-data",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The data representing the rich text component."
+							}
+						}
+					},
+					{
+						"$ref": "#/components/schemas/_Identity_Info"
+					}
+				]
+			},
+			"-rich-text-data": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"properties": {
+					"text": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Rich text value",
+						"type": "string"
+					}
+				},
+				"example": {
+					"value": "<h1 dir=\"ltr\">This is heading 1</h1>\n\n<p dir=\"ltr\">this is normal text</p>\n"
+				}
+			},
+			"-short-text-collection": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"shorttextcomponent-entries"
+						],
+						"type": "object",
+						"properties": {
+							"shorttextcomponent-entries": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The collection of short text components.",
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/Short-text"
+								}
+							}
+						}
+					},
+					{
+						"$ref": "#/components/schemas/_Collection_Base"
+					}
+				],
+				"example": {
+					"offset": 0,
+					"limit": 250,
+					"total": 99,
+					"links": [
+						{
+							"rel": "next",
+							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/short-texts?offset=10",
+							"lang": "en"
+						}
+					],
+					"shorttextcomponent-entries": [
+						{
+							"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"type": "LibraryShortTextComponent",
+							"name": "My short text component",
+							"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+								"lang": "en",
+								"value": "some text"
+							},
+							"title": {
+								"lang": "en",
+								"value": "The short text component"
+							},
+							"owners": [
 								{
-									"originalIdentityReference": "some text",
-									"originalName": "some text",
-									"versionName": "some text",
-									"versionDate": "2018-02-10T09:30Z"
-								},
-								{
-									"originalIdentityReference": "some text",
-									"originalName": "some text",
-									"versionName": "some text",
-									"versionDate": "2018-02-10T09:30Z"
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
 								}
 							],
-							"status": "DRAFT_STATE",
-							"workflow": {
-								"currentStageRef": "some text",
-								"workflowRef": "some text",
-								"publishedRef": "some text",
-								"status": "PUBLISHED_STATE",
-								"approvalRequired": [
+							"authors": [
+								{
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
+								}
+							],
+							"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"data": {
+								"text": "This is plain text"
+							},
+							"history": {
+								"entries": [
 									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
+										"date": "Thu, 24 Nov 2011 10:26:26.070Z",
+										"name": "wpsadmin",
+										"message": "some text on what was updated"
 									},
 									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
+										"date": "Thu, 24 Nov 2011 11:44:26.070Z",
+										"name": "wpsadmin",
+										"message": "some text on what was updated"
 									}
-								],
-								"approvalReceived": [
-									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									},
-									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									}
-								],
-								"projectOverrideEnabled": true,
-								"previousStatus": "NONE_STATE"
-							}
+								]
+							},
+							"status": "PUBLISHED"
 						}
 					]
 				}
@@ -17206,6 +18552,545 @@
 						"$ref": "#/components/schemas/_Identity_Info",
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
 						"type": "array"
+					}
+				}
+			},
+			"-image-collection": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"imagecomponent-entries"
+						],
+						"type": "object",
+						"properties": {
+							"imagecomponent-entries": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The collection of image components",
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/Image"
+								}
+							}
+						}
+					},
+					{
+						"$ref": "#/components/schemas/_Collection_Base"
+					}
+				],
+				"example": {
+					"offset": 20,
+					"limit": 20,
+					"total": 99,
+					"links": [
+						{
+							"rel": "next",
+							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/component/images?offset=10",
+							"lang": "en"
+						}
+					],
+					"imagecomponent-entries": [
+						{
+							"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"type": "LibraryImageComponent",
+							"name": "InfoIcon48",
+							"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+								"lang": "en",
+								"value": "some text"
+							},
+							"title": {
+								"lang": "en",
+								"value": "some text"
+							},
+							"owners": [
+								{
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
+								},
+								{
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
+								}
+							],
+							"authors": [
+								{
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
+								},
+								{
+									"distinguishedName": "Camille Marshal",
+									"uri": "some text",
+									"name": "Camille Marshal",
+									"type": "some text"
+								}
+							],
+							"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"data": {
+								"fileName": "some text",
+								"imageBorder": "0",
+								"imageHeight": "48",
+								"imageWidth": "48",
+								"alternateText": "some text",
+								"htmlTagName": "",
+								"renditionList": {
+									"imageRendition": [
+										{
+											"name": "smartphone",
+											"fileName": "some text",
+											"resourceUri": "some text",
+											"height": "0",
+											"width": "0"
+										}
+									]
+								},
+								"resourceUri": {
+									"type": "some text",
+									"value": "some text",
+									"damID": "some text"
+								}
+							},
+							"history": {
+								"entries": [
+									{
+										"date": "Thu, 24 Nov 2011 10:26:26.070Z",
+										"name": "wpsadmin",
+										"message": "some text on what was updated"
+									},
+									{
+										"date": "Thu, 24 Nov 2011 11:44:26.070Z",
+										"name": "wpsadmin",
+										"message": "some text on what was updated"
+									}
+								]
+							},
+							"status": "PUBLISHED"
+						}
+					]
+				}
+			},
+			"Image": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Image Component",
+				"type": "object",
+				"allOf": [
+					{
+						"type": "object"
+					},
+					{
+						"$ref": "#/components/schemas/_WCM_Object"
+					},
+					{
+						"$ref": "#/components/schemas/-Image"
+					}
+				]
+			},
+			"-Image": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"data"
+						],
+						"type": "object",
+						"properties": {
+							"data": {
+								"$ref": "#/components/schemas/-image-data",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The data representing the image component."
+							}
+						}
+					},
+					{
+						"$ref": "#/components/schemas/_Identity_Info"
+					}
+				],
+				"example": {
+					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"type": "LibraryImageComponent",
+					"name": "twitter icon white",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"lang": "en",
+						"value": "some text"
+					},
+					"title": {
+						"lang": "en",
+						"value": "twitter icon white"
+					},
+					"owners": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						},
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						},
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						}
+					],
+					"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"data": {
+						"fileName": "some text",
+						"imageBorder": "4",
+						"imageHeight": "20",
+						"imageWidth": "20",
+						"alternateText": "some text",
+						"htmlTagName": "",
+						"renditionList": {
+							"name": "smartphone",
+							"fileName": "some text",
+							"resourceUri": "some text",
+							"height": "0",
+							"width": "0"
+						},
+						"resourceUri": {
+							"type": "some text",
+							"value": "some text",
+							"damID": "some text"
+						}
+					}
+				}
+			},
+			"-image-data": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"properties": {
+					"fileName": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Name of the image file",
+						"type": "string"
+					},
+					"imageBorder": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The size of the border to appear around the image. For example, \"10\" for 10 pixels. A value of zero will mean that no border will be shown.",
+						"type": "string"
+					},
+					"imageHeight": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The height of the image. For example, \"100\" for 100 pixels. If no value is set, the original image dimensions will be used.",
+						"type": "string"
+					},
+					"imageWidth": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The width of the image. For example, \"100\" for 100 pixels. If no value is set, the original image dimensions will be used.",
+						"type": "string"
+					},
+					"alternateText": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides alternative information for an image if a user for some reason cannot view it.",
+						"type": "string"
+					},
+					"htmlTagName": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+						"type": "string"
+					},
+					"renditionList": {
+						"$ref": "#/components/schemas/-image-rendition",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Add renditions"
+					},
+					"resourceUri": {
+						"$ref": "#/components/schemas/-resourceUri",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provide information on how to access the file.  This property is optional during creation if the file is to be stored in WCM but will be returned in a GET.  If the file is referenced in DAM then the resourceUri property should be defined rather than the resourceBinary."
+					}
+				},
+				"example": {
+					"fileName": "some text",
+					"imageBorder": "some text",
+					"imageHeight": "some text",
+					"imageWidth": "some text",
+					"alternateText": "some text",
+					"htmlTagName": "some text",
+					"renditionList": {
+						"name": "tablet",
+						"fileName": "some text",
+						"uri": "some text",
+						"height": "some text",
+						"width": "some text"
+					},
+					"resourceUri": {
+						"type": "some text",
+						"value": "some text",
+						"damID": "some text"
+					}
+				}
+			},
+			"-image-rendition": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"required": [
+					"name",
+					"fileName",
+					"resourceUri"
+				],
+				"type": "object",
+				"properties": {
+					"name": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The rendition name",
+						"enum": [
+							"desktop",
+							"tablet",
+							"smartphone"
+						],
+						"type": "string"
+					},
+					"fileName": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Name of the file.",
+						"type": "string"
+					},
+					"resourceUri": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "URI to access the resource.",
+						"type": "string"
+					},
+					"height": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Height of the image",
+						"type": "string"
+					},
+					"width": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Width of the image",
+						"type": "string"
+					},
+					"type": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The mime-type for the file.",
+						"type": "string"
+					}
+				}
+			},
+			"-resourceUri": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"required": [
+					"type",
+					"value"
+				],
+				"type": "object",
+				"properties": {
+					"type": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "mime-type for the file",
+						"type": "string"
+					},
+					"value": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The url to access the resource",
+						"type": "string"
+					},
+					"damID": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The DAM ID of the file if stored in DAM",
+						"type": "string"
+					}
+				},
+				"example": {
+					"type": "some text",
+					"value": "some text",
+					"damID": "some text"
+				}
+			},
+			"ImagePostPut": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Image Component creation or update",
+				"type": "object",
+				"allOf": [
+					{
+						"type": "object"
+					},
+					{
+						"$ref": "#/components/schemas/_WCM_Object"
+					},
+					{
+						"$ref": "#/components/schemas/-ImagePostPut"
+					}
+				]
+			},
+			"-ImagePostPut": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"data"
+						],
+						"type": "object",
+						"properties": {
+							"data": {
+								"$ref": "#/components/schemas/-image-data-post-put",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The data representing the image component."
+							}
+						}
+					},
+					{
+						"$ref": "#/components/schemas/_Identity_Info"
+					}
+				],
+				"example": {
+					"id": "some text",
+					"type": "SiteTemplate",
+					"name": "Camille Marshal",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"lang": "some text",
+						"value": "some text"
+					},
+					"title": {
+						"lang": "some text",
+						"value": "some text"
+					},
+					"owners": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						},
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						},
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						}
+					],
+					"libraryID": "some text",
+					"parentID": "some text",
+					"projectID": "some text",
+					"siteID": "some text",
+					"data": {
+						"fileName": "some text",
+						"resourceBinary": "some text",
+						"imageBorder": "some text",
+						"imageHeight": "some text",
+						"imageWidth": "some text",
+						"alternateText": "some text",
+						"htmlTagName": "some text",
+						"renditionList": {
+							"name": "SMART_PHONE",
+							"fileName": "some text",
+							"uri": "some text",
+							"height": "some text",
+							"width": "some text"
+						},
+						"resourceUri": {
+							"type": "some text",
+							"value": "some text",
+							"damID": "some text"
+						}
+					}
+				}
+			},
+			"-image-data-post-put": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"properties": {
+					"fileName": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Name of the image file",
+						"type": "string"
+					},
+					"resourceBinary": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Base64 encoding for the image if the image is to be stored in WCM. If the image is stored externally in DAM, then resourceUri should be used instead.",
+						"type": "string"
+					},
+					"resourceUri": {
+						"$ref": "#/components/schemas/-resourceUri",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provide information on how to access the file. This property is not used during creation if the file is to be stored in WCM but will be returned in a GET.  If the file is referenced in DAM, then the resourceUri property should be defined rather than the resourceBinary."
+					},
+					"imageBorder": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Sets the size of the border to appear around the image. For example, \"10\" for 10 pixels. A value of zero will mean that no border will be shown.",
+						"type": "string"
+					},
+					"imageHeight": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Sets the height of the image. For example, \"100\" for 100 pixels. If no value is set, the original image dimensions will be used.",
+						"type": "string"
+					},
+					"imageWidth": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Sets the width of the image. For example, \"100\" for 100 pixels. If no value is set, the original image dimensions will be used.",
+						"type": "string"
+					},
+					"alternateText": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides alternative information for an image if a user for some reason cannot view it.",
+						"type": "string"
+					},
+					"htmlTagName": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+						"type": "string"
+					},
+					"renditionList": {
+						"$ref": "#/components/schemas/-image-rendition-post-put",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Add renditions"
+					}
+				},
+				"example": {
+					"fileName": "Very-Basic-Checkmark-icon48.png",
+					"imageBorder": "5",
+					"imageWidth": "",
+					"imageHeight": "",
+					"alternateText": "basic checkmark",
+					"htmlTagName": "img",
+					"resourceBinary": "iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAC5klEQVR42u2YT4hNURzHfyMkiykyC6YZf7KwQSRpaqYZmZRQlMUQFpSN2KApYzHNinobzWyGFJNeVliILIgoGX8iScp/NrOZGiUMw/fXuafOXOfe+7t/5p3z9H71ac59c955v889v3vOea+OqjzqXCdQE3CdQE3AdQL/m8BScBY0g0FQAuPVIjATPAQrjLyGwR7wqhoEesEJy+vfg9dLPgusBffADPDHyMts7wUXfBSYBZ6CZZakzTbPwBEfBU6Co4J+HeCObwJt4BaYRva7rtu8Ih2wDeBSYDZ4RmrpjCobbr8Bq8FX3wROg4MJfVhgPVlKx7VAJ7gZStQ2Ayx5OG4gFwL14DlYmCDAm9cqUvuAVwJnwL7QZ4cFfoNW8CBpsEoLbAFXBf1OgW7JgJUUmANegAU0+Y5T6JpXJt6Zf/omcBHstCRsXvPJcx14Ih20UgI7wCVBv94AcUgFpoNG8AlMpEy+gVTpNJB9qdTXj0AL+FW0wGJSazbvmC/BZvAuxWfwQ7uVotd6jh9gTSCaKpIEloDboMl4jWeBD1ZvBePvBucF/fgwVxL0SyXAyfNBq5n+ne6PpLb4OIn5pO7oXON9thm4T+pQl7Y0YwXmgcdB8lErBku0k72c+P83SB0Z4k6Z30jttq+zJB8nsAsMCd4fVU77SR2Bk+IQ6M+afJwAb+N3LXfOvNZ/P9DkclpEajOqp/hjMj9bG4J24QIcfaBHIMChy+k9qeemPSJp3R4DK4P+uSJpFWKJ48KxuJzK4JigL5fYubzJSwS0RI9xbZuBNO3rYFMRyUsFwhJ5BEZJlc7nSgtoCWk5RQWvbuWikk8rYEpkmYErYFuRyWcRMCXSxAip3zxHfBAwJaQzsB1cLjr5PAJaIvxg29r8PaBrKpLPK2BKRAl8ActJrT5eCmiJqGeCv8Rfm6rkixLg0L/tm6vTACX/8uaNAMdGUkcE/upZDgQynfFdCTiJmoDrqAm4jqoX+AsqWLYx6iVVcgAAAABJRU5ErkJggg==",
+					"renditionList": {
+						"imageRendition": [
+							{
+								"fileName": "Very-Basic-Checkmark-icon16.png",
+								"name": "smartphone",
+								"resourceBinary": "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA3klEQVR42r3TvwsBYRzH8Tt2EWUx2clqMcmgZFIGjFaTye4PsBqcIjIpi81mVkwWDGaDweTH+6nv1XXudJe6b73q+1zXp+f5Pne69mfpQQeUMEIPht+AKPZIyTqNk5+AMVrST9D0s4MqltJfkcHNa0ACByTxRhlrpyGGUcEKT8vzBWrSD9G2ppsBIUxRxxwNCVHrmbxzRhZ3pwA14QsislYhXewQxwtFbOznsx4hL2czQ9SQYtIP0HEakH2I9hBVR+Tw8BJgD1FzKGDrdkVu16hC1IdjoK/9qMB/pq/6AH4rJhFvyfL4AAAAAElFTkSuQmCC"
+							}
+						]
+					}
+				}
+			},
+			"-image-rendition-post-put": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"required": [
+					"name",
+					"fileName",
+					"resourceBinary",
+					"resourceUri"
+				],
+				"type": "object",
+				"properties": {
+					"name": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The rendition name. To delete a rendition with a PUT operation to the image component, only specify the name without any other properties.",
+						"enum": [
+							"desktop",
+							"tablet",
+							"smartphone"
+						],
+						"type": "string"
+					},
+					"fileName": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Name of the file. Required when creating a new rendition.",
+						"type": "string"
+					},
+					"resourceBinary": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Base64 encoding of the image. If this is specified, do not use resourceUri.",
+						"type": "string"
+					},
+					"resourceUri": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "URI to access the resource. If this is specified, do not use resourceBinary",
+						"type": "string"
 					}
 				}
 			},
@@ -22424,6 +24309,188 @@
 					"homePageReference": "wps/mycontenthandler/!ut/p/digest!3YoXN4GO40P1_E7JBdflig/wcmrest/item/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 				}
 			},
+			"RichTextComponentExample": {
+				"summary": "Example Rich Text Component",
+				"value": {
+					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"title": {
+						"lang": "en",
+						"value": "RestV2 Rich Text Component"
+					},
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"lang": "en",
+						"value": "A rich text component created with V2 API"
+					},
+					"name": "restv2richtextcomponent",
+					"type": "LibraryRichTextComponent",
+					"created": "Fri, 01 Jul 2022 17:06:28.269Z",
+					"lastModifier": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"creator": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"profile": {},
+					"status": "PUBLISHED",
+					"lastModified": "Fri, 01 Jul 2022 17:06:28.270Z",
+					"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"lock": {
+						"isLocked": "false"
+					},
+					"history": {
+						"entries": [
+							{
+								"date": "Fri, 01 Jul 2022 17:06:28.270Z",
+								"name": "wpsadmin",
+								"message": "Document created by wpsadmin"
+							}
+						]
+					},
+					"links": [
+						{
+							"rel": "self",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/component/rich-texts/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Read"
+						},
+						{
+							"rel": "edit",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/component/rich-texts/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Edit"
+						},
+						{
+							"rel": "delete",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/component/rich-texts/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Delete"
+						},
+						{
+							"rel": "library",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/libraries/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Library"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					],
+					"owners": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					],
+					"data": {
+						"text": "<h1 dir=\"ltr\">This is heading 1</h1>\n\n<p dir=\"ltr\">this is normal text</p>\n\n<h2 dir=\"ltr\">This is heading 2</h2>\n\n<p dir=\"ltr\">more normal text</p>\n\n<h3 dir=\"ltr\">This is heading 3</h3>\n\n<p dir=\"ltr\">more normal text</p>\n"
+					}
+				}
+			},
+			"ShortTextComponentExample": {
+				"summary": "Example Short Text Component",
+				"value": {
+					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"title": {
+						"lang": "en",
+						"value": "RestV2 Short Text Component"
+					},
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"lang": "en",
+						"value": "A short text component created with V2 API"
+					},
+					"name": "restv2shorttextcomponent",
+					"type": "LibraryShortTextComponent",
+					"created": "Fri, 01 Jul 2022 17:06:28.269Z",
+					"lastModifier": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"creator": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"profile": {},
+					"status": "PUBLISHED",
+					"lastModified": "Fri, 01 Jul 2022 17:06:28.270Z",
+					"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"lock": {
+						"isLocked": "false"
+					},
+					"history": {
+						"entries": [
+							{
+								"date": "Fri, 01 Jul 2022 17:06:28.270Z",
+								"name": "wpsadmin",
+								"message": "Document created by wpsadmin"
+							}
+						]
+					},
+					"links": [
+						{
+							"rel": "self",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/component/short-texts/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Read"
+						},
+						{
+							"rel": "edit",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/component/short-texts/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Edit"
+						},
+						{
+							"rel": "delete",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/component/short-texts/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Delete"
+						},
+						{
+							"rel": "library",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/libraries/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Library"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					],
+					"owners": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					],
+					"data": {
+						"text": "The text body"
+					}
+				}
+			},
 			"StylesheetExample": {
 				"summary": "Example Component Stylesheet",
 				"value": {
@@ -22713,6 +24780,134 @@
 						"startPage": 18,
 						"maxPages": 30,
 						"readAheadPages": 5
+					}
+				}
+			},
+			"ImageComponentExample": {
+				"summary": "Example Image Component",
+				"value": {
+					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"title": {
+						"lang": "en",
+						"value": "RestV2 Image Component"
+					},
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"lang": "en",
+						"value": "An image component created with V2 API"
+					},
+					"name": "restv2imagecomponent",
+					"type": "LibraryImageComponent",
+					"created": "Fri, 01 Jul 2022 17:06:28.269Z",
+					"lastModifier": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"creator": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"profile": {},
+					"status": "PUBLISHED",
+					"lastModified": "Fri, 01 Jul 2022 17:06:28.270Z",
+					"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"lock": {
+						"isLocked": "false"
+					},
+					"history": {
+						"entries": [
+							{
+								"date": "Fri, 01 Jul 2022 17:06:28.270Z",
+								"name": "wpsadmin",
+								"message": "Document created by wpsadmin"
+							}
+						]
+					},
+					"links": [
+						{
+							"rel": "self",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/component/images/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Read"
+						},
+						{
+							"rel": "edit",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/component/images/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Edit"
+						},
+						{
+							"rel": "delete",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/component/images/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Delete"
+						},
+						{
+							"rel": "library",
+							"href": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/wcmrest-v2/libraries/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Library"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					],
+					"owners": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!EB0QpXebye9l3axCqHPwfg/um/users/profiles/Z9eAeOHPAMGP6P9P4JMCC2JC4JMG663C6JM4CMPOAJMC6K9C8MS8CH1EA3Q4C13",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					],
+					"data": {
+						"fileName": "Very-Basic-Checkmark-icon48.png",
+						"imageBorder": "5",
+						"imageHeight": "",
+						"imageWidth": "",
+						"alternateText": "basic checkmark",
+						"htmlTagName": "img",
+						"resourceUri": {
+							"type": "image/png",
+							"value": "/wps/wcm/myconnect/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/Very-Basic-Checkmark-icon48.png?MOD=AJPERES&CVID=o6WKCIK"
+						},
+						"renditionList": {
+							"imageRendition": [
+								{
+									"fileName": "Very-Basic-Checkmark-icon32.png",
+									"name": "desktop",
+									"height": "32",
+									"width": "32",
+									"type": "image/png",
+									"resourceUri": "/wps/wcm/myconnect/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/desktop/Very-Basic-Checkmark-icon32.png?MOD=AJPERES&CVID=o6WKCIK"
+								},
+								{
+									"fileName": "Very-Basic-Checkmark-icon16.png",
+									"name": "smartphone",
+									"height": "16",
+									"width": "16",
+									"type": "image/png",
+									"resourceUri": "/wps/wcm/myconnect/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/smartphone/Very-Basic-Checkmark-icon16.png?MOD=AJPERES&CVID=o6WKCIK"
+								},
+								{
+									"fileName": "Very-Basic-Checkmark-icon24.png",
+									"name": "tablet",
+									"height": "24",
+									"width": "24",
+									"type": "image/png",
+									"resourceUri": "/wps/wcm/myconnect/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/tablet/Very-Basic-Checkmark-icon24.png?MOD=AJPERES&CVID=o6WKCIK"
+								}
+							]
+						}
 					}
 				}
 			},
