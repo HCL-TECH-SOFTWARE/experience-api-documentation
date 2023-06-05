@@ -839,6 +839,570 @@
 				}
 			]
 		},
+		"/contents/analysis": {
+			"summary": "Send Content for AI analysis of Sentiment, keywords, summarization",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "# Sentiment Analysis\r\n\r\nSentiment analysis is a branch of natural language processing (NLP) that involves the use of computational techniques to identify,  extract, and quantify subjective information from text data.  It involves analyzing written or spoken language to determine the emotional  of a piece of text, such as a tweet, review, or news article.\r\n\r\n    The possible sentiments would be one of the 5 sentiments mentioned below: \r\n    * Highly Negative \r\n    * Negative \r\n    * Neutral \r\n    * Positive \r\n    * Highly Positive\r\n    \r\n### Constraint : \r\n    The api is currently uses the  512 tokens from the input text rest are ignored. This will be handled in the next versions\r\n    \r\n### Supported Languages : \r\n    This Sentiment Model supports six languges  (English, Dutch, German, French, Spanish and Italian)\r\n\r\n# Keywords Generation\r\n\r\nThis API will be used to extract keyphrases for a given text. Keyphrase\r\n    extraction (also known as keyphrase detection or keyphrase analysis) is a\r\n    text analysis technique that automatically extracts the most used and most\r\n    important phrases from a text.\r\n    \r\n    Supported Languages :The Keyphrase Extraction API  supports six\r\n    languges - English, Dutch, German, French, Spanish and Italian.\r\n\r\n# Summary Generation\r\n\r\nDocument summarization uses natural language processing techniques to generate a summary for documents. There are two general approaches to automatic summarization, both of which are supported by the API: extractive and abstractive.\r\n\r\n    \r\n    Extractive summarization extracts sentences that collectively represent the\r\n    most important or relevant information within the original content.\r\n    Abstractive summarization generates a summary with concise, coherent\r\n    sentences or words which are not simply extract sentences from the original\r\n    document. These features are designed to shorten content that could be\r\n    considered too long to read.\r\n\r\n    \r\n`1.`**`Abstractive summarization`**: \r\n    \r\n    \r\n    Generates a summary that may not use the same words as those in the document, but captures the main idea.\r\n    \r\n    \r\n`2.`**`Extractive summarization`**: \r\n    \r\n    \r\n    Produces a summary by extracting salient sentences within the document\r\n    \r\n    \r\n### Supported Languages\r\n    \r\n    `english`, `french`, `spanish`, `german`, `italian`, `dutch`, `amharic`, `arabic`, `azerbaijani`, `bengali`, `burmese`, `chinese_simplified`, `chinese_traditional`, `gujarati`, `hausa`, `hindi`, `igbo`, `indonesian`, `japanese`, `kirundi`, `korean`, `kyrgyz`, `marathi`, `nepali`, `oromo`, `pashto`, `persian`, `pidgin`, `portuguese`, `punjabi`, `russian`, `scottish_gaelic`, `serbian_cyrillic`, `serbian_latin`, `sinhala`, `somali`, `swahili`, `tamil`, `telugu`, `thai`, `tigrinya`, `turkish`, `ukrainian`, `urdu`, `uzbek`, `vietnamese`, `welsh`, `yoruba`\r\n",
+			"post": {
+				"requestBody": {
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content for AI analysis",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ContentPost"
+							},
+							"examples": {
+								"post-content": {
+									"value": {
+										"title": {
+											"lang": "en",
+											"value": "DX Content"
+										},
+										"name": "DXContentName",
+										"type": "Content",
+										"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"templateID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+										"data": {
+											"comp ref name": {
+												"name": "comp ref name",
+												"title": {
+													"lang": "en",
+													"value": "comp ref title"
+												},
+												"type": "ReferenceComponent",
+												"data": {
+													"type": "application/vnd.ibm.wcm+xml",
+													"reference": ""
+												}
+											},
+											"date name": {
+												"name": "date name",
+												"title": {
+													"lang": "en",
+													"value": "date title"
+												},
+												"type": "DateComponent",
+												"data": {
+													"type": "application/vnd.ibm.wcm+xml"
+												}
+											},
+											"file name": {
+												"name": "file name",
+												"title": {
+													"lang": "en",
+													"value": "file title"
+												},
+												"type": "FileComponent",
+												"data": {
+													"type": "application/vnd.ibm.wcm+xml"
+												}
+											},
+											"html name": {
+												"name": "html name",
+												"title": {
+													"lang": "en",
+													"value": "html title"
+												},
+												"type": "HTMLComponent",
+												"data": {
+													"type": "text/html",
+													"value": ""
+												}
+											},
+											"image name": {
+												"name": "image name",
+												"title": {
+													"lang": "en",
+													"value": "image title"
+												},
+												"type": "ImageComponent",
+												"data": {
+													"type": "application/vnd.ibm.wcm+xml",
+													"image": {
+														"dimension": {
+															"height": "",
+															"width": "",
+															"border": "0"
+														},
+														"altText": "",
+														"tagName": "",
+														"renditionList": {}
+													}
+												}
+											},
+											"jsp name": {
+												"name": "jsp name",
+												"title": {
+													"lang": "en",
+													"value": "jsp title"
+												},
+												"type": "JSPComponent",
+												"data": {
+													"type": "application/vnd.ibm.wcm+xml",
+													"jsp": {
+														"path": ""
+													}
+												}
+											},
+											"link name": {
+												"name": "link name",
+												"title": {
+													"lang": "en",
+													"value": "link title"
+												},
+												"type": "LinkComponent",
+												"data": {
+													"type": "application/vnd.ibm.wcm+xml",
+													"linkElement": {
+														"destination": {
+															"type": "external",
+															"allowClear": false,
+															"value": ""
+														},
+														"display": {
+															"type": "title"
+														},
+														"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+															"useDestination": false,
+															"value": ""
+														},
+														"target": "None",
+														"additionalAttributes": ""
+													}
+												}
+											},
+											"number name": {
+												"name": "number name",
+												"title": {
+													"lang": "en",
+													"value": "number title"
+												},
+												"type": "NumericComponent",
+												"data": {
+													"type": "application/vnd.ibm.wcm+xml",
+													"double": 44.4
+												}
+											},
+											"opt select name": {
+												"name": "opt select name",
+												"title": {
+													"lang": "en",
+													"value": "opt select title"
+												},
+												"type": "OptionSelectionComponent",
+												"data": {
+													"type": "application/vnd.ibm.wcm+xml",
+													"optionselection": {
+														"displaytype": "Automatic",
+														"selection": "UserDefined",
+														"options": {
+															"mode": "Singleselect"
+														}
+													}
+												}
+											},
+											"rich text name": {
+												"name": "rich text name",
+												"title": {
+													"lang": "en",
+													"value": "rich text title"
+												},
+												"type": "RichTextComponent",
+												"data": {
+													"type": "text/html",
+													"value": ""
+												}
+											},
+											"short text name": {
+												"name": "short text name",
+												"title": {
+													"lang": "en",
+													"value": "short text title"
+												},
+												"type": "ShortTextComponent",
+												"data": {
+													"type": "text/plain",
+													"value": ""
+												}
+											},
+											"text name": {
+												"name": "text name",
+												"title": {
+													"lang": "en",
+													"value": "text title"
+												},
+												"type": "TextComponent",
+												"data": {
+													"type": "text/plain",
+													"value": ""
+												}
+											},
+											"selection name": {
+												"name": "selection name",
+												"title": {
+													"lang": "en",
+													"value": "selection title"
+												},
+												"type": "UserSelectionComponent",
+												"data": {
+													"type": "application/vnd.ibm.wcm+xml",
+													"userSelection": {}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"required": true
+				},
+				"tags": [
+					"AI Analyzer Rest"
+				],
+				"parameters": [
+					{
+						"name": "sentimentElement",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Optional parameter to indicate which field will be sent for sentiment analysis. If not present, it will do overall sentiment.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					},
+					{
+						"name": "type",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Optional parameter that will indicate the type of analysis to be done. If not present, will process all types.",
+						"schema": {
+							"enum": [
+								"summary",
+								"keywords",
+								"sentiment"
+							],
+							"type": "string"
+						},
+						"in": "query"
+					}
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ContentPost"
+								},
+								"examples": {
+									"content-data": {
+										"value": {
+											"title": {
+												"lang": "en",
+												"value": "DX Content"
+											},
+											"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+												"lang": "en",
+												"value": "AI generated description"
+											},
+											"sentiment": "POSITIVE",
+											"name": "DXContentName",
+											"type": "Content",
+											"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+											"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+											"templateID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+											"profile": {
+												"keyword": [
+													"keywords",
+													"from",
+													"AI",
+													"Analysis"
+												]
+											},
+											"data": {
+												"comp ref name": {
+													"name": "comp ref name",
+													"title": {
+														"lang": "en",
+														"value": "comp ref title"
+													},
+													"type": "ReferenceComponent",
+													"data": {
+														"type": "application/vnd.ibm.wcm+xml",
+														"reference": ""
+													}
+												},
+												"date name": {
+													"name": "date name",
+													"title": {
+														"lang": "en",
+														"value": "date title"
+													},
+													"type": "DateComponent",
+													"data": {
+														"type": "application/vnd.ibm.wcm+xml"
+													}
+												},
+												"file name": {
+													"name": "file name",
+													"title": {
+														"lang": "en",
+														"value": "file title"
+													},
+													"type": "FileComponent",
+													"data": {
+														"type": "application/vnd.ibm.wcm+xml"
+													}
+												},
+												"html name": {
+													"name": "html name",
+													"title": {
+														"lang": "en",
+														"value": "html title"
+													},
+													"type": "HTMLComponent",
+													"data": {
+														"type": "text/html",
+														"value": ""
+													}
+												},
+												"image name": {
+													"name": "image name",
+													"title": {
+														"lang": "en",
+														"value": "image title"
+													},
+													"type": "ImageComponent",
+													"data": {
+														"type": "application/vnd.ibm.wcm+xml",
+														"image": {
+															"dimension": {
+																"height": "",
+																"width": "",
+																"border": "0"
+															},
+															"altText": "",
+															"tagName": "",
+															"renditionList": {}
+														}
+													}
+												},
+												"jsp name": {
+													"name": "jsp name",
+													"title": {
+														"lang": "en",
+														"value": "jsp title"
+													},
+													"type": "JSPComponent",
+													"data": {
+														"type": "application/vnd.ibm.wcm+xml",
+														"jsp": {
+															"path": ""
+														}
+													}
+												},
+												"link name": {
+													"name": "link name",
+													"title": {
+														"lang": "en",
+														"value": "link title"
+													},
+													"type": "LinkComponent",
+													"data": {
+														"type": "application/vnd.ibm.wcm+xml",
+														"linkElement": {
+															"destination": {
+																"type": "external",
+																"allowClear": false,
+																"value": ""
+															},
+															"display": {
+																"type": "title"
+															},
+															"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+																"useDestination": false,
+																"value": ""
+															},
+															"target": "None",
+															"additionalAttributes": ""
+														}
+													}
+												},
+												"number name": {
+													"name": "number name",
+													"title": {
+														"lang": "en",
+														"value": "number title"
+													},
+													"type": "NumericComponent",
+													"data": {
+														"type": "application/vnd.ibm.wcm+xml",
+														"double": 44.4
+													}
+												},
+												"opt select name": {
+													"name": "opt select name",
+													"title": {
+														"lang": "en",
+														"value": "opt select title"
+													},
+													"type": "OptionSelectionComponent",
+													"data": {
+														"type": "application/vnd.ibm.wcm+xml",
+														"optionselection": {
+															"displaytype": "Automatic",
+															"selection": "UserDefined",
+															"options": {
+																"mode": "Singleselect"
+															}
+														}
+													}
+												},
+												"rich text name": {
+													"name": "rich text name",
+													"title": {
+														"lang": "en",
+														"value": "rich text title"
+													},
+													"type": "RichTextComponent",
+													"data": {
+														"type": "text/html",
+														"value": ""
+													}
+												},
+												"short text name": {
+													"name": "short text name",
+													"title": {
+														"lang": "en",
+														"value": "short text title"
+													},
+													"type": "ShortTextComponent",
+													"data": {
+														"type": "text/plain",
+														"value": ""
+													}
+												},
+												"text name": {
+													"name": "text name",
+													"title": {
+														"lang": "en",
+														"value": "text title"
+													},
+													"type": "TextComponent",
+													"data": {
+														"type": "text/plain",
+														"value": ""
+													}
+												},
+												"selection name": {
+													"name": "selection name",
+													"title": {
+														"lang": "en",
+														"value": "selection title"
+													},
+													"type": "UserSelectionComponent",
+													"data": {
+														"type": "application/vnd.ibm.wcm+xml",
+														"userSelection": {}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns content with generated description, keywords and sentiment."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "IWKRS0031E",
+														"lang": "en",
+														"text": "IWKRS0031E: Save failed. No name has been specified for this item."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"404": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"404-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "ITEM_NOT_FOUND_1",
+														"lang": "en",
+														"text": "The action failed because the item was not found. It may have been deleted."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item was not found"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Send Content for AI analysis of Sentiment, keywords, summarization",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": ""
+			}
+		},
 		"/libraries": {
 			"summary": "Manage library.",
 			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The get method returns a collection of library objects.  The results can be scoped to specific libraries using the libraryID query string, default is all libraries.  The post method provides the ability to create a library.",

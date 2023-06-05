@@ -12,28 +12,196 @@
     "paths": {
         "/cm/oid:{oid}": {
             "summary": "This allows you to obtain and modify the content topology and the properties of content nodes such as pages, labels, and content URLs.",
+            "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
             "get": {
                 "tags": [
                     "ContentModel"
                 ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "oid": {
+                                "value": "ibm.portal.Home"
+                            }
+                        },
+                        "name": "oid",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OID or uniqueName of the page",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
+                        "content": {
+                            "application/atom+xml": {}
+                        },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "404 Not Found"
                     }
                 },
-                "summary": "Obtain the properties of a page, label or content URL."
+                "summary": "Obtain the properties of a page, label or content URL"
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdatePage"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "ContentModel"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "oid": {
+                                "value": "ibm.portal.Home"
+                            }
+                        },
+                        "name": "oid",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OID or uniqueName of the page",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {}
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "400 Bad Request"
+                    }
+                },
+                "summary": "Edit an existing page"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreatePage"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "ContentModel"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "oid": {
+                                "value": "ibm.portal.Home"
+                            }
+                        },
+                        "name": "oid",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OID or uniqueName of the parent page",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "201 Created"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "400 Bad Request"
+                    }
+                },
+                "summary": "Create a page"
+            },
+            "delete": {
+                "tags": [
+                    "ContentModel"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "oid": {
+                                "value": "ibm.portal.Home"
+                            }
+                        },
+                        "name": "oid",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OID or uniqueName of the page",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {}
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "400 Bad Request"
+                    }
+                },
+                "summary": "Delete a page, label or content URL"
             },
             "parameters": [
                 {
                     "examples": {
-                        "ObjectID": {
+                        "oid": {
                             "value": "ibm.portal.Home"
                         }
                     },
                     "name": "oid",
-                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OID or uniquename of parent page",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
                     "in": "path",
                     "required": true
+                },
+                {
+                    "examples": {
+                        "Requested model plus direct children": {
+                            "value": "1"
+                        }
+                    },
+                    "name": "levels",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "You can request a feed of a resource that is maintained in a tree model. If you do this, you can parameterize the URL,by the number of levels that the response should contain.  levelcount is an integer value that is greater than zero.  See additional documentation here:  https://help.hcltechsw.com/digital-experience/9.5/dev/rest_addl_prms.html",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": false
+                },
+                {
+                    "examples": {
+                        "rep": {
+                            "value": "compact"
+                        }
+                    },
+                    "name": "RepresentationMode",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If the feed always transports all available information, it will be large. Therefore there is a way to limit the size of the feed. You can use the query parameter rep to specify the volume of information that is transported. You use the parameter as follows:\n\n[ &rep = compact | full | empty ]",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "examples": {
+                        "mdname": {
+                            "value": "com.ibm.portal.Hidden\n"
+                        }
+                    },
+                    "name": "ExplicitMetaData",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Some metadata names are hidden, as they are not exposed in the MetaData iterator; for example, this is the case for all names that start with com.ibm.portal. These names also do not show up in a feed.\n\nIn the compact representation mode no metadata may be exposed, although some certain MetaData are required. Therefore, in order to expose them in a feed, you need to explicitly request them. To do this, use the &mdname parameter as follows:\n[ &mdname=string ]",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": false
                 }
             ]
         },
@@ -43,18 +211,167 @@
                 "tags": [
                     "LayoutModel"
                 ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "rep": {
+                                "value": "compact"
+                            }
+                        },
+                        "name": "RepresentationMode",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If the feed always transports all available information, it will be large. Therefore there is a way to limit the size of the feed. You can use the query parameter rep to specify the volume of information that is transported. You use the parameter as follows:\n\n[ &rep = compact | full | empty ]",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "mdname": {
+                                "value": "com.ibm.portal.Hidden"
+                            }
+                        },
+                        "name": "ExplicitMetaData",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "\t\nSome metadata names are hidden, as they are not exposed in the MetaData iterator; for example, this is the case for all names that start with com.ibm.portal. These names also do not show up in a feed.\n\nIn the compact representation mode no metadata may be exposed, although some certain MetaData are required. Therefore, in order to expose them in a feed, you need to explicitly request them. To do this, use the &mdname parameter as follows: [ &mdname=string ]",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "objectID": {
+                                "value": "ibm.portal.Home"
+                            }
+                        },
+                        "name": "oid",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID of a page.",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
                     }
                 },
-                "summary": "Obtain the layout and properties of a page."
+                "summary": "Obtain the layout and properties of a page"
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateLayout"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "LayoutModel"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "objectID": {
+                                "value": "ibm.portal.Home"
+                            }
+                        },
+                        "name": "oid",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID of a page.",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {}
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "400 Bad Request"
+                    }
+                },
+                "summary": "Modify a page layout"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateLayout"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "LayoutModel"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "objectID": {
+                                "value": "ibm.portal.Home"
+                            }
+                        },
+                        "name": "oid",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID of a page.",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {}
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "400 Bad Request"
+                    }
+                },
+                "summary": "Add a layout to page"
+            },
+            "delete": {
+                "tags": [
+                    "LayoutModel"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "objectID": {
+                                "value": "ibm.portal.Home"
+                            }
+                        },
+                        "name": "oid",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID of a page.",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/atom+xml": {}
+                        },
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "400 Bad Request"
+                    }
+                },
+                "summary": "Delete a page layout"
             },
             "parameters": [
                 {
                     "examples": {
                         "objectiD": {
-                            "value": "Z6_00000000000000A0BR2B300GS0"
+                            "value": "ibm.portal.Home"
                         }
                     },
                     "name": "oid",
@@ -70,12 +387,127 @@
                 "tags": [
                     "NavigationModel"
                 ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "levels": {
+                                "value": "2"
+                            }
+                        },
+                        "name": "levels",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "You can request a feed of a resource that is maintained in a tree model. If you do this, you can parameterize the URL,by the number of levels that the response should contain. levelcount is an integer value that is greater than zero. See additional documentation here: https://help.hcltechsw.com/digital-experience/9.5/dev/rest_addl_prms.html",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "rep": {
+                                "value": "compact"
+                            }
+                        },
+                        "name": "RepresentationMode",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If the feed always transports all available information, it will be large. Therefore there is a way to limit the size of the feed. You can use the query parameter rep to specify the volume of information that is transported. You use the parameter as follows:\n\n[ &rep = compact | full | empty ]",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "ExplicitMetaData",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Some metadata names are hidden, as they are not exposed in the MetaData iterator; for example, this is the case for all names that start with com.ibm.portal. These names also do not show up in a feed.\n\nIn the compact representation mode no metadata may be exposed, although some certain MetaData are required. Therefore, in order to expose them in a feed, you need to explicitly request them. To do this, use the &mdname parameter as follows: [ &mdname=string ]",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "uniqueName": {
+                                "value": "ibm.portal.Home"
+                            }
+                        },
+                        "name": "oid",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID or uniqueName of a page.",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
                     }
                 },
-                "summary": "Obtain the navigation topology."
+                "summary": "Obtain the navigation topology"
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateNavigationModel"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "NavigationModel"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "levels": {
+                                "value": "2"
+                            }
+                        },
+                        "name": "levels",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "You can request a feed of a resource that is maintained in a tree model. If you do this, you can parameterize the URL,by the number of levels that the response should contain. levelcount is an integer value that is greater than zero. See additional documentation here: https://help.hcltechsw.com/digital-experience/9.5/dev/rest_addl_prms.html",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad Request"
+                    }
+                },
+                "summary": "Update the navigation model of a page"
+            },
+            "delete": {
+                "tags": [
+                    "NavigationModel"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "levels": {
+                                "value": "2"
+                            }
+                        },
+                        "name": "levels",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "try levels=2 on nav model",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "400 Bad Request"
+                    }
+                },
+                "summary": "Delete navigation topology"
             },
             "parameters": [
                 {
@@ -88,6 +520,19 @@
                     "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "ObjectID or uniqueName of a page.",
                     "in": "path",
                     "required": true
+                },
+                {
+                    "examples": {
+                        "levels": {
+                            "value": "&levels=2"
+                        }
+                    },
+                    "name": "levels",
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "try levels=2 on nav model",
+                    "schema": {
+                        "type": "integer"
+                    },
+                    "in": "query"
                 }
             ]
         },
@@ -97,12 +542,84 @@
                 "tags": [
                     "PortletModel"
                 ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "rep": {
+                                "value": "compact"
+                            }
+                        },
+                        "name": "RepresentationMode",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "If the feed always transports all available information, it will be large. Therefore there is a way to limit the size of the feed. You can use the query parameter rep to specify the volume of information that is transported. You use the parameter as follows:\n\n[ &rep = compact | full | empty ]",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "examples": {
+                            "mdname": {
+                                "value": "com.ibm.portal.Hidden"
+                            }
+                        },
+                        "name": "ExplicitMetaData",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Some metadata names are hidden, as they are not exposed in the MetaData iterator; for example, this is the case for all names that start with com.ibm.portal. These names also do not show up in a feed.\n\nIn the compact representation mode no metadata may be exposed, although some certain MetaData are required. Therefore, in order to expose them in a feed, you need to explicitly request them. To do this, use the &mdname parameter as follows: [ &mdname=string ]",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad Request"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Not Found"
                     }
                 },
-                "summary": "Obtain properties of a portlet."
+                "summary": "Obtain properties of a portlet"
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/atom+xml": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdatePortlet"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "PortletModel"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad Request"
+                    }
+                },
+                "summary": "Update portlet properties"
+            },
+            "delete": {
+                "tags": [
+                    "PortletModel"
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "400 Bad Request"
+                    }
+                },
+                "summary": "Delete a portlet"
             },
             "parameters": [
                 {
@@ -117,6 +634,35 @@
                     "required": true
                 }
             ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreatePage": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!-- POST this request body to URI cm:oid:<OID or uniquename of parent page>, e.g. http://localhost:10039/wps/mycontenthandler?uri=cm:oid:ibm.portal.Home -->\n<atom:feed\n  xmlns:thr=\"http://purl.org/syndication/thread/1.0\"\n  xmlns:xhtml=\"http://www.w3.org/1999/xhtml\"\n  xmlns:atom=\"http://www.w3.org/2005/Atom\"\n  xmlns:model=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model-elements\"\n  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n  xmlns:portal=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model\"\n  xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\"\n  xmlns:base=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-base\"\n  xmlns:app=\"http://www.w3.org/2007/app\"\n  xmlns:creation-context=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.1.0/portal-creation-context\"\n  xml:base=\"http://localhost:10039/wps/mycontenthandler/!ut/p/digest!2_wfM54UEWuDo1k-ek-G5A/cm/oid:wps.content.template.sample\">\n    <atom:entry>\n        <!-- optional: specify OID of new page as value: cm:oid:Z6_CGAH47L000TAC0I6LS3APO38J0 -->\n        <atom:id portal:uniquename=\"test.Demo\"></atom:id>\n        <atom:content type=\"application/xml\">\n                <!-- specify template page as creation context:copy - use either uniquename or OID of template page -->\n            <model:content-page creation-context:copy=\"wps.content.template.default\">\n                <model:title>\n                    <!-- optional localized title for new page -->\n                    <base:nls-string xml:lang=\"en\">Demo</base:nls-string>\n                </model:title>\n            </model:content-page>\n        </atom:content>\n        <thr:in-reply-to ref=\"cm:oid:ibm.portal.Home\"/>\n    </atom:entry>\n</atom:feed>"
+            },
+            "CreateLayout": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Add a layout to a page",
+                "type": "object",
+                "example": "curl -X 'POST' \\\n  'http://10.134.210.29:10039/wps/mycontenthandler/lm/oid:test.Demo' \\\n  -H 'accept: application/atom+xml' \\\n  -H 'Content-Type: application/atom+xml' \\\n  -d '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<atom:feed xmlns:base=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-base\" \n           xmlns:creation-context=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.2/portal-creation-context\" \n           xmlns:model=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model-elements\" \n           xmlns:portal=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model\" \n           xmlns:thr=\"http://purl.org/syndication/thread/1.0\"  \n           xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n           xmlns:atom=\"http://www.w3.org/2005/Atom\">\n  <atom:author>\n    <atom:name>HCL Portal</atom:name>\n  </atom:author>\n  <atom:title>HCL Digital Experience Model Feed</atom:title>\n  <atom:id/>\n  <atom:link href=\".\" rel=\"self\" type=\"application/atom+xml\"/>\n  <atom:updated>2007-07-04T13:28:56.358+0200</atom:updated>\n  <atom:entry>\n    <atom:title>lm:oid:newid_layout_0_1183548510931@oid:test.Demo</atom:title>\n    <atom:id portal:uniquename=\"testpage_1183548505593_lmroot\">lm:oid:test.Demo</atom:id>\n    <atom:updated>2007-07-04T13:28:56.358+0200</atom:updated>\n    <atom:content type=\"application/xml\">\n      <portal:layout-container/>\n    </atom:content>\n  </atom:entry>\n</atom:feed>\n'"
+            },
+            "UpdatePage": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "UpdatePage using PUT",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!-- POST this request body to URI cm:oid:<OID or uniquename of the page>, e.g. http://localhost:10039/wps/mycontenthandler?uri=cm:oid:ibm.portal.Home -->\n<atom:feed\n  xmlns:thr=\"http://purl.org/syndication/thread/1.0\"\n  xmlns:xhtml=\"http://www.w3.org/1999/xhtml\"\n  xmlns:atom=\"http://www.w3.org/2005/Atom\"\n  xmlns:model=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model-elements\"\n  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n  xmlns:portal=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model\"\n  xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\"\n  xmlns:base=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-base\"\n  xmlns:app=\"http://www.w3.org/2007/app\"\n  xmlns:creation-context=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.1.0/portal-creation-context\"\n  xml:base=\"http://localhost:10039/wps/mycontenthandler/!ut/p/digest!2_wfM54UEWuDo1k-ek-G5A/cm/oid:wps.content.template.sample\">\n<atom:entry>\n<!-- optional: specify OID of new page as value: cm:oid:Z6_CGAH47L000TAC0I6LS3APO38J0 -->\n<atom:id portal:uniquename=\"test.Demo\"></atom:id>\n</atom:entry>\n</atom:feed>"
+            },
+            "UpdatePortlet": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Update properties of a portlet",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n  <atom:feed xmlns:app=\"http://www.w3.org/2007/app\" xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\" xmlns:model=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model-elements\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:portal=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model\" xmlns:thr=\"http://purl.org/syndication/thread/1.0\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\" xmlns:base=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-base\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xml:base=\"http://10.134.210.113:10039/wps/mycontenthandler/!ut/p/digest!izjq___1AoCbUP0jh1hLPQ/pm/oid:ibm.portal.Web.Content.Viewer.Jsr286\">\n  <atom:author>\n    <atom:name>HCL Digital Experience</atom:name>\n  </atom:author>\n  <atom:title>IBM WebSphere Portal Model Feed</atom:title>\n  <atom:id>pm:oid:Z3_00000000000000A0BR2B300E87</atom:id>\n  <atom:link href=\"/wps/mypoc/!ut/p/digest!izjq___1AoCbUP0jh1hLPQ/pm/oid:Z3_00000000000000A0BR2B300E87?mode=download&amp;levels=1&amp;rep=compact\" rel=\"self\" type=\"application/atom+xml\"/>\n  <atom:updated>2023-04-07T02:43:53.119Z</atom:updated>\n  <opensearch:totalResults>1</opensearch:totalResults>\n  <app:collection portal:uri=\"pm:oid:Z3_00000000000000A0BR2B300E87\" href=\"/wps/mypoc/!ut/p/digest!izjq___1AoCbUP0jh1hLPQ/pm/oid:Z3_00000000000000A0BR2B300E87?mode=download\">\n  <atom:title>IBM WebSphere Portal Model Feed</atom:title>\n</app:collection>\n<atom:entry>\n  <atom:id portal:uniquename=\"ibm.portal.Web.Content.Viewer.Jsr286\">pm:oid:Z3_00000000000000A0BR2B300E87</atom:id>\n  <atom:title xml:lang=\"en\">Web Content Viewer</atom:title>\n  <atom:summary xml:lang=\"en\">Display Web Content</atom:summary>\n  <atom:published>2019-08-03T12:49:28.001Z</atom:published>\n  <atom:updated>2023-04-07T02:32:08.277Z</atom:updated>\n  <atom:content type=\"application/xml\">\n    <model:portlet-definition>\n      <model:title>\n        <base:nls-string xml:lang=\"ar\">‏برنامج مشاهدة محتويات الانترنت‏</base:nls-string>\n        <base:nls-string xml:lang=\"ca\">Visualitzador de contingut web</base:nls-string>\n        <base:nls-string xml:lang=\"cs\">Prohlížeč webového obsahu</base:nls-string>\n        <base:nls-string xml:lang=\"da\">Webindholdsfremviser</base:nls-string>\n        <base:nls-string xml:lang=\"de\">Web Content Viewer</base:nls-string>\n        <base:nls-string xml:lang=\"el\">Προβολή διαδικτυακού περιεχομένου</base:nls-string>\n        <base:nls-string xml:lang=\"en\">Web Content Viewer</base:nls-string>\n        <base:nls-string xml:lang=\"en-GB\">Web Content Viewer</base:nls-string>\n        <base:nls-string xml:lang=\"es\">Visor de contenido web</base:nls-string>\n        <base:nls-string xml:lang=\"es-MX\">Visor de contenido web</base:nls-string>\n        <base:nls-string xml:lang=\"fi\">Web-sisällön katseluohjelma</base:nls-string>\n        <base:nls-string xml:lang=\"fr\">Afficheur de contenu Web</base:nls-string>\n        <base:nls-string xml:lang=\"fr-CA\">Afficheur de contenu Web</base:nls-string>\n        <base:nls-string xml:lang=\"hr\">Preglednik Web sadržaja</base:nls-string>\n        <base:nls-string xml:lang=\"hu\">Webtartalom megjelenítő</base:nls-string>\n        <base:nls-string xml:lang=\"it\">Web Content Viewer</base:nls-string>\n        <base:nls-string xml:lang=\"he\">מציג תוכן רשת</base:nls-string>\n        <base:nls-string xml:lang=\"ja\">Web コンテンツ・ビューアー</base:nls-string>\n        <base:nls-string xml:lang=\"kk\">Веб-мазмұнын оқу құрылғысы</base:nls-string>\n        <base:nls-string xml:lang=\"ko\">웹 컨텐츠 뷰어</base:nls-string>\n        <base:nls-string xml:lang=\"nl\">Viewer voor webcontent</base:nls-string>\n        <base:nls-string xml:lang=\"no\">Visning av webinnhold</base:nls-string>\n        <base:nls-string xml:lang=\"pl\">Podgląd treści WWW</base:nls-string>\n        <base:nls-string xml:lang=\"pt\">Visualizador de conteúdo da Web</base:nls-string>\n        <base:nls-string xml:lang=\"pt-BR\">Visualizador do Conteúdo da Web</base:nls-string>\n        <base:nls-string xml:lang=\"ro\">Vizualizator conţinut Web</base:nls-string>\n        <base:nls-string xml:lang=\"ru\">Просмотр веб-материалов</base:nls-string>\n        <base:nls-string xml:lang=\"sk\">Prehliadač webového obsahu</base:nls-string>\n        <base:nls-string xml:lang=\"sl\">Prikazovalnik spletne vsebine</base:nls-string>\n        <base:nls-string xml:lang=\"sr\">Web Content Viewer</base:nls-string>\n        <base:nls-string xml:lang=\"sv\">Webbinnehållsvisning</base:nls-string>\n        <base:nls-string xml:lang=\"th\">การขอดูเนื้อหาบนเว็บ</base:nls-string>\n        <base:nls-string xml:lang=\"tr\">Web İçeriği Görüntüleyicisi</base:nls-string>\n        <base:nls-string xml:lang=\"uk\">Web Content Viewer</base:nls-string>\n        <base:nls-string xml:lang=\"vi\">Web Content Viewer</base:nls-string>\n        <base:nls-string xml:lang=\"zh\">网页内容查看器</base:nls-string>\n        <base:nls-string xml:lang=\"zh-TW\">Web 內容檢視器</base:nls-string>\n      </model:title>\n      <model:description>\n        <base:nls-string xml:lang=\"ar\">عرض محتويات الانترنت</base:nls-string>\n        <base:nls-string xml:lang=\"ca\">Visualitza de contingut web</base:nls-string>\n        <base:nls-string xml:lang=\"cs\">Zobrazit webový obsah</base:nls-string>\n        <base:nls-string xml:lang=\"da\">Vis webindhold</base:nls-string>\n        <base:nls-string xml:lang=\"de\">Webinhalte anzeigen</base:nls-string>\n        <base:nls-string xml:lang=\"el\">Εμφάνιση διαδικτυακού περιεχομένου</base:nls-string>\n        <base:nls-string xml:lang=\"en\">Display Web Content</base:nls-string>\n        <base:nls-string xml:lang=\"en-GB\">Display Web Content</base:nls-string>\n        <base:nls-string xml:lang=\"es\">Visualiza contenido web</base:nls-string>\n        <base:nls-string xml:lang=\"es-MX\">Visualiza contenido web</base:nls-string>\n        <base:nls-string xml:lang=\"fi\">Näytä Web-sisältö</base:nls-string>\n        <base:nls-string xml:lang=\"fr\">Afficher le contenu Web</base:nls-string>\n        <base:nls-string xml:lang=\"fr-CA\">Afficher le contenu Web</base:nls-string>\n        <base:nls-string xml:lang=\"hr\">Prikaz Web sadržaja</base:nls-string>\n        <base:nls-string xml:lang=\"hu\">Webtartalom megjelenítése</base:nls-string>\n        <base:nls-string xml:lang=\"it\">Visualizza contenuto Web</base:nls-string>\n        <base:nls-string xml:lang=\"he\">הצגת תוכן רשת</base:nls-string>\n        <base:nls-string xml:lang=\"ja\">Web コンテンツの表示</base:nls-string>\n        <base:nls-string xml:lang=\"kk\">Веб мазмұнды көрсету</base:nls-string>\n        <base:nls-string xml:lang=\"ko\">웹 컨텐츠 표시 </base:nls-string>\n        <base:nls-string xml:lang=\"nl\">Webcontent afbeelden</base:nls-string>\n        <base:nls-string xml:lang=\"no\">Vis webinnhold</base:nls-string>\n        <base:nls-string xml:lang=\"pl\">Wyświetl treść WWW</base:nls-string>\n        <base:nls-string xml:lang=\"pt\">Apresentar conteúdo da Web</base:nls-string>\n        <base:nls-string xml:lang=\"pt-BR\">Exibir Conteúdo da Web</base:nls-string>\n        <base:nls-string xml:lang=\"ro\">Afişare conţinut web</base:nls-string>\n        <base:nls-string xml:lang=\"ru\">Показать веб-материалы</base:nls-string>\n        <base:nls-string xml:lang=\"sk\">Zobraziť webový obsah</base:nls-string>\n        <base:nls-string xml:lang=\"sl\">Prikazovanje spletne vsebine</base:nls-string>\n        <base:nls-string xml:lang=\"sr\">Display Web Content</base:nls-string>\n        <base:nls-string xml:lang=\"sv\">Visa webbinnehåll</base:nls-string>\n        <base:nls-string xml:lang=\"th\">แสดงเนื้อหาเว็บ</base:nls-string>\n        <base:nls-string xml:lang=\"tr\">Web İçeriğini Görüntüle</base:nls-string>\n        <base:nls-string xml:lang=\"uk\">Відображення вмісту веб-сторінок</base:nls-string>\n        <base:nls-string xml:lang=\"vi\">Display Web Content</base:nls-string>\n        <base:nls-string xml:lang=\"zh\">显示网页内容</base:nls-string>\n        <base:nls-string xml:lang=\"zh-TW\">顯示 Web 內容</base:nls-string>\n      </model:description>\n      <model:supports>\n        <model:mime-type>application/xml</model:mime-type>\n        <model:portlet-mode>view</model:portlet-mode>\n      </model:supports>\n      <model:supports>\n        <model:mime-type>text/html</model:mime-type>\n        <model:portlet-mode>view</model:portlet-mode>\n        <model:portlet-mode>help</model:portlet-mode>\n        <model:portlet-mode>edit_defaults</model:portlet-mode>\n        <model:portlet-mode>config</model:portlet-mode>\n      </model:supports>\n      <model:supports>\n        <model:mime-type>x-application/vnd.xdime+xml</model:mime-type>\n        <model:portlet-mode>view</model:portlet-mode>\n      </model:supports>\n      <model:supports>\n        <model:mime-type>html</model:mime-type>\n        <model:portlet-mode>view</model:portlet-mode>\n        <model:portlet-mode>help</model:portlet-mode>\n        <model:portlet-mode>edit_defaults</model:portlet-mode>\n        <model:portlet-mode>config</model:portlet-mode>\n      </model:supports>\n      <model:portletpreferences name=\"INCLUDE_IN_SEARCH_INDEX\" read-only=\"false\">\n        <base:value xsi:type=\"base:String\" value=\"false\"/>\n      </model:portletpreferences>\n      <model:active>true</model:active>\n    </model:portlet-definition>\n  </atom:content>\n  <atom:link portal:uri=\"pm:oid:Z3_00000000000000A0BR2B300E87\" portal:uniquename=\"ibm.portal.Web.Content.Viewer.Jsr286\" href=\"/wps/mycontenthandler/!ut/p/digest!izjq___1AoCbUP0jh1hLPQ/pm/oid:Z3_00000000000000A0BR2B300E87?rep=full\" rel=\"edit\" type=\"application/atom+xml\"/>\n  <atom:link portal:uri=\"pm:oid:ZV_00000000000000A0BR2B300EO3\" href=\"/wps/mycontenthandler/!ut/p/digest!izjq___1AoCbUP0jh1hLPQ/pm/oid:ZV_00000000000000A0BR2B300EO3?levels=1&amp;rep=compact\" rel=\"related\" type=\"application/atom+xml\"/>\n  <thr:in-reply-to portal:uri=\"pm:oid:ZV_00000000000000A0BR2B300EO3\" ref=\"pm:oid:ZV_00000000000000A0BR2B300EO3\" href=\"/wps/mycontenthandler/!ut/p/digest!izjq___1AoCbUP0jh1hLPQ/pm/oid:ZV_00000000000000A0BR2B300EO3?levels=1&amp;rep=compact\" type=\"application/atom+xml\"/>\n</atom:entry>\n</atom:feed>"
+            },
+            "UpdateNavigationModel": {
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Update Navigation Model of a page",
+                "type": "object",
+                "example": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!--Update the server URL below-->\n  <atom:feed xmlns:app=\"http://www.w3.org/2007/app\" xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\" xmlns:model=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model-elements\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:portal=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model\" xmlns:thr=\"http://purl.org/syndication/thread/1.0\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\" xmlns:base=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-base\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xml:base=\"http://server_url:10039/wps/mycontenthandler/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/nm/oid:test.Demo\">\n<atom:entry>\n  <atom:title xml:lang=\"en\">Demo22</atom:title>\n  <atom:id portal:uniquename=\"test.Demo\">nm:oid:Z6_7HDGG101P88IF06SQ9DT0N2000</atom:id>\n  <atom:published>2023-04-07T17:04:43.939Z</atom:published>\n  <atom:updated>2023-04-07T20:31:44.627Z</atom:updated>\n  <atom:content type=\"application/xml\">\n    <model:navigation-node>\n      <model:title>\n        <base:nls-string xml:lang=\"ar\">كيفية البدء</base:nls-string>\n        <base:nls-string xml:lang=\"ca\">Com començar</base:nls-string>\n        <base:nls-string xml:lang=\"cs\">Začínáme</base:nls-string>\n        <base:nls-string xml:lang=\"da\">Kom godt i gang</base:nls-string>\n        <base:nls-string xml:lang=\"de\">Einführung</base:nls-string>\n        <base:nls-string xml:lang=\"el\">Έναρξη εργασιών</base:nls-string>\n        <base:nls-string xml:lang=\"en\">Demo</base:nls-string>\n        <base:nls-string xml:lang=\"es\">Iniciación</base:nls-string>\n        <base:nls-string xml:lang=\"fi\">Aloitusohje</base:nls-string>\n        <base:nls-string xml:lang=\"fr\">Mise en route</base:nls-string>\n        <base:nls-string xml:lang=\"hu\">Kezdeti lépések</base:nls-string>\n        <base:nls-string xml:lang=\"it\">Introduzione</base:nls-string>\n        <base:nls-string xml:lang=\"he\">איך מתחילים</base:nls-string>\n        <base:nls-string xml:lang=\"ja\">はじめに</base:nls-string>\n        <base:nls-string xml:lang=\"ko\">시작하기</base:nls-string>\n        <base:nls-string xml:lang=\"nl\">Aan de slag</base:nls-string>\n        <base:nls-string xml:lang=\"no\">Komme i gang</base:nls-string>\n        <base:nls-string xml:lang=\"pl\">Pierwsze kroki</base:nls-string>\n        <base:nls-string xml:lang=\"pt\">Introdução</base:nls-string>\n        <base:nls-string xml:lang=\"pt-BR\">Introdução</base:nls-string>\n        <base:nls-string xml:lang=\"ro\">Iniţiere</base:nls-string>\n        <base:nls-string xml:lang=\"ru\">Начало работы</base:nls-string>\n        <base:nls-string xml:lang=\"sk\">Začíname</base:nls-string>\n        <base:nls-string xml:lang=\"sl\">Začetna navodila za delo</base:nls-string>\n        <base:nls-string xml:lang=\"sv\">Komma igång</base:nls-string>\n        <base:nls-string xml:lang=\"th\">เริ่มต้นการใช้งาน</base:nls-string>\n        <base:nls-string xml:lang=\"tr\">Başlangıç Bilgileri</base:nls-string>\n        <base:nls-string xml:lang=\"uk\">Початок роботи</base:nls-string>\n        <base:nls-string xml:lang=\"zh\">入门</base:nls-string>\n        <base:nls-string xml:lang=\"zh-TW\">入門</base:nls-string>\n        <base:nls-string xml:lang=\"hr\">Kako započeti</base:nls-string>\n        <base:nls-string xml:lang=\"kk\">Іске кірісу</base:nls-string>\n      </model:title>\n      <model:metadata name=\"ibm.portal.instantiation.page.include.descendants\">\n        <base:value xsi:type=\"base:String\" value=\"true\"/>\n      </model:metadata>\n      <model:metadata name=\"param.sharing.scope.{http://www.ibm.com/xmlns/prod/datatype/content}\">\n        <base:value xsi:type=\"base:String\" value=\"ibm.portal.sharing.scope.page\"/>\n      </model:metadata>\n      <model:metadata name=\"param.sharing.scope.{http://www.ibm.com/xmlns/prod/datatype/content/resource-collections}\">\n        <base:value xsi:type=\"base:String\" value=\"ibm.portal.sharing.scope.page\"/>\n      </model:metadata>\n      <model:metadata name=\"param.sharing.scope.{http://www.ibm.com/xmlns/prod/websphere/portal/v8.0/portal-contextual-portal}\">\n        <base:value xsi:type=\"base:String\" value=\"ibm.portal.sharing.scope.page\"/>\n      </model:metadata>\n      <model:metadata name=\"wcm.template.oid\">\n        <base:value xsi:type=\"base:String\" value=\"Z6_00000000000000A0BR2B3002G4\"/>\n      </model:metadata>\n      <model:metadata name=\"param.sharing.scope.{http://www.ibm.com/xmlns/prod/websphere/portal/publicparams}path-info\">\n        <base:value xsi:type=\"base:String\" value=\"ibm.portal.sharing.scope.page\"/>\n      </model:metadata>\n      <model:metadata name=\"param.sharing.scope.{http://www.ibm.com/xmlns/prod/websphere/portal/v7.0/portal-contextual-portal}\">\n        <base:value xsi:type=\"base:String\" value=\"ibm.portal.sharing.scope.page\"/>\n      </model:metadata>\n      <model:metadata name=\"param.sharing.scope.{http://ibm.connections.com/portlet}\">\n        <base:value xsi:type=\"base:String\" value=\"ibm.portal.sharing.scope.page\"/>\n      </model:metadata>\n      <model:metadata name=\"ibm.template.oid\">\n        <base:value xsi:type=\"base:String\" value=\"Z6_00000000000000A0BR2B3002G4\"/>\n      </model:metadata>\n    </model:navigation-node>\n  </atom:content>\n  <atom:link portal:rel=\"staticpage\" portal:class=\"content-node\" portal:uri=\"cm:oid:Z6_7HDGG101P88IF06SQ9DT0N2000\" portal:uniquename=\"test.Demo\" href=\"/wps/mycontenthandler/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/cm/oid:Z6_7HDGG101P88IF06SQ9DT0N2000?levels=1&amp;rep=compact\" rel=\"related\" type=\"application/atom+xml\"/>\n  <atom:link portal:rel=\"content\" portal:class=\"staticpage\" portal:uniquename=\"test.Demo\" portal:uri=\"cm:oid:Z6_7HDGG101P88IF06SQ9DT0N2000\" href=\"/wps/mycontenthandler/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/cm/oid:Z6_7HDGG101P88IF06SQ9DT0N2000?levels=1&amp;rep=compact\" rel=\"related\" type=\"application/atom+xml\"/>\n  <atom:link portal:rel=\"content-topology\" portal:class=\"staticpage\" portal:uniquename=\"test.Demo\" portal:uri=\"cm:oid:Z6_7HDGG101P88IF06SQ9DT0N2000\" href=\"/wps/mycontenthandler/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/cm/oid:Z6_7HDGG101P88IF06SQ9DT0N2000?levels=1&amp;rep=compact\" rel=\"related\" type=\"application/atom+xml\"/>\n  <atom:link portal:uri=\"nm:oid:Z6_7HDGG101P88IF06SQ9DT0N2000\" portal:uniquename=\"test.Demo\" href=\"/wps/mycontenthandler/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/nm/oid:Z6_7HDGG101P88IF06SQ9DT0N2000?levels=1&amp;rep=compact\" rel=\"edit\" type=\"application/atom+xml\"/>\n<atom:link portal:rel=\"theme\" portal:uri=\"tl:oid:ZJ_00000000000000AQ78VEJK2003\" portal:inherited=\"false\" portal:uniquename=\"ibm.portal.SimpleTheme\" href=\"/wps/contenthandler/!ut/p/digest!yCzGr6NLwAWsAyn3F8ra7g/tl/oid:ZJ_00000000000000AQ78VEJK2003?levels=1&amp;rep=compact\" rel=\"related\" type=\"application/atom+xml\"/>\n  <atom:link portal:uri=\"nm:oid:Z6_7HDGG101P88IF06SQ9DT0N2000\" portal:uniquename=\"test.Demo\" href=\"/wps/mypoc/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/nm/oid:Z6_7HDGG101P88IF06SQ9DT0N2000\" type=\"text/html\"/>\n  <atom:link portal:rel=\"layout\" portal:uri=\"lm:oid:Z6_7HDGG101P88IF06SQ9DT0N2000\" portal:uniquename=\"test.Demo\" href=\"/wps/mycontenthandler/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/lm/oid:Z6_7HDGG101P88IF06SQ9DT0N2000?rep=compact\" rel=\"related\" type=\"application/atom+xml\"/>\n  <atom:link portal:rel=\"layout\" portal:uri=\"lm:oid:Z6_7HDGG101P88IF06SQ9DT0N2000\" portal:uniquename=\"test.Demo\" href=\"/wps/myportal/!ut/p/z0/04_Sj9CPykssy0xPLMnMz0vMAfIjcnKt8jNTrKLM4s09XNzdDQ0MAywsPN0MzIIDLV1CDPyMDAwM9AuyHRUBuhZ1aw!!/\" rel=\"related\" type=\"text/html\"/>\n  <atom:link portal:uri=\"nm:oid:Z6_00000000000000A0BR2B300GO2\" portal:uniquename=\"ibm.portal.Home\" href=\"/wps/mycontenthandler/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/nm/oid:Z6_00000000000000A0BR2B300GO2?levels=1&amp;rep=compact\" rel=\"related\" type=\"application/atom+xml\"/>\n  <thr:in-reply-to portal:uri=\"nm:oid:Z6_00000000000000A0BR2B300GO2\" portal:uniquename=\"ibm.portal.Home\" ref=\"nm:oid:Z6_00000000000000A0BR2B300GO2\" href=\"/wps/mycontenthandler/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/nm/oid:Z6_00000000000000A0BR2B300GO2?levels=1&amp;rep=compact\" type=\"application/atom+xml\"/>\n  <atom:link portal:rel=\"contextMenu\" portal:uri=\"wp.operations:page:oid:Z6_7HDGG101P88IF06SQ9DT0N2000\" portal:uniquename=\"test.Demo\" href=\"/wps/mypoc/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/wp.operations/page:oid:Z6_7HDGG101P88IF06SQ9DT0N2000?mode=download\" rel=\"related\" type=\"application/vnd.mozilla.xul+xml\"/>\n  <atom:link portal:rel=\"resourcefeed\" portal:uri=\"resourcefeed:oid:Z6_7HDGG101P88IF06SQ9DT0N2000\" href=\"/wps/mypoc/!ut/p/digest!nE4CCiIJ1jGzo21pRHBWlg/resourcefeed/oid:Z6_7HDGG101P88IF06SQ9DT0N2000?mode=download\" rel=\"related\" type=\"application/atom+xml\"/>\n</atom:entry>\n</atom:feed>"
+            }
         }
     }
 }
