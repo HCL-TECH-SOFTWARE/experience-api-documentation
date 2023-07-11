@@ -9729,6 +9729,405 @@
 				}
 			]
 		},
+		"/operations": {
+			"summary": "Bulk update operation to update multiple resources",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The POST method provides the ability to create an operation that can update multiple resources(Content, Content Templates, Site Area, Taxonomies and Components) in a single operation. Currently, \"updateExpiry\" is the only supported operationType, so the POST method can be used to update expiryDate of multiple resources in a single operation. The GET method returns a collection of operations that provides the ability to track the status of existing or ongoing bulk operations.",
+			"get": {
+				"tags": [
+					"Operations"
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/operations-collection"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns a collection of operations."
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Retrieves a collection of bulk operations",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The GET method returns a collection of operations that provides the ability to track the status of existing or ongoing bulk operations."
+			},
+			"post": {
+				"requestBody": {
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The bulk update operation to be initiated. Currently, \"updateExpiry\" is the only supported \"operationType\", so the POST method can be used to bulk update expiryDate of multiple resources in a single operation. \"items\" array would contain \"endpoint\" of the resource and \"listOfIds\" ids of the items to be updated. The \"data\" field is required for the operationType in the expected format. The \"action\" and \"criteria\" are optional fields to store the action and criteria of the operation.",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/OperationsPost"
+							},
+							"examples": {
+								"post-multipleresources": {
+									"value": {
+										"operationType": [
+											"updateExpiry"
+										],
+										"items": [
+											{
+												"endpoint": "contents",
+												"listOfIds": [
+													"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+													"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+												]
+											},
+											{
+												"endpoint": "content-templates",
+												"listOfIds": [
+													"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+												]
+											},
+											{
+												"endpoint": "categories",
+												"listOfIds": [
+													"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+													"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+												]
+											},
+											{
+												"endpoint": "components",
+												"listOfIds": [
+													"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+													"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+												]
+											},
+											{
+												"endpoint": "site-areas",
+												"listOfIds": [
+													"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+													"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+												]
+											}
+										],
+										"data": {
+											"updateExpiry": {
+												"expiryDate": "Mon, 06 Jan 2025 00:00:00.000Z"
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"required": true
+				},
+				"tags": [
+					"Operations"
+				],
+				"responses": {
+					"202": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/OperationsResponse"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the newly created operations polling id and status query link"
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-endpoint": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "INVALID_DATA_BULK_OPERATION",
+														"lang": "en",
+														"text": "No endpoint specified when attempting to initiate the bulk update operation."
+													}
+												]
+											}
+										}
+									},
+									"400-operationType": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "INVALID_DATA_BULK_OPERATION",
+														"lang": "en",
+														"text": "No operationType specified when attempting to initiate the bulk update operation."
+													}
+												]
+											}
+										}
+									},
+									"400-invalid-endpoint": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "INVALID_ENDPOINT_DATA_BULK_OPERATION",
+														"lang": "en",
+														"text": "The endpoint invalid-endpoint is invalid for the specified operationType when attempting to initiate the bulk update operation."
+													}
+												]
+											}
+										}
+									},
+									"400-items": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "INVALID_DATA_BULK_OPERATION",
+														"lang": "en",
+														"text": "No items specified when attempting to initiate the bulk update operation."
+													}
+												]
+											}
+										}
+									},
+									"400-listofids": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "INVALID_DATA_BULK_OPERATION",
+														"lang": "en",
+														"text": "No listOfIds specified when attempting to initiate the bulk update operation."
+													}
+												]
+											}
+										}
+									},
+									"400-expiryDate": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "INVALID_DATA_BULK_OPERATION",
+														"lang": "en",
+														"text": "No expiryDate specified when attempting to initiate the bulk update operation."
+													}
+												]
+											}
+										}
+									},
+									"400-duplicateIds": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "DUPLICATE_ITEM_IDS_0",
+														"lang": "en",
+														"text": "The listOfIds contains duplicate UUID entries: [xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx, xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx, xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx]"
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Creates an operation",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The POST method provides the ability to create an operation that can update multiple resources(Content, Content Templates, Site Area, Taxonomies and Components) in a single operation."
+			}
+		},
+		"/operations/{pollingId}": {
+			"summary": "Manage bulk update operations.",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Methods include get to retrieve an operation using pollingId as a query string to retrieve a specific operation.",
+			"get": {
+				"tags": [
+					"Operations"
+				],
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Operation"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the operation"
+					},
+					"202": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-Operation-processing"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the processing status of the operation"
+					},
+					"400": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"400-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "POLLINGID_NOT_VALID_0",
+														"lang": "en",
+														"text": "The polling UUID specified xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx is not valid."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bad request"
+					},
+					"401": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is not authenticated"
+					},
+					"403": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user is authenticated but does not have the correct permissions to complete the request"
+					},
+					"500": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/-generic_error"
+								},
+								"examples": {
+									"500-error": {
+										"value": {
+											"errors": {
+												"message": [
+													{
+														"code": "GENERIC_ERROR_0",
+														"lang": "en",
+														"text": "The action failed."
+													}
+												]
+											}
+										}
+									}
+								}
+							}
+						},
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server error"
+					}
+				},
+				"summary": "Retrieves the operation  specified by the polling id.",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Retrieves an operation using pollingId as a query string to retrieve a specific operation."
+			},
+			"parameters": [
+				{
+					"name": "pollingId",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "polling ID",
+					"schema": {
+						"type": "string"
+					},
+					"in": "path",
+					"required": true
+				}
+			]
+		},
 		"/references": {
 			"summary": "Retrieves the references associated to the item specified by UUID",
 			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This end point is limited to the get method.  GET allows the user to retrieve references to or from the item.",
@@ -18181,6 +18580,472 @@
 					"parentID": "some text",
 					"projectID": "some text",
 					"siteID": "some text"
+				}
+			},
+			"operations-collection": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Collection of Operations.",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"data"
+						],
+						"type": "object",
+						"properties": {
+							"data": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The collection of operations",
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/Operation"
+								}
+							}
+						}
+					}
+				],
+				"example": {
+					"total": "4",
+					"data": [
+						{
+							"pollingId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"totalNumBulkItems": "1",
+							"numBulkItemsProcessed": "1",
+							"startTime": "Wed May 17 19:29:10 UTC 2023",
+							"stopTime": "Wed May 17 19:29:10 UTC 2023",
+							"numItemsSuccess": "1",
+							"numItemsFail": "0",
+							"status": "COMPLETE",
+							"action": "some action",
+							"criteria": "some criteria",
+							"creator": {
+								"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+								"uri": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/um/users/profiles/Z9eAePPC8MQ866BO4JM476BCGJMG6OHOIJM8C6BD4JM06K9PA6S46IPDI3OCCI1",
+								"name": "wpsadmin",
+								"type": "USER"
+							},
+							"aggregateResults": [
+								{
+									"statusCode": "OK",
+									"title": "some text",
+									"type": "object type",
+									"createdBy": "wpsadmin",
+									"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+									"link": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/wcmrest/SiteArea/1d242cc9-a46f-48bd-93a8-59c6c129e559?mime-type=application%2Fjson"
+								}
+							]
+						},
+						{
+							"pollingId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"totalNumBulkItems": "2",
+							"numBulkItemsProcessed": "2",
+							"startTime": "Wed May 17 19:28:58 UTC 2023",
+							"stopTime": "Wed May 17 19:28:58 UTC 2023",
+							"numItemsSuccess": "0",
+							"numItemsFail": "2",
+							"status": "COMPLETE",
+							"action": "updateExpiry",
+							"creator": {
+								"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+								"uri": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/um/users/profiles/Z9eAePPC8MQ866BO4JM476BCGJMG6OHOIJM8C6BD4JM06K9PA6S46IPDI3OCCI1",
+								"name": "wpsadmin",
+								"type": "USER"
+							},
+							"aggregateResults": [
+								{
+									"statusCode": "Error",
+									"title": "some text",
+									"type": "",
+									"errorMessage": "Failed to find controllable: {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx, com.aptrix.pluto.control.Controllable}, in vp instance: 0, with context pathnull, and hostname: null",
+									"createdBy": "",
+									"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+								},
+								{
+									"statusCode": "Error",
+									"title": "some text",
+									"type": "",
+									"errorMessage": "Failed to find controllable: {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx, com.aptrix.pluto.control.Controllable}, in vp instance: 0, with context pathnull, and hostname: null",
+									"createdBy": "",
+									"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+								}
+							]
+						},
+						{
+							"pollingId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"totalNumBulkItems": "1",
+							"numBulkItemsProcessed": "1",
+							"startTime": "Wed May 17 19:29:06 UTC 2023",
+							"stopTime": "Wed May 17 19:29:06 UTC 2023",
+							"numItemsSuccess": "1",
+							"numItemsFail": "0",
+							"status": "COMPLETE",
+							"action": "updateExpiry",
+							"creator": {
+								"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+								"uri": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/um/users/profiles/Z9eAePPC8MQ866BO4JM476BCGJMG6OHOIJM8C6BD4JM06K9PA6S46IPDI3OCCI1",
+								"name": "wpsadmin",
+								"type": "USER"
+							},
+							"aggregateResults": [
+								{
+									"statusCode": "OK",
+									"title": "some text",
+									"type": "object type",
+									"createdBy": "wpsadmin",
+									"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+									"link": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/wcmrest/SiteArea/1d242cc9-a46f-48bd-93a8-59c6c129e559?mime-type=application%2Fjson"
+								}
+							]
+						},
+						{
+							"pollingId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"totalNumBulkItems": "2",
+							"numBulkItemsProcessed": "2",
+							"startTime": "Wed May 17 19:28:50 UTC 2023",
+							"stopTime": "Wed May 17 19:28:50 UTC 2023",
+							"numItemsSuccess": "2",
+							"numItemsFail": "0",
+							"status": "COMPLETE",
+							"action": "updateExpiry",
+							"creator": {
+								"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+								"uri": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/um/users/profiles/Z9eAePPC8MQ866BO4JM476BCGJMG6OHOIJM8C6BD4JM06K9PA6S46IPDI3OCCI1",
+								"name": "wpsadmin",
+								"type": "USER"
+							},
+							"aggregateResults": [
+								{
+									"statusCode": "OK",
+									"title": "some text",
+									"type": "object type",
+									"createdBy": "wpsadmin",
+									"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+									"link": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/wcmrest-v2/contents/d96c74d2-bee7-48bb-9584-b610b4f465be"
+								},
+								{
+									"statusCode": "OK",
+									"title": "some text",
+									"type": "object type",
+									"createdBy": "wpsadmin",
+									"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+									"link": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/wcmrest-v2/contents/e6368a57-8f63-43bc-af70-2eec53ab775a"
+								}
+							]
+						}
+					]
+				}
+			},
+			"Operation": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Operation",
+				"type": "object",
+				"allOf": [
+					{
+						"type": "object"
+					},
+					{
+						"$ref": "#/components/schemas/-Operation"
+					}
+				],
+				"example": {
+					"data": {
+						"pollingId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+						"totalNumBulkItems": "some total number of bulk items to update",
+						"numBulkItemsProcessed": "some number of items updated",
+						"startTime": "Thu May 18 03:21:52 UTC 2023",
+						"stopTime": "Thu May 18 03:21:53 UTC 2023",
+						"numItemsSuccess": "some total number of bulk items updated successfully",
+						"numItemsFail": "some total number of items failed to update",
+						"status": "COMPLETE",
+						"action": "some action",
+						"criteria": "some criteria",
+						"creator": {
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/um/users/profiles/Z9eAePPC8MQ866BO4JM476BCGJMG6OHOIJM8C6BD4JM06K9PA6S46IPDI3OCCI1",
+							"name": "wpsadmin",
+							"type": "USER"
+						},
+						"aggregateResults": [
+							{
+								"statusCode": "OK",
+								"title": "some text",
+								"type": "some text",
+								"createdBy": "wpsadmin",
+								"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+								"link": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/wcmrest-v2/contents/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+							},
+							{
+								"statusCode": "OK",
+								"title": "some text",
+								"type": "some text",
+								"createdBy": "wpsadmin",
+								"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+								"link": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/wcmrest-v2/contents/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+							}
+						]
+					}
+				}
+			},
+			"-Operation": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "An operation",
+				"type": "object",
+				"example": {
+					"data": {
+						"pollingId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+						"totalNumBulkItems": "some text",
+						"numBulkItemsProcessed": "some text",
+						"startTime": "Thu May 18 03:21:52 UTC 2023",
+						"stopTime": "Thu May 18 03:21:53 UTC 2023",
+						"numItemsSuccess": "some text",
+						"numItemsFail": "some text",
+						"status": "COMPLETE",
+						"action": "some action",
+						"criteria": "some criteria",
+						"creator": {
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/um/users/profiles/Z9eAePPC8MQ866BO4JM476BCGJMG6OHOIJM8C6BD4JM06K9PA6S46IPDI3OCCI1",
+							"name": "wpsadmin",
+							"type": "USER"
+						},
+						"aggregateResults": [
+							{
+								"statusCode": "OK",
+								"title": "some text",
+								"type": "some text",
+								"createdBy": "wpsadmin",
+								"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+								"link": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/wcmrest-v2/contents/e2325902-82d6-4f9d-b6f6-3e717953e979"
+							},
+							{
+								"statusCode": "OK",
+								"title": "some text",
+								"type": "some text",
+								"createdBy": "wpsadmin",
+								"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+								"link": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/wcmrest-v2/contents/6d7f513a-cbfe-439a-b344-2ad6525610f5"
+							}
+						]
+					}
+				}
+			},
+			"OperationsPost": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bulk Update Operations creation",
+				"type": "object",
+				"allOf": [
+					{
+						"type": "object"
+					},
+					{
+						"$ref": "#/components/schemas/-OperationsPost"
+					}
+				]
+			},
+			"-OperationsPost": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A container POST body",
+				"type": "object",
+				"allOf": [
+					{
+						"required": [
+							"operationType",
+							"items",
+							"data"
+						],
+						"type": "object",
+						"properties": {
+							"data": {
+								"$ref": "#/components/schemas/-operations-data",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Data required for the operationType in expected format"
+							},
+							"operationType": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "operationType is the type of bulk operation that needs to performed. As of this writing, we are only supporting \"updateExpiry\" to bulk update expirty date of items",
+								"uniqueItems": true,
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/-operations-type"
+								}
+							},
+							"items": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "items contains an array of objects that would contain \"endpoint\", which is resource endpoint that is used to update that item type and listOfIds is the ids of the resources on which the bulk update should be applied to",
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/-items"
+								}
+							},
+							"action": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Action of the operation",
+								"type": "string",
+								"example": "\"Update expiry date to Mon, 15 Jan xxxx\""
+							},
+							"criteria": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Criteria of the operation",
+								"type": "string",
+								"example": "\"All Contents, Expired, From 01/01/2022, To 01/01/2023, Title: Article\""
+							}
+						}
+					}
+				],
+				"example": {
+					"operationType": [
+						"updateExpiry"
+					],
+					"action": "some action",
+					"criteria": "some criteria",
+					"items": [
+						{
+							"endpoint": "contents",
+							"listOfIds": [
+								"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+								"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+							]
+						},
+						{
+							"endpoint": "content-templates",
+							"listOfIds": [
+								"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+							]
+						},
+						{
+							"endpoint": "categories",
+							"listOfIds": [
+								"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+								"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+							]
+						},
+						{
+							"endpoint": "components",
+							"listOfIds": [
+								"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+								"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+							]
+						},
+						{
+							"endpoint": "site-areas",
+							"listOfIds": [
+								"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+								"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+							]
+						}
+					],
+					"data": {
+						"updateExpiry": {
+							"expiryDate": "Mon, 06 Jan 2025 00:00:00.000Z"
+						}
+					}
+				}
+			},
+			"-operations-data": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The data field is required for the operationType in expected format. Currently, only updateExpiry opertation type is supported.",
+				"type": "object",
+				"properties": {
+					"updateExpiry": {
+						"$ref": "#/components/schemas/-updateExpiry",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Operation type containing expiryDate to update of the specified resource type"
+					}
+				}
+			},
+			"-updateExpiry": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Object include expiryDate in date and time format to update to.",
+				"required": [
+					"expiryDate"
+				],
+				"type": "object",
+				"properties": {
+					"expiryDate": {
+						"$ref": "#/components/schemas/-expiryDate",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Expiry date"
+					}
+				},
+				"example": {
+					"updateExpiry": {
+						"expiryDate": "Mon, 15 Jan 2125 00:00:00.000Z"
+					}
+				}
+			},
+			"-expiryDate": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The expiryDate for the given object.",
+				"type": "object",
+				"properties": {
+					"expiryDate": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The expiryDate to update to for this resource",
+						"type": "string"
+					}
+				}
+			},
+			"-operations-type": {
+				"title": "Item type",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Represents the operationType of the bulk update operation",
+				"enum": [
+					"updateExpiry"
+				],
+				"type": "string"
+			},
+			"-items": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Object include endpoint and listOfIds to apply the update to the specified IDs.",
+				"required": [
+					"endpoint",
+					"listOfIds"
+				],
+				"type": "object",
+				"properties": {
+					"endpoint": {
+						"$ref": "#/components/schemas/-operations-item-endpoint",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Enpoint of the specified resource.\nExample values for different kind of resource types:\n1. Content - contents\n2. Content Template - content-templates\n3. Category/Taxonomy - categories\n4. Site Area/Site Area Templates - site-areas\n5. Component(all components) - components"
+					},
+					"listOfIds": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "listOfIds contains arrays of IDs in string of specified resource endpoint to be updated",
+						"uniqueItems": true,
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"-operations-item-endpoint": {
+				"title": "Item type",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Represents the endpoint of the resources to be updated during the bulk update operation",
+				"enum": [
+					"contents",
+					"content-templates",
+					"categories",
+					"components",
+					"site-areas"
+				],
+				"type": "string"
+			},
+			"OperationsResponse": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bulk update operations response",
+				"type": "object",
+				"example": {
+					"data": {
+						"pollingId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+						"links": [
+							{
+								"rel": "status-link",
+								"href": "/wps/mycontenthandler/!ut/p/digest!E1Z07-wLqlBS3zJvU_-e3A/wcmrest-v2/operations/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+								"lang": "en"
+							}
+						]
+					}
+				}
+			},
+			"-Operation-processing": {
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "An operation status(processing)",
+				"type": "object",
+				"example": {
+					"data": {
+						"pollingId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+						"totalNumBulkItems": "some text",
+						"numBulkItemsProcessed": "some text",
+						"numItemsSuccess": "some text",
+						"numItemsFail": "some text",
+						"status": "PROCESSING",
+						"action": "some action",
+						"criteria": "some criteria",
+						"creator": {
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!mBVmxcmpiAZ_U6GQaRauzw/um/users/profiles/Z9eAePPC8MQ866BO4JM476BCGJMG6OHOIJM8C6BD4JM06K9PA6S46IPDI3OCCI1",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					}
 				}
 			},
 			"-object-reference-collection": {
