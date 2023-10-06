@@ -33,7 +33,9 @@
                 "responses": {
                     "200": {
                         "content": {
-                            "application/atom+xml": {}
+                            "application/atom+xml": {
+
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success."
                     },
@@ -73,7 +75,9 @@
                 "responses": {
                     "200": {
                         "content": {
-                            "application/atom+xml": {}
+                            "application/atom+xml": {
+
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
                     },
@@ -89,6 +93,17 @@
                         "application/atom+xml": {
                             "schema": {
                                 "$ref": "#/components/schemas/CreatePage"
+                            },
+                            "examples": {
+                                "CreateExternalURL": {
+                                    "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n  <atom:feed xmlns:app=\"http://www.w3.org/2007/app\" xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\" xmlns:model=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model-elements\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:portal=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model\" xmlns:thr=\"http://purl.org/syndication/thread/1.0\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\" xmlns:base=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-base\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xml:base=\"http://localhost:10039/wps/mycontenthandler/!ut/p/digest!GNJggxBwVlX4wBx3_y8wcw/cm/oid:urldemo\">\n<atom:entry>\n  <atom:title xml:lang=\"en\">urldemo</atom:title>\n  <atom:id portal:uniquename=\"urldemo\"></atom:id>\n  <atom:content type=\"application/xml\">\n    <model:content-url contentnodetype=\"external-url\">\n      <model:title>\n        <base:nls-string xml:lang=\"en\">urldemo</base:nls-string>\n      </model:title>\n      <model:active>true</model:active>\n      <model:supportedMarkup>html</model:supportedMarkup>\n    </model:content-url>\n  </atom:content>\n  <thr:in-reply-to portal:uri=\"cm:oid:Z6_00000000000000A0BR2B300GO2\" portal:uniquename=\"ibm.portal.Home\" ref=\"cm:oid:Z6_00000000000000A0BR2B300GO2\" href=\"/wps/mycontenthandler/!ut/p/digest!GNJggxBwVlX4wBx3_y8wcw/cm/oid:Z6_00000000000000A0BR2B300GO2?levels=1&amp;rep=compact\" type=\"application/atom+xml\"/>\n  <atom:link portal:rel=\"external-url\" portal:uri=\"cm:oid:\" portal:markupname=\"html\" portal:uniquename=\"urldemo\" href=\"https://www.hcl-software.com\" rel=\"related\" type=\"text/html\"/>\n</atom:entry>\n</atom:feed>"
+                                },
+                                "CreatePage": {
+                                    "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!-- POST this request body to URI cm:oid:<OID or uniquename of parent page>, e.g. http://localhost:10039/wps/mycontenthandler?uri=cm:oid:ibm.portal.Home -->\n<atom:feed\n  xmlns:thr=\"http://purl.org/syndication/thread/1.0\"\n  xmlns:xhtml=\"http://www.w3.org/1999/xhtml\"\n  xmlns:atom=\"http://www.w3.org/2005/Atom\"\n  xmlns:model=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model-elements\"\n  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n  xmlns:portal=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model\"\n  xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\"\n  xmlns:base=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-base\"\n  xmlns:app=\"http://www.w3.org/2007/app\"\n  xmlns:creation-context=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.1.0/portal-creation-context\"\n  xml:base=\"http://localhost:10039/wps/mycontenthandler/!ut/p/digest!2_wfM54UEWuDo1k-ek-G5A/cm/oid:wps.content.template.sample\">\n    <atom:entry>\n        <!-- optional: specify OID of new page as value: cm:oid:Z6_CGAH47L000TAC0I6LS3APO38J0 -->\n        <atom:id portal:uniquename=\"test.Demo\"></atom:id>\n        <atom:content type=\"application/xml\">\n                <!-- specify template page as creation context:copy - use either uniquename or OID of template page -->\n            <model:content-page creation-context:copy=\"wps.content.template.default\">\n                <model:title>\n                    <!-- optional localized title for new page -->\n                    <base:nls-string xml:lang=\"en\">Demo</base:nls-string>\n                </model:title>\n            </model:content-page>\n        </atom:content>\n        <thr:in-reply-to ref=\"cm:oid:ibm.portal.Home\"/>\n    </atom:entry>\n</atom:feed>"
+                                },
+                                "CreateLabel": {
+                                    "value": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n  <atom:feed xmlns:app=\"http://www.w3.org/2007/app\" xmlns:opensearch=\"http://a9.com/-/spec/opensearch/1.1/\" xmlns:model=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model-elements\" xmlns:atom=\"http://www.w3.org/2005/Atom\" xmlns:portal=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0.1/portal-model\" xmlns:thr=\"http://purl.org/syndication/thread/1.0\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\" xmlns:base=\"http://www.ibm.com/xmlns/prod/websphere/portal/v6.0/ibm-portal-composite-base\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xml:base=\"http://localhost:10039/wps/mycontenthandler/!ut/p/digest!XQI0tNP13oUj2i33Jmkffg/cm/oid:demoLabel\">\n<atom:entry>\n  <atom:title xml:lang=\"en\">demoLabel</atom:title>\n  <atom:id portal:uniquename=\"demoLabel\"></atom:id>\n  <atom:content type=\"application/xml\">\n    <model:content-label>\n      <model:title>\n        <base:nls-string xml:lang=\"en\">demoLabel</base:nls-string>\n      </model:title>\n      <model:metadata name=\"param.sharing.scope.{http://www.ibm.com/xmlns/prod/datatype/content}\">\n        <base:value xsi:type=\"base:String\" value=\"ibm.portal.sharing.scope.page\"/>\n      </model:metadata>\n      <model:metadata name=\"param.sharing.scope.{http://www.ibm.com/xmlns/prod/datatype/content/resource-collections}\">\n        <base:value xsi:type=\"base:String\" value=\"ibm.portal.sharing.scope.page\"/>\n      </model:metadata>\n      <model:metadata name=\"param.sharing.scope.{http://www.ibm.com/xmlns/prod/websphere/portal/publicparams}path-info\">\n        <base:value xsi:type=\"base:String\" value=\"ibm.portal.sharing.scope.page\"/>\n      </model:metadata>\n      <model:active>true</model:active>\n      <model:supportedMarkup>html</model:supportedMarkup>\n    </model:content-label>\n  </atom:content>\n  <thr:in-reply-to portal:uri=\"cm:oid:Z6_00000000000000A0BR2B300GO2\" portal:uniquename=\"ibm.portal.Home\" ref=\"cm:oid:Z6_00000000000000A0BR2B300GO2\" href=\"/wps/mycontenthandler/!ut/p/digest!XQI0tNP13oUj2i33Jmkffg/cm/oid:Z6_00000000000000A0BR2B300GO2?levels=1&amp;rep=compact\" type=\"application/atom+xml\"/>\n</atom:entry>\n</atom:feed>"
+                                }
                             }
                         }
                     },
@@ -118,7 +133,7 @@
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "400 Bad Request"
                     }
                 },
-                "summary": "Create a page"
+                "summary": "Create a page, external or internal URL or label"
             },
             "delete": {
                 "tags": [
@@ -140,7 +155,9 @@
                 "responses": {
                     "200": {
                         "content": {
-                            "application/atom+xml": {}
+                            "application/atom+xml": {
+
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
                     },
@@ -287,7 +304,9 @@
                 "responses": {
                     "200": {
                         "content": {
-                            "application/atom+xml": {}
+                            "application/atom+xml": {
+
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
                     },
@@ -327,7 +346,9 @@
                 "responses": {
                     "200": {
                         "content": {
-                            "application/atom+xml": {}
+                            "application/atom+xml": {
+
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
                     },
@@ -357,7 +378,9 @@
                 "responses": {
                     "200": {
                         "content": {
-                            "application/atom+xml": {}
+                            "application/atom+xml": {
+
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "OK"
                     },

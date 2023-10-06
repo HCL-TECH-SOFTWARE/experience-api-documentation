@@ -9736,12 +9736,38 @@
 				"tags": [
 					"Operations"
 				],
+				"parameters": [
+					{
+						"name": "limit",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - limit is the number of results which will be returned.",
+						"schema": {
+							"type": "integer"
+						},
+						"in": "query"
+					},
+					{
+						"name": "offset",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the results - offset is the starting point from which results will be listed.",
+						"schema": {
+							"type": "integer"
+						},
+						"in": "query"
+					},
+					{
+						"name": "sort",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The sort parameter is appended to queries to determine how the results are sorted. The following values can be used with the sort parameter.\ncreator\nstatus\nstartTime\nstopTime\nThe values _ascending or _descending are appended to the query to determine sort order.\n\nFor example, to sort the  results in ascending order of processing stop time, you would use:\n?sort=stopTime_ascending\nTo sort the aggregate results in descending order of processing stop time, you would use:\n?sort=stopTime_descending\nIf _ascending or _descending are not specified, the results as displayed in ascending order.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/operations-collection"
+									"$ref": "#/components/schemas/Operations-collection"
 								}
 							}
 						},
@@ -10028,6 +10054,32 @@
 				"tags": [
 					"Operations"
 				],
+				"parameters": [
+					{
+						"name": "limit",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the aggregate results - limit is the number of results which will be returned.",
+						"schema": {
+							"type": "integer"
+						},
+						"in": "query"
+					},
+					{
+						"name": "offset",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The offset and limit parameters can be leveraged to limit the aggregate results - offset is the starting point from which results will be listed.",
+						"schema": {
+							"type": "integer"
+						},
+						"in": "query"
+					},
+					{
+						"name": "sort",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The sort parameter is appended to queries to determine how aggregate results are sorted. The following values can be used with the sort parameter.\nerrorMessage\ncreatedBy\nstatusCode\ntitle\ntype\nThe values _ascending or _descending are appended to the query to determine sort order.\n\nFor example, to sort the aggregate results in ascending order of status code, you would use:\n?sort=statusCode_ascending\nTo sort the aggregate results in descending order of status code, you would use:\n?sort=statusCode_descending\nIf _ascending or _descending are not specified, the results as displayed in ascending order.",
+						"schema": {
+							"type": "string"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -10172,7 +10224,9 @@
 				{
 					"name": "uuid",
 					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Object id used to find references",
-					"schema": {},
+					"schema": {
+						"type": "string"
+					},
 					"in": "query",
 					"required": true
 				}
@@ -10592,7 +10646,6 @@
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "object's metadata",
 				"required": [
 					"history",
-					"state",
 					"status"
 				],
 				"type": "object",
@@ -10742,8 +10795,6 @@
 			"_Workflow_Info": {
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Represents the workflow state of the itmem.",
 				"required": [
-					"currentStage",
-					"workflow",
 					"status",
 					"currentStageRef",
 					"workflowRef"
@@ -11877,26 +11928,12 @@
 				"type": "object",
 				"properties": {
 					"errors": {
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/-generic-error-message"
-						},
+						"type": "object",
 						"properties": {
 							"message": {
 								"type": "array",
 								"items": {
-									"type": "object",
-									"properties": {
-										"code": {
-											"type": "string"
-										},
-										"lang": {
-											"type": "string"
-										},
-										"text": {
-											"type": "string"
-										}
-									}
+									"$ref": "#/components/schemas/-generic-error-message"
 								}
 							}
 						}
@@ -14630,9 +14667,11 @@
 						"type": "integer"
 					},
 					"results": {
-						"$ref": "#/components/schemas/_Identity_Info",
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
-						"type": "array"
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/_Identity_Info"
+						}
 					}
 				}
 			},
@@ -18582,7 +18621,7 @@
 					"siteID": "some text"
 				}
 			},
-			"operations-collection": {
+			"Operations-collection": {
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Collection of Operations.",
 				"type": "object",
 				"allOf": [
