@@ -677,7 +677,14 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/CategoryComponent"
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/CategoryComponent"
+										},
+										{
+											"$ref": "#/components/schemas/CommonLinksObject"
+										}
+									]
 								}
 							}
 						},
@@ -753,7 +760,14 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/CategoryComponent"
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/CategoryComponent"
+										},
+										{
+											"$ref": "#/components/schemas/CommonLinksObject"
+										}
+									]
 								}
 							}
 						},
@@ -826,7 +840,14 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/CategoryComponent"
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/CategoryComponent"
+										},
+										{
+											"$ref": "#/components/schemas/CommonLinksObject"
+										}
+									]
 								}
 							}
 						},
@@ -7918,12 +7939,12 @@
 					}
 				},
 				"summary": "Create a new content item.",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation allows you to create a content item. Do not specify an 'ID' in the request, as it will result in a 'Bad Request' error. An 'ID' will be automatically generated for the content item upon creation."
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This operation allows you to create a content item. Do not specify an 'ID' in the request, as it will result in a 'Bad Request' error. An 'ID' will be automatically generated for the content item upon creation. See https://opensource.hcltechsw.com/digital-experience/latest/manage_content/wcm_development/wcm_rest/wcm_rest_content_formats/ for details on uploading images or files via content creation."
 			}
 		},
 		"/contents/{content_id}": {
 			"summary": "Manage content objects.",
-			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This endpoint supports various methods: 'GET' to retrieve content, 'PUT' to update content, 'DELETE' to remove content, and 'PATCH' to modify or restore a version using the 'content_id' as the path parameter.",
+			"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This endpoint supports various methods: 'GET' to retrieve content, 'PUT' to update content, 'DELETE' to remove content, and 'PATCH' to modify or restore a version using the 'content_id' as the path parameter. See https://opensource.hcltechsw.com/digital-experience/latest/manage_content/wcm_development/wcm_rest/wcm_rest_content_formats/ for details on uploading images or files via content creation or update.",
 			"get": {
 				"tags": [
 					"Content"
@@ -8081,7 +8102,7 @@
 					}
 				},
 				"summary": "Update a specific content object.",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Update the content specified by the path parameter. If the object is not found or is not a content, an error will be returned."
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Update the content specified by the path parameter. If the object is not found or is not a content, an error will be returned. See https://opensource.hcltechsw.com/digital-experience/latest/manage_content/wcm_development/wcm_rest/wcm_rest_content_formats/ for details on uploading images or files via a content update."
 			},
 			"delete": {
 				"tags": [
@@ -18645,15 +18666,22 @@
 				"allOf": [
 					{
 						"required": [
-							"entries"
+							"category-entries"
 						],
 						"type": "object",
 						"properties": {
-							"entries": {
+							"category-entries": {
 								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The collection of (categories & taxonomies) that satisfy the request.",
 								"type": "array",
 								"items": {
-									"$ref": "#/components/schemas/CategoryComponent"
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/CategoryComponent"
+										},
+										{
+											"$ref": "#/components/schemas/CommonLinkObject"
+										}
+									]
 								}
 							}
 						}
@@ -18663,144 +18691,192 @@
 					}
 				],
 				"example": {
-					"offset": "20",
-					"limit": "20",
-					"total": "99",
-					"links": [
-						{
-							"rel": "next",
-							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/categories?offset=10",
-							"lang": "en"
-						}
-					],
+					"offset": "0",
+					"limit": "250",
+					"total": "4",
 					"category-entries": [
 						{
-							"id": "some text",
-							"type": "Category",
-							"name": "Camille Marshal",
-							"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-								"lang": "en",
-								"value": "some text"
-							},
+							"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 							"title": {
 								"lang": "en",
-								"value": "some text"
+								"value": "Navigation"
 							},
-							"owners": [
+							"name": "Navigation",
+							"type": "Taxonomy",
+							"created": "Sat, 19 Dec 2009 20:19:30.511Z",
+							"lastModifier": {
+								"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+								"uri": "/wps/mycontenthandler/!ut/p/digest!4nht3UCd4jKeqtjvuPOzVw/um/users/profiles/Z9eAeLPD03S06L9PCJMGCL9EAMMG6L9P4MM471BD4JMG6MHCC6H17P1CIJR07H1",
+								"name": "wpsadmin",
+								"type": "USER"
+							},
+							"creator": {
+								"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+								"uri": "/wps/mycontenthandler/!ut/p/digest!4nht3UCd4jKeqtjvuPOzVw/um/users/profiles/Z9eAeLPD03S06L9PCJMGCL9EAMMG6L9P4MM471BD4JMG6MHCC6H17P1CIJR07H1",
+								"name": "wpsadmin",
+								"type": "USER"
+							},
+							"workflow": {},
+							"link": [
 								{
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
+									"rel": "self",
+									"href": "/wps/mycontenthandler/!ut/p/digest!4nht3UCd4jKeqtjvuPOzVw/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+									"lang": "en",
+									"label": "Read"
 								},
 								{
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
-								}
-							],
-							"authors": [
-								{
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
+									"rel": "edit",
+									"href": "/wps/mycontenthandler/!ut/p/digest!4nht3UCd4jKeqtjvuPOzVw/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+									"lang": "en",
+									"label": "Edit"
 								},
 								{
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
+									"rel": "delete",
+									"href": "/wps/mycontenthandler/!ut/p/digest!4nht3UCd4jKeqtjvuPOzVw/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+									"lang": "en",
+									"label": "Delete"
 								}
 							],
+							"category": [
+								{
+									"scheme": "wcmrest:workflowState",
+									"term": "PUBLISHED",
+									"label": "Published",
+									"lang": "en"
+								}
+							],
+							"status": "PUBLISHED",
+							"lastModified": "Wed, 04 Dec 2013 10:02:37.780Z",
 							"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 							"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-							"projectID": "some text",
-							"version": {
-								"originalIdentityReference": "some text",
-								"originalName": "some text",
-								"versionName": "some text",
-								"versionDate": "2018-02-10T09:30Z"
+							"lock": {
+								"isLocked": "false"
 							},
 							"history": {
-								"created": "2018-01-17",
-								"lastModified": "Jan 01, 2021 12:00 PM",
-								"creator": {
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text"
-								},
-								"lastModifier": {
-									"distinguishedName": "Camille Marshal",
-									"uri": "some text",
-									"name": "Camille Marshal",
-									"type": "some text",
-									"entries": [
-										{
-											"date": "Thu, 24 Nov 2011 10:26:26.070Z",
-											"name": "wpsadmin",
-											"message": "some text on what was updated"
-										},
-										{
-											"date": "Thu, 24 Nov 2011 11:44:26.070Z",
-											"name": "wpsadmin",
-											"message": "some text on what was updated"
-										}
-									]
-								}
+								"entries": [
+									{
+										"date": "Thu, 18 Feb 2010 22:25:52.908Z",
+										"name": "SystemUser",
+										"message": "Document created by SystemUser"
+									},
+									{
+										"date": "Tue, 18 Oct 2011 13:08:24.539Z",
+										"name": "Replicator",
+										"message": "Document updated by Replicator"
+									},
+									{
+										"date": "Thu, 24 Nov 2011 10:28:12.166Z",
+										"name": "Replicator",
+										"message": "Document updated by Replicator"
+									},
+									{
+										"date": "Sat, 04 Feb 2012 16:51:08.911Z",
+										"name": "Replicator",
+										"message": "Document updated by Replicator"
+									},
+									{
+										"date": "Tue, 21 Feb 2012 10:47:24.100Z",
+										"name": "Replicator",
+										"message": "Document updated by Replicator"
+									},
+									{
+										"date": "Tue, 06 Mar 2012 16:44:09.720Z",
+										"name": "Replicator",
+										"message": "Document updated by Replicator"
+									}
+								]
+							}
+						},
+						{
+							"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"title": {
+								"lang": "en",
+								"value": "Show in page navigation"
 							},
-							"versions": [
+							"name": "Show in page navigation",
+							"type": "Category",
+							"created": "Sat, 19 Dec 2009 20:21:02.683Z",
+							"lastModifier": {
+								"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+								"uri": "/wps/mycontenthandler/!ut/p/digest!FNOz2icnhpTZ9rMYHizSDA/um/users/profiles/Z9eAe63EG3OKCM9O2MMG66JOGJMG6J9PIJM07MHC8JMO6I9P0JG5CLHC8MGDCG1",
+								"name": "wpsadmin",
+								"type": "USER"
+							},
+							"creator": {
+								"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+								"uri": "/wps/mycontenthandler/!ut/p/digest!FNOz2icnhpTZ9rMYHizSDA/um/users/profiles/Z9eAe63EG3OKCM9O2MMG66JOGJMG6J9PIJM07MHC8JMO6I9P0JG5CLHC8MGDCG1",
+								"name": "wpsadmin",
+								"type": "USER"
+							},
+							"workflow": {},
+							"link": [
 								{
-									"originalIdentityReference": "some text",
-									"originalName": "some text",
-									"versionName": "some text",
-									"versionDate": "2018-02-10T09:30Z"
+									"rel": "self",
+									"href": "/wps/mycontenthandler/!ut/p/digest!FNOz2icnhpTZ9rMYHizSDA/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+									"lang": "en",
+									"label": "Read"
 								},
 								{
-									"originalIdentityReference": "some text",
-									"originalName": "some text",
-									"versionName": "some text",
-									"versionDate": "2018-02-10T09:30Z"
+									"rel": "edit",
+									"href": "/wps/mycontenthandler/!ut/p/digest!FNOz2icnhpTZ9rMYHizSDA/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+									"lang": "en",
+									"label": "Edit"
+								},
+								{
+									"rel": "delete",
+									"href": "/wps/mycontenthandler/!ut/p/digest!FNOz2icnhpTZ9rMYHizSDA/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+									"lang": "en",
+									"label": "Delete"
 								}
 							],
-							"status": "DRAFT",
-							"workflow": {
-								"currentStageRef": "some text",
-								"workflowRef": "some text",
-								"publishedRef": "some text",
-								"status": "PUBLISHED_STATE",
-								"approvalRequired": [
+							"category": [
+								{
+									"scheme": "wcmrest:workflowState",
+									"term": "PUBLISHED",
+									"label": "Published",
+									"lang": "en"
+								}
+							],
+							"status": "PUBLISHED",
+							"lastModified": "Wed, 04 Dec 2013 10:02:37.780Z",
+							"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lock": {
+								"isLocked": "false"
+							},
+							"history": {
+								"entries": [
 									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
+										"date": "Thu, 18 Feb 2010 22:25:53.939Z",
+										"name": "SystemUser",
+										"message": "Document created by SystemUser"
 									},
 									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
-									}
-								],
-								"approvalReceived": [
-									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
+										"date": "Tue, 18 Oct 2011 13:08:24.477Z",
+										"name": "Replicator",
+										"message": "Document updated by Replicator"
 									},
 									{
-										"distinguishedName": "Camille Marshal",
-										"uri": "some text",
-										"name": "Camille Marshal",
-										"type": "some text"
+										"date": "Thu, 24 Nov 2011 10:28:02.244Z",
+										"name": "Replicator",
+										"message": "Document updated by Replicator"
+									},
+									{
+										"date": "Sat, 04 Feb 2012 16:51:08.551Z",
+										"name": "Replicator",
+										"message": "Document updated by Replicator"
+									},
+									{
+										"date": "Tue, 21 Feb 2012 10:47:23.944Z",
+										"name": "Replicator",
+										"message": "Document updated by Replicator"
+									},
+									{
+										"date": "Tue, 06 Mar 2012 16:44:09.501Z",
+										"name": "Replicator",
+										"message": "Document updated by Replicator"
 									}
-								],
-								"projectOverrideEnabled": true,
-								"previousStatus": "NONE_STATE"
+								]
 							}
 						}
 					]
@@ -18812,127 +18888,238 @@
 				"type": "object",
 				"allOf": [
 					{
-						"$ref": "#/components/schemas/WCMObject"
-					},
-					{
 						"$ref": "#/components/schemas/CategoryObject"
 					}
 				],
 				"example": {
-					"id": "some text",
-					"type": "Taxonomy",
-					"name": "TestTaxonomy",
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-						"lang": "en",
-						"value": "TestTaxonomy"
-					},
+					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 					"title": {
 						"lang": "en",
-						"value": "TestTaxonomy"
+						"value": "some text"
 					},
-					"owners": [
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"lang": "en",
+						"value": "some text"
+					},
+					"name": "TestCategory",
+					"type": "Category",
+					"created": "Tue, 27 Feb 2024 14:54:08.242Z",
+					"lastModifier": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/um/users/profiles/Z9eAe63EG3OKCM9O2MMG66JOGJMG6J9PIJM07MHC8JMO6I9P0JG5CLHC8MGDCG1",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"creator": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/um/users/profiles/Z9eAe63EG3OKCM9O2MMG66JOGJMG6J9PIJM07MHC8JMO6I9P0JG5CLHC8MGDCG1",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"profile": {},
+					"workflow": {
+						"publishDate": "Tue, 27 Feb 2024 14:54:08.218Z"
+					},
+					"category": [
 						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
+							"scheme": "wcmrest:workflowState",
+							"term": "PUBLISHED",
+							"label": "Published",
+							"lang": "en"
+						}
+					],
+					"status": "PUBLISHED",
+					"lastModified": "Tue, 27 Feb 2024 14:54:08.242Z",
+					"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"lock": {
+						"isLocked": "false"
+					},
+					"history": {
+						"entries": [
+							{
+								"date": "Tue, 27 Feb 2024 14:54:08.242Z",
+								"name": "wpsadmin",
+								"message": "Document created by wpsadmin"
+							}
+						]
+					},
+					"links": [
+						{
+							"rel": "self",
+							"href": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Read"
 						},
 						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
+							"rel": "edit",
+							"href": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Edit"
+						},
+						{
+							"rel": "delete",
+							"href": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Delete"
 						}
 					],
 					"authors": [
 						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						},
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/um/users/profiles/Z9eAe63EG3OKCM9O2MMG66JOGJMG6J9PIJM07MHC8JMO6I9P0JG5CLHC8MGDCG1",
+							"name": "wpsadmin",
+							"type": "USER"
 						}
 					],
+					"owners": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/um/users/profiles/Z9eAe63EG3OKCM9O2MMG66JOGJMG6J9PIJM07MHC8JMO6I9P0JG5CLHC8MGDCG1",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					]
+				}
+			},
+			"CategoryObject": {
+				"title": "CategoryObject",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A category object with controls for rendering.",
+				"type": "object",
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/IdentityInfoCategory"
+					}
+				],
+				"example": {
+					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"title": {
+						"lang": "en",
+						"value": "some text"
+					},
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"lang": "en",
+						"value": "some text"
+					},
+					"name": "TestCategory",
+					"type": "Category",
+					"created": "Tue, 27 Feb 2024 14:54:08.242Z",
+					"lastModifier": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/um/users/profiles/Z9eAe63EG3OKCM9O2MMG66JOGJMG6J9PIJM07MHC8JMO6I9P0JG5CLHC8MGDCG1",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"creator": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/um/users/profiles/Z9eAe63EG3OKCM9O2MMG66JOGJMG6J9PIJM07MHC8JMO6I9P0JG5CLHC8MGDCG1",
+						"name": "wpsadmin",
+						"type": "USER"
+					},
+					"profile": {},
+					"workflow": {
+						"publishDate": "Tue, 27 Feb 2024 14:54:08.218Z"
+					},
+					"category": [
+						{
+							"scheme": "wcmrest:workflowState",
+							"term": "PUBLISHED",
+							"label": "Published",
+							"lang": "en"
+						}
+					],
+					"status": "PUBLISHED",
+					"lastModified": "Tue, 27 Feb 2024 14:54:08.242Z",
 					"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 					"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-					"projectID": "some text",
+					"lock": {
+						"isLocked": "false"
+					},
 					"history": {
 						"entries": [
 							{
-								"date": "Thu, 24 Nov 2011 10:26:26.070Z",
+								"date": "Tue, 27 Feb 2024 14:54:08.242Z",
 								"name": "wpsadmin",
-								"message": "some text on what was updated"
-							},
-							{
-								"date": "Thu, 24 Nov 2011 11:44:26.070Z",
-								"name": "wpsadmin",
-								"message": "some text on what was updated"
+								"message": "Document created by wpsadmin"
 							}
 						]
 					},
-					"status": "DRAFT",
-					"workflow": {
-						"currentStageRef": "some text",
-						"workflowRef": "some text",
-						"publishedRef": "some text",
-						"status": "PUBLISHED_STATE",
-						"approvalRequired": [
-							{
-								"distinguishedName": "Camille Marshal",
-								"uri": "some text",
-								"name": "Camille Marshal",
-								"type": "some text"
-							},
-							{
-								"distinguishedName": "Camille Marshal",
-								"uri": "some text",
-								"name": "Camille Marshal",
-								"type": "some text"
-							}
-						],
-						"approvalReceived": [
-							{
-								"distinguishedName": "Camille Marshal",
-								"uri": "some text",
-								"name": "Camille Marshal",
-								"type": "some text"
-							},
-							{
-								"distinguishedName": "Camille Marshal",
-								"uri": "some text",
-								"name": "Camille Marshal",
-								"type": "some text"
-							}
-						],
-						"projectOverrideEnabled": true,
-						"previousStatus": "NONE_STATE"
-					}
+					"links": [
+						{
+							"rel": "self",
+							"href": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Read"
+						},
+						{
+							"rel": "edit",
+							"href": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Edit"
+						},
+						{
+							"rel": "delete",
+							"href": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/wcmrest-v2/categories/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"lang": "en",
+							"label": "Delete"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/um/users/profiles/Z9eAe63EG3OKCM9O2MMG66JOGJMG6J9PIJM07MHC8JMO6I9P0JG5CLHC8MGDCG1",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					],
+					"owners": [
+						{
+							"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+							"uri": "/wps/mycontenthandler/!ut/p/digest!tEtrzM-AAmzxRvtKL4f0Fg/um/users/profiles/Z9eAe63EG3OKCM9O2MMG66JOGJMG6J9PIJM07MHC8JMO6I9P0JG5CLHC8MGDCG1",
+							"name": "wpsadmin",
+							"type": "USER"
+						}
+					]
 				}
 			},
-			"WCMObject": {
-				"title": "WCMObject",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "object's metadata",
+			"IdentityInfoCategory": {
+				"title": "IdentityInfoCategory",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides identity to the object.",
 				"required": [
-					"history",
-					"status"
+					"name",
+					"type"
 				],
 				"type": "object",
 				"properties": {
+					"id": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Unique identifier",
+						"type": "string"
+					},
+					"title": {
+						"$ref": "#/components/schemas/ItemTitle"
+					},
+					"name": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The name of the requested item",
+						"type": "string"
+					},
+					"type": {
+						"$ref": "#/components/schemas/ItemType"
+					},
+					"libraryID": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The id of the library containing the item.",
+						"type": "string"
+					},
+					"parentID": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The id of the site-area containing the item.",
+						"type": "string"
+					},
+					"lock": {
+						"$ref": "#/components/schemas/Lock",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides the lock information for the item"
+					},
 					"history": {
 						"$ref": "#/components/schemas/HistoryInfo",
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The history of the object."
-					},
-					"versions": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A list of all the versions for this item.  This property will only be returned if the versions query parameter is passed",
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/VersionInfo"
-						}
 					},
 					"status": {
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Indicates if this document is in a draft stage or published stage; NONE_STATE, DRAFT_STATE, PUBLISHED_STATE, EXPIRED_STATE",
@@ -18943,6 +19130,10 @@
 							"EXPIRED_STATE"
 						],
 						"type": "string"
+					},
+					"profile": {
+						"$ref": "#/components/schemas/Profile",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains other optional properties like keywords."
 					},
 					"workflow": {
 						"$ref": "#/components/schemas/WorkflowInfo",
@@ -18966,17 +19157,91 @@
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Creation date of the current item.",
 						"type": "string"
 					},
-					"links": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Related links",
+					"category": {
 						"type": "array",
 						"items": {
-							"$ref": "#/components/schemas/LinkRelated"
+							"$ref": "#/components/schemas/CategoryCommon"
 						}
-					},
-					"lock": {
-						"$ref": "#/components/schemas/Lock",
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides the lock information for the item"
 					}
+				},
+				"example": {
+					"id": "some text",
+					"type": "Folder",
+					"name": "Camille Marshal",
+					"title": {
+						"lang": "en",
+						"value": "Folder"
+					}
+				}
+			},
+			"Lock": {
+				"title": "RootTypeForLock",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides the lock information for the item",
+				"required": [
+					"isLocked"
+				],
+				"type": "object",
+				"properties": {
+					"isLocked": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Indicated if the item is locked",
+						"enum": [
+							"true",
+							"false"
+						],
+						"type": "string"
+					},
+					"owner": {
+						"$ref": "#/components/schemas/UserSummary",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides the user information for the owner of the lock on this item.  If the item is not locked the owner property will not be returned.",
+						"properties": {
+							"distinguishedName": {
+								"type": "string"
+							},
+							"uri": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
+							"type": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"example": {
+					"isLocked": "true",
+					"owner": {
+						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+						"uri": "/wps/mycontenthandler/!ut/p/digest!W4anYoPl9HYff99krM15wA/um/users/profiles/Z9eAeN9OGJS07K1CIJMG6JHCAJMG6K1DEJM8CO1DCJMG643EAMS86O1PCJHLCO1",
+						"name": "wpsadmin",
+						"type": "USER"
+					}
+				}
+			},
+			"UserSummary": {
+				"title": "UserSummary",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"type": "object",
+				"properties": {
+					"distinguishedName": {
+						"type": "string"
+					},
+					"uri": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string"
+					}
+				},
+				"example": {
+					"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
+					"uri": "Z9eAeN1EE3Q866BP8MM47NHD4MMG61JCAMM47N9CCJM8CP9E0JI9CM9C2MSGCJ1",
+					"name": "wpsadmin",
+					"type": "USER"
 				}
 			},
 			"HistoryInfo": {
@@ -19030,40 +19295,24 @@
 					"message": "Document updated by Replicator"
 				}
 			},
-			"VersionInfo": {
-				"title": "VersionInfo",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Versioning information for the object",
-				"required": [
-					"originalIdentityReference",
-					"originalName",
-					"versionName",
-					"versionDate"
-				],
+			"Profile": {
+				"title": "profile",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "May contain other properties like keywords.",
 				"type": "object",
 				"properties": {
-					"originalIdentityReference": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A reference to the identitiy of the original item.",
-						"type": "string"
-					},
-					"originalName": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The original Name.",
-						"type": "string"
-					},
-					"versionName": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The name of the current version",
-						"type": "string"
-					},
-					"versionDate": {
-						"format": "date-time",
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The date the version was created.",
-						"type": "string"
+					"keywords": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains set of keywords.",
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
 					}
 				},
 				"example": {
-					"originalIdentityReference": "some text",
-					"originalName": "some text",
-					"versionName": "some text",
-					"versionDate": "2018-02-10T09:30Z"
+					"keyword": [
+						"sample",
+						"keywords"
+					]
 				}
 			},
 			"WorkflowInfo": {
@@ -19164,29 +19413,64 @@
 					"previousStatus": "EXPIRED_STATE"
 				}
 			},
-			"UserSummary": {
-				"title": "UserSummary",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+			"CategoryCommon": {
+				"title": "Category",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Common category properties used in components.",
 				"type": "object",
 				"properties": {
-					"distinguishedName": {
+					"scheme": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Name of scheme to be configured.\nExample: wcmrest:favorite to add or remove a component from favorite items.",
 						"type": "string"
 					},
-					"uri": {
+					"term": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Any accepted value for the scheme.",
 						"type": "string"
 					},
-					"name": {
+					"label": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Label",
 						"type": "string"
 					},
-					"type": {
+					"lang": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Language used",
 						"type": "string"
 					}
 				},
 				"example": {
-					"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
-					"uri": "Z9eAeN1EE3Q866BP8MM47NHD4MMG61JCAMM47N9CCJM8CP9E0JI9CM9C2MSGCJ1",
-					"name": "wpsadmin",
-					"type": "USER"
+					"scheme": "wcmrest:workflowState",
+					"term": "PUBLISHED",
+					"label": "Published",
+					"lang": "en"
+				}
+			},
+			"CommonLinkObject": {
+				"title": "CommonLinkObject",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A link to related object or endpoints for this item",
+				"required": [
+					"link"
+				],
+				"type": "object",
+				"properties": {
+					"link": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Links for navigating the next and previous set in the collection",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/LinkRelated"
+						}
+					},
+					"author": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Author/s of this object",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/UserSummary"
+						}
+					},
+					"owner": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Owner/s of this object",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/UserSummary"
+						}
+					}
 				}
 			},
 			"LinkRelated": {
@@ -19214,260 +19498,6 @@
 					"rel": "previous",
 					"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/libraries?offset=0&limit=5",
 					"lang": "en"
-				}
-			},
-			"Lock": {
-				"title": "RootTypeForLock",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides the lock information for the item",
-				"required": [
-					"isLocked"
-				],
-				"type": "object",
-				"properties": {
-					"isLocked": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Indicated if the item is locked",
-						"enum": [
-							"true",
-							"false"
-						],
-						"type": "string"
-					},
-					"owner": {
-						"$ref": "#/components/schemas/UserSummary",
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides the user information for the owner of the lock on this item.  If the item is not locked the owner property will not be returned.",
-						"properties": {
-							"distinguishedName": {
-								"type": "string"
-							},
-							"uri": {
-								"type": "string"
-							},
-							"name": {
-								"type": "string"
-							},
-							"type": {
-								"type": "string"
-							}
-						}
-					}
-				},
-				"example": {
-					"isLocked": "true",
-					"owner": {
-						"distinguishedName": "uid=wpsadmin,o=defaultWIMFileBasedRealm",
-						"uri": "/wps/mycontenthandler/!ut/p/digest!W4anYoPl9HYff99krM15wA/um/users/profiles/Z9eAeN9OGJS07K1CIJMG6JHCAJMG6K1DEJM8CO1DCJMG643EAMS86O1PCJHLCO1",
-						"name": "wpsadmin",
-						"type": "USER"
-					}
-				}
-			},
-			"CategoryObject": {
-				"title": "CategoryObject",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A category object with controls for rendering.",
-				"type": "object",
-				"allOf": [
-					{
-						"required": [
-							"data"
-						],
-						"type": "object",
-						"properties": {
-							"data": {
-								"$ref": "#/components/schemas/CategoryTaxonomyData",
-								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Data reresenting the category or taxonomy."
-							}
-						}
-					},
-					{
-						"$ref": "#/components/schemas/IdentityInfo"
-					}
-				],
-				"example": {
-					"id": "some text",
-					"type": "Category",
-					"name": "Camille Marshal",
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-						"lang": "en",
-						"value": "some text"
-					},
-					"title": {
-						"lang": "en",
-						"value": "some text"
-					},
-					"owners": [
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						},
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						}
-					],
-					"authors": [
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						},
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						}
-					],
-					"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-					"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-					"projectID": "some text"
-				}
-			},
-			"CategoryTaxonomyData": {
-				"title": "CategoryTaxonomyData",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A category or taxonomy.",
-				"type": "object",
-				"properties": {
-					"parentID": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The id of the parent of this object, this may be a category or a taxonomy.",
-						"type": "string"
-					}
-				},
-				"example": {
-					"parentID": "some text"
-				}
-			},
-			"IdentityInfo": {
-				"title": "IdentityInfo",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides identity to the object.",
-				"required": [
-					"name",
-					"type",
-					"libraryID",
-					"parentID"
-				],
-				"type": "object",
-				"properties": {
-					"id": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Unique identifier",
-						"type": "string"
-					},
-					"type": {
-						"$ref": "#/components/schemas/ItemType"
-					},
-					"name": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The name of the requested item",
-						"type": "string"
-					},
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-						"$ref": "#/components/schemas/ItemDescription",
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Text description of the current item.",
-						"properties": {
-							"summary": {
-								"type": "string"
-							}
-						}
-					},
-					"title": {
-						"$ref": "#/components/schemas/ItemTitle",
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title used to display the item.  This is collapsing title and display title?"
-					},
-					"owners": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Owner/s of this object",
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/UserSummary"
-						}
-					},
-					"authors": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Author/s of this object",
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/UserSummary"
-						}
-					},
-					"libraryID": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Library id, the id of the library containing the object.",
-						"type": "string"
-					},
-					"parentID": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Parent id, the id of the parent for the given object.",
-						"type": "string"
-					},
-					"projectID": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Project id, if this object is inside a project.",
-						"type": "string"
-					},
-					"siteID": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Site id, if this object belongs to a specific site.",
-						"type": "string"
-					}
-				},
-				"example": {
-					"id": "some text",
-					"type": "SiteTemplate",
-					"name": "Camille Marshal",
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-						"lang": "en",
-						"value": "SiteTemplate"
-					},
-					"title": {
-						"lang": "en",
-						"value": "SiteTemplate"
-					},
-					"owners": [
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						},
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						}
-					],
-					"authors": [
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						},
-						{
-							"distinguishedName": "Camille Marshal",
-							"uri": "some text",
-							"name": "Camille Marshal",
-							"type": "some text"
-						}
-					],
-					"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-					"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-					"projectID": "some text Identity info",
-					"siteID": "some text"
-				}
-			},
-			"ItemDescription": {
-				"title": "ItemDescription",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Description of the object",
-				"type": "object",
-				"properties": {
-					"lang": {
-						"type": "string"
-					},
-					"value": {
-						"type": "string"
-					}
-				},
-				"example": {
-					"lang": "string",
-					"value": "string"
 				}
 			},
 			"CollectionBase": {
@@ -19545,6 +19575,37 @@
 					"code": "CONFLICT",
 					"lang": "en",
 					"text": "A conflict occurred. This resource already exists or has been modified by someone else."
+				}
+			},
+			"CommonLinksObject": {
+				"title": "CommonLinkObject",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A link to related object or endpoints for this item",
+				"required": [
+					"links"
+				],
+				"type": "object",
+				"properties": {
+					"links": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Links for navigating the next and previous set in the collection",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/LinkRelated"
+						}
+					},
+					"authors": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Author/s of this object",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/UserSummary"
+						}
+					},
+					"owners": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Owner/s of this object",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/UserSummary"
+						}
+					}
 				}
 			},
 			"NotFoundError": {
@@ -19628,13 +19689,6 @@
 					"offset": "20",
 					"limit": "20",
 					"total": "99",
-					"links": [
-						{
-							"rel": "next",
-							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/component/images?offset=10",
-							"lang": "en"
-						}
-					],
 					"imagecomponent-entries": [
 						{
 							"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -19733,6 +19787,107 @@
 						"$ref": "#/components/schemas/ImageObject"
 					}
 				]
+			},
+			"WCMObject": {
+				"title": "WCMObject",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "object's metadata",
+				"required": [
+					"history",
+					"status"
+				],
+				"type": "object",
+				"properties": {
+					"history": {
+						"$ref": "#/components/schemas/HistoryInfo",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The history of the object."
+					},
+					"versions": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A list of all the versions for this item.  This property will only be returned if the versions query parameter is passed",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/VersionInfo"
+						}
+					},
+					"status": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Indicates if this document is in a draft stage or published stage; NONE_STATE, DRAFT_STATE, PUBLISHED_STATE, EXPIRED_STATE",
+						"enum": [
+							"NONE_STATE",
+							"DRAFT_STATE",
+							"PUBLISHED_STATE",
+							"EXPIRED_STATE"
+						],
+						"type": "string"
+					},
+					"workflow": {
+						"$ref": "#/components/schemas/WorkflowInfo",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides the details about the workflow for the item."
+					},
+					"lastModifier": {
+						"$ref": "#/components/schemas/UserSummary",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user that modified this item last."
+					},
+					"lastModified": {
+						"format": "date",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Last date this item was modified.",
+						"type": "string"
+					},
+					"creator": {
+						"$ref": "#/components/schemas/UserSummary",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user that created this item."
+					},
+					"created": {
+						"format": "date",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Creation date of the current item.",
+						"type": "string"
+					},
+					"links": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Related links",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/LinkRelated"
+						}
+					},
+					"lock": {
+						"$ref": "#/components/schemas/Lock",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides the lock information for the item"
+					}
+				}
+			},
+			"VersionInfo": {
+				"title": "VersionInfo",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Versioning information for the object",
+				"required": [
+					"originalIdentityReference",
+					"originalName",
+					"versionName",
+					"versionDate"
+				],
+				"type": "object",
+				"properties": {
+					"originalIdentityReference": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A reference to the identitiy of the original item.",
+						"type": "string"
+					},
+					"originalName": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The original Name.",
+						"type": "string"
+					},
+					"versionName": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The name of the current version",
+						"type": "string"
+					},
+					"versionDate": {
+						"format": "date-time",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The date the version was created.",
+						"type": "string"
+					}
+				},
+				"example": {
+					"originalIdentityReference": "some text",
+					"originalName": "some text",
+					"versionName": "some text",
+					"versionDate": "2018-02-10T09:30Z"
+				}
 			},
 			"ImageObject": {
 				"title": "ImageObject",
@@ -19945,6 +20100,135 @@
 					"type": "some text",
 					"value": "some text",
 					"damID": "some text"
+				}
+			},
+			"IdentityInfo": {
+				"title": "IdentityInfo",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Provides identity to the object.",
+				"required": [
+					"name",
+					"type",
+					"libraryID",
+					"parentID"
+				],
+				"type": "object",
+				"properties": {
+					"id": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Unique identifier",
+						"type": "string"
+					},
+					"type": {
+						"$ref": "#/components/schemas/ItemType"
+					},
+					"name": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The name of the requested item",
+						"type": "string"
+					},
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"$ref": "#/components/schemas/ItemDescription",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Text description of the current item.",
+						"properties": {
+							"summary": {
+								"type": "string"
+							}
+						}
+					},
+					"title": {
+						"$ref": "#/components/schemas/ItemTitle",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title used to display the item.  This is collapsing title and display title?"
+					},
+					"owners": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Owner/s of this object",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/UserSummary"
+						}
+					},
+					"authors": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Author/s of this object",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/UserSummary"
+						}
+					},
+					"libraryID": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Library id, the id of the library containing the object.",
+						"type": "string"
+					},
+					"parentID": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Parent id, the id of the parent for the given object.",
+						"type": "string"
+					},
+					"projectID": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Project id, if this object is inside a project.",
+						"type": "string"
+					},
+					"siteID": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Site id, if this object belongs to a specific site.",
+						"type": "string"
+					}
+				},
+				"example": {
+					"id": "some text",
+					"type": "SiteTemplate",
+					"name": "Camille Marshal",
+					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+						"lang": "en",
+						"value": "SiteTemplate"
+					},
+					"title": {
+						"lang": "en",
+						"value": "SiteTemplate"
+					},
+					"owners": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						},
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						}
+					],
+					"authors": [
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						},
+						{
+							"distinguishedName": "Camille Marshal",
+							"uri": "some text",
+							"name": "Camille Marshal",
+							"type": "some text"
+						}
+					],
+					"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"projectID": "some text Identity info",
+					"siteID": "some text"
+				}
+			},
+			"ItemDescription": {
+				"title": "ItemDescription",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Description of the object",
+				"type": "object",
+				"properties": {
+					"lang": {
+						"type": "string"
+					},
+					"value": {
+						"type": "string"
+					}
+				},
+				"example": {
+					"lang": "string",
+					"value": "string"
 				}
 			},
 			"ImagePostPutComponent": {
@@ -20171,13 +20455,6 @@
 					"offset": "20",
 					"limit": "20",
 					"total": "99",
-					"links": [
-						{
-							"rel": "next",
-							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/component/menus?offset=10",
-							"lang": "en"
-						}
-					],
 					"menucomponent-entries": [
 						{
 							"id": "some text",
@@ -20767,13 +21044,6 @@
 					"offset": "20",
 					"limit": "20",
 					"total": "99",
-					"links": [
-						{
-							"rel": "next",
-							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/component/navigators?offset=10",
-							"lang": "en"
-						}
-					],
 					"navigator-entries": [
 						{
 							"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -21814,13 +22084,6 @@
 					"offset": "20",
 					"limit": "20",
 					"total": "99",
-					"links": [
-						{
-							"rel": "next",
-							"href": "/wps/mycontenthandler/!ut/p/digest!YBhW0ZSscvgxgPIatjU9qg/wcmrest-v2/component/stylesheets?offset=10",
-							"lang": "en"
-						}
-					],
 					"stylesheetcomponent-entries": [
 						{
 							"id": "some text",
@@ -22443,55 +22706,6 @@
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Updated date of the current item.",
 						"type": "string"
 					}
-				}
-			},
-			"CategoryCommon": {
-				"title": "Category",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Common category properties used in components.",
-				"type": "object",
-				"properties": {
-					"scheme": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Name of scheme to be configured.\nExample: wcmrest:favorite to add or remove a component from favorite items.",
-						"type": "string"
-					},
-					"term": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Any accepted value for the scheme.",
-						"type": "string"
-					},
-					"label": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Label",
-						"type": "string"
-					},
-					"lang": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Language used",
-						"type": "string"
-					}
-				},
-				"example": {
-					"scheme": "wcmrest:workflowState",
-					"term": "PUBLISHED",
-					"label": "Published",
-					"lang": "en"
-				}
-			},
-			"Profile": {
-				"title": "profile",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "May contain other properties like keywords.",
-				"type": "object",
-				"properties": {
-					"keywords": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains set of keywords.",
-						"type": "array",
-						"items": {
-							"type": "string"
-						}
-					}
-				},
-				"example": {
-					"keyword": [
-						"sample",
-						"keywords"
-					]
 				}
 			},
 			"DateComponentRequest": {
@@ -26636,68 +26850,6 @@
 					}
 				}
 			},
-			"CommonLinkObject": {
-				"title": "CommonLinkObject",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A link to related object or endpoints for this item",
-				"required": [
-					"link"
-				],
-				"type": "object",
-				"properties": {
-					"link": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Links for navigating the next and previous set in the collection",
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/LinkRelated"
-						}
-					},
-					"author": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Author/s of this object",
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/UserSummary"
-						}
-					},
-					"owner": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Owner/s of this object",
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/UserSummary"
-						}
-					}
-				}
-			},
-			"CommonLinksObject": {
-				"title": "CommonLinkObject",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A link to related object or endpoints for this item",
-				"required": [
-					"links"
-				],
-				"type": "object",
-				"properties": {
-					"links": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Links for navigating the next and previous set in the collection",
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/LinkRelated"
-						}
-					},
-					"authors": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Author/s of this object",
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/UserSummary"
-						}
-					},
-					"owners": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Owner/s of this object",
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/UserSummary"
-						}
-					}
-				}
-			},
 			"ContentTemplateCollection": {
 				"title": "ContentTemplateCollection",
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
@@ -27765,7 +27917,9 @@
 					"entry": {
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of contents",
 						"type": "array",
-						"items": {}
+						"items": {
+							"$ref": "#/components/schemas/ContentTemplateEntry"
+						}
 					}
 				},
 				"example": {
@@ -27788,6 +27942,162 @@
 							}
 						}
 					]
+				}
+			},
+			"ContentTemplateEntry": {
+				"title": "ContentTemplateEntry",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Template Entry properties",
+				"required": [
+					"content"
+				],
+				"type": "object",
+				"properties": {
+					"content": {
+						"$ref": "#/components/schemas/ContentTemplateEntryContent",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content contains details of type and content template action",
+						"properties": {
+							"type": {
+								"type": "string"
+							},
+							"ContentTemplateApplication": {
+								"type": "object",
+								"properties": {
+									"contentTemplateName": {
+										"type": "string"
+									},
+									"contentTemplateID": {
+										"type": "string"
+									},
+									"totalCount": {
+										"type": "string"
+									},
+									"convertedCount": {
+										"type": "string"
+									},
+									"alreadyHasDraftsCount": {
+										"type": "string"
+									},
+									"invalidCount": {
+										"type": "string"
+									},
+									"skippedCount": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"example": {
+					"content": {
+						"type": "application/vnd.ibm.wcm+xml",
+						"ContentTemplateApplication": {
+							"contentTemplateName": "sample content template",
+							"contentTemplateID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"totalCount": "1",
+							"convertedCount": "1",
+							"alreadyHasDraftsCount": "0",
+							"invalidCount": "0",
+							"skippedCount": "0"
+						}
+					}
+				}
+			},
+			"ContentTemplateEntryContent": {
+				"title": "ContentTemplateEntryContent",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Template Entry Content properties",
+				"required": [
+					"ContentTemplateApplication"
+				],
+				"type": "object",
+				"properties": {
+					"type": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains media type",
+						"type": "string"
+					},
+					"ContentTemplateApplication": {
+						"$ref": "#/components/schemas/ContentTemplateEntryApplication",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Template Applications contains properties",
+						"properties": {
+							"contentTemplateName": {
+								"type": "string"
+							},
+							"contentTemplateID": {
+								"type": "string"
+							},
+							"totalCount": {
+								"type": "string"
+							},
+							"convertedCount": {
+								"type": "string"
+							},
+							"alreadyHasDraftsCount": {
+								"type": "string"
+							},
+							"invalidCount": {
+								"type": "string"
+							},
+							"skippedCount": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"example": {
+					"type": "application/vnd.ibm.wcm+xml",
+					"ContentTemplateApplication": {
+						"contentTemplateName": "sample content template",
+						"contentTemplateID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+						"totalCount": "1",
+						"convertedCount": "1",
+						"alreadyHasDraftsCount": "0",
+						"invalidCount": "0",
+						"skippedCount": "0"
+					}
+				}
+			},
+			"ContentTemplateEntryApplication": {
+				"title": "ContentTemplateEntryApplication",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Template Entry Application properties",
+				"type": "object",
+				"properties": {
+					"contentTemplateName": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains Content Template Name",
+						"type": "string"
+					},
+					"contentTemplateID": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains Content Template ID",
+						"type": "string"
+					},
+					"totalCount": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Total number of count",
+						"type": "string"
+					},
+					"convertedCount": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Total number of count for converted",
+						"type": "string"
+					},
+					"alreadyHasDraftsCount": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Total number of count for already has drafts",
+						"type": "string"
+					},
+					"invalidCount": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Total number of count for invalid",
+						"type": "string"
+					},
+					"skippedCount": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Total number of count for skipped",
+						"type": "string"
+					}
+				},
+				"example": {
+					"contentTemplateName": "sample content template",
+					"contentTemplateID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"totalCount": "1",
+					"convertedCount": "1",
+					"alreadyHasDraftsCount": "0",
+					"invalidCount": "0",
+					"skippedCount": "0"
 				}
 			},
 			"FavoriteItemsResponse": {
@@ -27925,7 +28235,9 @@
 						"type": "string"
 					},
 					"updated": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Last date and time list was updated."
+						"format": "date",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Last date and time list was updated.",
+						"type": "string"
 					}
 				},
 				"example": {
@@ -28084,7 +28396,6 @@
 						"type": "string"
 					},
 					"title": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title used to display the item.  ",
 						"oneOf": [
 							{
 								"type": "object",
@@ -28100,10 +28411,10 @@
 							{
 								"type": "string"
 							}
-						]
+						],
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title used to display the item.  "
 					},
 					"displayTitle": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Display Title used for the item.  ",
 						"oneOf": [
 							{
 								"type": "object",
@@ -28119,10 +28430,10 @@
 							{
 								"type": "string"
 							}
-						]
+						],
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Display Title used for the item.  "
 					},
 					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Description used for the item.  ",
 						"oneOf": [
 							{
 								"type": "object",
@@ -28138,7 +28449,8 @@
 							{
 								"type": "string"
 							}
-						]
+						],
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Description used for the item.  "
 					},
 					"name": {
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The name of the requested item",
@@ -29504,12 +29816,16 @@
 				}
 			},
 			"PageReferencesResponse": {
-				"title": "Root Type for PageReferencesResponse",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Page References Response",
+				"title": "PageReferencesResponse",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Page References Response properties",
+				"required": [
+					"listPageReferences"
+				],
 				"type": "object",
 				"properties": {
 					"listPageReferences": {
-						"type": "object",
+						"$ref": "#/components/schemas/ListPageReferences",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of page references and properties",
 						"properties": {
 							"wcmContentID": {
 								"type": "string"
@@ -29542,14 +29858,64 @@
 								"portleInstanceObjectId": "xx_xxxxxxxxxxxxxxxxxxxxxxxxxx",
 								"pageObjectId": "xx_xxxxxxxxxxxxxxxxxxxxxxxxxx",
 								"pageTitle": "Sample Title 1"
-							},
-							{
-								"portleInstanceObjectId": "xx_xxxxxxxxxxxxxxxxxxxxxxxxxx",
-								"pageObjectId": "xx_xxxxxxxxxxxxxxxxxxxxxxxxxx",
-								"pageTitle": "Sample Title 2"
 							}
 						]
 					}
+				}
+			},
+			"ListPageReferences": {
+				"title": "ListPageReferences",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of Page References properties",
+				"required": [
+					"pageReferenceList"
+				],
+				"type": "object",
+				"properties": {
+					"wcmContentID": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "WCM Content ID",
+						"type": "string"
+					},
+					"pageReferenceList": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of Page Reference",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/ListPageReferencesContent"
+						}
+					}
+				},
+				"example": {
+					"wcmContentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+					"pageReferenceList": [
+						{
+							"portleInstanceObjectId": "xx_xxxxxxxxxxxxxxxxxxxxxxxxxx",
+							"pageObjectId": "xx_xxxxxxxxxxxxxxxxxxxxxxxxxx",
+							"pageTitle": "Sample Title 1"
+						}
+					]
+				}
+			},
+			"ListPageReferencesContent": {
+				"title": "ListPageReferencesContent",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of Page References Content properties",
+				"type": "object",
+				"properties": {
+					"portleInstanceObjectId": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Portal Instance Object ID",
+						"type": "string"
+					},
+					"pageObjectId": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Page Object ID",
+						"type": "string"
+					},
+					"pageTitle": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title of the page",
+						"type": "string"
+					}
+				},
+				"example": {
+					"portleInstanceObjectId": "xx_xxxxxxxxxxxxxxxxxxxxxxxxxx",
+					"pageObjectId": "xx_xxxxxxxxxxxxxxxxxxxxxxxxxx",
+					"pageTitle": "Sample Title 1"
 				}
 			},
 			"PresentationTemplateRequest": {
@@ -31938,11 +32304,11 @@
 				"allOf": [
 					{
 						"required": [
-							"entries"
+							"site-areas"
 						],
 						"type": "object",
 						"properties": {
-							"entries": {
+							"site-areas": {
 								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The representation of a collection of site areas.",
 								"type": "array",
 								"items": {
@@ -31959,21 +32325,9 @@
 					"offset": "10",
 					"limit": "10",
 					"total": "10",
-					"links": [
-						{
-							"rel": "previous",
-							"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas?offset=0&limit=10",
-							"lang": "en"
-						},
-						{
-							"rel": "next",
-							"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas?offset=20&limit=10",
-							"lang": "en"
-						}
-					],
 					"site-areas": [
 						{
-							"id": "5695767e-ea23-4667-b463-81f2089c834f",
+							"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 							"title": {
 								"lang": "en",
 								"value": "Articles"
@@ -32001,8 +32355,8 @@
 							},
 							"status": "PUBLISHED",
 							"lastModified": "Fri, 20 Aug 2021 09:38:58.117Z",
-							"libraryID": "6ce9faf5-1e18-4b85-886f-a2a670047514",
-							"parentID": "b9d3d69c-9230-45ee-856f-b544e3877a86",
+							"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 							"lock": {
 								"isLocked": "false"
 							},
@@ -32018,25 +32372,25 @@
 							"links": [
 								{
 									"rel": "self",
-									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/5695767e-ea23-4667-b463-81f2089c834f",
+									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 									"lang": "en",
 									"label": "Read"
 								},
 								{
 									"rel": "edit",
-									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/5695767e-ea23-4667-b463-81f2089c834f",
+									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 									"lang": "en",
 									"label": "Edit"
 								},
 								{
 									"rel": "delete",
-									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/5695767e-ea23-4667-b463-81f2089c834f",
+									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 									"lang": "en",
 									"label": "Delete"
 								},
 								{
 									"rel": "edit-media",
-									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/5695767e-ea23-4667-b463-81f2089c834f",
+									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 									"type": "application/vnd.ibm.wcm+xml",
 									"lang": "en",
 									"label": "Edit Media"
@@ -32056,7 +32410,7 @@
 							]
 						},
 						{
-							"id": "602857c9-67e6-4bd4-b33e-3b8661846ff2",
+							"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 							"title": {
 								"lang": "en",
 								"value": "Articles"
@@ -32078,8 +32432,8 @@
 							},
 							"status": "PUBLISHED",
 							"lastModified": "Mon, 14 Apr 2014 11:50:13.223Z",
-							"libraryID": "1049625d-af41-4eb4-a0a7-94a2d368a1ad",
-							"parentID": "b26ad37d-9727-4f81-9a10-a6a29e51ceb5",
+							"libraryID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+							"parentID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 							"lock": {
 								"isLocked": "false"
 							},
@@ -32087,25 +32441,25 @@
 							"links": [
 								{
 									"rel": "self",
-									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/602857c9-67e6-4bd4-b33e-3b8661846ff2",
+									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 									"lang": "en",
 									"label": "Read"
 								},
 								{
 									"rel": "edit",
-									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/602857c9-67e6-4bd4-b33e-3b8661846ff2",
+									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 									"lang": "en",
 									"label": "Edit"
 								},
 								{
 									"rel": "delete",
-									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/602857c9-67e6-4bd4-b33e-3b8661846ff2",
+									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 									"lang": "en",
 									"label": "Delete"
 								},
 								{
 									"rel": "edit-media",
-									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/602857c9-67e6-4bd4-b33e-3b8661846ff2",
+									"href": "/wps/mycontenthandler/!ut/p/digest!ZzSQWLEL2dv32HG7zajU1g/wcmrest-v2/site-areas/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 									"type": "application/vnd.ibm.wcm+xml",
 									"lang": "en",
 									"label": "Edit Media"
@@ -33345,11 +33699,17 @@
 			},
 			"WorkflowCommon": {
 				"title": "Workflow Details",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "May contain other properties like publishDate.",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "May contain other workflow properties.",
 				"type": "object",
 				"properties": {
 					"publishDate": {
+						"format": "date",
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Contains published date.",
+						"type": "string"
+					},
+					"expiryDate": {
+						"format": "date",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Expiry Date",
 						"type": "string"
 					}
 				},
@@ -34043,6 +34403,7 @@
 						"type": "string"
 					},
 					"LastRunDate": {
+						"format": "date",
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Last syndication date and time",
 						"type": "string"
 					}
@@ -36290,73 +36651,45 @@
 				"type": "object",
 				"properties": {
 					"id": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Unique identifier. This is not required for POST requests",
 						"type": "string"
 					},
 					"title": {
-						"type": "object",
-						"properties": {
-							"lang": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"displayTitle": {
-						"type": "object",
-						"properties": {
-							"lang": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
+						"$ref": "#/components/schemas/ItemTitle",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title used to display the item."
 					},
 					"name": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The name of the requested item",
 						"type": "string"
 					},
 					"type": {
-						"type": "string"
+						"$ref": "#/components/schemas/ItemType"
 					},
 					"updated": {
+						"format": "date",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Updated date of the current item.",
 						"type": "string"
 					},
 					"lastModifier": {
-						"type": "object",
-						"properties": {
-							"distinguishedName": {
-								"type": "string"
-							},
-							"uri": {
-								"type": "string"
-							},
-							"name": {
-								"type": "string"
-							},
-							"type": {
-								"type": "string"
-							}
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "The user that modified this item last.",
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/UserSummary"
 						}
 					},
 					"link": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Links for navigating the next and previous set in the collection",
 						"type": "array",
 						"items": {
-							"type": "object",
-							"properties": {
-								"rel": {
-									"type": "string"
-								},
-								"href": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
-								}
+							"$ref": "#/components/schemas/LinkRelated"
+						}
+					},
+					"displayTitle": {
+						"$ref": "#/components/schemas/ItemTitle",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Display title",
+						"properties": {
+							"summary": {
+								"type": "string"
 							}
 						}
 					}
@@ -36409,47 +36742,14 @@
 				}
 			},
 			"ItemVersionResponse": {
-				"title": "Root Type for ItemVersionResponse",
-				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
+				"title": "Root Type for ItemVersion",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of item versions.",
 				"type": "object",
 				"properties": {
 					"entry": {
 						"type": "array",
 						"items": {
-							"type": "object",
-							"properties": {
-								"versionContent": {
-									"type": "object",
-									"properties": {
-										"versionName": {
-											"type": "string"
-										},
-										"versionDate": {
-											"type": "string"
-										}
-									}
-								},
-								"link": {
-									"type": "array",
-									"items": {
-										"type": "object",
-										"properties": {
-											"rel": {
-												"type": "string"
-											},
-											"href": {
-												"type": "string"
-											},
-											"lang": {
-												"type": "string"
-											},
-											"label": {
-												"type": "string"
-											}
-										}
-									}
-								}
-							}
+							"$ref": "#/components/schemas/ItemVersionData"
 						}
 					}
 				},
@@ -36486,6 +36786,54 @@
 					]
 				}
 			},
+			"ItemVersionData": {
+				"title": "Item Version data",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Each entry of item version",
+				"type": "object",
+				"properties": {
+					"versionContent": {
+						"$ref": "#/components/schemas/ItemVersionContent",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Version Content Details"
+					},
+					"link": {
+						"$ref": "#/components/schemas/LinkRelated",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": ""
+					}
+				},
+				"example": {
+					"versionContent": {
+						"versionName": "2",
+						"versionDate": "Wed, 21 Feb 2024 11:39:21.109Z"
+					},
+					"link": [
+						{
+							"rel": "versioned-item",
+							"href": "/wps/mycontenthandler/!ut/p/digest!4WO1QMmoSJsVoZSCIdhQIg/wcmrest/item/xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/version/2",
+							"lang": "en",
+							"label": "Versioned Item"
+						}
+					]
+				}
+			},
+			"ItemVersionContent": {
+				"title": "Item Version Content",
+				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item version content details",
+				"type": "object",
+				"properties": {
+					"versionName": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Version Name",
+						"type": "string"
+					},
+					"versionDate": {
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Version Date",
+						"type": "string"
+					}
+				},
+				"example": {
+					"versionName": "2",
+					"versionDate": "Wed, 21 Feb 2024 11:39:21.109Z"
+				}
+			},
 			"EmptyJson": {
 				"title": "Root Type for EmptyJson",
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
@@ -36496,135 +36844,93 @@
 				"title": "Approve Item Response",
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Approve Item Response",
 				"type": "object",
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"title": {
+				"allOf": [
+					{
 						"type": "object",
 						"properties": {
-							"lang": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-						"type": "object",
-						"properties": {
-							"lang": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"name": {
-						"type": "string"
-					},
-					"type": {
-						"type": "string"
-					},
-					"workflow": {
-						"type": "object",
-						"properties": {
-							"publishDate": {
-								"type": "string"
-							},
-							"expiryDate": {
-								"type": "string"
-							}
-						}
-					},
-					"link": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"rel": {
-									"type": "string"
-								},
-								"href": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
+							"workflow": {
+								"$ref": "#/components/schemas/WorkflowCommon",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Workflow Details",
+								"properties": {
+									"publishDate": {
+										"type": "string"
+									},
+									"expiryDate": {
+										"type": "string"
+									}
 								}
-							}
-						}
-					},
-					"category": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"scheme": {
-									"type": "string"
-								},
-								"term": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								}
-							}
-						}
-					},
-					"status": {
-						"type": "string"
-					},
-					"lastModified": {
-						"type": "string"
-					},
-					"libraryID": {
-						"type": "string"
-					},
-					"parentID": {
-						"type": "string"
-					},
-					"templateID": {
-						"type": "string"
-					},
-					"lock": {
-						"type": "object",
-						"properties": {
-							"isLocked": {
-								"type": "boolean"
-							}
-						}
-					},
-					"history": {
-						"type": "object",
-						"properties": {
-							"entries": {
+							},
+							"category": {
 								"type": "array",
 								"items": {
-									"type": "object",
-									"properties": {
-										"date": {
-											"type": "string"
-										},
-										"name": {
-											"type": "string"
-										},
-										"message": {
-											"type": "string"
+									"$ref": "#/components/schemas/CategoryCommon"
+								}
+							},
+							"status": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item Status",
+								"type": "string"
+							},
+							"libraryID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Library ID",
+								"type": "string"
+							},
+							"parentID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item Parent ID",
+								"type": "string"
+							},
+							"templateID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Template ID",
+								"type": "string"
+							},
+							"lock": {
+								"$ref": "#/components/schemas/Lock",
+								"properties": {
+									"isLocked": {
+										"type": "boolean"
+									}
+								}
+							},
+							"history": {
+								"$ref": "#/components/schemas/HistoryInfo",
+								"properties": {
+									"entries": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"date": {
+													"type": "string"
+												},
+												"name": {
+													"type": "string"
+												},
+												"message": {
+													"type": "string"
+												}
+											}
 										}
 									}
 								}
+							},
+							"profile": {
+								"$ref": "#/components/schemas/Profile",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": ""
+							},
+							"published": {
+								"format": "date",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date Published",
+								"type": "string"
+							},
+							"data": {
+								"$ref": "#/components/schemas/ContentData",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Item Data"
 							}
 						}
+					},
+					{
+						"$ref": "#/components/schemas/IdentityInfoCommon"
 					}
-				},
+				],
 				"example": {
 					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 					"title": {
@@ -36817,135 +37123,93 @@
 				"title": "Reject Item Response",
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Reject Item Response",
 				"type": "object",
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"title": {
+				"allOf": [
+					{
 						"type": "object",
 						"properties": {
-							"lang": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-						"type": "object",
-						"properties": {
-							"lang": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"name": {
-						"type": "string"
-					},
-					"type": {
-						"type": "string"
-					},
-					"workflow": {
-						"type": "object",
-						"properties": {
-							"publishDate": {
-								"type": "string"
-							},
-							"expiryDate": {
-								"type": "string"
-							}
-						}
-					},
-					"link": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"rel": {
-									"type": "string"
-								},
-								"href": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
+							"workflow": {
+								"$ref": "#/components/schemas/WorkflowCommon",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Workflow Details",
+								"properties": {
+									"publishDate": {
+										"type": "string"
+									},
+									"expiryDate": {
+										"type": "string"
+									}
 								}
-							}
-						}
-					},
-					"category": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"scheme": {
-									"type": "string"
-								},
-								"term": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								}
-							}
-						}
-					},
-					"status": {
-						"type": "string"
-					},
-					"lastModified": {
-						"type": "string"
-					},
-					"libraryID": {
-						"type": "string"
-					},
-					"parentID": {
-						"type": "string"
-					},
-					"templateID": {
-						"type": "string"
-					},
-					"lock": {
-						"type": "object",
-						"properties": {
-							"isLocked": {
-								"type": "boolean"
-							}
-						}
-					},
-					"history": {
-						"type": "object",
-						"properties": {
-							"entries": {
+							},
+							"category": {
 								"type": "array",
 								"items": {
-									"type": "object",
-									"properties": {
-										"date": {
-											"type": "string"
-										},
-										"name": {
-											"type": "string"
-										},
-										"message": {
-											"type": "string"
+									"$ref": "#/components/schemas/CategoryCommon"
+								}
+							},
+							"status": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item Status",
+								"type": "string"
+							},
+							"libraryID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Library ID",
+								"type": "string"
+							},
+							"parentID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Item Parent ID",
+								"type": "string"
+							},
+							"templateID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Template ID",
+								"type": "string"
+							},
+							"lock": {
+								"$ref": "#/components/schemas/Lock",
+								"properties": {
+									"isLocked": {
+										"type": "boolean"
+									}
+								}
+							},
+							"history": {
+								"$ref": "#/components/schemas/HistoryInfo",
+								"properties": {
+									"entries": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"date": {
+													"type": "string"
+												},
+												"name": {
+													"type": "string"
+												},
+												"message": {
+													"type": "string"
+												}
+											}
 										}
 									}
 								}
+							},
+							"profile": {
+								"$ref": "#/components/schemas/Profile",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": ""
+							},
+							"published": {
+								"format": "date",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date Published",
+								"type": "string"
+							},
+							"data": {
+								"$ref": "#/components/schemas/ContentData",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Item Data"
 							}
 						}
+					},
+					{
+						"$ref": "#/components/schemas/IdentityInfoCommon"
 					}
-				},
+				],
 				"example": {
 					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 					"title": {
@@ -37143,230 +37407,148 @@
 				"title": "Root Type for WorkflowItemActions response",
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "",
 				"type": "object",
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"title": {
+				"allOf": [
+					{
 						"type": "object",
 						"properties": {
-							"lang": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"displayTitle": {
-						"type": "object",
-						"properties": {
-							"lang": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"titleTextProviderName": {
-						"type": "string"
-					},
-					"titleTextProviderKey": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"type": {
-						"type": "string"
-					},
-					"created": {
-						"type": "string"
-					},
-					"lastModifier": {
-						"type": "object",
-						"properties": {
-							"distinguishedName": {
-								"type": "string"
-							},
-							"uri": {
-								"type": "string"
-							},
-							"name": {
-								"type": "string"
-							},
-							"type": {
-								"type": "string"
-							}
-						}
-					},
-					"creator": {
-						"type": "object",
-						"properties": {
-							"distinguishedName": {
-								"type": "string"
-							},
-							"uri": {
-								"type": "string"
-							},
-							"name": {
-								"type": "string"
-							},
-							"type": {
-								"type": "string"
-							}
-						}
-					},
-					"profile": {
-						"type": "object"
-					},
-					"workflow": {
-						"type": "object",
-						"properties": {
-							"publishDate": {
-								"type": "string"
-							},
-							"expiryDate": {
-								"type": "string"
-							},
-							"generalDateOne": {
-								"type": "string"
-							},
-							"generalDateTwo": {
-								"type": "string"
-							}
-						}
-					},
-					"link": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"rel": {
-									"type": "string"
-								},
-								"href": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
-								}
-							}
-						}
-					},
-					"category": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"scheme": {
-									"type": "string"
-								},
-								"term": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								}
-							}
-						}
-					},
-					"status": {
-						"type": "string"
-					},
-					"lastModified": {
-						"type": "string"
-					},
-					"libraryID": {
-						"type": "string"
-					},
-					"parentID": {
-						"type": "string"
-					},
-					"templateID": {
-						"type": "string"
-					},
-					"lock": {
-						"type": "object",
-						"properties": {
-							"isLocked": {
-								"type": "string"
-							}
-						}
-					},
-					"history": {
-						"type": "object",
-						"properties": {
-							"entries": {
-								"type": "array",
-								"items": {
-									"type": "object",
-									"properties": {
-										"date": {
-											"type": "string"
-										},
-										"name": {
-											"type": "string"
-										},
-										"message": {
-											"type": "string"
-										}
+							"displayTitle": {
+								"$ref": "#/components/schemas/ItemTitle",
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Display title",
+								"properties": {
+									"lang": {
+										"type": "string"
+									},
+									"value": {
+										"type": "string"
 									}
 								}
-							}
-						}
-					},
-					"data": {
-						"type": "object",
-						"properties": {
-							"Body": {
-								"type": "object",
+							},
+							"titleTextProviderName": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Text Provider Name",
+								"type": "string"
+							},
+							"titleTextProviderKey": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Text provider key",
+								"type": "string"
+							},
+							"profile": {
+								"$ref": "#/components/schemas/Profile"
+							},
+							"workflow": {
+								"$ref": "#/components/schemas/WorkflowCommon",
 								"properties": {
-									"name": {
+									"publishDate": {
 										"type": "string"
 									},
-									"title": {
-										"type": "object",
-										"properties": {
-											"lang": {
-												"type": "string"
-											},
-											"value": {
-												"type": "string"
-											}
-										}
-									},
-									"type": {
+									"expiryDate": {
 										"type": "string"
 									},
-									"data": {
-										"type": "object",
-										"properties": {
-											"type": {
-												"type": "string"
-											},
-											"value": {
-												"type": "string"
-											}
-										}
+									"generalDateOne": {
+										"type": "string"
 									},
-									"properties": {
+									"generalDateTwo": {
+										"type": "string"
+									}
+								}
+							},
+							"category": {
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/CategoryCommon"
+								}
+							},
+							"status": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Worflow Status",
+								"type": "string"
+							},
+							"libraryID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Library ID",
+								"type": "string"
+							},
+							"parentID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Parent ID",
+								"type": "string"
+							},
+							"templateID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Template ID",
+								"type": "string"
+							},
+							"lock": {
+								"$ref": "#/components/schemas/Lock",
+								"properties": {
+									"isLocked": {
+										"type": "string"
+									}
+								}
+							},
+							"history": {
+								"$ref": "#/components/schemas/HistoryInfo",
+								"properties": {
+									"entries": {
 										"type": "array",
 										"items": {
 											"type": "object",
 											"properties": {
-												"key": {
+												"date": {
 													"type": "string"
 												},
-												"value": {
+												"name": {
 													"type": "string"
+												},
+												"message": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							},
+							"data": {
+								"$ref": "#/components/schemas/ContentData",
+								"properties": {
+									"Body": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string"
+											},
+											"title": {
+												"type": "object",
+												"properties": {
+													"lang": {
+														"type": "string"
+													},
+													"value": {
+														"type": "string"
+													}
+												}
+											},
+											"type": {
+												"type": "string"
+											},
+											"data": {
+												"type": "object",
+												"properties": {
+													"type": {
+														"type": "string"
+													},
+													"value": {
+														"type": "string"
+													}
+												}
+											},
+											"properties": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"properties": {
+														"key": {
+															"type": "string"
+														},
+														"value": {
+															"type": "string"
+														}
+													}
 												}
 											}
 										}
@@ -37374,8 +37556,11 @@
 								}
 							}
 						}
+					},
+					{
+						"$ref": "#/components/schemas/IdentityInfoCommon"
 					}
-				},
+				],
 				"example": {
 					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 					"title": {
@@ -37535,132 +37720,88 @@
 				"title": "MoveItemToNextStage Response",
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Move Item To Next Stage Response",
 				"type": "object",
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"title": {
+				"allOf": [
+					{
 						"type": "object",
 						"properties": {
-							"lang": {
-								"type": "string"
+							"profile": {
+								"$ref": "#/components/schemas/Profile"
 							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-						"type": "object",
-						"properties": {
-							"lang": {
-								"type": "string"
+							"workflow": {
+								"$ref": "#/components/schemas/WorkflowCommon",
+								"properties": {
+									"publishDate": {
+										"type": "string"
+									},
+									"expiryDate": {
+										"type": "string"
+									},
+									"generalDateOne": {
+										"type": "string"
+									},
+									"generalDateTwo": {
+										"type": "string"
+									}
+								}
 							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"name": {
-						"type": "string"
-					},
-					"type": {
-						"type": "string"
-					},
-					"workflow": {
-						"type": "object",
-						"properties": {
-							"publishDate": {
-								"type": "string"
-							}
-						}
-					},
-					"link": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"rel": {
-									"type": "string"
-								},
-								"href": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
-								}
-							}
-						}
-					},
-					"category": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"scheme": {
-									"type": "string"
-								},
-								"term": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								}
-							}
-						}
-					},
-					"status": {
-						"type": "string"
-					},
-					"lastModified": {
-						"type": "string"
-					},
-					"libraryID": {
-						"type": "string"
-					},
-					"parentID": {
-						"type": "string"
-					},
-					"templateID": {
-						"type": "string"
-					},
-					"lock": {
-						"type": "object",
-						"properties": {
-							"isLocked": {
-								"type": "boolean"
-							}
-						}
-					},
-					"history": {
-						"type": "object",
-						"properties": {
-							"entries": {
+							"category": {
 								"type": "array",
 								"items": {
-									"type": "object",
-									"properties": {
-										"date": {
-											"type": "string"
-										},
-										"name": {
-											"type": "string"
-										},
-										"message": {
-											"type": "string"
+									"$ref": "#/components/schemas/CategoryCommon"
+								}
+							},
+							"status": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Worflow Status",
+								"type": "string"
+							},
+							"libraryID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Library ID",
+								"type": "string"
+							},
+							"parentID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Parent ID",
+								"type": "string"
+							},
+							"templateID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Template ID",
+								"type": "string"
+							},
+							"lock": {
+								"$ref": "#/components/schemas/Lock",
+								"properties": {
+									"isLocked": {
+										"type": "string"
+									}
+								}
+							},
+							"history": {
+								"$ref": "#/components/schemas/HistoryInfo",
+								"properties": {
+									"entries": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"date": {
+													"type": "string"
+												},
+												"name": {
+													"type": "string"
+												},
+												"message": {
+													"type": "string"
+												}
+											}
 										}
 									}
 								}
 							}
 						}
+					},
+					{
+						"$ref": "#/components/schemas/IdentityInfoCommon"
 					}
-				},
+				],
 				"example": {
 					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 					"title": {
@@ -37788,132 +37929,58 @@
 				"title": "MoveItemToPreviousStage Response",
 				"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Move Item To Previous Stage Response",
 				"type": "object",
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"title": {
+				"allOf": [
+					{
 						"type": "object",
 						"properties": {
-							"lang": {
-								"type": "string"
+							"profile": {
+								"$ref": "#/components/schemas/Profile"
 							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
-						"type": "object",
-						"properties": {
-							"lang": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"name": {
-						"type": "string"
-					},
-					"type": {
-						"type": "string"
-					},
-					"workflow": {
-						"type": "object",
-						"properties": {
-							"publishDate": {
-								"type": "string"
-							}
-						}
-					},
-					"link": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"rel": {
-									"type": "string"
-								},
-								"href": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
-								}
-							}
-						}
-					},
-					"category": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"scheme": {
-									"type": "string"
-								},
-								"term": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
-								},
-								"lang": {
-									"type": "string"
-								}
-							}
-						}
-					},
-					"status": {
-						"type": "string"
-					},
-					"lastModified": {
-						"type": "string"
-					},
-					"libraryID": {
-						"type": "string"
-					},
-					"parentID": {
-						"type": "string"
-					},
-					"templateID": {
-						"type": "string"
-					},
-					"lock": {
-						"type": "object",
-						"properties": {
-							"isLocked": {
-								"type": "boolean"
-							}
-						}
-					},
-					"history": {
-						"type": "object",
-						"properties": {
-							"entries": {
-								"type": "array",
-								"items": {
-									"type": "object",
-									"properties": {
-										"date": {
-											"type": "string"
-										},
-										"name": {
-											"type": "string"
-										},
-										"message": {
-											"type": "string"
-										}
+							"workflow": {
+								"$ref": "#/components/schemas/WorkflowCommon",
+								"properties": {
+									"publishDate": {
+										"type": "string"
+									},
+									"expiryDate": {
+										"type": "string"
+									},
+									"generalDateOne": {
+										"type": "string"
+									},
+									"generalDateTwo": {
+										"type": "string"
 									}
 								}
+							},
+							"category": {
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/CategoryCommon"
+								}
+							},
+							"status": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Worflow Status",
+								"type": "string"
+							},
+							"libraryID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Library ID",
+								"type": "string"
+							},
+							"parentID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Parent ID",
+								"type": "string"
+							},
+							"templateID": {
+								"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Template ID",
+								"type": "string"
 							}
 						}
+					},
+					{
+						"$ref": "#/components/schemas/IdentityInfoCommon"
 					}
-				},
+				],
 				"example": {
 					"id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 					"title": {
@@ -44401,7 +44468,7 @@
 							"link": [
 								{
 									"rel": "versioned-item",
-									"href": "/wps/mycontenthandler/!ut/p/digest!4WO1QMmoSJsVoZSCIdhQIg/wcmrest/item/xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/version/2",
+									"href": "/wps/mycontenthandler/!ut/p/digest!4WO1QMmoSJsVoZSCIdhQIg/wcmrest-v2/item/xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/version/2",
 									"lang": "en",
 									"label": "Versioned Item"
 								}
@@ -44415,7 +44482,7 @@
 							"link": [
 								{
 									"rel": "versioned-item",
-									"href": "/wps/mycontenthandler/!ut/p/digest!4WO1QMmoSJsVoZSCIdhQIg/wcmrest/item/xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/version/1",
+									"href": "/wps/mycontenthandler/!ut/p/digest!4WO1QMmoSJsVoZSCIdhQIg/wcmrest-v2/item/xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/version/1",
 									"lang": "en",
 									"label": "Versioned Item"
 								}
