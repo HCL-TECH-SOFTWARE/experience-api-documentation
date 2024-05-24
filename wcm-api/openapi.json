@@ -12469,17 +12469,39 @@
 						},
 						"in": "query"
 					},
-					{
-						"name": "options",
-						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Allow to tailor results to include additional details. Options: item-path.",
-						"schema": {
-							"enum": [
-								"item-path"
-							],
-							"type": "string"
-						},
-						"in": "query"
-					},
+                    {
+                        "name": "notauthor",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This parameter is used to query items without a specific author. A user UID must be specified when this parameter is used. For example:\n?notauthor=uid=WCMUT_Editor_A,o=defaultWIMFileBasedRealm",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "notowner",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This parameter is used to query items without a specific owner. A user UID must be specified when this parameter is used. For example:\n?notowner=uid=WCMUT_Editor_A,o=defaultWIMFileBasedRealm",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "options",
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Allow to tailor results to include additional details. \n\tFor further information on using query parameter options, go to the HCL Digital Experience Help Center: [Query parameters](https://opensource.hcltechsw.com/digital-experience/latest/manage_content/wcm_development/wcm_rest/wcm_rest_query/wcm_rest_adhoc/).",
+                        "schema": {
+                            "enum": [
+                                "details",
+                                "details-full",
+                                "has-workflow",
+                                "item-path",
+                                "item-path-full",
+                                "search-any",
+                                "workflow"
+                            ],
+                            "type": "string"
+                        },
+                        "in": "query"
+                    },
 					{
 						"name": "owner",
 						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This parameter is used to query items with a specific owner. A user UID must be specified when this parameter is used. For example:\n?owner=uid=WCMUT_Editor_A,o=defaultWIMFileBasedRealm",
