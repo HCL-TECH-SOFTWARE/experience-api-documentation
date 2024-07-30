@@ -1,0 +1,1869 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Search API Server",
+        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Presents developer entrypoints to the Search API features. <br>\n                    Endpoints with tags marked as <b>protected</b> are JWT secured and need an administrator to login before usage.\n                    Use the endpoint <b>/admin/authenticate</b> to get a JWT token. <br>\n                    Copy that JWT Token and use the <b>Authorize</b> button on the top right corner of the Swagger UI to enter the JWT token. <br>\n                    <b>Example:</b> Bearer JWT_TOKEN<br>\n                    The credentials are the ones you have configured for the search administrator and push administrator during deployment.",
+        "version": "2.0.0"
+    },
+    "paths": {
+        "/contentsources": {
+            "get": {
+                "summary": "getContentSources with optional parameter(s) added to the endpoint with ?type=typelist and/or ?size=pagesize",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API lists available content-sources by passing content \"type\" (with comma separated eg. wcm,dam) and max page \"size\".",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "required": false,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "comma separated list of contentsource types (i.e. wcm,dam,jcr)",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "required": false,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "max pagesize (i.e. 100)",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentSource (protected)"
+                ],
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "summary": "postContentSources tries to create an OpenSearch document and index from the given name, type and aclLookupHost as parameter.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API updates multiple but only existing documents in the content source index with given ID and returns an object having a succeeded and failed ids array.",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Data2"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Wrong Content Source creation parameters"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentSource (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/contentsources/{contentsource_id}": {
+            "get": {
+                "summary": "getContentSourcesById which returns a single content source identified by its ID",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API returns content-sources by passing a single content source ID.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Source ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentSource (protected)"
+                ],
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "summary": "postContentSources tries to create an OpenSearch document and index from the given name, type and aclLookupHost as parameter.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API updates multiple but only existing documents in the content source index with given ID and returns an object having a succeeded and failed ids array.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Data2"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Wrong Content Source creation parameters"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentSource (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "summary": "putContentSources with a single ID, fully updates content source by accepting name, type and aclLookupHost as parameter",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API fully updates content source by accepting \"name\", \"type\" and \"aclLookupHost\" as parameter.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Data2"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Source ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentSource (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "patch": {
+                "summary": "patchContentSources with a single ID, partially updates a content source by accepting \"name\", \"type\" and \"aclLookupHost\" as parameter",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API updates content source by accepting \"name\", \"type\" and \"aclLookupHost\" as parameter.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "wcm"
+                                    },
+                                    "aclLookupHost": {
+                                        "type": "string",
+                                        "example": "https://my-environment.arbitarydomaintest.com"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Source ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentSource (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "deleteContentSources with a single ID deletes an OpenSearch document and index for the given \"contentsource_id\"",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API deletes content source for the given \"contentsource_id\"",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Unable to delete Content Source element"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Source ID not found"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentSource (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/contentsourcetypes": {
+            "get": {
+                "summary": "getContentSourceTypes",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API lists all content-source types.",
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentSource (protected)"
+                ],
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/crawlers": {
+            "get": {
+                "summary": "getCrawlers",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API retrieves all available \"contentSource\" and \"type\" along with the \"configuration\"",
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "No crawlers found"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Crawlers (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "summary": "postCrawlers",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API creates a new crawler \"configuration\" for the given \"contentSource\" and \"type\"",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "contentSource",
+                                    "type",
+                                    "configuration"
+                                ],
+                                "properties": {
+                                    "contentSource": {
+                                        "type": "string",
+                                        "example": "ee0765b4-be3e-4d10-9ab4-95e60464e676"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "wcm"
+                                    },
+                                    "configuration": {
+                                        "type": "object",
+                                        "properties": {
+                                            "targetDataSource": {
+                                                "type": "string"
+                                            },
+                                            "schedule": {
+                                                "type": "string"
+                                            },
+                                            "security": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "example": "basic"
+                                                    },
+                                                    "username": {
+                                                        "type": "string"
+                                                    },
+                                                    "password": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "maxCrawlTime": {
+                                                "type": "number"
+                                            },
+                                            "maxRequestTime": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Wrong Crawler creation parameters"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Crawlers (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/crawlers/{crawler_id}": {
+            "get": {
+                "summary": "getCrawlers with a single ID",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API retrieves \"contentSource\" and \"type\" along with the \"configuration\" for the given \"crawler_id\"",
+                "parameters": [
+                    {
+                        "name": "crawler_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of crawler",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Crawler ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Crawlers (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "summary": "putCrawlers with a single ID",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API fully updates \"contentSource\", \"type\" and \"configuration\" for a given crawler by accepting \"crawler_id\"",
+                "parameters": [
+                    {
+                        "name": "crawler_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of crawler",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "contentSource": {
+                                        "type": "string",
+                                        "example": "ee0765b4-be3e-4d10-9ab4-95e60464e676"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "wcm"
+                                    },
+                                    "configuration": {
+                                        "type": "object",
+                                        "properties": {
+                                            "targetDataSource": {
+                                                "type": "string"
+                                            },
+                                            "schedule": {
+                                                "type": "* 2 * * *"
+                                            },
+                                            "security": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "example": "basic"
+                                                    },
+                                                    "username": {
+                                                        "type": "string"
+                                                    },
+                                                    "password": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "maxCrawlTime": {
+                                                "type": "number"
+                                            },
+                                            "maxRequestTime": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Crawler ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Crawlers (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "patch": {
+                "summary": "patchCrawlers with a single ID",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API partially updates \"contentSource\", \"type\" and \"configuration\" for a given crawler by accepting \"crawler_id\"",
+                "parameters": [
+                    {
+                        "name": "crawler_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of crawler",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "contentSource": {
+                                        "type": "string",
+                                        "example": "ee0765b4-be3e-4d10-9ab4-95e60464e676"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "wcm"
+                                    },
+                                    "configuration": {
+                                        "type": "object",
+                                        "properties": {
+                                            "targetDataSource": {
+                                                "type": "string"
+                                            },
+                                            "schedule": {
+                                                "type": "string"
+                                            },
+                                            "security": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "type": {
+                                                        "type": "string",
+                                                        "example": "basic"
+                                                    },
+                                                    "username": {
+                                                        "type": "string"
+                                                    },
+                                                    "password": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "maxCrawlTime": {
+                                                "type": "number"
+                                            },
+                                            "maxRequestTime": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Crawler ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Crawlers (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "deleteCrawlers with a single ID",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API deletes a crawler by accepting \"crawler_id\"",
+                "parameters": [
+                    {
+                        "name": "crawler_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of crawler",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Crawler ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Crawlers (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/crawlers/{crawler_id}/test": {
+            "post": {
+                "summary": "testCrawlerConnection",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API verifies credentials for crawler configuration with \"crawler_id\"",
+                "parameters": [
+                    {
+                        "name": "crawler_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of crawler",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Crawler ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Crawlers (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/crawlers/{crawler_id}/trigger": {
+            "post": {
+                "summary": "postcrawlersTrigger",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API triggers crawler with \"crawler_id\"",
+                "parameters": [
+                    {
+                        "name": "crawler_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of crawler",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Crawler ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Crawlers (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/contentsources/{contentsource_id}/crawlers": {
+            "get": {
+                "summary": "getContentsourcesCrawlers",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API retrieves a single crawler with \"contentSource\" and \"type\" along with the \"configuration\" for the given \"contentsource_id\"",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content source id not found or no crawlers found"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Crawlers (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/contentsources/{contentsource_id}/documents": {
+            "get": {
+                "summary": "Get document ids from index given as contentsource_id (getContentsourcesDocuments)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API lists document ids and their title from content source index with given ID.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "required": false,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "page number",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "required": false,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "max pagesize (i.e. 100)",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Source ID not found"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update/Add multiple documents in the index given as contentsource_id (updateContentsourceDocuments)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API updates/adds multiple documents in the content source index with given ID and returns an object having a succeeded and failed ids array.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "documents"
+                                ],
+                                "properties": {
+                                    "documents": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "fe657e1b-214f-4816-b2af-77fca67fb171"
+                                                },
+                                                "created": {
+                                                    "type": "number",
+                                                    "example": 1697468618000,
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of creation in original source"
+                                                },
+                                                "updated": {
+                                                    "type": "number",
+                                                    "example": 1697468974000,
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of last update in original source"
+                                                },
+                                                "acls": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "acl-1",
+                                                        "acl-2"
+                                                    ],
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
+                                                    "items": {}
+                                                },
+                                                "documentObject": {
+                                                    "type": "object",
+                                                    "example": {}
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Request failed because none of provided documents were updated/added."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Document ids missing or content source ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "patch": {
+                "summary": "Update multiple existing documents in the index given as contentsource_id (updateContentsourceDocuments)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API updates multiple but only existing documents in the content source index with given ID and returns an object having a succeeded and failed ids array.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Data"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Request failed because none of provided documents were updated/added."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Document ids missing or or content source ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Update/Add multiple documents to the index given as contentsource_id (postContentsourcesDocuments)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API updates/adds multiple documents to the content source index with given ID and returns an object having a succeeded and failed ids array.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Data"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "New document not created in index."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Source ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete multiple documents passed in as array from index given as contentsource_id (deleteContentsourcesDocumentsBulk)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API deletes multiple documents in the content source index with given ID and returns an object having a succeeded and failed ids array.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Data3"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "204": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "All documents deleted."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content source id not found or none of the documents deleted."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/contentsources/{contentsource_id}/documents/get": {
+            "post": {
+                "summary": "Get multiple documents from index given as contentsource_id (postContentsourcesDocumentsGet)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API returns all documents from the given ID which matches the document ids passed as array in the body. Ids not found in the index are ignored and not part the response.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Data3"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Wrong request body (e.g. no ids identifier or empty id list)"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content source id not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/contentsources/{contentsource_id}/documents/byquery": {
+            "delete": {
+                "summary": "Delete multiple documents defined by query from index given as contentsource_id (deleteContentsourcesDocumentsByQuery)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API deletes multiple documents in the content source index with given ID if the query returned matching documents.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "query"
+                                ],
+                                "properties": {
+                                    "query": {
+                                        "type": "object",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Query object as defined by Opensearch"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "204": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "All queried documents deleted."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content source id not found or no documents deleted if query did not find any document."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/contentsources/{contentsource_id}/documents/{document_id}": {
+            "get": {
+                "summary": "Get single document from index given as contentsource_id (getContentsourcesDocumentsById)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API gets a single document from the content source index with given ID and the passed in document id.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "document_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of document",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Invalid request parameter."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content source id or document not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Add a single document to index given as contentsource_id (postContentsourcesDocumentsById)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API adds a single not existing document to the content source index with given ID and returns the created document object.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "document_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of document",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "created",
+                                    "updated"
+                                ],
+                                "properties": {
+                                    "created": {
+                                        "type": "number",
+                                        "example": 1697468618000,
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of creation in original source"
+                                    },
+                                    "updated": {
+                                        "type": "number",
+                                        "example": 1697468974000,
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of last update in original source"
+                                    },
+                                    "acls": {
+                                        "type": "array",
+                                        "example": [
+                                            "acl-1",
+                                            "acl-2"
+                                        ],
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
+                                        "items": {}
+                                    },
+                                    "documentObject": {
+                                        "type": "object",
+                                        "example": {},
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Additional document relevant properties"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Invalid request parameter."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "403": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Document creation error."
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content source id not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update/Add a single document to index given as contentsource_id (updateContentsourceDocuments)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API updates/adds a single document to the content source index with given ID and returns the updated/created document object.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "document_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of document",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "created",
+                                    "updated",
+                                    "documentObject"
+                                ],
+                                "properties": {
+                                    "created": {
+                                        "type": "number",
+                                        "example": 1697468618000,
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of creation in original source"
+                                    },
+                                    "updated": {
+                                        "type": "number",
+                                        "example": 1697468974000,
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of last update in original source"
+                                    },
+                                    "acls": {
+                                        "type": "array",
+                                        "example": [
+                                            "acl-1",
+                                            "acl-2"
+                                        ],
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
+                                        "items": {}
+                                    },
+                                    "documentObject": {
+                                        "type": "object",
+                                        "example": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Request failed because the of provided document was not updated/added."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content source id not found or document id missing."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "patch": {
+                "summary": "Update a single existing document to index given as contentsource_id (updateContentsourceDocuments)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API updates a single already existing document in the content source index with given ID and returns the updated document object.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "document_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of document",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "created": {
+                                        "type": "number",
+                                        "example": 0,
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of creation in original source"
+                                    },
+                                    "updated": {
+                                        "type": "number",
+                                        "example": 0,
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of last update in original source"
+                                    },
+                                    "acls": {
+                                        "type": "array",
+                                        "example": [
+                                            "acl-1",
+                                            "acl-2"
+                                        ],
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
+                                        "items": {}
+                                    },
+                                    "documentObject": {
+                                        "type": "object",
+                                        "example": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Request failed because the of provided document was not updated/added."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content source id not found or document id missing."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a single document passed as document_id from index given as contentsource_id (deleteContentsourcesDocumentsById)",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API deletes a single document from the content source index with given ID.",
+                "parameters": [
+                    {
+                        "name": "contentsource_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of contentsource",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "document_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of document",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "204": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Single document successful deleted."
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Invalid request parameter."
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content source id or document id not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentPush (protected)"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/search": {
+            "post": {
+                "summary": "postSearch",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API returns documents and aggregations. \n                The query object is formed with a \"must\", \"should\" and/or \"must_not\" array of objects and\n                an optional minimum_should_match property.\n                It follows the standard OpenSearch Query structure.\n                The aggregations object follows the same OpenSearch Aggregation structure.\n                The page (default: 0) and pageSize (default: 100) parameters are optional.\n                The scope parameter is an array of Content Source UUIDs to filter the search results.\n                If the scope parameter is not provided, the search will be performed on all available Content Sources",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "query"
+                                ],
+                                "properties": {
+                                    "query": {
+                                        "type": "object",
+                                        "properties": {
+                                            "must": {
+                                                "type": "array",
+                                                "example": [
+                                                    {
+                                                        "match": {
+                                                            "documentObject.author.name": "wpsadmin"
+                                                        }
+                                                    }
+                                                ],
+                                                "items": {}
+                                            }
+                                        },
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Query object formed with a \"must\" and/or \"should\" array of objects and an optional minimum_should_match property but can be empty to get all items."
+                                    },
+                                    "page": {
+                                        "type": "integer",
+                                        "minimum": 0
+                                    },
+                                    "pageSize": {
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "example": 10
+                                    },
+                                    "aggregations": {
+                                        "type": "object",
+                                        "example": {
+                                            "author": {
+                                                "terms": {
+                                                    "field": "documentObject.author.name.keyword"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Missing or malformed search request"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentQuery"
+                ],
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/mysearch": {
+            "post": {
+                "summary": "postMySearch",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API returns documents and aggregations. \n                The query object is formed with a \"must\", \"should\" and/or \"must_not\" array of objects and\n                an optional minimum_should_match property.\n                It follows the standard OpenSearch Query structure.\n                The aggregations object follows the same OpenSearch Aggregation structure.\n                The page (default: 0) and pageSize (default: 100) parameters are optional.\n                The scope parameter is an array of Content Source UUIDs to narrow down the search results.\n                If the scope parameter is not provided, the search will be performed on all available Content Sources",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "query"
+                                ],
+                                "properties": {
+                                    "query": {
+                                        "type": "object",
+                                        "properties": {
+                                            "must": {
+                                                "type": "array",
+                                                "example": [
+                                                    {
+                                                        "match": {
+                                                            "documentObject.author.name": "wpsadmin"
+                                                        }
+                                                    }
+                                                ],
+                                                "items": {}
+                                            }
+                                        },
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Query object formed with a \"must\" and/or \"should\" array of objects and an optional minimum_should_match property but can be empty to get all items."
+                                    },
+                                    "page": {
+                                        "type": "integer",
+                                        "minimum": 0
+                                    },
+                                    "pageSize": {
+                                        "type": "integer",
+                                        "minimum": 1,
+                                        "example": 10
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Missing or malformed search request"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ContentQuery"
+                ],
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/admin/authenticate": {
+            "post": {
+                "summary": "postGetToken generates JWT token by accepting \"username\" and \"password\" as parameter",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This serves as authorisation login for administrators to use protected APIs in subsequent calls.",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "username",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "searchadmin"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Wrong login credentials"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Authentication"
+                ],
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [],
+    "servers": [
+        {
+            "url": "/dx/api/search/v2"
+        }
+    ],
+    "components": {
+        "requestBodies": {
+            "Data": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "documents"
+                            ],
+                            "properties": {
+                                "documents": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "fe657e1b-214f-4816-b2af-77fca67fb171"
+                                            },
+                                            "created": {
+                                                "type": "number",
+                                                "example": 0,
+                                                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of creation in original source"
+                                            },
+                                            "updated": {
+                                                "type": "number",
+                                                "example": 0,
+                                                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of last update in original source"
+                                            },
+                                            "acls": {
+                                                "type": "array",
+                                                "example": [
+                                                    "acl-1",
+                                                    "acl-2"
+                                                ],
+                                                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
+                                                "items": {}
+                                            },
+                                            "documentObject": {
+                                                "type": "object",
+                                                "example": {}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+            },
+            "Data2": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "name",
+                                "type",
+                                "aclLookupHost"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "example": "wcm"
+                                },
+                                "aclLookupHost": {
+                                    "type": "string",
+                                    "example": "https://my-environment.arbitarydomaintest.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+            },
+            "Data3": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "ids"
+                            ],
+                            "properties": {
+                                "ids": {
+                                    "type": "string[]",
+                                    "example": [
+                                        "abc",
+                                        "def"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+            }
+        },
+        "securitySchemes": {
+            "Bearer": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "Authorization",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bearer JWT"
+            }
+        }
+    }
+}
