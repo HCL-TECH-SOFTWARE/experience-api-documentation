@@ -28,6 +28,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "page",
+                        "required": false,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "page number (i.e. 1)",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -54,7 +63,7 @@
                 "summary": "postContentSources tries to create an OpenSearch document and index from the given name, type and aclLookupHost as parameter.",
                 "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API updates multiple but only existing documents in the content source index with given ID and returns an object having a succeeded and failed ids array.",
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data2"
+                    "$ref": "#/components/requestBodies/Data"
                 },
                 "responses": {
                     "200": {
@@ -133,7 +142,7 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data2"
+                    "$ref": "#/components/requestBodies/Data"
                 },
                 "responses": {
                     "200": {
@@ -173,7 +182,56 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data2"
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "name",
+                                    "aclLookupHost"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "aclLookupHost": {
+                                        "type": "string",
+                                        "example": "https://my-environment.arbitarydomaintest.com"
+                                    },
+                                    "security": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "example": "basic"
+                                            },
+                                            "username": {
+                                                "type": "string",
+                                                "example": "wpsadmin"
+                                            },
+                                            "password": {
+                                                "type": "string",
+                                                "example": "wpsadmin"
+                                            },
+                                            "usernameField": {
+                                                "type": "string",
+                                                "example": "username"
+                                            },
+                                            "passwordField": {
+                                                "type": "string",
+                                                "example": "password"
+                                            },
+                                            "loginPath": {
+                                                "type": "string",
+                                                "example": ""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
                 },
                 "responses": {
                     "200": {
@@ -221,13 +279,38 @@
                                     "name": {
                                         "type": "string"
                                     },
-                                    "type": {
-                                        "type": "string",
-                                        "example": "wcm"
-                                    },
                                     "aclLookupHost": {
                                         "type": "string",
                                         "example": "https://my-environment.arbitarydomaintest.com"
+                                    },
+                                    "security": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "example": "basic"
+                                            },
+                                            "username": {
+                                                "type": "string",
+                                                "example": "wpsadmin"
+                                            },
+                                            "password": {
+                                                "type": "string",
+                                                "example": "wpsadmin"
+                                            },
+                                            "usernameField": {
+                                                "type": "string",
+                                                "example": "username"
+                                            },
+                                            "passwordField": {
+                                                "type": "string",
+                                                "example": "password"
+                                            },
+                                            "loginPath": {
+                                                "type": "string",
+                                                "example": ""
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -913,6 +996,40 @@
                                                     "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
                                                     "items": {}
                                                 },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "raspberry pi",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title of document"
+                                                },
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "electronic-item/pdf/doc/txt",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This document has details of raspberry pi"
+                                                },
+                                                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                                                    "type": "string",
+                                                    "example": "Details of raspberry pi",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Description od document"
+                                                },
+                                                "dataUri": {
+                                                    "type": "string",
+                                                    "example": "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "URI path"
+                                                },
+                                                "text": {
+                                                    "type": "string",
+                                                    "example": "",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": ""
+                                                },
+                                                "tags": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "tag-1",
+                                                        "tag-2"
+                                                    ],
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
+                                                    "items": {}
+                                                },
                                                 "documentObject": {
                                                     "type": "object",
                                                     "example": {}
@@ -967,7 +1084,83 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data"
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "documents"
+                                ],
+                                "properties": {
+                                    "documents": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "fe657e1b-214f-4816-b2af-77fca67fb171"
+                                                },
+                                                "created": {
+                                                    "type": "number",
+                                                    "example": 0,
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of creation in original source"
+                                                },
+                                                "updated": {
+                                                    "type": "number",
+                                                    "example": 0,
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of last update in original source"
+                                                },
+                                                "acls": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "acl-1",
+                                                        "acl-2"
+                                                    ],
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
+                                                    "items": {}
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "raspberry pi",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title of document"
+                                                },
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "electronic-item/pdf/doc/txt",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Type of document"
+                                                },
+                                                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                                                    "type": "string",
+                                                    "example": "Details of raspberry pi",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This document has details of raspberry pi"
+                                                },
+                                                "dataUri": {
+                                                    "type": "string",
+                                                    "example": "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "URI path"
+                                                },
+                                                "tags": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "tag-1",
+                                                        "tag-2"
+                                                    ],
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
+                                                    "items": {}
+                                                },
+                                                "documentObject": {
+                                                    "type": "object",
+                                                    "example": {}
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
                 },
                 "responses": {
                     "200": {
@@ -1010,7 +1203,88 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data"
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "documents"
+                                ],
+                                "properties": {
+                                    "documents": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string",
+                                                    "example": "fe657e1b-214f-4816-b2af-77fca67fb171"
+                                                },
+                                                "created": {
+                                                    "type": "number",
+                                                    "example": 0,
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of creation in original source"
+                                                },
+                                                "updated": {
+                                                    "type": "number",
+                                                    "example": 0,
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of last update in original source"
+                                                },
+                                                "acls": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "acl-1",
+                                                        "acl-2"
+                                                    ],
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
+                                                    "items": {}
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "raspberry pi",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "title of the document"
+                                                },
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "electronic-item/pdf/doc/txt",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "type of document"
+                                                },
+                                                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                                                    "type": "string",
+                                                    "example": "Details of raspberry pi",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This document has details of raspberry pi"
+                                                },
+                                                "dataUri": {
+                                                    "type": "string",
+                                                    "example": "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Path to the content that will get text extraction run"
+                                                },
+                                                "text": {
+                                                    "type": "string",
+                                                    "example": "",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": ""
+                                                },
+                                                "tags": {
+                                                    "type": "array",
+                                                    "example": [
+                                                        "tag-one",
+                                                        "tag-two"
+                                                    ],
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
+                                                    "items": {}
+                                                },
+                                                "documentObject": {
+                                                    "type": "object",
+                                                    "example": {}
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
                 },
                 "responses": {
                     "200": {
@@ -1053,7 +1327,7 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data3"
+                    "$ref": "#/components/requestBodies/Data2"
                 },
                 "responses": {
                     "200": {
@@ -1098,7 +1372,7 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data3"
+                    "$ref": "#/components/requestBodies/Data2"
                 },
                 "responses": {
                     "200": {
@@ -1290,6 +1564,40 @@
                                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
                                         "items": {}
                                     },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "raspberry pi",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title of document"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "electronic-item/pdf/doc/txt",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Type of document"
+                                    },
+                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                                        "type": "string",
+                                        "example": "Details of raspberry pi",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This document has details of raspberry pi"
+                                    },
+                                    "dataUri": {
+                                        "type": "string",
+                                        "example": "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "URI path"
+                                    },
+                                    "text": {
+                                        "type": "string",
+                                        "example": "",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": ""
+                                    },
+                                    "tags": {
+                                        "type": "array",
+                                        "example": [
+                                            "tag-1",
+                                            "tag-2"
+                                        ],
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
+                                        "items": {}
+                                    },
                                     "documentObject": {
                                         "type": "object",
                                         "example": {},
@@ -1383,6 +1691,40 @@
                                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
                                         "items": {}
                                     },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "raspberry pi",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title of document"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "electronic-item/pdf/doc/txt",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Type of document"
+                                    },
+                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                                        "type": "string",
+                                        "example": "Details of raspberry pi",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This document has details of raspberry pi"
+                                    },
+                                    "dataUri": {
+                                        "type": "string",
+                                        "example": "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "URI path"
+                                    },
+                                    "text": {
+                                        "type": "string",
+                                        "example": "",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": ""
+                                    },
+                                    "tags": {
+                                        "type": "array",
+                                        "example": [
+                                            "tag-1",
+                                            "tag-2"
+                                        ],
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
+                                        "items": {}
+                                    },
                                     "documentObject": {
                                         "type": "object",
                                         "example": {}
@@ -1465,6 +1807,35 @@
                                             "acl-2"
                                         ],
                                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
+                                        "items": {}
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "raspberry pi",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Title of document"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "electronic-item/pdf/doc/txt",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Type of document"
+                                    },
+                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": {
+                                        "type": "string",
+                                        "example": "This document has details of raspberry pi",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This document has details of raspberry pi"
+                                    },
+                                    "dataUri": {
+                                        "type": "string",
+                                        "example": "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "URI path"
+                                    },
+                                    "tags": {
+                                        "type": "array",
+                                        "example": [
+                                            "tag-1",
+                                            "tag-2"
+                                        ],
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
                                         "items": {}
                                     },
                                     "documentObject": {
@@ -1561,55 +1932,7 @@
                 "summary": "postSearch",
                 "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API returns documents and aggregations. \n                The query object is formed with a \"must\", \"should\" and/or \"must_not\" array of objects and\n                an optional minimum_should_match property.\n                It follows the standard OpenSearch Query structure.\n                The aggregations object follows the same OpenSearch Aggregation structure.\n                The page (default: 0) and pageSize (default: 100) parameters are optional.\n                The scope parameter is an array of Content Source UUIDs to filter the search results.\n                If the scope parameter is not provided, the search will be performed on all available Content Sources",
                 "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "required": [
-                                    "query"
-                                ],
-                                "properties": {
-                                    "query": {
-                                        "type": "object",
-                                        "properties": {
-                                            "must": {
-                                                "type": "array",
-                                                "example": [
-                                                    {
-                                                        "match": {
-                                                            "documentObject.author.name": "wpsadmin"
-                                                        }
-                                                    }
-                                                ],
-                                                "items": {}
-                                            }
-                                        },
-                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Query object formed with a \"must\" and/or \"should\" array of objects and an optional minimum_should_match property but can be empty to get all items."
-                                    },
-                                    "page": {
-                                        "type": "integer",
-                                        "minimum": 0
-                                    },
-                                    "pageSize": {
-                                        "type": "integer",
-                                        "minimum": 1,
-                                        "example": 10
-                                    },
-                                    "aggregations": {
-                                        "type": "object",
-                                        "example": {
-                                            "author": {
-                                                "terms": {
-                                                    "field": "documentObject.author.name.keyword"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                    "$ref": "#/components/requestBodies/Data3"
                 },
                 "responses": {
                     "200": {
@@ -1637,45 +1960,7 @@
                 "summary": "postMySearch",
                 "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API returns documents and aggregations. \n                The query object is formed with a \"must\", \"should\" and/or \"must_not\" array of objects and\n                an optional minimum_should_match property.\n                It follows the standard OpenSearch Query structure.\n                The aggregations object follows the same OpenSearch Aggregation structure.\n                The page (default: 0) and pageSize (default: 100) parameters are optional.\n                The scope parameter is an array of Content Source UUIDs to narrow down the search results.\n                If the scope parameter is not provided, the search will be performed on all available Content Sources",
                 "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "required": [
-                                    "query"
-                                ],
-                                "properties": {
-                                    "query": {
-                                        "type": "object",
-                                        "properties": {
-                                            "must": {
-                                                "type": "array",
-                                                "example": [
-                                                    {
-                                                        "match": {
-                                                            "documentObject.author.name": "wpsadmin"
-                                                        }
-                                                    }
-                                                ],
-                                                "items": {}
-                                            }
-                                        },
-                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Query object formed with a \"must\" and/or \"should\" array of objects and an optional minimum_should_match property but can be empty to get all items."
-                                    },
-                                    "page": {
-                                        "type": "integer",
-                                        "minimum": 0
-                                    },
-                                    "pageSize": {
-                                        "type": "integer",
-                                        "minimum": 1,
-                                        "example": 10
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                    "$ref": "#/components/requestBodies/Data3"
                 },
                 "responses": {
                     "200": {
@@ -1701,7 +1986,7 @@
         "/admin/authenticate": {
             "post": {
                 "summary": "postGetToken generates JWT token by accepting \"username\" and \"password\" as parameter",
-                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This serves as authorisation login for administrators to use protected APIs in subsequent calls.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This serves as authorization login for administrators to use protected APIs in subsequent calls.",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1762,56 +2047,6 @@
                         "schema": {
                             "type": "object",
                             "required": [
-                                "documents"
-                            ],
-                            "properties": {
-                                "documents": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "type": "string",
-                                                "example": "fe657e1b-214f-4816-b2af-77fca67fb171"
-                                            },
-                                            "created": {
-                                                "type": "number",
-                                                "example": 0,
-                                                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of creation in original source"
-                                            },
-                                            "updated": {
-                                                "type": "number",
-                                                "example": 0,
-                                                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Date of last update in original source"
-                                            },
-                                            "acls": {
-                                                "type": "array",
-                                                "example": [
-                                                    "acl-1",
-                                                    "acl-2"
-                                                ],
-                                                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of access control",
-                                                "items": {}
-                                            },
-                                            "documentObject": {
-                                                "type": "object",
-                                                "example": {}
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
-            },
-            "Data2": {
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "required": [
                                 "name",
                                 "type",
                                 "aclLookupHost"
@@ -1827,6 +2062,35 @@
                                 "aclLookupHost": {
                                     "type": "string",
                                     "example": "https://my-environment.arbitarydomaintest.com"
+                                },
+                                "security": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "basic"
+                                        },
+                                        "username": {
+                                            "type": "string",
+                                            "example": "wpsadmin"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "example": "wpsadmin"
+                                        },
+                                        "usernameField": {
+                                            "type": "string",
+                                            "example": "username"
+                                        },
+                                        "passwordField": {
+                                            "type": "string",
+                                            "example": "password"
+                                        },
+                                        "loginPath": {
+                                            "type": "string",
+                                            "example": ""
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -1834,7 +2098,7 @@
                 },
                 "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
             },
-            "Data3": {
+            "Data2": {
                 "content": {
                     "application/json": {
                         "schema": {
@@ -1849,6 +2113,57 @@
                                         "abc",
                                         "def"
                                     ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+            },
+            "Data3": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "query"
+                            ],
+                            "properties": {
+                                "query": {
+                                    "type": "object",
+                                    "properties": {
+                                        "must": {
+                                            "type": "array",
+                                            "example": [
+                                                {
+                                                    "match": {
+                                                        "documentObject.author.name": "wpsadmin"
+                                                    }
+                                                }
+                                            ],
+                                            "items": {}
+                                        }
+                                    },
+                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "WCM - Asset"
+                                },
+                                "page": {
+                                    "type": "integer",
+                                    "minimum": 0
+                                },
+                                "pageSize": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "example": 10
+                                },
+                                "aggregations": {
+                                    "type": "object",
+                                    "example": {
+                                        "author": {
+                                            "terms": {
+                                                "field": "documentObject.author.name.keyword"
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
