@@ -410,7 +410,7 @@
         "/crawlers": {
             "get": {
                 "summary": "getCrawlers",
-                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API retrieves all available \"contentSource\" and \"type\" along with the \"configuration\"",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API retrieves all available Crawlers along with the \"configuration\"",
                 "responses": {
                     "200": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
