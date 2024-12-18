@@ -37,6 +37,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "aclLookupPathFilter",
+                        "required": false,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "filter by aclLookupPath",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -51,13 +60,9 @@
                     }
                 },
                 "tags": [
-                    "ContentSource (protected)"
+                    "ContentSource"
                 ],
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
+                "security": []
             },
             "post": {
                 "summary": "postContentSources tries to create an OpenSearch document and index from the given name, type and aclLookupHost as parameter.",
@@ -80,7 +85,7 @@
                     }
                 },
                 "tags": [
-                    "ContentSource (protected)"
+                    "ContentSource"
                 ],
                 "security": [
                     {
@@ -119,13 +124,9 @@
                     }
                 },
                 "tags": [
-                    "ContentSource (protected)"
+                    "ContentSource"
                 ],
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
+                "security": []
             },
             "post": {
                 "summary": "postContentSources tries to create an OpenSearch document and index from the given name, type and aclLookupHost as parameter.",
@@ -159,7 +160,7 @@
                     }
                 },
                 "tags": [
-                    "ContentSource (protected)"
+                    "ContentSource"
                 ],
                 "security": [
                     {
@@ -248,7 +249,7 @@
                     }
                 },
                 "tags": [
-                    "ContentSource (protected)"
+                    "ContentSource"
                 ],
                 "security": [
                     {
@@ -333,7 +334,7 @@
                     }
                 },
                 "tags": [
-                    "ContentSource (protected)"
+                    "ContentSource"
                 ],
                 "security": [
                     {
@@ -359,6 +360,9 @@
                     "200": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
                     },
+                    "204": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Content Source element deleted."
+                    },
                     "400": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Unable to delete Content Source element"
                     },
@@ -373,7 +377,7 @@
                     }
                 },
                 "tags": [
-                    "ContentSource (protected)"
+                    "ContentSource"
                 ],
                 "security": [
                     {
@@ -386,9 +390,24 @@
             "get": {
                 "summary": "getContentSourceTypes",
                 "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API lists all content-source types.",
+                "parameters": [
+                    {
+                        "name": "showFieldMappings",
+                        "required": false,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Returns the field mappings for each type of Content Source.",
+                        "example": false,
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Invalid request parameters"
                     },
                     "401": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
@@ -398,13 +417,9 @@
                     }
                 },
                 "tags": [
-                    "ContentSource (protected)"
+                    "ContentSource"
                 ],
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
+                "security": []
             }
         },
         "/crawlers": {
@@ -426,7 +441,7 @@
                     }
                 },
                 "tags": [
-                    "Crawlers (protected)"
+                    "Crawlers"
                 ],
                 "security": [
                     {
@@ -509,7 +524,7 @@
                     }
                 },
                 "tags": [
-                    "Crawlers (protected)"
+                    "Crawlers"
                 ],
                 "security": [
                     {
@@ -548,7 +563,7 @@
                     }
                 },
                 "tags": [
-                    "Crawlers (protected)"
+                    "Crawlers"
                 ],
                 "security": [
                     {
@@ -571,56 +586,7 @@
                     }
                 ],
                 "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "contentSource": {
-                                        "type": "string",
-                                        "example": "ee0765b4-be3e-4d10-9ab4-95e60464e676"
-                                    },
-                                    "type": {
-                                        "type": "string",
-                                        "example": "wcm"
-                                    },
-                                    "configuration": {
-                                        "type": "object",
-                                        "properties": {
-                                            "targetDataSource": {
-                                                "type": "string"
-                                            },
-                                            "schedule": {
-                                                "type": "* 2 * * *"
-                                            },
-                                            "security": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "type": {
-                                                        "type": "string",
-                                                        "example": "basic"
-                                                    },
-                                                    "username": {
-                                                        "type": "string"
-                                                    },
-                                                    "password": {
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            },
-                                            "maxCrawlTime": {
-                                                "type": "number"
-                                            },
-                                            "maxRequestTime": {
-                                                "type": "number"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                    "$ref": "#/components/requestBodies/Data2"
                 },
                 "responses": {
                     "200": {
@@ -637,7 +603,7 @@
                     }
                 },
                 "tags": [
-                    "Crawlers (protected)"
+                    "Crawlers"
                 ],
                 "security": [
                     {
@@ -660,56 +626,7 @@
                     }
                 ],
                 "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "contentSource": {
-                                        "type": "string",
-                                        "example": "ee0765b4-be3e-4d10-9ab4-95e60464e676"
-                                    },
-                                    "type": {
-                                        "type": "string",
-                                        "example": "wcm"
-                                    },
-                                    "configuration": {
-                                        "type": "object",
-                                        "properties": {
-                                            "targetDataSource": {
-                                                "type": "string"
-                                            },
-                                            "schedule": {
-                                                "type": "string"
-                                            },
-                                            "security": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "type": {
-                                                        "type": "string",
-                                                        "example": "basic"
-                                                    },
-                                                    "username": {
-                                                        "type": "string"
-                                                    },
-                                                    "password": {
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            },
-                                            "maxCrawlTime": {
-                                                "type": "number"
-                                            },
-                                            "maxRequestTime": {
-                                                "type": "number"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                    "$ref": "#/components/requestBodies/Data2"
                 },
                 "responses": {
                     "200": {
@@ -726,7 +643,7 @@
                     }
                 },
                 "tags": [
-                    "Crawlers (protected)"
+                    "Crawlers"
                 ],
                 "security": [
                     {
@@ -752,6 +669,9 @@
                     "200": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
                     },
+                    "204": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Crawler deleted."
+                    },
                     "401": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
                     },
@@ -763,7 +683,7 @@
                     }
                 },
                 "tags": [
-                    "Crawlers (protected)"
+                    "Crawlers"
                 ],
                 "security": [
                     {
@@ -802,7 +722,7 @@
                     }
                 },
                 "tags": [
-                    "Crawlers (protected)"
+                    "Crawlers"
                 ],
                 "security": [
                     {
@@ -824,6 +744,15 @@
                         "schema": {
                             "type": "string"
                         }
+                    },
+                    {
+                        "name": "clear_timestamp",
+                        "required": false,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Clear the timestamp and trigger the crawler",
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean"
+                        }
                     }
                 ],
                 "responses": {
@@ -841,7 +770,7 @@
                     }
                 },
                 "tags": [
-                    "Crawlers (protected)"
+                    "Crawlers"
                 ],
                 "security": [
                     {
@@ -880,7 +809,7 @@
                     }
                 },
                 "tags": [
-                    "Crawlers (protected)"
+                    "Crawlers"
                 ],
                 "security": [
                     {
@@ -892,7 +821,7 @@
         "/contentsources/{contentsource_id}/documents": {
             "get": {
                 "summary": "Get document ids from index given as contentsource_id (getContentsourcesDocuments)",
-                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API lists document ids and their title from content source index with given ID.",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API lists document ids from content source index with given ID.",
                 "parameters": [
                     {
                         "name": "contentsource_id",
@@ -937,7 +866,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1061,7 +990,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1180,7 +1109,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1304,7 +1233,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1327,7 +1256,7 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data2"
+                    "$ref": "#/components/requestBodies/Data3"
                 },
                 "responses": {
                     "200": {
@@ -1347,7 +1276,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1372,7 +1301,7 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data2"
+                    "$ref": "#/components/requestBodies/Data3"
                 },
                 "responses": {
                     "200": {
@@ -1392,7 +1321,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1453,7 +1382,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1504,7 +1433,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1630,7 +1559,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1753,7 +1682,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1866,7 +1795,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1918,7 +1847,7 @@
                     }
                 },
                 "tags": [
-                    "ContentPush (protected)"
+                    "ContentPush"
                 ],
                 "security": [
                     {
@@ -1932,7 +1861,7 @@
                 "summary": "postSearch",
                 "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API returns documents and aggregations. \n                The query object is formed with a \"must\", \"should\" and/or \"must_not\" array of objects and\n                an optional minimum_should_match property.\n                It follows the standard OpenSearch Query structure.\n                The aggregations object follows the same OpenSearch Aggregation structure.\n                The page (default: 0) and pageSize (default: 100) parameters are optional.\n                The scope parameter is an array of Content Source UUIDs to filter the search results.\n                If the scope parameter is not provided, the search will be performed on all available Content Sources",
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data3"
+                    "$ref": "#/components/requestBodies/Data4"
                 },
                 "responses": {
                     "200": {
@@ -1948,11 +1877,7 @@
                 "tags": [
                     "ContentQuery"
                 ],
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
+                "security": []
             }
         },
         "/mysearch": {
@@ -1960,7 +1885,7 @@
                 "summary": "postMySearch",
                 "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API returns documents and aggregations. \n                The query object is formed with a \"must\", \"should\" and/or \"must_not\" array of objects and\n                an optional minimum_should_match property.\n                It follows the standard OpenSearch Query structure.\n                The aggregations object follows the same OpenSearch Aggregation structure.\n                The page (default: 0) and pageSize (default: 100) parameters are optional.\n                The scope parameter is an array of Content Source UUIDs to narrow down the search results.\n                If the scope parameter is not provided, the search will be performed on all available Content Sources",
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/Data3"
+                    "$ref": "#/components/requestBodies/Data4"
                 },
                 "responses": {
                     "200": {
@@ -1976,11 +1901,7 @@
                 "tags": [
                     "ContentQuery"
                 ],
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
+                "security": []
             }
         },
         "/admin/authenticate": {
@@ -2025,11 +1946,7 @@
                 "tags": [
                     "Authentication"
                 ],
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
+                "security": []
             }
         }
     },
@@ -2103,6 +2020,58 @@
                     "application/json": {
                         "schema": {
                             "type": "object",
+                            "properties": {
+                                "contentSource": {
+                                    "type": "string",
+                                    "example": "ee0765b4-be3e-4d10-9ab4-95e60464e676"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "example": "wcm"
+                                },
+                                "configuration": {
+                                    "type": "object",
+                                    "properties": {
+                                        "targetDataSource": {
+                                            "type": "string"
+                                        },
+                                        "schedule": {
+                                            "type": "string"
+                                        },
+                                        "security": {
+                                            "type": "object",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "basic"
+                                                },
+                                                "username": {
+                                                    "type": "string"
+                                                },
+                                                "password": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "maxCrawlTime": {
+                                            "type": "number"
+                                        },
+                                        "maxRequestTime": {
+                                            "type": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+            },
+            "Data3": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
                             "required": [
                                 "ids"
                             ],
@@ -2120,7 +2089,7 @@
                 },
                 "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
             },
-            "Data3": {
+            "Data4": {
                 "content": {
                     "application/json": {
                         "schema": {

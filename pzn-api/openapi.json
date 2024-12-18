@@ -234,7 +234,7 @@
                                             "created": "2022-02-07T07:09:49.191Z",
                                             "lastModified": "2022-02-07T07:09:49.191Z",
                                             "parentId": "_6QR_0048AAQUGF0A1T2A_18L"
-                                          },
+                                          }
                                         ]
                                     }
                                   },
@@ -1247,7 +1247,7 @@
                                         "visibility": "Field to add 'show' or 'hide' if the 'conditions' are met.",
                                         "otherwise": "Field to add 'show' or 'hide' if the 'conditions' are not met.",
                                         "caseInsensitive": "Boolean indication that the string comparisons in the rule should be case insensitive.",
-                                        "conditions": "List of conditions to meet the visibility rule criteria.",
+                                        "conditions": "List of conditions to meet the visibility rule criteria."
                                       }
                                     },
                                     "Profiler":{
@@ -1750,8 +1750,8 @@
                                         "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
                                         "parentId" : "Field to indicate to find the difference between the location of the rule.",
                                         "conditions": "List of conditions to meet the select action rule criteria.",
-                                        "select": "Field to indicate type of select action rule.",
-                                      },
+                                        "select": "Field to indicate type of select action rule."
+                                      }
                                     },
                                       "Binding Example 1: Simple":{
                                         "value":{
@@ -2087,7 +2087,7 @@
                                       }
                                     }
                                 }
-                            },
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For success case, API returns list of rules from specified inputs."
                     },
@@ -2819,7 +2819,7 @@
                                         "visibility": "Field to add 'show' or 'hide' if the 'conditions' are met.",
                                         "otherwise": "Field to add 'show' or 'hide' if the 'conditions' are not met.",
                                         "caseInsensitive": "Boolean indication that the string comparisons in the rule should be case insensitive.",
-                                        "conditions": "List of conditions to meet the visibility rule criteria.",
+                                        "conditions": "List of conditions to meet the visibility rule criteria."
                                       }
                                     },
                                     "Profiler": {
@@ -2950,7 +2950,7 @@
                                         "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
                                         "parentId" : "Field to indicate to find the difference between the location of the rule.",
                                         "conditions": "List of conditions to meet the select action rule criteria.",
-                                        "select": "Field to indicate type of select action rule.",
+                                        "select": "Field to indicate type of select action rule."
                                       }
                                     },
                                     "Binding Simple - Sample 1": {
@@ -3489,7 +3489,7 @@
                                         "visibility": "Field to add 'show' or 'hide' if the 'conditions' are met.",
                                         "otherwise": "Field to add 'show' or 'hide' if the 'conditions' are not met.",
                                         "caseInsensitive": "Boolean indication that the string comparisons in the rule should be case insensitive.",
-                                        "conditions": "List of conditions to meet the visibility rule criteria.",
+                                        "conditions": "List of conditions to meet the visibility rule criteria."
                                       }
                                     },
                                     "Profiler": {
@@ -3724,7 +3724,7 @@
                                         "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
                                         "parentId" : "Field to indicate to find the difference between the location of the rule.",
                                         "conditions": "List of conditions to meet the select action rule criteria.",
-                                        "select": "Field to indicate type of select action rule.",
+                                        "select": "Field to indicate type of select action rule."
                                       }
                                     },
                                      "Binding":{
@@ -4253,7 +4253,7 @@
                                         "visibility": "Field to add 'show' or 'hide' if the 'conditions' are met.",
                                         "otherwise": "Field to add 'show' or 'hide' if the 'conditions' are not met.",
                                         "caseInsensitive": "Boolean indication that the string comparisons in the rule should be case insensitive.",
-                                        "conditions": "List of conditions to meet the visibility rule criteria.",
+                                        "conditions": "List of conditions to meet the visibility rule criteria."
                                       }
                                     },
                                     "Profiler": {
@@ -4370,7 +4370,7 @@
                                         "lastModifier": "Filed to indicate that details of the user who is last modified the rule.",
                                         "parentId" : "Field to indicate to find the difference between the location of the rule.",
                                         "conditions": "List of conditions to meet the select action rule criteria.",
-                                        "select": "Field to indicate type of select action rule.",
+                                        "select": "Field to indicate type of select action rule."
                                       }
                                     },
                                     "Binding Simple - Sample 1": {
@@ -4858,7 +4858,7 @@
                                         "ruleId": "Field to indicate rule-id of rule.",
                                         "title": "Field to indicate title of rule.",
                                         "ruleType": "Field to indicate type of rule.",
-                                        "result": "Field to indicate result as show/hide after invoking Visibility rule.",
+                                        "result": "Field to indicate result as show/hide after invoking Visibility rule."
                                       }
                                     },
                                     "Profiler": {
@@ -5067,7 +5067,7 @@
                                   }
                                 }
                               }
-                            },
+                            }
                         },
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "For the success case, the API returns List of dynamic properties."
                     },

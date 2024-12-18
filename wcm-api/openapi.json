@@ -3748,6 +3748,16 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -4063,6 +4073,14 @@
 						},
 						"in": "path",
 						"required": true
+					},
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
 					}
 				],
 				"responses": {
@@ -4376,6 +4394,16 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -4673,6 +4701,16 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -4969,6 +5007,16 @@
 			"get": {
 				"tags": [
 					"Component"
+				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
 				],
 				"responses": {
 					"200": {
@@ -5273,6 +5321,16 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -5570,6 +5628,16 @@
 			"get": {
 				"tags": [
 					"Component"
+				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
 				],
 				"responses": {
 					"200": {
@@ -5870,6 +5938,16 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -6166,6 +6244,16 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -6461,6 +6549,16 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -6741,6 +6839,16 @@
 			"get": {
 				"tags": [
 					"Component"
+				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
 				],
 				"responses": {
 					"200": {
@@ -7038,6 +7146,16 @@
 				"tags": [
 					"Component"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -7332,6 +7450,16 @@
 			"get": {
 				"tags": [
 					"Component"
+				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
 				],
 				"responses": {
 					"200": {
@@ -10920,6 +11048,16 @@
 				"tags": [
 					"Presentation Template"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -11229,6 +11367,16 @@
 			"get": {
 				"tags": [
 					"Project"
+				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
 				],
 				"responses": {
 					"200": {
@@ -13238,6 +13386,16 @@
 				"tags": [
 					"Site Area Template"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -14289,6 +14447,16 @@
 				"tags": [
 					"Workflow"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -14586,6 +14754,16 @@
 			"get": {
 				"tags": [
 					"Workflow"
+				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
 				],
 				"responses": {
 					"200": {
@@ -14885,6 +15063,16 @@
 			"get": {
 				"tags": [
 					"Workflow Action"
+				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
 				],
 				"responses": {
 					"200": {
@@ -15432,6 +15620,16 @@
 				"tags": [
 					"Workflow Action"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -15719,6 +15917,16 @@
 			"get": {
 				"tags": [
 					"Workflow Action"
+				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
 				],
 				"responses": {
 					"200": {
@@ -16008,6 +16216,16 @@
 				"tags": [
 					"Workflow Action"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -16296,6 +16514,16 @@
 				"tags": [
 					"Workflow Action"
 				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
+				],
 				"responses": {
 					"200": {
 						"content": {
@@ -16583,6 +16811,16 @@
 			"get": {
 				"tags": [
 					"Workflow Action"
+				],
+				"parameters": [
+					{
+						"name": "USE_LINKS",
+						"x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Return the response object with a plural name of links instead of link to be consistent with PUT and other APIs.",
+						"schema": {
+							"type": "boolean"
+						},
+						"in": "query"
+					}
 				],
 				"responses": {
 					"200": {
