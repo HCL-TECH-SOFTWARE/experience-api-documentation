@@ -18,6 +18,7 @@ HCL Experience API
 | [**_HCL Search API v1_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/search-api)                   | Presents redesigned developer entry points to the search (like text or keyword searches) functions of HCL DX 9.5. | /dx/api/search/v1/explorer             |
 | [**_HCL Search API v2_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/search-v2-api)                   | Presents new search capabilities powered by OpenSearch of HCL DX 9.5. | /dx/api/search/v2/explorer             |
 | [**_HCL Users and Groups API_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/users-api)                   | Presents developer entry points to the user and group management functions of HCL DX 9.5.  | /dx/api/users/v1/explorer             |
+| [**_HCL People Service API_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/people-service-api)                   | Presents developer entrypoints to the People API features of HCL DX 9.5.  | /dx/api/people/v1/explorer             |
 
 > **Note :** Future HCL DX 9.5 feature functionality will also be exposed through the HCL Experience API.
 
@@ -38,3 +39,4 @@ The HCL Experience API is a component of the HCL Digital Experience offerings. H
 | HCL Remote Model API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/remotemodel-api |
 | HCL Search API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/search-api |
 | HCL Users and Groups API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/users-api |
+| HCL People Service API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/people-service-api |
