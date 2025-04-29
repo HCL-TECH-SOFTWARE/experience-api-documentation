@@ -977,6 +977,11 @@
                                                     "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
                                                     "items": {}
                                                 },
+                                                "link": {
+                                                    "type": "string",
+                                                    "example": "",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Link reference to a content item"
+                                                },
                                                 "documentObject": {
                                                     "type": "object",
                                                     "example": {}
@@ -1095,6 +1100,11 @@
                                                     ],
                                                     "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
                                                     "items": {}
+                                                },
+                                                "link": {
+                                                    "type": "string",
+                                                    "example": "",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Link reference to a content item"
                                                 },
                                                 "documentObject": {
                                                     "type": "object",
@@ -1219,6 +1229,11 @@
                                                     ],
                                                     "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
                                                     "items": {}
+                                                },
+                                                "link": {
+                                                    "type": "string",
+                                                    "example": "",
+                                                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Link reference to a content item"
                                                 },
                                                 "documentObject": {
                                                     "type": "object",
@@ -1545,6 +1560,11 @@
                                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
                                         "items": {}
                                     },
+                                    "link": {
+                                        "type": "string",
+                                        "example": "",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Link reference to a content item"
+                                    },
                                     "documentObject": {
                                         "type": "object",
                                         "example": {},
@@ -1672,6 +1692,11 @@
                                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
                                         "items": {}
                                     },
+                                    "link": {
+                                        "type": "string",
+                                        "example": "",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Link reference to a content item"
+                                    },
                                     "documentObject": {
                                         "type": "object",
                                         "example": {}
@@ -1784,6 +1809,11 @@
                                         ],
                                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "List of tags",
                                         "items": {}
+                                    },
+                                    "link": {
+                                        "type": "string",
+                                        "example": "",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Link reference to a content item"
                                     },
                                     "documentObject": {
                                         "type": "object",
