@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Search API Server",
-        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Presents developer entrypoints to the Search API features. <br>\n                    Endpoints with tags marked as <b>protected</b> are JWT secured and need an administrator to login before usage.\n                    Use the endpoint <b>/admin/authenticate</b> to get a JWT token. <br>\n                    Copy that JWT Token and use the <b>Authorize</b> button on the top right corner of the Swagger UI to enter the JWT token. <br>\n                    <b>Example:</b> Bearer JWT_TOKEN<br>\n                    The credentials are the ones you have configured for the search administrator and push administrator during deployment.",
+        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Presents developer entrypoints to the Search API features. <br><br>\n                    <h3>Authentication Instructions</h3>\n                    <p>Endpoints with tags marked as <b>protected</b> are JWT secured and require authentication:</p>\n                    <ol style=\"font-size: 1.1em; line-height: 1.8;\">\n                      <li>Scroll down to find the <b>/admin/authenticate</b> endpoint</li>\n                      <li>Execute the endpoint with your administrator credentials to get a JWT token</li>\n                      <li>Copy the JWT token from the response</li>\n                      <li>Click the <b>Authorize</b> button at the top right corner of this page</li>\n                      <li>Enter the token in the format: <code>Bearer &lt;your_token&gt;</code></li>\n                      <li>Click \"Authorize\" to apply the token to all protected endpoints</li>\n                    </ol>\n                    <p><b>Note:</b> The credentials are the ones you configured for the search administrator and push administrator during deployment.</p>",
         "version": "2.0.0"
     },
     "paths": {
@@ -2212,7 +2212,7 @@
                 "type": "apiKey",
                 "in": "header",
                 "name": "Authorization",
-                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Bearer JWT"
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Enter: Bearer <your_jwt_token> (must include \"Bearer \" prefix)"
             }
         }
     }
