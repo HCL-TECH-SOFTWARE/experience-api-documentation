@@ -80,6 +80,9 @@
                     "401": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
                     },
+                    "409": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A Content Source with this name already exists"
+                    },
                     "500": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
                     }
@@ -459,6 +462,7 @@
                                 "type": "object",
                                 "required": [
                                     "contentSource",
+                                    "name",
                                     "type",
                                     "configuration"
                                 ],
@@ -466,6 +470,10 @@
                                     "contentSource": {
                                         "type": "string",
                                         "example": "ee0765b4-be3e-4d10-9ab4-95e60464e676"
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "string"
                                     },
                                     "type": {
                                         "type": "string",
@@ -536,6 +544,9 @@
                     },
                     "401": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "409": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "A Crawler with this name already exists"
                     },
                     "500": {
                         "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
@@ -770,6 +781,45 @@
                         "in": "query",
                         "schema": {
                             "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "404": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Crawler ID not found."
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "Crawlers"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
+            }
+        },
+        "/crawlers/{crawler_id}/stop": {
+            "put": {
+                "summary": "stopCrawler",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "This API stops a running crawler gracefully with \"crawler_id\", preserving partial crawl results",
+                "parameters": [
+                    {
+                        "name": "crawler_id",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "id of crawler",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
                         }
                     }
                 ],
@@ -1995,6 +2045,82 @@
                     "Authentication"
                 ],
                 "security": []
+            }
+        },
+        "/resources/{type}/search": {
+            "post": {
+                "summary": "Search resources by type",
+                "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Generic search endpoint. The {type} path parameter determines the resource to search. Supported types: content-sources, crawlers. Uses multi_match with fuzziness. Empty searchTerm returns all. Optional sortBy and sortOrder are supported.",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "required": true,
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Resource type: content-sources | crawlers",
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "searchTerm": {
+                                        "type": "string",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Term to search for across resource fields",
+                                        "example": "wcm"
+                                    },
+                                    "pageSize": {
+                                        "type": "number",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Number of results per page (default: 50)",
+                                        "example": 50
+                                    },
+                                    "page": {
+                                        "type": "number",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Page number, 0-indexed (default: 0)",
+                                        "example": 0
+                                    },
+                                    "sortBy": {
+                                        "type": "string",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Sort field. Allowed values depend on resource type.",
+                                        "example": "name"
+                                    },
+                                    "sortOrder": {
+                                        "type": "string",
+                                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Sort direction: asc or desc (default: asc)",
+                                        "example": "asc"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "request body"
+                },
+                "responses": {
+                    "200": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Success"
+                    },
+                    "400": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Invalid resource type or search parameters"
+                    },
+                    "401": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Authentication Error"
+                    },
+                    "500": {
+                        "x-logo":{"url":"../DX_logo.svg","backgroundColor":"#F2F4F5","altText":"HCL_Digital_Experience"},"description": "Server Error"
+                    }
+                },
+                "tags": [
+                    "ResourceQuery"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ]
             }
         }
     },
