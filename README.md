@@ -13,7 +13,6 @@ HCL Experience API
 | [**_HCL Image Processor API_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/image-processor-api) | Presents developer entry points to the Digital Asset Management Image Processor functions of HCL DX 9.5.                                                                               | /dx/api/image-processor/v1/explorer |
 | [**_HCL Personalization API_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/pzn-api)             | Presents developer entry points to the Personalization Rule functions of HCL DX 9.5.                                                                                                   | /dx/api/pzn/v1/explorer             |
 | [**_HCL WCM API_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/wcm-api)                   | Presents redesigned developer entry points to the Web Content Manager functions of HCL DX 9.5. Intended to facilitate the management of Web content, content-sites, and content-pages. | /dx/api/wcm/v2/explorer             |
-| [**_HCL WCM API V3_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/wcm-v3-api)             | Presents redesigned developer entry points to the Web Content Manager V3 functions of HCL DX 9.5. Intended to facilitate modern content management workflows. | /dx/api/wcm/v3/docs/                |
 | [**_HCL Access Control API_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/access-api)                   | Presents developer entry points to the Access Control Management functions of HCL DX 9.5. | /dx/api/access/v1/explorer             |
 | [**_HCL Remote Model API_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/remotemodel-api)                   | Presents developer entry points to the various models for pages, layouts, and more functions of HCL DX 9.5.  | /dx/api/remotemodel/v1/explorer             |
 | [**_HCL Search API v1_**](https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/search-api)                   | Presents redesigned developer entry points to the search (like text or keyword searches) functions of HCL DX 9.5. | /dx/api/search/v1/explorer             |
@@ -36,7 +35,6 @@ The HCL Experience API is a component of the HCL Digital Experience offerings. H
 | HCL Image Processor API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/image-processor-api |
 | HCL Personalization API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/pzn-api |
 | HCL WCM API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/wcm-api |
-| HCL WCM API V3 | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/wcm-v3-api |
 | HCL Access Control API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/access-api |
 | HCL Remote Model API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/remotemodel-api |
 | HCL Search API | https://HCL-TECH-SOFTWARE.github.io/experience-api-documentation/search-api |
